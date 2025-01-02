@@ -1,0 +1,561 @@
+<template>
+  <section>
+    <!-- Video Carousel Section -->
+    <section
+      id="video-carousel"
+      class="relative w-full h-[557px] md:h-[600px] lg:h-[639px] overflow-hidden"
+    >
+      <div class="relative w-full h-full overflow-hidden">
+        <!-- Video Items -->
+        <div
+          v-for="(media, index) in mediaItems"
+          :key="index"
+          class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out"
+          :class="{
+            'opacity-100': index === currentIndex,
+            'opacity-0': index !== currentIndex,
+          }"
+        >
+          <video
+            v-if="media.type === 'video'"
+            :src="media.src"
+            muted
+            autoplay
+            playsinline
+            loop
+            class="block w-full h-full object-cover"
+          />
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div
+          class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"
+        >
+          <button
+            v-for="(media, index) in mediaItems"
+            :key="index"
+            class="w-3 h-3 rounded-full transition-colors duration-300"
+            :class="{
+              'bg-white': index === currentIndex,
+              'bg-gray-500': index !== currentIndex,
+            }"
+            @click="goToSlide(index)"
+          ></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- main Section -->
+    <section class="page-width">
+      <!-- Welcome Section -->
+      <section class="py-0 lg:py-[32px] md:py-[16px] page-width">
+        <div class="max-w-[992px] mx-auto text-center">
+          <div
+            class="w-full flex flex-wrap justify-center items-center text-center space-x-[4px]"
+          >
+            <span
+              class="text-black/85 text-[20px] md:text-[24px] lg:text-[36px] font-normal font-outfit leading-[52px] tracking-[1.2px] lg:tracking-[2.16px] pt-[4px]"
+              >Join us for a</span
+            >
+            <span
+              class="text-black/85 text-[24px] font-normal font-outfit leading-[67px] tracking-normal"
+            ></span>
+            <span
+              class="text-black/85 text-[24px] md:text-[32px] lg:text-[48px] font-medium font-outfit leading-[67px]"
+              >90 Day Challenge</span
+            >
+          </div>
+
+          <div
+            class="text-center text-black/85 text-[16px] md:text-[18px] lg:text-[20px] font-normal font-outfit leading-normal px-[19px] mt-0 lg:mt-5"
+            style="line-height: normal"
+          >
+            Join us for a transformative journey towards balanced wellness,
+            weight loss, and weight management, The Science of ShapeShifting.
+          </div>
+        </div>
+      </section>
+
+      <!-- Sort and Filter Section -->
+      <section
+        class="page-width flex justify-center items-center py-[20px] lg:py-[63px] md:py-[30px]"
+      >
+        <div class="max-w-[992px] flex justify-center items-center w-full">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center w-full"
+          >
+            <div
+              class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 px-[15px]"
+            >
+              <!-- Filter Dropdown -->
+              <div
+                class="relative lg:order-2 order-1 border-b-[1px] border-black/85"
+              >
+                <div
+                  @click="toggleFilterDropdown"
+                  class="cursor-pointer px-2 py-1 lg:px-3 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500"
+                >
+                  {{ selectedName || "Filter" }}
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul
+                  v-if="filterDropdownOpen"
+                  class="absolute max-w-[500px] flex flex-col bg-white  rounded z-10 mt-1 w-full"
+                >
+                  <li
+                    v-for="name in categories"
+                    :key="name"
+                    @click="selectFilter(name)"
+                    class="px-4 py-2 text-[11px] cursor-pointer hover:bg-gray-100  flex items-center"
+                  >
+                    <span
+                      v-if="selectedName === name"
+                      class="mr-2 text-green-500"
+                    >
+                      <i class="fas fa-check"></i>
+                    </span>
+                    {{ name }}
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Sort Dropdown -->
+              <div
+                class="relative g:order-1 order-2 border-b-[1px] border-black/85"
+              >
+                <div
+                  @click="toggleSortDropdown"
+                  class="cursor-pointer px-2 py-1 lg:px-3 rounded text-[11px] md:text-[13px] font-inter font-normal text-center focus:ring-blue-500 focus:border-blue-500 "
+                >
+                  {{
+                    selectedSort === "asc"
+                      ? "Low to High"
+                      : selectedSort === "desc"
+                      ? "High to Low"
+                      : "Sort"
+                  }}
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul
+                  v-if="sortDropdownOpen"
+                  class="absolute flex flex-col bg-white  shadow-lg rounded z-50 mt-1 mx-auto"
+                >
+                  <li
+                    @click="selectSort('')"
+                    class="px-4 py-2 cursor-pointer text-[11px] hover:bg-gray-100  flex items-center"
+                  >
+                    <span
+                      v-if="selectedSort === ''"
+                      class="mr-2 text-green-500"
+                    >
+                      <i class="fas fa-check"></i>
+                    </span>
+                    Best Seller
+                  </li>
+                  <li
+                    @click="selectSort('asc')"
+                    class="px-4 py-2 cursor-pointer text-[11px] hover:bg-gray-100 flex items-center"
+                  >
+                    <span
+                      v-if="selectedSort === 'asc'"
+                      class="mr-2 text-green-500"
+                    >
+                      <i class="fas fa-check"></i>
+                    </span>
+                    Low to High
+                  </li>
+                  <li
+                    @click="selectSort('desc')"
+                    class="px-4 py-2 cursor-pointer text-[11px] hover:bg-gray-100 flex items-center"
+                  >
+                    <span
+                      v-if="selectedSort === 'desc'"
+                      class="mr-2 text-green-500"
+                    >
+                      <i class="fas fa-check"></i>
+                    </span>
+                    High to Low
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Section -->
+      <!-- <div class="hidden lg:flex md:flex relative w-full md:w-1/3">
+            <input
+              v-model="searchQuery"
+              @input="applySearch"
+              type="text"
+              placeholder="Search"
+              class="border-[1px] border-[#DEDEDE] px-4 py-2 rounded-full w-full pr-10 outline-none"
+            />
+           
+            <span
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+            >
+              <i class="fas fa-search"></i>
+            </span>
+          </div> -->
+      <!-- </div> -->
+
+      <!-- 
+<div class="mt-4">
+<div
+v-for="item in filteredSortedAndSearchedItems"
+:key="item.id"
+class="border p-4 mb-2 rounded"
+>
+<h3 class="text-lg font-bold">{{ item.name }}</h3>
+<p class="text-gray-600">name: {{ item.name }}</p>
+<p class="text-gray-800">Price: {{ item.price }}$</p>
+</div>
+
+<div
+v-if="filteredSortedAndSearchedItems.length === 0"
+class="text-gray-500 text-center"
+>
+No items found.
+</div>
+</div>
+-->
+
+      <section class="page-width flex justify-center items-center">
+        <div class="max-w-[992px] mx-auto px-[15px]">
+          <div
+            class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6 lg:gap-10"
+          >
+            <div
+              v-for="item in filteredSortedAndSearchedItems"
+              :key="item.id"
+              class="px-4"
+            >
+              <div
+                class="w-[175px] h-[175px] lg:w-[312px] lg:h-[570px] relative cursor-pointer border px-2 py-4 lg:px-8 lg:py-4 mb-2 rounded"
+              >
+                <img
+                  :src="item.src"
+                  alt="Item Image"
+                  class="w-full h-full object-cover transition-opacity duration-300"
+                />
+                <img
+                  :src="item.hoverSrc"
+                  alt="Hover Item Image"
+                  class="w-full h-full object-cover absolute top-0 left-0 opacity-0 transition-opacity duration-300"
+                />
+              </div>
+              <div class="max-w-[300px] mt-[24px] pl-2">
+                <p
+                  class="flex items-center space-x-1 text-black/85 truncate font-outfit font-light text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px]"
+                >
+                  <span
+                    :style="{ backgroundColor: getColorForName(item.category) }"
+                    class="w-[15px] h-[15px] sm:w-[10px] sm:h-[10px] lg:w-[18px] lg:h-[18px] rounded-full inline-block"
+                  ></span>
+                  <span>{{ item.category }}</span>
+                </p>
+
+                <p
+                  class="text-black/85 truncate font-outfit font-light text-[11px] md:text-[13px] lg:text-[19.95px] text-start"
+                >
+                  {{ item.replacement }}
+                </p>
+                <p>
+                  <span
+                    class="text-black/90 text-[13px] lg:text-[20px] font-normal font-outfit"
+                    >Rs.</span
+                  >
+                  <span
+                    class="text-black/85 text-[13px] lg:text-[20px] font-bold font-outfit"
+                    >{{ item.price }}</span
+                  >
+                </p>
+                <p class="text-[11px] lg:text-[16px] font-light font-outfit">
+                  {{ item.tax }}
+                </p>
+
+                <button
+                  @click="AddtoCartPage"
+                  class="text-[13px] cursor-pointer lg:text-[19.95px] font-bold font-outfit underline border-black/85 mb-4"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            v-if="filteredSortedAndSearchedItems.length === 0"
+            class="text-gray-500 text-center"
+          >
+            No items found.
+          </div>
+        </div>
+      </section>
+
+      <section class="hidden lg:block py-4 md:py-6 lg:py-8">
+        <Pagination
+          :currentPage="currentPage"
+          :totalPages="totalPages"
+          @change-page="handlePageChange"
+          class="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8"
+        />
+      </section>
+    </section>
+  </section>
+</template>
+
+<script>
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import "@fortawesome/fontawesome-free/css/all.css";
+import Banana from "../assets/Banana-Caramel.png";
+import Chocolate from "../assets/Chocolate.png";
+import Kulfi from "../assets/Kulfi.png";
+import Mango from "../assets/Mango.png";
+import Rasmalai from "../assets/Rasmalai.png";
+import Strawberry from "../assets/Strawberry.png";
+import Rosekheer from "../assets/RoseKheer.png";
+import Vanilla from "../assets/Vanilla.png";
+import milkglass from "../assets/hoverimage.png";
+import AddtoCartPage from "./AddtoCartPage.vue";
+
+export default {
+  // methods: {
+  //   AddtoCartPage() {
+  //     this.$router.push("/add-cart");
+  //   },
+  // },
+  setup() {
+    const router = useRouter();
+    const AddtoCartPage = () => {
+      router.push("/add-cart");
+    };
+    // Pagination State
+    const currentPage = ref(1);
+    const totalPages = ref(68);
+
+    // Pagination handler
+    const handlePageChange = (page) => {
+      currentPage.value = page;
+    };
+
+    // Media items (example, could be for video galleries)
+    const mediaItems = ref([
+      {
+        type: "video",
+        src: "https://cdn.pixabay.com/video/2022/02/24/108803-681686665_large.mp4",
+      },
+      {
+        type: "video",
+        src: "https://cdn.pixabay.com/video/2021/09/08/2066/2066-323539_large.mp4",
+      },
+      {
+        type: "video",
+        src: "https://cdn.pixabay.com/video/2022/03/01/7188/7188-595900_large.mp4",
+      },
+    ]);
+
+    const currentIndex = ref(0);
+    const goToSlide = (index) => (currentIndex.value = index);
+
+    // Color mapping for categories
+    const colorMapping = {
+      Banana: "#C7BFA4",
+      Chocolate: "#A3764A",
+      Kulfi: "#C09F6F",
+      Mango: "#F2B422",
+      Rasmalai: "#E0CFB0",
+      Strawberry: "#DF84AA",
+      Rose: "#C97C7D",
+      Vanilla: "#F9E4B5",
+    };
+
+    // Product items
+    const items = ref([
+      {
+        id: 1,
+        src: Banana,
+        hoverSrc: milkglass,
+        name: "Banana Caramel XYZ...",
+        replacement: "Meal replacement Powder XYZ...",
+        price: 1252.0,
+        tax: "MRP (incl,of all taxes)",
+        category: "Meal replacement shakes",
+      },
+      {
+        id: 2,
+        src: Chocolate,
+        hoverSrc: milkglass,
+        name: "Chocolate Flavour",
+        replacement: "Meal Replacement Powder 500g",
+        price: 1252.0,
+        tax: "MRP (incl,of all taxes)",
+        category: "Tea",
+      },
+      {
+        id: 3,
+        src: Kulfi,
+        hoverSrc: milkglass,
+        name: "Kulfi Ice Cream",
+        replacement: "Ice Cream Flavour",
+        price: 500.0,
+        tax: "MRP (incl,of all taxes)",
+        category: "Ice Creams",
+      },
+      {
+        id: 4,
+        src: Mango,
+        hoverSrc: milkglass,
+        name: "Mango flavour",
+        replacement: "Smoothie replacement powder",
+        price: 1250.0,
+        tax: "MRP (incl,of all taxes)",
+        category: "Smoothies",
+      },
+      {
+        id: 5,
+        src: Rasmalai,
+        hoverSrc: milkglass,
+        name: "Rasmalai",
+        replacement: "Dessert item",
+        price: 1252.0,
+        tax: "MRP (incl,of all taxes)",
+        category: "Dessert",
+      },
+      {
+        id: 6,
+        src: Strawberry,
+        hoverSrc: milkglass,
+        name: "Strawberry flavour",
+        replacement: "Powder meal replacement",
+        price: 1252.0,
+        tax: "MRP (incl,of all taxes)",
+        category: "Smoothies",
+      },
+      {
+        id: 7,
+        src: Rosekheer,
+        hoverSrc: milkglass,
+        name: "Rose Kheer",
+        replacement: "Kheer",
+        price: 250.0,
+        tax: "MRP (incl,of all taxes)",
+        category: "Dessert",
+      },
+      {
+        id: 8,
+        src: Vanilla,
+        hoverSrc: milkglass,
+        name: "Vanilla Protein",
+        replacement: "Meal Powder",
+        price: 1252.0,
+        tax: "MRP (incl,of all taxes)",
+        category: "Protein Powder",
+      },
+    ]);
+
+    const categories = ref([
+      "All",
+      "Smoothies",
+      "Ice Creams",
+      "Protein Powder",
+      "Tea",
+      "Meal replacement shakes",
+      "Dessert",
+    ]);
+
+    // Filter and sort state
+    const selectedName = ref(null);
+    const filterDropdownOpen = ref(false);
+    const selectedSort = ref("");
+    const sortDropdownOpen = ref(false);
+    const searchQuery = ref("");
+
+    // Computed filtered and sorted items based on category and search query
+    const filteredSortedAndSearchedItems = computed(() => {
+      return items.value
+        .filter((item) => {
+          const matchCategory = selectedName.value
+            ? item.category === selectedName.value ||
+              selectedName.value === "All"
+            : true;
+          const matchSearch =
+            item.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+            item.replacement
+              .toLowerCase()
+              .includes(searchQuery.value.toLowerCase());
+          return matchCategory && matchSearch;
+        })
+        .sort((a, b) => {
+          if (selectedSort.value === "asc") return a.price - b.price;
+          if (selectedSort.value === "desc") return b.price - a.price;
+          return 0;
+        });
+    });
+
+    // Dropdown toggle functions
+    const toggleFilterDropdown = () => {
+      filterDropdownOpen.value = !filterDropdownOpen.value;
+    };
+
+    const toggleSortDropdown = () => {
+      sortDropdownOpen.value = !sortDropdownOpen.value;
+    };
+
+    // Select filter and sort
+    const selectFilter = (name) => {
+      selectedName.value = name;
+      filterDropdownOpen.value = false;
+    };
+
+    const selectSort = (sortOrder) => {
+      selectedSort.value = sortOrder;
+      sortDropdownOpen.value = false;
+    };
+
+    // Get color based on item name
+    const getColorForName = (name) => {
+      return colorMapping[name] || "#F2B422"; // Default to mango color
+    };
+
+    return {
+      // State and methods returned from setup function
+      currentPage,
+      totalPages,
+      handlePageChange,
+      mediaItems,
+      currentIndex,
+      goToSlide,
+      colorMapping,
+      items,
+      categories,
+      selectedName,
+      filterDropdownOpen,
+      selectedSort,
+      sortDropdownOpen,
+      searchQuery,
+      filteredSortedAndSearchedItems,
+      toggleFilterDropdown,
+      toggleSortDropdown,
+      selectFilter,
+      selectSort,
+      getColorForName,
+      AddtoCartPage,
+    };
+  },
+};
+</script>
+
+<style scoped>
+/* CSS to handle hover effect */
+.relative:hover img:nth-child(1) {
+  opacity: 0; /* Hide the default image */
+}
+
+.relative:hover img:nth-child(2) {
+  opacity: 1; /* Show the hover image */
+}
+</style>
