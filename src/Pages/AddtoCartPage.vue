@@ -141,7 +141,7 @@ const toggleSection = (index) => {
     </div>
 
       <!-- Product Info Section -->
-      <div class="bg-white pl-[19px] pr-[4px] py-[19px] max-w-full mx-auto text-gray-800">
+      <div class="bg-white pl-[19px] pr-[19px] py-[19px] max-w-full mx-auto text-gray-800">
         <!-- Product Title -->
         <div class="text-start">
           <h1 style="line-height: normal;" class="text-[20px] text-black/85 font-normal font-outfit">Shape Shift</h1>
@@ -176,19 +176,19 @@ const toggleSection = (index) => {
         </div>
 
         <!-- Quantity Selector -->
-        <div class="flex items-center gap-4 mt-6">
+  <div class="flex items-center gap-4 mt-6">
   <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
-  <div class="flex items-center border border-black rounded-md px-[4px]">
+  <div class="flex justify-center w-[60px] h[21px] items-center border border-black rounded-[4px] ">
     <!-- Decrease Quantity Button -->
     <button
-      class="w-6 h-6 flex justify-center items-center text-gray-800"
+      class="w-[9px] h-[1.125px] flex justify-center items-center text-gray-800"
       @click="decreaseQuantity"
       aria-label="Decrease quantity"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="7"
-        height="2"
+        width="9"
+        height="auto"
         viewBox="0 0 9 2"
         fill="none"
         class="w-4 h-4"
@@ -202,18 +202,18 @@ const toggleSection = (index) => {
     </button>
 
     <!-- Quantity Display -->
-    <span class="text-base font-medium px-2">{{ quantity }}</span>
+    <span class="text-[16px] font-medium px-2 leading-[24px]">{{ quantity }}</span>
 
     <!-- Increase Quantity Button -->
     <button
-      class="w-6 h-6 flex justify-center items-center text-gray-800"
+      class="w-[9px] h-[6.838px] flex justify-center items-center text-gray-800"
       @click="increaseQuantity"
       aria-label="Increase quantity"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="9"
-        height="6"
+        height="auto"
         viewBox="0 0 11 7"
         fill="none"
         class="w-4 h-4"
@@ -307,9 +307,11 @@ const toggleSection = (index) => {
           <li class="cursor-pointer">Shape Shift</li>
           <li class="cursor-pointer">Meal Replacement for Weight Management</li>
         </ul>
-
+        <h2 class="text-[20px] font-medium font-outfit text-black/85 pt-[4px]">
+          Shape Shift
+        </h2>
         <!-- Product Title -->
-        <h2 class="text-[20px] font-normal font-outfit text-black/85">
+        <h2 class="text-[20px] font-normal font-outfit text-black/85 ">
           Plant-Based Protein Powder 500g
         </h2>
 
@@ -319,7 +321,7 @@ const toggleSection = (index) => {
           Meal Replacement for Weight Management
         </p>
 
-        <div class="flex flex-col pt-[3px]">
+        <div class="flex flex-col pt-[10px]">
           <p class="text-black/85 text-[14px] font-light font-outfit">
             Item: MW0001
           </p>
@@ -352,43 +354,43 @@ const toggleSection = (index) => {
             class="flex flex-wrap justify-start items-center flevor-grid space-y-1 pt-[31px]"
           >
             <div
-              class="bg-blue-500 border px-2 text-center text-white text-[14.93px] font-medium font-outfit"
+              class= "border-[0.931px] rounded-[3.726px] border-black/85 px-2 text-center text-black/85 text-[14.93px] font-medium font-outfit"
             >
               Chocolate
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Vanilla
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Mango
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Kulfi
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Rose Kheer
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Strawberry
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Banana Caramel
             </div>
 
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Rasmalai
             </div>
@@ -454,9 +456,9 @@ const toggleSection = (index) => {
     </div>
   </section>
  <!------------------------------------- Accordion Sections -------------------------------------------------------->
-  <section class="max-w-[1124px] hidden lg:block">
+  <section class="max-w-[1124px] mx-auto hidden lg:block">
    
-    <div class=" px-10">
+    <div class="">
           <div
             v-for="(section, index) in sections"
             :key="index"
@@ -497,7 +499,7 @@ const toggleSection = (index) => {
   </div>
 
   <!-- Products Section -->
-  <div class="mt-12 flex flex-wrap gap-8 justify-center items-center">
+  <div class="mt-12 flex flex-wrap gap-[14px] justify-center items-center px-4">
     <!-- Product Block -->
     <div
       v-for="(product, index) in productImages"
@@ -512,7 +514,7 @@ const toggleSection = (index) => {
             <img
               :src="product.src"
               :alt="product.alt"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-contain"
             />
           </div>
           <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
@@ -531,7 +533,7 @@ const toggleSection = (index) => {
             <img
               :src="product.src"
               :alt="product.alt"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-contain"
             />
           </div>
           <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
@@ -550,19 +552,19 @@ const toggleSection = (index) => {
 <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ You may also like section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 
 
-<section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-[80.14px] px-4 ">
+<section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-[80.14px] px-[14px] mb-[30px]">
   <!-- Title Section -->
   <div class="flex justify-start lg:justify-center items-center">
     <h2
       style="line-height: normal;"
-      class="text-center text-black/85 font-outfit lg:text-[42px] text-[20px] font-semibold lg:font-normal"
+      class="text-center text-black/85 font-outfit lg:text-[48px] text-[20px] font-semibold lg:font-normal"
     >
       You may also like
     </h2>
   </div>
 
   <!-- Products Section -->
-  <div class="mt-12 flex flex-wrap  justify-center items-center">
+  <div class="mt-12 flex flex-wrap items-center">
     <!-- Product Block -->
     <div
       v-for="(product, index) in productImages"
@@ -572,55 +574,79 @@ const toggleSection = (index) => {
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-[14px] lg:gap-[33px] justify-center items-center">
   <!-- First Image with Title -->
   <div class="flex flex-col items-center">
-    <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-      <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-    </div>
-    <span class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-      {{ product.description }}
-    </span>
-    <span class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-      {{ product.title }}
-    </span>
-  </div>
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
 
   <!-- Second Image with Title -->
   <div class="flex flex-col items-center">
-    <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-      <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-    </div>
-    <span class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-      {{ product.description }}
-    </span>
-    <span class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-      {{ product.title }}
-    </span>
-  </div>
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
 
   <!-- Third Image with Title -->
   <div class="flex flex-col items-center">
-    <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-      <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-    </div>
-    <span class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-      {{ product.description }}
-    </span>
-    <span class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-      {{ product.title }}
-    </span>
-  </div>
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
 
   <!-- Fourth Image with Title -->
   <div class="flex flex-col items-center">
-    <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-      <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-    </div>
-    <span class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-      {{ product.description }}
-    </span>
-    <span class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-      {{ product.title }}
-    </span>
-  </div>
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
 </div>
 
     </div>
