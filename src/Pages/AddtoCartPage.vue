@@ -254,7 +254,7 @@ const toggleSection = (index) => {
           >
             <button 
             style="line-height: normal;"
-              class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] font-normal font-outfit flex justify-between items-center"
+              class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] lg:text-[20px] font-normal font-outfit flex justify-between items-center"
               @click="toggleSection(index)"
             >
               {{ section.title }}
@@ -346,7 +346,7 @@ const toggleSection = (index) => {
 
         <div class="pt-[31px]">
           <div
-            class="flex flex-wrap justify-start items-center space-x-2 space-y-1 pt-[31px]"
+            class="flex flex-wrap justify-start items-center flevor-grid space-y-1 pt-[31px]"
           >
             <div
               class=" border border-black px-2 text-center text-black/85 text-[14.93px] rounded-[3px] font-medium font-outfit"
@@ -453,15 +453,15 @@ const toggleSection = (index) => {
  <!------------------------------------- Accordion Sections -------------------------------------------------------->
   <section class="max-w-[1124px] hidden lg:block">
    
-    <div class=" space-y-4 px-10">
+    <div class=" px-10">
           <div
             v-for="(section, index) in sections"
             :key="index"
-            class="border-b-[1px] border-[#353535]"
+            class="border-b-[1px] border-[#353535] mt-0"
           >
             <button 
             style="line-height: normal;"
-              class="w-full text-left text-[#353535] pt-[30px] pb-[24px] text-[16px] font-normal font-outfit flex justify-between items-center"
+              class="w-full text-left text-[#353535] pt-[30px] pb-[24px] text-[20px] font-normal font-outfit flex justify-between items-center"
               @click="toggleSection(index)"
             >
               {{ section.title }}
