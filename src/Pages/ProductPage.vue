@@ -254,6 +254,12 @@ No items found.
                 <p
                   class="text-black/85 truncate w-[155px] lg:w-full font-outfit font-light text-[13px] md:text-[13px] lg:text-[19.95px] text-start"
                 >
+                  Shape Shift
+                </p>
+
+                <p
+                  class="text-black/85 truncate w-[155px] lg:w-full font-outfit font-light text-[13px] md:text-[13px] lg:text-[19.95px] text-start"
+                >
                   {{ item.replacement }}
                 </p>
                 <p class="pt-[3px]">
