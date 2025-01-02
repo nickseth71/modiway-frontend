@@ -51,7 +51,7 @@
       <section class="py-0 lg:py-[32px] md:py-[16px] page-width">
         <div class="max-w-[992px] mx-auto text-center">
           <div
-            class="w-full flex flex-wrap justify-center items-center text-center space-x-[4px]"
+            class="w-full flex flex-wrap justify-center items-end text-center space-x-[4px]"
           >
             <span
               class="text-black/85 text-[20px] md:text-[24px] lg:text-[36px] font-normal font-outfit leading-[52px] tracking-[1.2px] lg:tracking-[2.16px] pt-[4px]"
@@ -61,7 +61,7 @@
               class="text-black/85 text-[24px] font-normal font-outfit leading-[67px] tracking-normal"
             ></span>
             <span
-              class="text-black/85 text-[24px] md:text-[32px] lg:text-[48px] font-medium font-outfit leading-[67px]"
+              class="text-black/85 text-[24px] md:text-[32px] lg:text-[72px] font-medium font-outfit leading-[67px]"
               >90 Day Challenge</span
             >
           </div>
@@ -102,13 +102,13 @@
                 </div>
                 <ul
                   v-if="filterDropdownOpen"
-                  class="absolute flex flex-col bg-white rounded z-10 mt-1 w-[150px]"
+                  class="absolute flex flex-col bg-white  z-10 mt-1  shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]"
                 >
                   <li
                     v-for="name in categories"
                     :key="name"
                     @click="selectFilter(name)"
-                    class="px-4 py-2 text-[11px] cursor-pointer hover:bg-gray-100 flex items-center"
+                    class="px-4 py-2 text-[16px] first:border-0 border-t border-black cursor-pointer hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap"
                   >
                     <i
                       v-if="selectedName === name"
@@ -138,35 +138,35 @@
                 </div>
                 <ul
                   v-if="sortDropdownOpen"
-                  class="absolute flex flex-col justify-start bg-white rounded z-20 mt-1 mx-auto w-[150px] mr-[20px]"
+                  class="absolute flex flex-col justify-start bg-white rounded z-20 mt-1 mx-auto  mr-[20px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]"
                 >
                   <li
                     @click="selectSort('')"
-                    class="px-4 py-2 cursor-pointer text-[11px] hover:bg-gray-100 flex items-center"
+                    class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-0 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap"
                   >
                     <i
                       v-if="selectedSort === ''"
-                      class="fas fa-check mr-2 text-green-500"
+                      class="fas fa-check mr-2 text-black absolute left-3"
                     ></i>
                     Best Seller
                   </li>
                   <li
                     @click="selectSort('asc')"
-                    class="px-4 py-2 cursor-pointer text-[11px] hover:bg-gray-100 flex items-center"
+                    class="px-4 py-2 ps-8 cursor-pointer text-[16px]  border-t border-black hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap"
                   >
                     <i
                       v-if="selectedSort === 'asc'"
-                      class="fas fa-check text-green-500"
+                      class="fas fa-check text-black absolute left-3"
                     ></i>
                     Low to High
                   </li>
                   <li
                     @click="selectSort('desc')"
-                    class="px-4 py-2 cursor-pointer text-[11px] hover:bg-gray-100 flex items-center"
+                    class="px-4 py-2 ps-8 cursor-pointer text-[16px]  border-t border-black hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap"
                   >
                     <i
                       v-if="selectedSort === 'desc'"
-                      class="fas fa-check mr-2 text-green-500"
+                      class="fas fa-check mr-2 text-black absolute left-3"
                     ></i>
                     High to Low
                   </li>
@@ -240,7 +240,7 @@ No items found.
                   class="w-full h-full object-cover absolute opacity-0 transition-opacity duration-300"
                 />
               </div>
-              <div class="max-w-[300px] mt-[20px]">
+              <div class="max-w-[300px] p-[20px] ">
                 <p
                   class="flex items-center space-x-1 text-black/85 truncate font-outfit font-light text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px]"
                 >
@@ -256,7 +256,7 @@ No items found.
                 >
                   {{ item.replacement }}
                 </p>
-                <p>
+                <p class="pt-[3px]">
                   <span
                     class="text-black/90 text-[13px] lg:text-[20px] font-normal font-outfit"
                     >Rs.</span
@@ -272,7 +272,7 @@ No items found.
 
                 <button
                   @click="AddtoCartPage"
-                  class="text-[13px] cursor-pointer lg:text-[19.95px] font-bold font-outfit underline border-black/85 mb-4"
+                  class="text-[13px] cursor-pointer lg:text-[19.95px] font-bold font-outfit underline border-black/85 mb-4 mt-3"
                 >
                   Add to Cart
                 </button>
