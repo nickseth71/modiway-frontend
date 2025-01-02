@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         outfit: ['Outfit'],
         inter: ['Inter'],
+        roboto:['Roboto']
       },
       boxShadow: {
         'text': '0.5px 0 0 currentColor',
