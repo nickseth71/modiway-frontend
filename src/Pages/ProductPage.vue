@@ -49,9 +49,9 @@
     <section class="page-width">
       <!-- Welcome Section -->
       <section class="py-0 lg:py-[32px] md:py-[16px] page-width">
-        <div class="max-w-[992px] mx-auto text-center">
+        <div class="max-w-[992px] mx-auto text-center ">
           <div
-            class="w-full flex flex-wrap justify-center items-end text-center space-x-[4px]"
+            class="w-full flex flex-wrap justify-center items-end text-center space-x-[4px] mt-[5px] lg:mt-0"
           >
             <span
               class="text-black/85 text-[20px] md:text-[24px] lg:text-[36px] font-normal font-outfit leading-[52px] tracking-[1.2px] lg:tracking-[2.16px] pt-[4px]"
@@ -61,7 +61,7 @@
               class="text-black/85 text-[24px] font-normal font-outfit leading-[67px] tracking-normal"
             ></span>
             <span
-              class="text-black/85 text-[24px] md:text-[32px] lg:text-[72px] font-medium font-outfit leading-[67px]"
+              class="text-black/85 text-[28px] md:text-[32px] lg:text-[72px] font-medium font-outfit leading-[52px]  lg:leading-[80px]"
               >90 Day Challenge</span
             >
           </div>
@@ -78,7 +78,7 @@
 
       <!-- Sort and Filter Section -->
       <section
-        class="page-width flex justify-center items-center py-[20px] lg:py-[63px] md:py-[30px]"
+        class="page-width flex justify-center items-center pt-[35px] pb-[20px] lg:py-[63px] md:py-[30px]"
       >
         <div
           class="max-w-[992px] flex justify-center items-center w-full px-[15px]"
@@ -95,10 +95,10 @@
               >
                 <div
                   @click="toggleFilterDropdown"
-                  class="cursor-pointer px-2 py-1 lg:px-3 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500"
+                  class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-2 lg:gap-0 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500"
                 >
-                  {{ selectedName || "Filter" }}
-                  <i class="fas fa-chevron-down"></i>
+                <img src="../assets/filter-icon.svg" class="lg:hidden sm:hidden" />  {{ selectedName || "Filter" }}
+                  <i class="fas fa-chevron-down mobile-hide"></i>
                 </div>
                 <ul
                   v-if="filterDropdownOpen"
@@ -216,7 +216,7 @@ No items found.
 </div>
 -->
 
-      <section class="page-width flex justify-center items-center px-[14px]">
+      <section class="page-width flex justify-center items-center px-[14px] mobile-p-fix">
         <div class="max-w-[992px] mx-auto">
           <div
             class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[14px] lg:gap-[19px]"
@@ -240,7 +240,7 @@ No items found.
                   class="w-full h-full object-cover absolute opacity-0 transition-opacity duration-300"
                 />
               </div>
-              <div class="max-w-[300px] p-[20px] ">
+              <div class="max-w-[250px] py-[10px] lg:p-[20px] ">
                 <p
                   class="flex items-center space-x-1 text-black/85 truncate font-outfit font-light text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px]"
                 >
@@ -252,7 +252,7 @@ No items found.
                 </p>
 
                 <p
-                  class="text-black/85 truncate font-outfit font-light text-[11px] md:text-[13px] lg:text-[19.95px] text-start"
+                  class="text-black/85 truncate w-[155px] lg:w-full font-outfit font-light text-[13px] md:text-[13px] lg:text-[19.95px] text-start"
                 >
                   {{ item.replacement }}
                 </p>

@@ -294,10 +294,10 @@ const toggleSection = (index) => {
       </div>
 
       <!-- Second Column: Product Information -->
-      <div class="w-full lg:w-[45%] space-y-0 px-[15px]">
+      <div class="w-full lg:w-[45%]  px-[15px]">
         <!-- Breadcrumbs -->
         <ul
-          class="hidden lg:flex flex-wrap items-center text-xs text-[#717171] space-x-[6px]"
+          class="hidden lg:flex flex-wrap items-center text-[8px] text-[#727272] space-x-[6px]"
         >
           <li class="cursor-pointer">Home</li>
           <li class="cursor-pointer">Meal Replacement</li>
@@ -306,7 +306,7 @@ const toggleSection = (index) => {
         </ul>
 
         <!-- Product Title -->
-        <h2 class="text-[20px] font-normal font-outfit text-black/85">
+        <h2 class="text-[20px] mt-1 font-normal font-outfit text-black/85">
           Plant-Based Protein Powder 500g
         </h2>
 
@@ -349,27 +349,27 @@ const toggleSection = (index) => {
             class="flex flex-wrap justify-start items-center space-x-2 space-y-1 pt-[31px]"
           >
             <div
-              class="bg-blue-500 border px-2 text-center text-white text-[14.93px] font-medium font-outfit"
+              class=" border border-black px-2 text-center text-black/85 text-[14.93px] rounded-[3px] font-medium font-outfit"
             >
               Chocolate
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border px-2 text-center text-black/85 text-[14.90px] rounded-[3px] font-medium font-outfit"
             >
               Vanilla
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border px-2 text-center text-black/85 text-[14.90px] rounded-[3px] font-medium font-outfit"
             >
               Mango
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border px-2 text-center text-black/85 text-[14.90px]  rounded-[3px] font-medium font-outfit"
             >
               Kulfi
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+              class="border px-2 text-center text-black/85 text-[14.90px] rounded-[3px] font-medium font-outfit"
             >
               Rose Kheer
             </div>

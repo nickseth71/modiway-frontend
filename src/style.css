@@ -17,6 +17,9 @@
   max-width: 1200px;
   margin: auto;
 }
+@media(max-width:749px) {.mobile-hide{display: none!important;}
+.mobile-p-fix {padding-bottom:45px}
+}
 
 
 
