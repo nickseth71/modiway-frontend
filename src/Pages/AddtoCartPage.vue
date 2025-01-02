@@ -12,6 +12,9 @@ import Category3 from "../assets/Preservative.png";
 import Category4 from "../assets/Non-GMO.png";
 import Category5 from "../assets/No-Added-Sugar.png";
 import Category6 from "../assets/Gluten-Free.png";
+
+
+import BannerImage from "../assets/banner.png"
 //////////////////////////////////////////////////////// product images /////////////////////////////////////////////////
 
 import MangoFlavour from "../assets/Mango.png"
@@ -85,9 +88,9 @@ const toggleSection = (index) => {
 
 
 <template>
-  <section class="page-width">
+  <section class="">
   <section
-    class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-8 lg:space-y-0 lg:space-x-[42px]"
+    class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-8 lg:space-y-0 lg:space-x-[42px] page-width"
   >
     <!-- Carousel for Small Devices -->
      <div class="lg:hidden">
@@ -294,10 +297,10 @@ const toggleSection = (index) => {
       </div>
 
       <!-- Second Column: Product Information -->
-      <div class="w-full lg:w-[45%]  px-[15px]">
+      <div class="w-full lg:w-[45%] space-y-0 px-[15px]">
         <!-- Breadcrumbs -->
         <ul
-          class="hidden lg:flex flex-wrap items-center text-[8px] text-[#727272] space-x-[6px]"
+          class="hidden lg:flex flex-wrap items-center text-xs text-[#717171] space-x-[6px]"
         >
           <li class="cursor-pointer">Home</li>
           <li class="cursor-pointer">Meal Replacement</li>
@@ -306,7 +309,7 @@ const toggleSection = (index) => {
         </ul>
 
         <!-- Product Title -->
-        <h2 class="text-[20px] mt-1 font-normal font-outfit text-black/85">
+        <h2 class="text-[20px] font-normal font-outfit text-black/85">
           Plant-Based Protein Powder 500g
         </h2>
 
@@ -349,27 +352,27 @@ const toggleSection = (index) => {
             class="flex flex-wrap justify-start items-center flevor-grid space-y-1 pt-[31px]"
           >
             <div
-              class=" border border-black px-2 text-center text-black/85 text-[14.93px] rounded-[3px] font-medium font-outfit"
+              class="bg-blue-500 border px-2 text-center text-white text-[14.93px] font-medium font-outfit"
             >
               Chocolate
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] rounded-[3px] font-medium font-outfit"
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Vanilla
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] rounded-[3px] font-medium font-outfit"
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Mango
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px]  rounded-[3px] font-medium font-outfit"
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Kulfi
             </div>
             <div
-              class="border px-2 text-center text-black/85 text-[14.90px] rounded-[3px] font-medium font-outfit"
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
             >
               Rose Kheer
             </div>
@@ -482,32 +485,157 @@ const toggleSection = (index) => {
         </div>
   </section>
 
-  <section class="max-w-[1124px] mt-[80px]">
+  <section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-20 px-4">
+  <!-- Title Section -->
+  <div class="flex justify-start lg:justify-center items-center">
+    <h2
+      style="line-height: normal;"
+      class="text-center text-black/85 font-outfit lg:text-[42px] text-[20px] font-semibold lg:font-normal"
+    >
+      Often bought with
+    </h2>
+  </div>
 
-    <div class="">
-<div class="flex justify-start lg:justify-center items-center ">
-  <h2 style="line-height: normal;" class="text-center text-black/85 font-outfit lg:text-[42px] font-normal">Often bought with</h2>
-</div>
-
-<div class="flex flex-row justify-center items-center">
-  <div class="grid grid-cols-2">
+  <!-- Products Section -->
+  <div class="mt-12 flex flex-wrap gap-8 justify-center items-center">
+    <!-- Product Block -->
     <div
-  v-for ="(product,index) in productImages"
-  :key="index"
-  class="">
-<div>
-  <img :src="product.src" :alt="product.alt">
-</div>
-<div>
-  <img :src="product.src" :alt="product.alt">
-</div>
-  </div>
-  </div>
+      v-for="(product, index) in productImages"
+      :key="index"
+      class="flex flex-col items-center bg-white"
+    >
+      <div class="flex flex-row gap-[14px] lg:gap-[134px] justify-center items-center">
+        <!-- First Image with Title -->
+        <div class="flex flex-col items-center">
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
 
-</div>
+        <!-- Second Image with Title -->
+        <div class="flex flex-col items-center">
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-  </section>
+<!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ You may also like section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+<section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-[80.14px] px-4 ">
+  <!-- Title Section -->
+  <div class="flex justify-start lg:justify-center items-center">
+    <h2
+      style="line-height: normal;"
+      class="text-center text-black/85 font-outfit lg:text-[42px] text-[20px] font-semibold lg:font-normal"
+    >
+      You may also like
+    </h2>
+  </div>
+
+  <!-- Products Section -->
+  <div class="mt-12 flex flex-wrap  justify-center items-center">
+    <!-- Product Block -->
+    <div
+      v-for="(product, index) in productImages"
+      :key="index"
+      class="flex flex-col  items-center bg-white"
+    >
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-[14px] lg:gap-[33px] justify-center items-center">
+  <!-- First Image with Title -->
+  <div class="flex flex-col items-center">
+    <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+      <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
+    </div>
+    <span class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+      {{ product.description }}
+    </span>
+    <span class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+      {{ product.title }}
+    </span>
+  </div>
+
+  <!-- Second Image with Title -->
+  <div class="flex flex-col items-center">
+    <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+      <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
+    </div>
+    <span class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+      {{ product.description }}
+    </span>
+    <span class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+      {{ product.title }}
+    </span>
+  </div>
+
+  <!-- Third Image with Title -->
+  <div class="flex flex-col items-center">
+    <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+      <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
+    </div>
+    <span class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+      {{ product.description }}
+    </span>
+    <span class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+      {{ product.title }}
+    </span>
+  </div>
+
+  <!-- Fourth Image with Title -->
+  <div class="flex flex-col items-center">
+    <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+      <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
+    </div>
+    <span class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+      {{ product.description }}
+    </span>
+    <span class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+      {{ product.title }}
+    </span>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+
+</section>
+
+<!--------------------------------------- Banner Section  ----------------------------------------->
+
+
+
+
 </section>
 </template>
 
