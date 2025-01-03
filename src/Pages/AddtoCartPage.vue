@@ -182,7 +182,7 @@ const prev = () => {
         <div class="flex flex-row px-[16px]">
           <p>
             <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape
-              Shift</span> <span class="text-[#717171] text-[11px] px-[4px]">|</span>
+              Shift |</span>
             <span class="text-[#717171] text-[11px] font-semibold font-outfit">Meal Replacement for Weight Control/
               Management</span>
           </p>
