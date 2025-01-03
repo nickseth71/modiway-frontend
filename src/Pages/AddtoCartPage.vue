@@ -88,19 +88,27 @@ const toggleSection = (index) => {
 
 
 <template>
-  <section class="max-w-[100%]">
+  <section class="max-w-[100%] mx-auto">
   <section
     class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-8 lg:space-y-0 lg:space-x-[42px] page-width"
   >
     <!-- Carousel for Small Devices -->
      <div class="lg:hidden">
+
+      <div class="flex flex-row px-[16px]">
+      <p 
+      >
+        <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape Shift</span> <span class="text-[#717171] text-[11px] px-[4px]">|</span>
+      <span class="text-[#717171] text-[11px] font-semibold font-outfit">Meal Replacement for Weight Control/ Management</span>
+    </p>
+    </div>
     <div
       id="custom-carousel"
-      class="relative w-full block lg:hidden"
+      class="relative w-full block lg:hidden -top-[10px]"
       data-carousel="slide"
     >
       <!-- Carousel wrapper -->
-      <div class="relative h-[60vh] sm:h-[70vh] overflow-hidden">
+      <div class="relative h-[464px] overflow-hidden">
         <!-- Items -->
         <div
           v-for="(item, index) in cartItems"
@@ -656,14 +664,12 @@ const toggleSection = (index) => {
     </div>
   </div>
 </section>
-<!-- <section>
- 
-
-  <div>
-    <img :src="BannerImage" alt="">
+<section>
+  <div class="w-full h-[70vh]">
+    <img :src="BannerImage" alt="Banner" class="w-full object-cover">
   </div>
+</section>
 
-</section> -->
 </section>
 </template>
 
