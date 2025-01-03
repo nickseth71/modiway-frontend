@@ -78,7 +78,7 @@
 
       <!-- Sort and Filter Section -->
       <section
-        class="page-width flex justify-center items-center pt-[35px] pb-[20px] lg:py-[63px] md:py-[30px]"
+        class="page-width flex justify-center items-center pt-[35px] pb-[15px] lg:pt-[63px] md:py-[30px]"
       >
         <div
           class="max-w-[992px] flex justify-center items-center w-full px-[20px] border-b-[1px] border-[#C5C5C5]"
@@ -87,7 +87,7 @@
             class="flex flex-col md:flex-row justify-between items-center w-full"
           >
             <div
-              class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4"
+              class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 gray-bb"
             >
               <!-- Filter Dropdown -->
               <div
@@ -95,7 +95,7 @@
               >
                 <div
                   @click="toggleFilterDropdown"
-                  class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-2 lg:gap-0 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500"
+                  class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-1  rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500"
                 >
                 <img src="../assets/filter.png" class="lg:hidden sm:hidden" />  {{ selectedName || "Filter" }}
                   <i class="fas fa-chevron-down mobile-hide"></i>
@@ -108,7 +108,7 @@
                     v-for="name in categories"
                     :key="name"
                     @click="selectFilter(name)"
-                    class="px-4 py-2 text-[16px] first:border-0 border-t border-black cursor-pointer hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap"
+                    class="px-4 py-2 text-[16px] first:border-0 border-t border-black cursor-pointer hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap border-opacity-25"
                   >
                     <i
                       v-if="selectedName === name"
@@ -152,7 +152,7 @@
                   </li>
                   <li
                     @click="selectSort('asc')"
-                    class="px-4 py-2 ps-8 cursor-pointer text-[16px]  border-t border-black hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap"
+                    class="px-4 py-2 ps-8 cursor-pointer text-[16px]  border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap"
                   >
                     <i
                       v-if="selectedSort === 'asc'"
@@ -162,7 +162,7 @@
                   </li>
                   <li
                     @click="selectSort('desc')"
-                    class="px-4 py-2 ps-8 cursor-pointer text-[16px]  border-t border-black hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap"
+                    class="px-4 py-2 ps-8 cursor-pointer text-[16px]  border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap"
                   >
                     <i
                       v-if="selectedSort === 'desc'"
@@ -278,7 +278,7 @@ No items found.
 
                 <button
                   @click="AddtoCartPage"
-                  class="text-[13px] cursor-pointer lg:text-[19.95px] font-bold font-outfit underline border-black/85 mb-4 mt-3"
+                  class="text-[13px] cursor-pointer lg:text-[19.95px] font-bold font-outfit underline decoration-black/30 mb-4 mt-3 underline-offset-2"
                 >
                   Add to Cart
                 </button>
