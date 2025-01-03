@@ -463,6 +463,7 @@ const toggleSection = (index) => {
       </div>
     </div>
   </section>
+  </section>
  <!------------------------------------- Accordion Sections -------------------------------------------------------->
 <<<<<<< HEAD
   <section class="max-w-[1124px] mx-auto hidden lg:block">
