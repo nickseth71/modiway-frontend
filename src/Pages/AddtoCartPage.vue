@@ -188,7 +188,7 @@ const handleTouchEnd = () => {
       <!-- Carousel for Small Devices -->
       <div class="lg:hidden">
 
-        <div class="flex flex-row pl-[16px] py-[8px]">
+        <div class="flex flex-row pl-[16px]">
           <p>
             <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape
               Shift </span> <span style="line-height: normal;"
@@ -197,10 +197,10 @@ const handleTouchEnd = () => {
               Management</span>
           </p>
         </div>
-        <div id="custom-carousel" class="relative w-full block lg:hidden" data-carousel="slide"
+        <div id="custom-carousel" class="relative w-full block lg:hidden -top-[10px]" data-carousel="slide"
           @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
           <!-- Carousel Wrapper -->
-          <div class="relative h-[100vh] overflow-hidden">
+          <div class="relative h-[454px] overflow-hidden">
             <!-- Carousel Items -->
             <div v-for="(item, index) in cartItems" :key="index" :class="{ hidden: index !== activeIndex }"
               class="duration-700 ease-in-out" :data-carousel-item="index === 0 ? 'active' : null">
@@ -210,7 +210,7 @@ const handleTouchEnd = () => {
           </div>
 
           <!-- Slider Indicators -->
-          <div class="absolute z-30 flex -translate-x-1/2 bottom-1 left-1/2 space-x-3 rtl:space-x-reverse py-4"
+          <div class="absolute z-30 flex -translate-x-1/2 bottom-8 left-1/2 space-x-3 rtl:space-x-reverse py-4"
             style="transform: translateX(-50%)">
             <button v-for="(item, index) in cartItems" :key="index" type="button" class="w-3 h-3 rounded-full"
               :aria-current="index === activeIndex ? 'true' : 'false'" :aria-label="'Slide ' + (index + 1)"
@@ -223,7 +223,7 @@ const handleTouchEnd = () => {
 
 
         <!-- Product Info Section -->
-        <div class="bg-white pl-[19px] pr-[4px] py-[19px]  max-w-full mx-auto text-gray-800">
+        <div class="bg-white pl-[19px] pr-[4px] pb-[19px] -top-8 max-w-full mx-auto text-gray-800">
           <!-- Product Title -->
           <div class="text-start">
             <h1 style="line-height: normal;" class="text-[20px] text-black/85 font-normal font-outfit">Shape Shift</h1>
