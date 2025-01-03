@@ -664,7 +664,7 @@ const handleTouchEnd = () => {
           </div>
 
           <!-- Navigation Buttons -->
-          <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center">
+          <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center pb-[82px]">
             <!-- Previous Button -->
             <button class="absolute left-[70px] lg:left-1/3 transform top-1/2 -translate-y-1/2" @click="prev">
               <img :src="prevbutton" alt="Previous" class="w-6 h-6" />
