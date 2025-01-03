@@ -237,10 +237,10 @@ No items found.
                 <img
                   :src="item.hoverSrc"
                   alt="Hover Item Image"
-                  class="w-full h-full object-cover text-center absolute opacity-0 transition-opacity duration-300"
+                  class="w-full h-full lg:w-[287px] lg:h-[545px] object-cover text-center absolute opacity-0 transition-opacity duration-300"
                 />
               </div>
-              <div class="max-w-[250px] py-[10px] lg:p-[20px] ">
+              <div class="max-w-[250px] py-[10px] lg:p-[19px] ">
                 <p
                   class="flex items-center space-x-1 text-black/85 truncate font-outfit font-light text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px]"
                 >
