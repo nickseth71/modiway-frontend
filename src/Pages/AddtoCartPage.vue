@@ -14,7 +14,7 @@ import Category5 from "../assets/No-Added-Sugar.png";
 import Category6 from "../assets/Gluten-Free.png";
 
 import BannerImage from "../assets/banner.png";
-import LeoImage from "../assets/homeworking.png"
+import LeoImage from "../assets/homeworking.png";
 
 import nextbutton from "../assets/next.png";
 import prevbutton from "../assets/previous.png";
@@ -24,7 +24,7 @@ import MangoFlavour from "../assets/Mango.png";
 
 // Product images
 const productImages = ref([
-  { src: MangoFlavour, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" }
+  { src: MangoFlavour, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
 ]);
 
 // Carousel items
@@ -37,6 +37,10 @@ const cartItems = ref([
 
 // Active carousel index
 const activeIndex = ref(0);
+
+// Touch event variables
+const startX = ref(0);
+const endX = ref(0);
 
 // Product details
 const flavors = ref([
@@ -97,7 +101,7 @@ const cards = ref([
     name: "Leo",
     title: "Businessman",
     heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in tincidunt. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
     badge: "180.88",
     image: LeoImage,
   },
@@ -105,48 +109,8 @@ const cards = ref([
     name: "Leo",
     title: "Businessman",
     heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in tincidunt. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
     badge: "73.09",
-    image: LeoImage,
-  },
-  {
-    name: "Leo",
-    title: "Businessman",
-    heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in tincidunt. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu.",
-    badge: "33.1",
-    image: LeoImage,
-  },
-  {
-    name: "Leo",
-    title: "Businessman",
-    heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in tincidunt. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu.",
-    badge: "33.1",
-    image: LeoImage,
-  },
-  {
-    name: "Leo",
-    title: "Businessman",
-    heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in tincidunt. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu.",
-    badge: "33.1",
-    image: LeoImage,
-  },
-  {
-    name: "Leo",
-    title: "Businessman",
-    heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in tincidunt. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu.",
-    badge: "33.1",
-    image: LeoImage,
-  },
-  {
-    name: "Leo",
-    title: "Businessman",
-    heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in tincidunt. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu.",
-    badge: "33.1",
     image: LeoImage,
   },
 ]);
@@ -162,13 +126,30 @@ const prev = () => {
     currentIndex.value -= 1;
   }
 };
+
+// Touch Handlers
+const handleTouchStart = (event) => {
+  startX.value = event.touches[0].clientX; // Record the initial touch position
+};
+
+const handleTouchMove = (event) => {
+  endX.value = event.touches[0].clientX; // Update the end touch position as the user moves
+};
+
+const handleTouchEnd = () => {
+  const diff = startX.value - endX.value; // Calculate the swipe distance
+  if (diff > 50) {
+    next();
+  } else if (diff < -50) {
+    prev();
+  }
+};
 </script>
 
 <style scoped>
-/* .card {
-  width: 100%;
-} */
+/* Add custom styles here if needed */
 </style>
+
 
 
 
@@ -187,7 +168,14 @@ const prev = () => {
               Management</span>
           </p>
         </div>
-        <div id="custom-carousel" class="relative w-full block lg:hidden -top-[10px]" data-carousel="slide">
+        <div
+  id="custom-carousel"
+  class="relative w-full block lg:hidden -top-[10px]"
+  data-carousel="slide"
+  @touchstart="handleTouchStart"
+  @touchmove="handleTouchMove"
+  @touchend="handleTouchEnd"
+>
   <!-- Carousel Wrapper -->
   <div class="relative h-[464px] overflow-hidden">
     <!-- Carousel Items -->
@@ -226,6 +214,7 @@ const prev = () => {
     ></button>
   </div>
 </div>
+
 
         <!-- Product Info Section -->
         <div class="bg-white pl-[19px] pr-[4px] py-[19px] max-w-full mx-auto text-gray-800">
