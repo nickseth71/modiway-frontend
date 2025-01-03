@@ -24,8 +24,14 @@ import prevbutton from "../assets/previous.png";
 //////////////////////////////////////////////////////// product images /////////////////////////////////////////////////
 // import MangoFlavour from "../assets/Mango.png";
 import ProductImage from "../assets/ProductImg.png"
+import BurnerBox from "../assets/burner-box.png"
 
-// Product images
+// const OftenImages = ref([
+//   { src: BurnerBox, alt: "Product img", title: "Fat Burner Premix Powder", },
+//   { src: ProductImage, alt: "Product img", title: "Plant Based Protein Powder", },
+// ]);
+
+// You may like images
 const productImages = ref([
   { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
 ]);
@@ -59,10 +65,8 @@ const flavors = ref([
 
 const quantity = ref(1);
 
-
-
 const sections = ref([
-  { title: "Product Description", content: "Detailed description here.", open: false },
+  { title: "Product Description", content: "Nutritional Shake Mix with Protein, Fiber, Probiotics. Enzymes. Vitamins & Minerals Shape Shift offers a delicious and nutritious meal replacement shake packed with high-quality protein and a comprehensive blend of 25 essential vitamins and minerals. It includes added dietary fibres. probiotics. enzymes. and plant-based nutrients, all without refined sugar. Food for special dietary use for weight control/management.", open: false },
   { title: "Key Benefits", content: "Key benefits here.", open: false },
   { title: "Recommended Usage Level", content: "Usage level here.", open: false },
   { title: "Ingredients", content: "Ingredients list here.", open: false },
@@ -94,51 +98,48 @@ const currentIndex = ref(0);
 
 const cards = ref([
   {
-    name: "Leo",
-    title: "Businessman",
+    name: "Nancy",
+    title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
+    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
     badge: "180.88",
     image: Review,
   },
   {
-    name: "Leo",
-    title: "Businessman",
+    name: "Nancy",
+    title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
-    badge: "73.09",
+    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
+
     image: Review,
   },
   {
-    name: "Leo",
-    title: "Businessman",
+    name: "Nancy",
+    title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
-    badge: "73.09",
+    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
+
     image: Review,
   },
   {
-    name: "Leo",
-    title: "Businessman",
+    name: "Nancy",
+    title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
-    badge: "73.09",
+    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
+
     image: Review,
   },
   {
-    name: "Leo",
-    title: "Businessman",
+    name: "Nancy",
+    title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
-    badge: "73.09",
+    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
     image: Review,
   },
   {
-    name: "Leo",
-    title: "Businessman",
-    heading: "It was a very good experience",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
-    badge: "73.09",
+    name: "Nancy",
+    title: "45kg, 9 inches lost in 10 months",
+    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
     image: Review,
   },
 ]);
@@ -172,11 +173,21 @@ const handleTouchEnd = () => {
     prev();
   }
 };
+
+// Tab data
+const tabs = ref([
+  "Product Description",
+  "Key Benefits",
+  "Ingredients & Nutritional info",
+  "Usage",
+  "Attention",
+]);
+
+const activeTab = ref(0);
 </script>
 
-<style scoped>
-/* Add custom styles here if needed */
-</style>
+
+<style scoped></style>
 
 
 
@@ -188,7 +199,7 @@ const handleTouchEnd = () => {
       <!-- Carousel for Small Devices -->
       <div class="lg:hidden">
 
-        <div class="flex flex-row pl-[16px]">
+        <div class="flex flex-row pl-[16px] py-[8px]">
           <p>
             <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape
               Shift </span> <span style="line-height: normal;"
@@ -197,20 +208,20 @@ const handleTouchEnd = () => {
               Management</span>
           </p>
         </div>
-        <div id="custom-carousel" class="relative w-full block lg:hidden -top-[10px]" data-carousel="slide"
+        <div id="custom-carousel" class="relative w-full block lg:hidden" data-carousel="slide"
           @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
           <!-- Carousel Wrapper -->
-          <div class="relative h-[454px] overflow-hidden">
+          <div class="relative h-[464px] object-cover overflow-hidden">
             <!-- Carousel Items -->
             <div v-for="(item, index) in cartItems" :key="index" :class="{ hidden: index !== activeIndex }"
               class="duration-700 ease-in-out" :data-carousel-item="index === 0 ? 'active' : null">
               <img :src="item.src" :alt="item.alt"
-                class="absolute w-full h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                class="absolute w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
             </div>
           </div>
 
           <!-- Slider Indicators -->
-          <div class="absolute z-30 flex -translate-x-1/2 bottom-8 left-1/2 space-x-3 rtl:space-x-reverse py-4"
+          <div class="absolute z-30 flex -translate-x-1/2 bottom-6 left-1/2 space-x-3 rtl:space-x-reverse"
             style="transform: translateX(-50%)">
             <button v-for="(item, index) in cartItems" :key="index" type="button" class="w-3 h-3 rounded-full"
               :aria-current="index === activeIndex ? 'true' : 'false'" :aria-label="'Slide ' + (index + 1)"
@@ -223,10 +234,10 @@ const handleTouchEnd = () => {
 
 
         <!-- Product Info Section -->
-        <div class="bg-white pl-[19px] pr-[4px] pb-[19px] -top-8 max-w-full mx-auto text-gray-800">
+        <div class="bg-white px-[19px] pt-[19px] max-w-full mx-auto text-gray-800">
           <!-- Product Title -->
           <div class="text-start">
-            <h1 style="line-height: normal;" class="text-[20px] text-black/85 font-normal font-outfit">Shape Shift</h1>
+            <!-- <h1 style="line-height: normal;" class="text-[20px] text-black/85 font-normal font-outfit">Shape Shift</h1> -->
             <h2 class="text-[20px] text-black/85 font-light font-outfit">Plant-Based Protein Powder 500g</h2>
             <p class="text-[13px] text-black/85 font-normal font-outfit leading-[16px]">
               Meal Replacement for Weight Control/Management
@@ -324,10 +335,8 @@ const handleTouchEnd = () => {
               </button>
             </div>
           </div>
-
-
           <!-- Add to Cart -->
-          <div class="w-full flex justify-start gap-[16px] items-center mt-[24px]">
+          <div class="w-full flex justify-start gap-[16px] items-center mt-[24px] border-b border-[#ABABAB] pb-[32px] ">
             <button
               class=" w-[292px] h-10  bg-[#414042] text-white leading-[19.95px] font-medium font-outfit text-[16px]">
               Add to cart
@@ -350,7 +359,7 @@ const handleTouchEnd = () => {
                   <i class="fas fa-chevron-down"></i>
                 </span>
               </button>
-              <div v-if="section.open" class="text-xs text-gray-600 mt-2">
+              <div v-if="section.open" class="text-[13px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 {{ section.content }}
               </div>
             </div>
@@ -393,7 +402,7 @@ const handleTouchEnd = () => {
             <p class="text-black/85 text-[14px] font-light font-outfit">
               Net Quantity: 500g
             </p>
-            <p style="line-height: normal">
+            <p style="line-height: normal" class="pt-[36px]">
               <span class="text-black/85 text-[20px] leading-normal font-normal font-outfit">Rs. </span><span
                 class="text-black/85 text-[20px] font-bold font-outfit">2,750.00</span>
             </p>
@@ -403,7 +412,7 @@ const handleTouchEnd = () => {
 
           </div>
 
-          <div class="pt-[31px]">
+          <div class="pt-[40px]">
             <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
               <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
                 Chocolate
@@ -469,9 +478,9 @@ const handleTouchEnd = () => {
               </div>
             </div>
 
-            <div class="w-full flex justify-start gap-4 items-center mt-[24px]">
+            <div class="w-full flex justify-start gap-[13px] items-center mt-[24px]">
               <button
-                class=" w-[333px] h-10 font-outfit bg-[#414042] text-white leading-[19.95px] font-bold text-[19.95px]">
+                class=" w-[333px] h-10 font-outfit bg-[#414042] px-[20px] text-white leading-[19.95px] font-bold text-[19.95px]">
                 Add to cart
               </button>
               <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
@@ -480,7 +489,7 @@ const handleTouchEnd = () => {
             </div>
 
 
-            <div class="flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
+            <div class="w-[393px] flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
               <div class="flex justify-between items-center gap-2">
                 <router-link class="underline underline-offset-2">
                   Share Product
@@ -498,28 +507,145 @@ const handleTouchEnd = () => {
         </div>
       </div>
     </section>
-    <!------------------------------------- Accordion Sections -------------------------------------------------------->
-    <!-- <section class="max-w-[1200px] mx-auto hidden lg:block">
+    <!------------------------------------------------ Product Description Section ---------------------------------------------------------->
+    <section class="page-width hidden lg:block">
+      <div class="mt-[77px] flex flex-col items-center justify-center w-full max-w-[1124px] mx-auto">
+        <!-- Tabs -->
+        <div class="flex justify-start gap-[78px] items-center w-full">
+          <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
+            class="relative cursor-pointer text-[#353535] text-[20px] hover:text-black">
+            <div class="pb-[10px] border-b-2" :class="{
+              'border-black font-semibold': activeTab === index,
+              'border-gray-300': activeTab !== index,
+            }">
+              <span>{{ tab }}</span>
+            </div>
+            <div v-if="activeTab === index"
+              class="absolute top-1/2 right-[-28px] h-[6px] w-[6px] bg-black transform -translate-y-1/2 rounded-full">
+            </div>
+          </div>
+        </div>
 
-      <div class=" space-y-4 px-10">
-        <div v-for="(section, index) in sections" :key="index" class="border-b-[1px] border-[#353535]">
-          <button style="line-height: normal;"
-            class="w-full text-left text-[#353535] pt-[30px] pb-[24px] text-[16px] font-normal font-outfit flex justify-between items-center"
-            @click="toggleSection(index)">
-            {{ section.title }}
-            <span :class="{
-              'rotate-180': section.open,
-              'rotate-0': !section.open,
-            }" class="transform transition-transform duration-200">
-              <i class="fas fa-chevron-down"></i>
-            </span>
-          </button>
-          <div v-if="section.open" class="text-xs text-gray-600 mt-2">
-            {{ section.content }}
+        <!-- Tab Content -->
+        <div class="w-full mt-6">
+          <div v-if="activeTab === 0" class="flex flex-col sm:flex-row">
+            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+
+              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                meal replacement shake packed with high-quality protein and a
+                comprehensive blend of 25 essential vitamins and minerals. It
+                includes added dietary fibers, probiotics, enzymes, and plant-based
+                nutrients, all without refined sugar. Food for special dietary use
+                for weight control/management.
+              </p>
+              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                meal replacement shake packed with high-quality protein and a
+                comprehensive blend of 25 essential vitamins and minerals. It
+                includes added dietary fibers, probiotics, enzymes, and plant-based
+                nutrients, all without refined sugar. Food for special dietary use
+                for weight control/management.
+              </p>
+            </div>
+            <div class="flex-1 p-4">
+              <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
+            </div>
+          </div>
+          <div v-if="activeTab === 1" class="flex flex-col sm:flex-row">
+            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+
+              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                meal replacement shake packed with high-quality protein and a
+                comprehensive blend of 25 essential vitamins and minerals. It
+                includes added dietary fibers, probiotics, enzymes, and plant-based
+                nutrients, all without refined sugar. Food for special dietary use
+                for weight control/management.
+              </p>
+
+            </div>
+            <div class="flex-1 p-4">
+              <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
+            </div>
+          </div>
+          <div v-if="activeTab === 2" class="flex flex-col sm:flex-row">
+            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+
+              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                meal replacement shake packed with high-quality protein and a
+                comprehensive blend of 25 essential vitamins and minerals. It
+                includes added dietary fibers, probiotics, enzymes, and plant-based
+                nutrients, all without refined sugar. Food for special dietary use
+                for weight control/management.
+              </p>
+              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                meal replacement shake packed with high-quality protein and a
+                comprehensive blend of 25 essential vitamins and minerals. It
+                includes added dietary fibers, probiotics, enzymes, and plant-based
+                nutrients, all without refined sugar. Food for special dietary use
+                for weight control/management.
+              </p>
+            </div>
+            <div class="flex-1 p-4">
+              <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
+            </div>
+          </div>
+          <div v-if="activeTab === 3" class="flex flex-col sm:flex-row">
+            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+
+              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                meal replacement shake packed with high-quality protein and a
+                comprehensive blend of 25 essential vitamins and minerals. It
+                includes added dietary fibers, probiotics, enzymes, and plant-based
+                nutrients, all without refined sugar. Food for special dietary use
+                for weight control/management.
+              </p>
+
+            </div>
+            <div class="flex-1 p-4">
+              <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
+            </div>
+          </div>
+          <div v-if="activeTab === 4" class="flex flex-col sm:flex-row">
+            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+
+              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                meal replacement shake packed with high-quality protein and a
+                comprehensive blend of 25 essential vitamins and minerals. It
+                includes added dietary fibers, probiotics, enzymes, and plant-based
+                nutrients, all without refined sugar. Food for special dietary use
+                for weight control/management.
+              </p>
+              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                meal replacement shake packed with high-quality protein and a
+                comprehensive blend of 25 essential vitamins and minerals. It
+                includes added dietary fibers, probiotics, enzymes, and plant-based
+                nutrients, all without refined sugar. Food for special dietary use
+                for weight control/management.
+              </p>
+            </div>
+            <div class="flex-1 p-4">
+              <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
+            </div>
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
+
 
     <section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-20 px-4">
       <!-- Title Section -->
@@ -531,134 +657,136 @@ const handleTouchEnd = () => {
       </div>
 
       <!-- Products Section -->
-      <div class="mt-12 flex flex-wrap gap-8 justify-center items-center">
-        <!-- Product Block -->
-        <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center bg-white">
-          <div class="flex flex-row gap-[14px] lg:gap-[134px] justify-center items-center">
-            <!-- First Image with Title -->
-            <div class="flex flex-col items-center">
-              <!-- Image Container -->
-              <div
-                class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-                <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-              </div>
-              <span style="line-height: normal;"
-                class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.description }}
-              </span>
-              <!-- Title -->
-              <span style="line-height: normal;"
-                class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.title }}
-              </span>
+      <div class="mt-12 flex justify-center items-center">
+        <!-- Grid Container -->
+        <div class="grid grid-cols-2 lg:grid-cols-2 gap-[14px] lg:gap-[134px]">
+          <!-- Product 1 -->
+          <div class="flex flex-col items-center">
+            <!-- Image Container -->
+            <div
+              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 rounded overflow-hidden flex justify-center items-center">
+              <img :src="BurnerBox" alt="Fat Burner Premix Powder"
+                class="w-[127px] h-[125px] lg:w-[161px] lg:h-[159px] object-cover" />
             </div>
 
-            <!-- Second Image with Title -->
-            <div class="flex flex-col items-center">
-              <!-- Image Container -->
-              <div
-                class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-                <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-              </div>
-              <span style="line-height: normal;"
-                class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.description }}
+            <!-- Title -->
+            <div class="max-w-[218px] flex justify-center">
+              <span class="mt-4 lg:mt-[38px] text-center text-black/85 text-[16px] lg:text-[20px] font-normal">
+                Fat Burner Premix Powder
               </span>
-              <!-- Title -->
-              <span style="line-height: normal;"
-                class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.title }}
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="flex flex-col items-center">
+            <!-- Image Container -->
+            <div
+              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 rounded overflow-hidden">
+              <img :src="ProductImage" alt="Plant Based Protein Powder" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Title -->
+            <div class="max-w-[218px] flex justify-center">
+              <span class="mt-4 lg:mt-[38px] text-center text-black/85 text-[16px] lg:text-[20px] font-normal">
+                Plant Based Protein Powder
               </span>
             </div>
           </div>
         </div>
       </div>
+
+
     </section>
+
 
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ You may also like section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 
 
-    <section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-[80.14px] px-4 ">
+    <section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-20 px-4">
       <!-- Title Section -->
       <div class="flex justify-start lg:justify-center items-center">
         <h2 style="line-height: normal;"
-          class="text-center text-black/85 font-outfit lg:text-[42px] text-[20px] font-semibold lg:font-normal">
+          class="text-center text-black/85 font-outfit lg:text-[48px] text-[20px] font-semibold lg:font-normal">
           Similar Products
         </h2>
       </div>
 
       <!-- Products Section -->
-      <div class="mt-12 flex flex-wrap justify-center items-center">
-        <!-- Product Block -->
-        <div v-for="(product, index) in productImages" :key="index" class="flex flex-col  items-center bg-white">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-[14px] lg:gap-[33px] justify-center items-center">
-            <!-- First Image with Title -->
-            <div class="flex flex-col items-center">
-              <div
-                class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-                <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-              </div>
-              <span style="line-height: normal;"
-                class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.description }}
-              </span>
-              <span style="line-height: normal;"
-                class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.title }}
-              </span>
+      <div class="mt-12">
+        <!-- Grid Container -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-[14px] lg:gap-[33px]">
+          <!-- Product Block -->
+          <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
+            <!-- Image Container -->
+            <div
+              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 rounded overflow-hidden">
+              <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
             </div>
 
-            <!-- Second Image with Title -->
-            <div class="flex flex-col items-center">
-              <div
-                class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-                <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-              </div>
-              <span style="line-height: normal;"
-                class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.description }}
-              </span>
-              <span style="line-height: normal;"
-                class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.title }}
-              </span>
-            </div>
+            <!-- Product Description -->
+            <span class="mt-4 lg:mt-[38px] text-center text-black/85 text-[16px] lg:text-[20px] font-normal">
+              {{ product.description }}
+            </span>
 
-            <!-- Third Image with Title -->
-            <div class="flex flex-col items-center">
-              <div
-                class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-                <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-              </div>
-              <span style="line-height: normal;"
-                class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.description }}
-              </span>
-              <span style="line-height: normal;"
-                class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.title }}
-              </span>
-            </div>
-
-            <!-- Fourth Image with Title -->
-            <div class="flex flex-col items-center">
-              <div
-                class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
-                <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-              </div>
-              <span style="line-height: normal;"
-                class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.description }}
-              </span>
-              <span style="line-height: normal;"
-                class="text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
-                {{ product.title }}
-              </span>
-            </div>
+            <!-- Product Title -->
+            <span class="text-center text-black/85 text-sm lg:text-lg font-normal">
+              {{ product.title }}
+            </span>
           </div>
+          <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
+            <!-- Image Container -->
+            <div
+              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 px-4 py-4 rounded overflow-hidden">
+              <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
+            </div>
 
+            <!-- Product Description -->
+            <span class="mt-4 text-center text-black/85 text-sm lg:text-lg font-normal">
+              {{ product.description }}
+            </span>
+
+            <!-- Product Title -->
+            <span class="text-center text-black/85 text-sm lg:text-lg font-normal">
+              {{ product.title }}
+            </span>
+          </div>
+          <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
+            <!-- Image Container -->
+            <div
+              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 px-4 py-4 rounded overflow-hidden">
+              <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Product Description -->
+            <span class="mt-4 text-center text-black/85 text-sm lg:text-lg font-normal">
+              {{ product.description }}
+            </span>
+
+            <!-- Product Title -->
+            <span class="text-center text-black/85 text-sm lg:text-lg font-normal">
+              {{ product.title }}
+            </span>
+          </div>
+          <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
+            <!-- Image Container -->
+            <div
+              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 px-4 py-4 rounded overflow-hidden">
+              <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Product Description -->
+            <span class="mt-4 text-center text-black/85 text-sm lg:text-lg font-normal">
+              {{ product.description }}
+            </span>
+
+            <!-- Product Title -->
+            <span class="text-center text-black/85 text-sm lg:text-lg font-normal">
+              {{ product.title }}
+            </span>
+          </div>
         </div>
       </div>
+
     </section>
 
     <!------------------------------------------------------ Banner Section ------------------------------------------------------------->
@@ -675,44 +803,42 @@ const handleTouchEnd = () => {
         <div class="w-full max-w-full mx-auto relative px-4 pb-[82px]">
           <!-- Carousel Container -->
           <div class="flex justify-center items-center overflow-hidden p-2">
-            <div class="flex transition-transform duration-500 lg:p-4 gap-[3px] lg:gap-[52.99px]"
+            <div
+              class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[52.99px] "
               :style="{ transform: `translateX(-${currentIndex * 100}%)` }" style="width: 100%">
               <!-- Product Card -->
               <div v-for="(card, index) in cards" :key="index"
-                class="w-full sm:w-[254px] sm:h-[auto] lg:w-[331.01px] lg:h-[auto] flex-shrink-0 bg-white shadow-[0px_0px_23.64372444152832px_0px_rgba(0,0,0,0.07)] rounded overflow-hidden">
+                class="w-[254px] h-[auto] lg:w-[331.01px] lg:h-[auto] flex-shrink-0 bg-white shadow-[0px_0px_10px_1px_rgba(0,0,0,0.25)] rounded overflow-hidden">
                 <div class="flex flex-col justify-between">
                   <!-- Image -->
                   <div class="flex items-center gap-[13px] flex-col">
                     <!-- Image -->
-                    <img class="w-full h-auto " :src="card.image" alt="Avatar" />
+                    <img class="w-full h-auto object-cover" :src="card.image" alt="Avatar" />
 
                     <!-- Text container -->
                     <div class="flex flex-col items-start w-full pt-0 px-5">
                       <!-- Name -->
-                      <div class="text-black text-[16px] font-bold font-outfit mb-0">
+                      <div  style="line-height: normal;" class="text-black text-[13px] lg:text-[16px] font-bold font-outfit mb-0">
                         {{ card.name }}
                       </div>
 
                       <!-- Title -->
-                      <span style="line-height: normal;" class="text-black text-[13px] font-light font-outfit">
+                      <span style="line-height: normal;" class="text-black text-[11px] lg:text-[13px] font-light font-outfit">
                         {{ card.title }}
                       </span>
                     </div>
                   </div>
 
-                  <!-- Heading -->
-                  <!-- <div class=" text-black text-[20px] font-bold font-outfit pt-[28.37px]">
-                    {{ card.heading }}
-                  </div> -->
-
                   <!-- Description -->
                   <div
-                    class=" text-black pt-[10px] text-[16px] leading-normal font-normal font-outfit whitespace-normal overflow-visible px-5 pb-[20px]">
+                  style="line-height: normal;"
+                    class="text-black pt-[10px] text-[13px] lg:text-[16px] leading-normal font-normal font-outfit whitespace-normal overflow-visible px-5 pb-[20px]">
                     "{{ card.description }}"
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
           <!-- Navigation Buttons -->
