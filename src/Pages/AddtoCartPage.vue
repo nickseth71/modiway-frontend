@@ -129,15 +129,15 @@ const prev = () => {
 
 // Touch Handlers
 const handleTouchStart = (event) => {
-  startX.value = event.touches[0].clientX; // Record the initial touch position
+  startX.value = event.touches[0].clientX;
 };
 
 const handleTouchMove = (event) => {
-  endX.value = event.touches[0].clientX; // Update the end touch position as the user moves
+  endX.value = event.touches[0].clientX;
 };
 
 const handleTouchEnd = () => {
-  const diff = startX.value - endX.value; // Calculate the swipe distance
+  const diff = startX.value - endX.value;
   if (diff > 50) {
     next();
   } else if (diff < -50) {
@@ -156,64 +156,42 @@ const handleTouchEnd = () => {
 <template>
   <section class="max-w-[100%] mx-auto">
     <section
-      class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-8 lg:space-y-0 lg:space-x-[42px] page-width">
+      class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-6 lg:space-y-0 lg:space-x-[42px] page-width">
       <!-- Carousel for Small Devices -->
       <div class="lg:hidden">
 
         <div class="flex flex-row pl-[16px]">
           <p>
             <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape
-              Shift |</span>
+              Shift </span> <span style="line-height: normal;"
+              class="text-[#727272] text-[11px] font-normal font-outfit">|</span>
             <span class="text-[#717171] text-[11px] font-semibold font-outfit">Meal Replacement for Weight Control/
               Management</span>
           </p>
         </div>
-        <div
-  id="custom-carousel"
-  class="relative w-full block lg:hidden -top-[10px]"
-  data-carousel="slide"
-  @touchstart="handleTouchStart"
-  @touchmove="handleTouchMove"
-  @touchend="handleTouchEnd"
->
-  <!-- Carousel Wrapper -->
-  <div class="relative h-[464px] overflow-hidden">
-    <!-- Carousel Items -->
-    <div
-      v-for="(item, index) in cartItems"
-      :key="index"
-      :class="{ hidden: index !== activeIndex }"
-      class="duration-700 ease-in-out"
-      :data-carousel-item="index === 0 ? 'active' : null"
-    >
-      <img
-        :src="item.src"
-        :alt="item.alt"
-        class="absolute w-full h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-      />
-    </div>
-  </div>
+        <div id="custom-carousel" class="relative w-full block lg:hidden -top-[10px]" data-carousel="slide"
+          @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+          <!-- Carousel Wrapper -->
+          <div class="relative h-[454px] overflow-hidden">
+            <!-- Carousel Items -->
+            <div v-for="(item, index) in cartItems" :key="index" :class="{ hidden: index !== activeIndex }"
+              class="duration-700 ease-in-out" :data-carousel-item="index === 0 ? 'active' : null">
+              <img :src="item.src" :alt="item.alt"
+                class="absolute w-full h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+            </div>
+          </div>
 
-  <!-- Slider Indicators -->
-  <div
-    class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse py-4"
-    style="transform: translateX(-50%)"
-  >
-    <button
-      v-for="(item, index) in cartItems"
-      :key="index"
-      type="button"
-      class="w-3 h-3 rounded-full"
-      :aria-current="index === activeIndex ? 'true' : 'false'"
-      :aria-label="'Slide ' + (index + 1)"
-      @click="updateIndex(index)"
-      :class="{
-        'bg-[#606060]': index === activeIndex,
-        'bg-[#FFFFFF]': index !== activeIndex,
-      }"
-    ></button>
-  </div>
-</div>
+          <!-- Slider Indicators -->
+          <div class="absolute z-30 flex -translate-x-1/2 bottom-8 left-1/2 space-x-3 rtl:space-x-reverse py-4"
+            style="transform: translateX(-50%)">
+            <button v-for="(item, index) in cartItems" :key="index" type="button" class="w-3 h-3 rounded-full"
+              :aria-current="index === activeIndex ? 'true' : 'false'" :aria-label="'Slide ' + (index + 1)"
+              @click="updateIndex(index)" :class="{
+                'bg-[#606060]': index === activeIndex,
+                'bg-[#FFFFFF]': index !== activeIndex,
+              }"></button>
+          </div>
+        </div>
 
 
         <!-- Product Info Section -->
@@ -526,7 +504,7 @@ const handleTouchEnd = () => {
       </div>
 
       <!-- Products Section -->
-      <div class="mt-12 flex flex-wrap  justify-center items-center">
+      <div class="mt-12 flex flex-wrap justify-center items-center">
         <!-- Product Block -->
         <div v-for="(product, index) in productImages" :key="index" class="flex flex-col  items-center bg-white">
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-[14px] lg:gap-[33px] justify-center items-center">
