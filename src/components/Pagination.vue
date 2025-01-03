@@ -3,7 +3,7 @@
       <button
         :disabled="currentPage === 1"
         @click="$emit('change-page', currentPage - 1)"
-        class="pagination-previous py-2 px-4 text-sm md:text-base border-0"
+        class="pagination-previous py-2 px-4 text-sm md:text-base border-0 text-[#1E1E1E]"
       >
       <i class="fas fa-arrow-left"></i> Previous
       </button>
@@ -17,7 +17,7 @@
           <button
             @click="$emit('change-page', page)"
             :disabled="page === currentPage"
-            class="py-2 px-4 text-sm md:text-base"
+            class="py-2 px-4 text-sm md:text-base text-[#1E1E1E]"
           >
             {{ page }}
           </button>
@@ -28,7 +28,7 @@
           :key="page"
           class="pagination-item"
         >
-          <button @click="$emit('change-page', page)" class="py-2 px-4 text-sm md:text-base">
+          <button @click="$emit('change-page', page)" class="py-2 px-4 text-sm md:text-base text-[#1E1E1E]">
             {{ page }}
           </button>
         </li>
@@ -36,7 +36,7 @@
       <button
         :disabled="currentPage === totalPages"
         @click="$emit('change-page', currentPage + 1)"
-        class="pagination-next py-2 px-4 text-sm md:text-base"
+        class="pagination-next py-2 px-4 text-sm md:text-base text-[#1E1E1E]"
       >
         Next <i class="fas fa-arrow-right"></i>
       </button>
@@ -109,7 +109,7 @@
     width:32px; height: 32px;display: flex;align-items: center; justify-content: center;border-radius: 10px;font-family: Inter;
   }
   .pagination-item.current button {
-    background-color:black;
+    background-color:#1E1E1E;
     color: white;
     pointer-events: none;
   }
@@ -126,7 +126,7 @@
   }
   .pagination-previous i{margin-right: 10px;}
   .pagination-next i{margin-left: 10px;}
-  .pagination button.pagination-previous:disabled{color:#BABABA}
-  .pagination button.pagination-next:disabled{color:#BABABA}
+  .pagination button.pagination-previous:disabled{color:#1E1E1E}
+  .pagination button.pagination-next:disabled{color:#1E1E1E}
   </style>
   

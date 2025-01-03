@@ -445,15 +445,11 @@ const handleTouchEnd = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   </section>
   </section>
  <!------------------------------------- Accordion Sections -------------------------------------------------------->
-<<<<<<< HEAD
-  <section class="max-w-[1124px] mx-auto hidden lg:block">
-=======
   <section class="max-w-[1200px] mx-auto hidden lg:block">
->>>>>>> 3d542361e472aca82b686fe46f4ad0489f562196
    
     <div class="">
           <div
@@ -629,5 +625,5 @@ const handleTouchEnd = () => {
   </div>
 </section>
 
-</section>
+
 </template>
