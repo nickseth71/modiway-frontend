@@ -88,7 +88,7 @@ const toggleSection = (index) => {
 
 
 <template>
-  <section class="max-w-[100%]">
+  <section class="max-w-[100%] mx-auto">
   <section
     class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-8 lg:space-y-0 lg:space-x-[42px] page-width"
   >
@@ -626,14 +626,12 @@ const toggleSection = (index) => {
     </div>
   </div>
 </section>
-<!-- <section>
- 
-
-  <div>
-    <img :src="BannerImage" alt="">
+<section>
+  <div class="w-full h-[70vh]">
+    <img :src="BannerImage" alt="Banner" class="w-full object-cover">
   </div>
+</section>
 
-</section> -->
 </section>
 </template>
 
