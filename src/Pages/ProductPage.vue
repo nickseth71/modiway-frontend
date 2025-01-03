@@ -311,16 +311,18 @@ No items found.
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import "@fortawesome/fontawesome-free/css/all.css";
-import Banana from "../assets/Banana-Caramel.png";
-import Chocolate from "../assets/Chocolate.png";
-import Kulfi from "../assets/Kulfi.png";
-import Mango from "../assets/Mango.png";
-import Rasmalai from "../assets/Rasmalai.png";
-import Strawberry from "../assets/Strawberry.png";
-import Rosekheer from "../assets/RoseKheer.png";
-import Vanilla from "../assets/Vanilla.png";
+// import Banana from "../assets/Banana-Caramel.png";
+// import Chocolate from "../assets/Chocolate.png";
+// import Kulfi from "../assets/Kulfi.png";
+// import Mango from "../assets/Mango.png";
+// import Rasmalai from "../assets/Rasmalai.png";
+// import Strawberry from "../assets/Strawberry.png";
+// import Rosekheer from "../assets/RoseKheer.png";
+// import Vanilla from "../assets/Vanilla.png";
 import milkglass from "../assets/hoverimage.png";
-import AddtoCartPage from "./AddtoCartPage.vue";
+// import AddtoCartPage from "./AddtoCartPage.vue";
+
+import ProductImage from "../assets/ProductImg.png"
 
 export default {
   // methods: {
@@ -377,7 +379,7 @@ export default {
     const items = ref([
       {
         id: 1,
-        src: Banana,
+        src: ProductImage,
         hoverSrc: milkglass,
         name: "Banana Caramel Flavour",
         replacement: "Meal Replacement Powder 500g",
@@ -387,7 +389,7 @@ export default {
       },
       {
         id: 2,
-        src: Chocolate,
+        src: ProductImage,
         hoverSrc: milkglass,
         name: "Chocolate Flavour",
         replacement: "Meal Replacement Powder 500g",
@@ -397,7 +399,7 @@ export default {
       },
       {
         id: 3,
-        src: Kulfi,
+        src: ProductImage,
         hoverSrc: milkglass,
         name: "Kulfi Flavour",
         replacement: "Meal Replacement Powder 500g",
@@ -407,7 +409,7 @@ export default {
       },
       {
         id: 4,
-        src: Mango,
+        src: ProductImage,
         hoverSrc: milkglass,
         name: "Mango flavour",
         replacement: "Meal Replacement Powder 500g",
@@ -417,7 +419,7 @@ export default {
       },
       {
         id: 5,
-        src: Rasmalai,
+        src: ProductImage,
         hoverSrc: milkglass,
         name: "Rasmalai Flavour",
         replacement: "Meal Replacement Powder 500g",
@@ -427,7 +429,7 @@ export default {
       },
       {
         id: 6,
-        src: Strawberry,
+        src: ProductImage,
         hoverSrc: milkglass,
         name: "Strawberry flavour",
         replacement: "Meal Replacement Powder 500g",
@@ -437,7 +439,7 @@ export default {
       },
       {
         id: 7,
-        src: Rosekheer,
+        src: ProductImage,
         hoverSrc: milkglass,
         name: "Rose-Kheer",
         replacement: "Meal Replacement Powder 500g",
@@ -447,7 +449,7 @@ export default {
       },
       {
         id: 8,
-        src: Vanilla,
+        src: ProductImage,
         hoverSrc: milkglass,
         name: "Vanilla Flavour",
         replacement: "Meal Replacement Powder 500g",
@@ -519,7 +521,7 @@ export default {
     };
 
     return {
-      // State and methods returned from setup function
+      
       currentPage,
       totalPages,
       handlePageChange,
