@@ -620,7 +620,7 @@ const handleTouchEnd = () => {
 
     <section class="page-width">
       <div class="w-full flex justify-center py-[25px] lg:py-[108px]">
-        <div class="w-full max-w-full mx-auto relative px-4">
+        <div class="w-full max-w-full mx-auto relative px-4 pb-[82px]">
           <!-- Carousel Container -->
           <div class="flex justify-center items-center overflow-hidden p-2">
             <div class="flex transition-transform duration-500 lg:p-4 gap-[3px] lg:gap-[52.99px]"
@@ -664,7 +664,7 @@ const handleTouchEnd = () => {
           </div>
 
           <!-- Navigation Buttons -->
-          <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center pb-[82px]">
+          <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center ">
             <!-- Previous Button -->
             <button class="absolute left-[70px] lg:left-1/3 transform top-1/2 -translate-y-1/2" @click="prev">
               <img :src="prevbutton" alt="Previous" class="w-6 h-6" />
