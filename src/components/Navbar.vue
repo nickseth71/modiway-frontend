@@ -142,6 +142,14 @@
   <ul class="space-y-4 p-6">
     <li>
       <router-link
+        to="/"
+        class="text-black/85 text-[15px] font-normal font-['Outfit'] tracking-[0.75px] hover:font-bold"
+      >
+       Home
+      </router-link>
+    </li>
+    <li>
+      <router-link
         to="/ourstory"
         class="text-black/85 text-[15px] font-normal font-['Outfit'] tracking-[0.75px] hover:font-bold"
       >
