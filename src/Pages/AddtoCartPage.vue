@@ -20,11 +20,12 @@ import nextbutton from "../assets/next.png";
 import prevbutton from "../assets/previous.png";
 
 //////////////////////////////////////////////////////// product images /////////////////////////////////////////////////
-import MangoFlavour from "../assets/Mango.png";
+// import MangoFlavour from "../assets/Mango.png";
+import ProductImage from "../assets/ProductImg.png"
 
 // Product images
 const productImages = ref([
-  { src: MangoFlavour, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
+  { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
 ]);
 
 // Carousel items
@@ -381,11 +382,11 @@ const handleTouchEnd = () => {
           </div>
 
           <div class="pt-[31px]">
-            <div class="flex flex-wrap justify-start items-center space-x-2 space-y-1 pt-[31px]">
-              <div class="bg-blue-500 border px-2 text-center text-white text-[14.93px] font-medium font-outfit">
+            <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
+              <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
                 Chocolate
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit">
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[3px]">
                 Vanilla
               </div>
               <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit">
@@ -445,31 +446,20 @@ const handleTouchEnd = () => {
           </div>
         </div>
       </div>
-    
-  </section>
-  </section>
- <!------------------------------------- Accordion Sections -------------------------------------------------------->
-  <section class="max-w-[1200px] mx-auto hidden lg:block">
-   
-    <div class="">
-          <div
-            v-for="(section, index) in sections"
-            :key="index"
-            class="border-b-[1px] border-[#353535] mt-0"
-          >
-            <button 
-            style="line-height: normal;"
-              class="w-full text-left text-[#353535] pt-[30px] pb-[24px] text-[20px] font-normal font-outfit flex justify-between items-center"
-              @click="toggleSection(index)"
-            >
-              {{ section.title }}
-              <span
-                :class="{
-                  'rotate-180': section.open,
-                  'rotate-0': !section.open,
-                }"
-                class="transform transition-transform duration-200"
-              >
+    </section>
+    <!------------------------------------- Accordion Sections -------------------------------------------------------->
+    <section class="max-w-[1200px] mx-auto hidden lg:block">
+
+      <div class=" space-y-4 px-10">
+        <div v-for="(section, index) in sections" :key="index" class="border-b-[1px] border-[#353535]">
+          <button style="line-height: normal;"
+            class="w-full text-left text-[#353535] pt-[30px] pb-[24px] text-[16px] font-normal font-outfit flex justify-between items-center"
+            @click="toggleSection(index)">
+            {{ section.title }}
+            <span :class="{
+              'rotate-180': section.open,
+              'rotate-0': !section.open,
+            }" class="transform transition-transform duration-200">
               <i class="fas fa-chevron-down"></i>
             </span>
           </button>
@@ -616,14 +606,88 @@ const handleTouchEnd = () => {
             </div>
           </div>
 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="w-full h-[70vh]">
-    <img :src="BannerImage" alt="Banner" class="w-full object-cover">
-  </div>
-</section>
+        </div>
+      </div>
+    </section>
 
+    <!------------------------------------------------------ Banner Section ------------------------------------------------------------->
+    <section class="mt-[60px] lg:mt-[32px]">
+      <div class="w-full h-auto relative">
+        <img :src="BannerImage" alt="Banner" class="w-full object-cover opacity-90">
+        <div class="absolute inset-0 bg-black/10"></div>
+      </div>
+    </section>
+    <!------------------------------------------------------ card Section Section ------------------------------------------------------------->
 
+    <section class="page-width">
+      <div class="w-full flex justify-center py-[25px] lg:py-[108px]">
+        <div class="w-full max-w-full mx-auto relative px-4 pb-[82px]">
+          <!-- Carousel Container -->
+          <div class="flex justify-center items-center overflow-hidden p-2">
+            <div class="flex transition-transform duration-500 lg:p-4 gap-[3px] lg:gap-[52.99px]"
+              :style="{ transform: `translateX(-${currentIndex * 100}%)` }" style="width: 100%">
+              <!-- Product Card -->
+              <div v-for="(card, index) in cards" :key="index"
+                class="w-full sm:w-[254px] sm:h-[auto] lg:w-[331.01px] lg:h-[auto] flex-shrink-0 bg-white shadow-[0px_0px_23.64372444152832px_0px_rgba(0,0,0,0.07)] rounded overflow-hidden">
+                <div class="flex flex-col justify-between px-[20.1px] py-[30px]">
+                  <!-- Image -->
+                  <div class="flex items-center gap-[13px]">
+                    <!-- Image -->
+                    <img class="w-[70.93px] h-[70.93px] rounded-full" :src="card.image" alt="Avatar" />
+
+                    <!-- Text container -->
+                    <div class="flex flex-col items-start">
+                      <!-- Name -->
+                      <div class="text-black text-[21.61px] font-bold font-outfit mb-[6px]">
+                        {{ card.name }}
+                      </div>
+
+                      <!-- Title -->
+                      <span style="line-height: normal;" class="text-black text-[14.186px] font-normal font-outfit">
+                        {{ card.title }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Heading -->
+                  <div class="text-center text-black text-[20px] font-bold font-outfit pt-[28.37px]">
+                    {{ card.heading }}
+                  </div>
+
+                  <!-- Description -->
+                  <div
+                    class="text-center text-black pt-[22px] text-[14px] font-light font-outfit whitespace-normal overflow-visible">
+                    {{ card.description }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center ">
+            <!-- Previous Button -->
+            <button class="absolute left-[70px] lg:left-1/3 transform top-1/2 -translate-y-1/2" @click="prev">
+              <img :src="prevbutton" alt="Previous" class="w-6 h-6" />
+            </button>
+
+            <!-- Navigation Dots -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-2">
+              <button v-for="(dot, index) in Math.ceil(cards.length)" :key="index" class="w-3 h-3 rounded-full"
+                :aria-current="index === currentIndex ? 'true' : 'false'" :aria-label="'Slide ' + (index + 1)"
+                @click="currentIndex = index" :class="{
+                  'bg-[#515151]': index === currentIndex,
+                  'bg-[#c4c4c4]': index !== currentIndex,
+                }"></button>
+            </div>
+
+            <!-- Next Button -->
+            <button class="absolute right-[70px] lg:right-1/3 transform top-1/2 -translate-y-1/2" @click="next">
+              <img :src="nextbutton" alt="Next" class="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
 </template>
