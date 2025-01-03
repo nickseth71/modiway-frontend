@@ -88,7 +88,7 @@ const toggleSection = (index) => {
 
 
 <template>
-  <section class="">
+  <section class="max-w-[100%]">
   <section
     class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-8 lg:space-y-0 lg:space-x-[42px] page-width"
   >
@@ -456,7 +456,11 @@ const toggleSection = (index) => {
     </div>
   </section>
  <!------------------------------------- Accordion Sections -------------------------------------------------------->
+<<<<<<< HEAD
   <section class="max-w-[1124px] mx-auto hidden lg:block">
+=======
+  <section class="max-w-[1200px] mx-auto hidden lg:block">
+>>>>>>> 3d542361e472aca82b686fe46f4ad0489f562196
    
     <div class="">
           <div
@@ -652,16 +656,14 @@ const toggleSection = (index) => {
     </div>
   </div>
 </section>
+<!-- <section>
+ 
 
-<section>
+  <div>
+    <img :src="BannerImage" alt="">
+  </div>
 
-</section>
-
-<!--------------------------------------- Banner Section  ----------------------------------------->
-
-
-
-
+</section> -->
 </section>
 </template>
 
