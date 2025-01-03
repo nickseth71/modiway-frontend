@@ -250,7 +250,7 @@ const toggleSection = (index) => {
 
         <!-- Icons -->
         <div class="flex flex-wrap justify-center mt-[23px] gap-4">
-          <div v-for="(icon, index) in icons" :key="index" class="text-center">
+          <div v-for="(icon, index) in icons" :key="index" class="text-center w-[70px] lg:w-[auto]">
             <img :src="icon.img" alt="Icon" class="w-[31.20px] h-[31.20px] mx-auto" />
             <p class="text-[10.56px] font-medium font-outfit text-center mt-1">{{ icon.label }}</p>
           </div>
@@ -465,11 +465,7 @@ const toggleSection = (index) => {
   </section>
   </section>
  <!------------------------------------- Accordion Sections -------------------------------------------------------->
-<<<<<<< HEAD
-  <section class="max-w-[1124px] mx-auto hidden lg:block">
-=======
   <section class="max-w-[1200px] mx-auto hidden lg:block">
->>>>>>> 3d542361e472aca82b686fe46f4ad0489f562196
    
     <div class="">
           <div
@@ -671,7 +667,7 @@ const toggleSection = (index) => {
   </div>
 </section>
 
-</section>
+
 </template>
 
 
