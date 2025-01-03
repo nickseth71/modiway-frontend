@@ -179,12 +179,76 @@ const prev = () => {
       <!-- Carousel for Small Devices -->
       <div class="lg:hidden">
 
+<<<<<<< HEAD
         <div class="flex flex-row px-[16px]">
           <p>
             <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape
               Shift</span> <span class="text-[#717171] text-[11px] px-[4px]">|</span>
             <span class="text-[#717171] text-[11px] font-semibold font-outfit">Meal Replacement for Weight Control/
               Management</span>
+=======
+      <div class="flex flex-row px-[16px]">
+      <p 
+      >
+        <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape Shift</span> <span class="text-[#717171] text-[11px] px-[4px]">|</span>
+      <span class="text-[#717171] text-[11px] font-semibold font-outfit">Meal Replacement for Weight Control/ Management</span>
+    </p>
+    </div>
+    <div
+      id="custom-carousel"
+      class="relative w-full block lg:hidden -top-[10px]"
+      data-carousel="slide"
+    >
+      <!-- Carousel wrapper -->
+      <div class="relative h-[464px] overflow-hidden">
+        <!-- Items -->
+        <div
+          v-for="(item, index) in cartItems"
+          :key="index"
+          :class="{ hidden: index !== activeIndex }"
+          class="duration-700 ease-in-out"
+          :data-carousel-item="index === 0 ? 'active' : null"
+        >
+          <img
+            :src="item.src"
+            :alt="item.alt"
+            class="absolute w-full h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          />
+        </div>
+      </div>
+
+      
+      <!-- Slider indicators -->
+      <div
+        class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse py-4"
+        style="transform: translateX(-50%)"
+      >
+        <button
+          v-for="(item, index) in cartItems"
+          :key="index"
+          type="button"
+          class="w-3 h-3 rounded-full"
+          :aria-current="index === activeIndex ? 'true' : 'false'"
+          :aria-label="'Slide ' + (index + 1)"
+          :data-carousel-slide-to="index"
+          @click="updateIndex(index)"
+          :class="{
+            'bg-[#606060]': index === activeIndex,
+            'bg-[#FFFFFF]': index !== activeIndex,
+          }"
+        ></button>
+      </div>
+    </div>
+
+      <!-- Product Info Section -->
+      <div class="bg-white pl-[19px] pr-[19px] py-[19px] max-w-full mx-auto text-gray-800">
+        <!-- Product Title -->
+        <div class="text-start">
+          <h1 style="line-height: normal;" class="text-[20px] text-black/85 font-normal font-outfit">Shape Shift</h1>
+          <h2 class="text-[20px] text-black/85 font-light font-outfit">Plant-Based Protein Powder 500g</h2>
+          <p class="text-[13px] text-black/85 font-normal font-outfit leading-[16px]">
+            Meal Replacement for Weight Control/Management
+>>>>>>> e3b71bdcecc2531906baaa133ca0d4f0af8592ab
           </p>
         </div>
         <div id="custom-carousel" class="relative w-full block lg:hidden -top-[10px]" data-carousel="slide">
@@ -434,26 +498,111 @@ const prev = () => {
     <!------------------------------------- Accordion Sections -------------------------------------------------------->
     <section class="max-w-[1200px] mx-auto hidden lg:block">
 
-      <div class=" space-y-4 px-10">
-        <div v-for="(section, index) in sections" :key="index" class="border-b-[1px] border-[#353535]">
-          <button style="line-height: normal;"
-            class="w-full text-left text-[#353535] pt-[30px] pb-[24px] text-[16px] font-normal font-outfit flex justify-between items-center"
-            @click="toggleSection(index)">
-            {{ section.title }}
-            <span :class="{
-              'rotate-180': section.open,
-              'rotate-0': !section.open,
-            }" class="transform transition-transform duration-200">
-              <i class="fas fa-chevron-down"></i>
-            </span>
+        <!-- Quantity Selector -->
+  <div class="flex items-center gap-4 mt-6">
+  <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
+  <div class="flex justify-center w-[60px] h[21px] items-center border border-black rounded-[4px] ">
+    <!-- Decrease Quantity Button -->
+    <button
+      class="w-[9px] h-[1.125px] flex justify-center items-center text-gray-800"
+      @click="decreaseQuantity"
+      aria-label="Decrease quantity"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="9"
+        height="auto"
+        viewBox="0 0 9 2"
+        fill="none"
+        class="w-4 h-4"
+      >
+        <path
+          d="M8.8125 0.4375H0.1875C0.0839062 0.4375 0 0.521406 0 0.625V1.375C0 1.47859 0.0839062 1.5625 0.1875 1.5625H8.8125C8.91609 1.5625 9 1.47859 9 1.375V0.625C9 0.521406 8.91609 0.4375 8.8125 0.4375Z"
+          fill="black"
+          fill-opacity="0.85"
+        />
+      </svg>
+    </button>
+
+    <!-- Quantity Display -->
+    <span class="text-[16px] font-medium px-2 leading-[24px]">{{ quantity }}</span>
+
+    <!-- Increase Quantity Button -->
+    <button
+      class="w-[9px] h-[6.838px] flex justify-center items-center text-gray-800"
+      @click="increaseQuantity"
+      aria-label="Increase quantity"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="9"
+        height="auto"
+        viewBox="0 0 11 7"
+        fill="none"
+        class="w-4 h-4"
+      >
+        <path
+          d="M9.8125 3.00548H6.0625V0.156139C6.0625 0.077426 5.97859 0.0136719 5.875 0.0136719H5.125C5.02141 0.0136719 4.9375 0.077426 4.9375 0.156139V3.00548H1.1875C1.08391 3.00548 1 3.06924 1 3.14795V3.71782C1 3.79653 1.08391 3.86029 1.1875 3.86029H4.9375V6.70963C4.9375 6.78835 5.02141 6.8521 5.125 6.8521H5.875C5.97859 6.8521 6.0625 6.78835 6.0625 6.70963V3.86029H9.8125C9.91609 3.86029 10 3.79653 10 3.71782V3.14795C10 3.06924 9.91609 3.00548 9.8125 3.00548Z"
+          fill="black"
+          fill-opacity="0.85"
+          stroke="black"
+          stroke-width="0.0234375"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+        <!-- Add to Cart -->
+        <div class="flex justify-start mt-[19px] border-b border-[#ababab] pb-[30px]">
+          <button
+            class="text-[16px] underline underline-offset-4 font-outfit font-bold"
+          >
+            Add to cart
           </button>
-          <div v-if="section.open" class="text-xs text-gray-600 mt-2">
-            {{ section.content }}
+        </div>
+
+        <!-- Icons -->
+        <div class="flex flex-wrap justify-center mt-[23px] gap-4">
+          <div v-for="(icon, index) in icons" :key="index" class="text-center">
+            <img :src="icon.img" alt="Icon" class="w-[31.20px] h-[31.20px] mx-auto" />
+            <p class="text-[10.56px] font-medium font-outfit text-center mt-1">{{ icon.label }}</p>
+          </div>
+        </div>
+
+        <!-- Accordion Sections -->
+        <div class="mt-6 space-y-4 pr-[13px]">
+          <div
+            v-for="(section, index) in sections"
+            :key="index"
+            class="border-b-[1px] border-[#353535]"
+          >
+            <button 
+            style="line-height: normal;"
+              class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] lg:text-[20px] font-normal font-outfit flex justify-between items-center"
+              @click="toggleSection(index)"
+            >
+              {{ section.title }}
+              <span
+                :class="{
+                  'rotate-180': section.open,
+                  'rotate-0': !section.open,
+                }"
+                class="transform transition-transform duration-200"
+              >
+              <i class="fas fa-chevron-down"></i>
+              </span>
+            </button>
+            <div v-if="section.open" class="text-xs text-gray-600 mt-2">
+              {{ section.content }}
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+<<<<<<< HEAD
     <section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-20 px-4">
       <!-- Title Section -->
       <div class="flex justify-start lg:justify-center items-center">
@@ -501,6 +650,212 @@ const prev = () => {
               <span style="line-height: normal;"
                 class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
                 {{ product.title }}
+=======
+    <!------------------------------------------------------------------------------- Large Screen --------------------------------------------------- -->
+    <!-- First Column: Display Images (for Larger Screens) -->
+    <div class="hidden lg:flex gap-6">
+      <div class="lg:grid gap-[14px] grid-cols-2 lg:w-[58%]">
+        <div
+          v-for="(item, index) in cartItems"
+          :key="index"
+          class="flex justify-center"
+        >
+          <img
+            :src="item.src"
+            :alt="item.alt"
+            class="object-cover w-full h-auto"
+          />
+        </div>
+      </div>
+
+      <!-- Second Column: Product Information -->
+      <div class="w-full lg:w-[45%] space-y-0 px-[15px]">
+        <!-- Breadcrumbs -->
+        <ul
+          class="hidden lg:flex flex-wrap items-center text-xs text-[#717171] space-x-[6px]"
+        >
+          <li class="cursor-pointer">Home</li>
+          <li class="cursor-pointer">Meal Replacement</li>
+          <li class="cursor-pointer">Shape Shift</li>
+          <li class="cursor-pointer">Meal Replacement for Weight Management</li>
+        </ul>
+        <h2 class="text-[20px] font-medium font-outfit text-black/85 pt-[4px]">
+          Shape Shift
+        </h2>
+        <!-- Product Title -->
+        <h2 class="text-[20px] font-normal font-outfit text-black/85 ">
+          Plant-Based Protein Powder 500g
+        </h2>
+
+        <p
+          class="text-[14px] font-normal font-opacity tracking-[0.28px] leading-[21px] text-black/85"
+        >
+          Meal Replacement for Weight Management
+        </p>
+
+        <div class="flex flex-col pt-[10px]">
+          <p class="text-black/85 text-[14px] font-light font-outfit">
+            Item: MW0001
+          </p>
+          <p class="text-black/85 text-[14px] font-light font-outfit">
+            Net Quantity: 500g
+          </p>
+          <p style="line-height: normal">
+            <span
+              class="text-black/85 text-[20px] leading-normal font-normal font-outfit"
+              >Rs. </span
+            ><span class="text-black/85 text-[20px] font-bold font-outfit"
+              >2,750.00</span
+            >
+          </p>
+          <p
+            style="line-height: normal"
+            class="text-black/85 text-[16px] font-light font-outfit"
+          >
+            MRP (incl. of all taxes)
+          </p>
+          <router-link
+            class="pt-[100.52px] underline underline-offset-2 font-outfit leading-[19.95px] font-bold text-[19.95px]"
+          >
+            Add to cart
+          </router-link>
+        </div>
+
+        <div class="pt-[31px]">
+          <div
+            class="flex flex-wrap justify-start items-center flevor-grid space-y-1 pt-[31px]"
+          >
+            <div
+              class= "border-[0.931px] rounded-[3.726px] border-black/85 px-2 text-center text-black/85 text-[14.93px] font-medium font-outfit"
+            >
+              Chocolate
+            </div>
+            <div
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+            >
+              Vanilla
+            </div>
+            <div
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+            >
+              Mango
+            </div>
+            <div
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+            >
+              Kulfi
+            </div>
+            <div
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+            >
+              Rose Kheer
+            </div>
+            <div
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+            >
+              Strawberry
+            </div>
+            <div
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+            >
+              Banana Caramel
+            </div>
+
+            <div
+              class="border rounded-[3.726px] px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit"
+            >
+              Rasmalai
+            </div>
+          </div>
+          <div class="pt-[106.75px]">
+            <div class="flex flex-row gap-4 justify-items-center">
+              <div class="flex flex-col justify-center items-center">
+                <img :src="Category1" alt="Low GI" class="w-[29.061px] h-[29.061px] object-cover mb-2" />
+                <span style="line-height: normal;" class="block text-[9.83px] font-medium font-outfit text-center"
+                  >LowGI</span
+                >
+              </div>
+              <div class="flex flex-col justify-center items-center">
+                <img
+                  :src="Category2"
+                  alt="Vegetarian"
+                  class="w-[29.061px] h-[29.061px] object-cover mb-2"
+                />
+                <span style="line-height: normal;" class="block text-[9.83px] font-medium font-outfit text-center"
+                  >Vegetarian</span
+                >
+              </div>
+              <div class="flex flex-col justify-center items-center">
+                <img
+                  :src="Category3"
+                  alt="Preservative Free"
+                  class="w-[29.061px] h-[29.061px] object-cover mb-2"
+                />
+                <span style="line-height: normal;" class="block text-[9.83px] font-medium font-outfit text-center"
+                  >Preservative Free</span
+                >
+              </div>
+              <div class="flex flex-col justify-center items-center">
+                <img
+                  :src="Category4"
+                  alt="No added sugar"
+                  class="w-[29.061px] h-[29.061px] object-cover mb-2"
+                />
+                <span style="line-height: normal;" class="block text-[9.83px] font-medium font-outfit text-center"
+                  >No-Added Sugar</span
+                >
+              </div>
+              <div class="flex flex-col justify-center items-center">
+                <img
+                  :src="Category5"
+                  alt="Gluten Free"
+                  class="w-[29.061px] h-[29.061px] object-cover mb-2"
+                />
+                <span style="line-height: normal;" class="block text-[9.83px] font-medium font-outfit text-center"
+                  >Gluten Free</span
+                >
+              </div>
+              <div class="flex flex-col justify-center items-center">
+                <img :src="Category6" alt="Non-GMO" class="w-[29.061px] h-[29.061px] object-cover mb-2" />
+                <span style="line-height: normal;" class="block text-[9.83px] font-medium font-outfit text-center"
+                  >Non-GMO</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </section>
+ <!------------------------------------- Accordion Sections -------------------------------------------------------->
+<<<<<<< HEAD
+  <section class="max-w-[1124px] mx-auto hidden lg:block">
+=======
+  <section class="max-w-[1200px] mx-auto hidden lg:block">
+>>>>>>> 3d542361e472aca82b686fe46f4ad0489f562196
+   
+    <div class="">
+          <div
+            v-for="(section, index) in sections"
+            :key="index"
+            class="border-b-[1px] border-[#353535] mt-0"
+          >
+            <button 
+            style="line-height: normal;"
+              class="w-full text-left text-[#353535] pt-[30px] pb-[24px] text-[20px] font-normal font-outfit flex justify-between items-center"
+              @click="toggleSection(index)"
+            >
+              {{ section.title }}
+              <span
+                :class="{
+                  'rotate-180': section.open,
+                  'rotate-0': !section.open,
+                }"
+                class="transform transition-transform duration-200"
+              >
+              <i class="fas fa-chevron-down"></i>
+>>>>>>> e3b71bdcecc2531906baaa133ca0d4f0af8592ab
               </span>
             </div>
           </div>
@@ -510,6 +865,7 @@ const prev = () => {
 
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ You may also like section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 
+<<<<<<< HEAD
 
     <section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-[80.14px] px-4 ">
       <!-- Title Section -->
@@ -588,8 +944,48 @@ const prev = () => {
                 {{ product.title }}
               </span>
             </div>
+=======
+  <!-- Products Section -->
+  <div class="mt-12 flex flex-wrap gap-[14px] justify-center items-center px-4">
+    <!-- Product Block -->
+    <div
+      v-for="(product, index) in productImages"
+      :key="index"
+      class="flex flex-col items-center bg-white"
+    >
+      <div class="flex flex-row gap-[14px] lg:gap-[134px] justify-center items-center">
+        <!-- First Image with Title -->
+        <div class="flex flex-col items-center">
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+>>>>>>> e3b71bdcecc2531906baaa133ca0d4f0af8592ab
           </div>
 
+<<<<<<< HEAD
+=======
+        <!-- Second Image with Title -->
+        <div class="flex flex-col items-center">
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+>>>>>>> e3b71bdcecc2531906baaa133ca0d4f0af8592ab
         </div>
       </div>
     </section>
@@ -642,6 +1038,7 @@ const prev = () => {
           </div>
 
 
+<<<<<<< HEAD
 
           <!-- Navigation Buttons -->
           <div class="mt-[84px] relative flex justify-between items-center ">
@@ -669,6 +1066,104 @@ const prev = () => {
         </div>
       </div>
     </section>
+=======
+<section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-[80.14px] px-[14px] mb-[30px]">
+  <!-- Title Section -->
+  <div class="flex justify-start lg:justify-center items-center">
+    <h2
+      style="line-height: normal;"
+      class="text-center text-black/85 font-outfit lg:text-[48px] text-[20px] font-semibold lg:font-normal"
+    >
+      You may also like
+    </h2>
+  </div>
+
+  <!-- Products Section -->
+  <div class="mt-12 flex flex-wrap items-center">
+    <!-- Product Block -->
+    <div
+      v-for="(product, index) in productImages"
+      :key="index"
+      class="flex flex-col  items-center bg-white"
+    >
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-[14px] lg:gap-[33px] justify-center items-center">
+  <!-- First Image with Title -->
+  <div class="flex flex-col items-center">
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
+
+  <!-- Second Image with Title -->
+  <div class="flex flex-col items-center">
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
+
+  <!-- Third Image with Title -->
+  <div class="flex flex-col items-center">
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
+
+  <!-- Fourth Image with Title -->
+  <div class="flex flex-col items-center">
+          <!-- Image Container -->
+          <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-[#ededed] px-[20px] py-[18px] rounded overflow-hidden">
+            <img
+              :src="product.src"
+              :alt="product.alt"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <span style="line-height: normal;"  class="mt-[22px] text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.description }}
+          </span>
+          <!-- Title -->
+          <span style="line-height: normal;"  class=" text-center text-black/85 text-[13px] lg:text-[20px] font-normal font-outfit">
+            {{ product.title }}
+          </span>
+        </div>
+</div>
+>>>>>>> e3b71bdcecc2531906baaa133ca0d4f0af8592ab
 
 
 
