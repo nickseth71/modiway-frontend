@@ -81,7 +81,7 @@
         class="page-width flex justify-center items-center pt-[35px] pb-[20px] lg:py-[63px] md:py-[30px]"
       >
         <div
-          class="max-w-[992px] flex justify-center items-center w-full px-[15px]"
+          class="max-w-[992px] flex justify-center items-center w-full px-[20px] border-b-[1px] border-[#C5C5C5]"
         >
           <div
             class="flex flex-col md:flex-row justify-between items-center w-full"
@@ -91,13 +91,13 @@
             >
               <!-- Filter Dropdown -->
               <div
-                class="relative lg:order-2 order-1 underline underline-offset-4"
+                class="relative lg:order-2 order-1 "
               >
                 <div
                   @click="toggleFilterDropdown"
                   class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-2 lg:gap-0 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500"
                 >
-                <img src="../assets/filter-icon.svg" class="lg:hidden sm:hidden" />  {{ selectedName || "Filter" }}
+                <img src="../assets/filter.png" class="lg:hidden sm:hidden" />  {{ selectedName || "Filter" }}
                   <i class="fas fa-chevron-down mobile-hide"></i>
                 </div>
                 <ul
@@ -121,7 +121,7 @@
 
               <!-- Sort Dropdown -->
               <div
-                class="relative g:order-1 order-2 underline underline-offset-4"
+                class="relative g:order-1 order-2 "
               >
                 <div
                   @click="toggleSortDropdown"
@@ -258,7 +258,7 @@ No items found.
                 </p>
 
                 <p
-                  class="text-black/85 truncate w-[155px] lg:w-full font-outfit font-light text-[13px] md:text-[13px] lg:text-[19.95px] text-start"
+                  class="text-black/85  w-[155px] lg:w-full font-outfit font-light text-[13px] md:text-[13px] lg:text-[19.95px] text-start"
                 >
                   {{ item.replacement }}
                 </p>
