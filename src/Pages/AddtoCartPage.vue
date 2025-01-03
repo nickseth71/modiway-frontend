@@ -113,6 +113,38 @@ const cards = ref([
     badge: "73.09",
     image: LeoImage,
   },
+  {
+    name: "Leo",
+    title: "Businessman",
+    heading: "It was a very good experience",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
+    badge: "73.09",
+    image: LeoImage,
+  },
+  {
+    name: "Leo",
+    title: "Businessman",
+    heading: "It was a very good experience",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
+    badge: "73.09",
+    image: LeoImage,
+  },
+  {
+    name: "Leo",
+    title: "Businessman",
+    heading: "It was a very good experience",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
+    badge: "73.09",
+    image: LeoImage,
+  },
+  {
+    name: "Leo",
+    title: "Businessman",
+    heading: "It was a very good experience",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
+    badge: "73.09",
+    image: LeoImage,
+  },
 ]);
 
 const next = () => {
