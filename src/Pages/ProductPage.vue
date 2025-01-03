@@ -138,7 +138,7 @@
                 </div>
                 <ul
                   v-if="sortDropdownOpen"
-                  class="absolute flex flex-col justify-start bg-white  z-20 mt-1 mx-auto  mr-[20px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]"
+                  class="absolute flex flex-col justify-start bg-white z-20 mt-1 mx-auto sort-mob-pos shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]"
                 >
                   <li
                     @click="selectSort('')"

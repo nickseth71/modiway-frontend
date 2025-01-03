@@ -20,6 +20,7 @@
 .gray-bb {border-bottom: solid 1px #C5C5C5;}
 @media(max-width:749px) {.mobile-hide{display: none!important;}
 .mobile-p-fix {padding-bottom:45px}
+.sort-mob-pos {right:0}
 }
 
 .flevor-grid > div{margin-right:10px}

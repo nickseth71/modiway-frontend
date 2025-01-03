@@ -729,28 +729,28 @@ const handleTouchEnd = () => {
                     <img class="w-full h-auto " :src="card.image" alt="Avatar" />
 
                     <!-- Text container -->
-                    <div class="flex flex-col items-start">
+                    <div class="flex flex-col items-start w-full pt-0 px-5">
                       <!-- Name -->
-                      <div class="text-black text-[21.61px] font-bold font-outfit mb-[6px]">
+                      <div class="text-black text-[16px] font-bold font-outfit mb-0">
                         {{ card.name }}
                       </div>
 
                       <!-- Title -->
-                      <span style="line-height: normal;" class="text-black text-[14.186px] font-normal font-outfit">
+                      <span style="line-height: normal;" class="text-black text-[13px] font-light font-outfit">
                         {{ card.title }}
                       </span>
                     </div>
                   </div>
 
                   <!-- Heading -->
-                  <div class="text-center text-black text-[20px] font-bold font-outfit pt-[28.37px]">
+                  <!-- <div class=" text-black text-[20px] font-bold font-outfit pt-[28.37px]">
                     {{ card.heading }}
-                  </div>
+                  </div> -->
 
                   <!-- Description -->
                   <div
-                    class="text-center text-black pt-[22px] text-[14px] font-light font-outfit whitespace-normal overflow-visible">
-                    {{ card.description }}
+                    class=" text-black pt-[10px] text-[16px] leading-normal font-normal font-outfit whitespace-normal overflow-visible px-5 pb-[20px]">
+                    "{{ card.description }}"
                   </div>
                 </div>
               </div>
