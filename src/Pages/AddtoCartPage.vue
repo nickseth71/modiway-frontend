@@ -188,28 +188,44 @@ const prev = () => {
           </p>
         </div>
         <div id="custom-carousel" class="relative w-full block lg:hidden -top-[10px]" data-carousel="slide">
-          <!-- Carousel wrapper -->
-          <div class="relative h-[464px] overflow-hidden">
-            <!-- Items -->
-            <div v-for="(item, index) in cartItems" :key="index" :class="{ hidden: index !== activeIndex }"
-              class="duration-700 ease-in-out" :data-carousel-item="index === 0 ? 'active' : null">
-              <img :src="item.src" :alt="item.alt"
-                class="absolute w-full h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-            </div>
-          </div>
+  <!-- Carousel Wrapper -->
+  <div class="relative h-[464px] overflow-hidden">
+    <!-- Carousel Items -->
+    <div
+      v-for="(item, index) in cartItems"
+      :key="index"
+      :class="{ hidden: index !== activeIndex }"
+      class="duration-700 ease-in-out"
+      :data-carousel-item="index === 0 ? 'active' : null"
+    >
+      <img
+        :src="item.src"
+        :alt="item.alt"
+        class="absolute w-full h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      />
+    </div>
+  </div>
 
-
-          <!-- Slider indicators -->
-          <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse py-4"
-            style="transform: translateX(-50%)">
-            <button v-for="(item, index) in cartItems" :key="index" type="button" class="w-3 h-3 rounded-full"
-              :aria-current="index === activeIndex ? 'true' : 'false'" :aria-label="'Slide ' + (index + 1)"
-              :data-carousel-slide-to="index" @click="updateIndex(index)" :class="{
-                'bg-[#606060]': index === activeIndex,
-                'bg-[#FFFFFF]': index !== activeIndex,
-              }"></button>
-          </div>
-        </div>
+  <!-- Slider Indicators -->
+  <div
+    class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse py-4"
+    style="transform: translateX(-50%)"
+  >
+    <button
+      v-for="(item, index) in cartItems"
+      :key="index"
+      type="button"
+      class="w-3 h-3 rounded-full"
+      :aria-current="index === activeIndex ? 'true' : 'false'"
+      :aria-label="'Slide ' + (index + 1)"
+      @click="updateIndex(index)"
+      :class="{
+        'bg-[#606060]': index === activeIndex,
+        'bg-[#FFFFFF]': index !== activeIndex,
+      }"
+    ></button>
+  </div>
+</div>
 
         <!-- Product Info Section -->
         <div class="bg-white pl-[19px] pr-[4px] py-[19px] max-w-full mx-auto text-gray-800">
