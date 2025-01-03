@@ -179,7 +179,7 @@ const prev = () => {
       <!-- Carousel for Small Devices -->
       <div class="lg:hidden">
 
-        <div class="flex flex-row px-[16px]">
+        <div class="flex flex-row pl-[16px]">
           <p>
             <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape
               Shift |</span>
