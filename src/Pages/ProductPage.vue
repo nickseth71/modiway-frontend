@@ -227,7 +227,7 @@ No items found.
               class=""
             >
               <div
-                class="w-full lg:w-[312px] relative flex justify-center items-center cursor-pointer border px-4 py-4 lg:py-0 lg:pt-4 mb-2 rounded"
+                class="w-full lg:w-[312px] relative flex justify-center items-center cursor-pointer border px-4 py-4 lg:py-0  mb-2 rounded"
               >
                 <img
                   :src="item.src"
@@ -237,7 +237,7 @@ No items found.
                 <img
                   :src="item.hoverSrc"
                   alt="Hover Item Image"
-                  class="w-full h-full object-cover absolute opacity-0 transition-opacity duration-300"
+                  class="w-full h-full object-cover text-center absolute opacity-0 transition-opacity duration-300"
                 />
               </div>
               <div class="max-w-[250px] py-[10px] lg:p-[20px] ">

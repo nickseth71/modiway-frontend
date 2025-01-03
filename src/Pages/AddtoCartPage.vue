@@ -59,14 +59,7 @@ const flavors = ref([
 
 const quantity = ref(1);
 
-const icons = ref([
-  { img: Category1, label: "Low GI" },
-  { img: Category2, label: "Vegetarian" },
-  { img: Category3, label: "Preservative Free" },
-  { img: Category4, label: "No-Added Sugar" },
-  { img: Category5, label: "Gluten Free" },
-  { img: Category6, label: "Non GMO" },
-]);
+
 
 const sections = ref([
   { title: "Product Description", content: "Detailed description here.", open: false },
@@ -195,7 +188,7 @@ const handleTouchEnd = () => {
       <!-- Carousel for Small Devices -->
       <div class="lg:hidden">
 
-        <div class="flex flex-row pl-[16px]">
+        <div class="flex flex-row pl-[16px] py-[8px]">
           <p>
             <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape
               Shift </span> <span style="line-height: normal;"
@@ -204,10 +197,10 @@ const handleTouchEnd = () => {
               Management</span>
           </p>
         </div>
-        <div id="custom-carousel" class="relative w-full block lg:hidden -top-[10px]" data-carousel="slide"
+        <div id="custom-carousel" class="relative w-full block lg:hidden" data-carousel="slide"
           @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
           <!-- Carousel Wrapper -->
-          <div class="relative h-[454px] overflow-hidden">
+          <div class="relative h-[100vh] overflow-hidden">
             <!-- Carousel Items -->
             <div v-for="(item, index) in cartItems" :key="index" :class="{ hidden: index !== activeIndex }"
               class="duration-700 ease-in-out" :data-carousel-item="index === 0 ? 'active' : null">
@@ -217,7 +210,7 @@ const handleTouchEnd = () => {
           </div>
 
           <!-- Slider Indicators -->
-          <div class="absolute z-30 flex -translate-x-1/2 bottom-8 left-1/2 space-x-3 rtl:space-x-reverse py-4"
+          <div class="absolute z-30 flex -translate-x-1/2 bottom-1 left-1/2 space-x-3 rtl:space-x-reverse py-4"
             style="transform: translateX(-50%)">
             <button v-for="(item, index) in cartItems" :key="index" type="button" class="w-3 h-3 rounded-full"
               :aria-current="index === activeIndex ? 'true' : 'false'" :aria-label="'Slide ' + (index + 1)"
@@ -230,7 +223,7 @@ const handleTouchEnd = () => {
 
 
         <!-- Product Info Section -->
-        <div class="bg-white pl-[19px] pr-[4px] py-[19px] max-w-full mx-auto text-gray-800">
+        <div class="bg-white pl-[19px] pr-[4px] py-[19px]  max-w-full mx-auto text-gray-800">
           <!-- Product Title -->
           <div class="text-start">
             <h1 style="line-height: normal;" class="text-[20px] text-black/85 font-normal font-outfit">Shape Shift</h1>
@@ -261,32 +254,39 @@ const handleTouchEnd = () => {
           <!-- Flavors -->
 
           <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
-              <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
-                Chocolate
-              </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Vanilla
-              </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Mango
-              </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Kulfi
-              </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Rose Kheer
-              </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Strawberry
-              </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Banana Caramel
-              </div>
-
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Rasmalai
-              </div>
+            <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
+              Chocolate
             </div>
+            <div
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              Vanilla
+            </div>
+            <div
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              Mango
+            </div>
+            <div
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              Kulfi
+            </div>
+            <div
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              Rose Kheer
+            </div>
+            <div
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              Strawberry
+            </div>
+            <div
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              Banana Caramel
+            </div>
+
+            <div
+              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              Rasmalai
+            </div>
+          </div>
           <!-- <div class="flex flex-wrap gap-2 mt-[17px] justify-start items-center">
             <span v-for="flavor in flavors" :key="flavor"
               class="text-[13px] font-medium font-outfit bg-white px-3 border py-1 rounded-md">
@@ -328,23 +328,14 @@ const handleTouchEnd = () => {
 
           <!-- Add to Cart -->
           <div class="w-full flex justify-start gap-[16px] items-center mt-[24px]">
-              <button
-              class=" w-[280px] h-10  bg-[#414042] text-white leading-[19.95px] font-medium font-outfit text-[16px]">
+            <button
+              class=" w-[292px] h-10  bg-[#414042] text-white leading-[19.95px] font-medium font-outfit text-[16px]">
               Add to cart
             </button>
             <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
               <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
             </div>
-            </div>
-
-          <!-- Icons -->
-          <div class="flex flex-wrap justify-center mt-[23px] gap-4">
-            <div v-for="(icon, index) in icons" :key="index" class="text-center">
-              <img :src="icon.img" alt="Icon" class="w-[31.20px] h-[31.20px] mx-auto" />
-              <p class="text-[10.56px] font-medium font-outfit text-center mt-1">{{ icon.label }}</p>
-            </div>
           </div>
-
           <!-- Accordion Sections -->
           <div class="mt-6 space-y-4 pr-[13px]">
             <div v-for="(section, index) in sections" :key="index" class="border-b-[1px] border-[#353535]">
@@ -409,7 +400,7 @@ const handleTouchEnd = () => {
             <p style="line-height: normal" class="text-black/85 text-[16px] font-light font-outfit">
               MRP (incl. of all taxes)
             </p>
-            
+
           </div>
 
           <div class="pt-[31px]">
@@ -417,73 +408,75 @@ const handleTouchEnd = () => {
               <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
                 Chocolate
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              <div
+                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Vanilla
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              <div
+                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Mango
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              <div
+                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Kulfi
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              <div
+                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Rose Kheer
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              <div
+                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Strawberry
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              <div
+                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Banana Caramel
               </div>
 
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+              <div
+                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Rasmalai
               </div>
             </div>
 
-
-
-           
-
-
             <div class="flex items-center gap-4 mt-[34px]">
-            <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
-            <div class="flex items-center border border-black rounded-md px-[4px]">
-              <!-- Decrease Quantity Button -->
-              <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="decreaseQuantity"
-                aria-label="Decrease quantity">
-                <svg xmlns="http://www.w3.org/2000/svg" width="7" height="2" viewBox="0 0 9 2" fill="none"
-                  class="w-4 h-4">
-                  <path
-                    d="M8.8125 0.4375H0.1875C0.0839062 0.4375 0 0.521406 0 0.625V1.375C0 1.47859 0.0839062 1.5625 0.1875 1.5625H8.8125C8.91609 1.5625 9 1.47859 9 1.375V0.625C9 0.521406 8.91609 0.4375 8.8125 0.4375Z"
-                    fill="black" fill-opacity="0.85" />
-                </svg>
-              </button>
+              <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
+              <div class="flex items-center border border-black rounded-md px-[4px]">
+                <!-- Decrease Quantity Button -->
+                <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="decreaseQuantity"
+                  aria-label="Decrease quantity">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="7" height="2" viewBox="0 0 9 2" fill="none"
+                    class="w-4 h-4">
+                    <path
+                      d="M8.8125 0.4375H0.1875C0.0839062 0.4375 0 0.521406 0 0.625V1.375C0 1.47859 0.0839062 1.5625 0.1875 1.5625H8.8125C8.91609 1.5625 9 1.47859 9 1.375V0.625C9 0.521406 8.91609 0.4375 8.8125 0.4375Z"
+                      fill="black" fill-opacity="0.85" />
+                  </svg>
+                </button>
 
-              <!-- Quantity Display -->
-              <span class="text-base font-medium px-2">{{ quantity }}</span>
+                <!-- Quantity Display -->
+                <span class="text-base font-medium px-2">{{ quantity }}</span>
 
-              <!-- Increase Quantity Button -->
-              <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="increaseQuantity"
-                aria-label="Increase quantity">
-                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="6" viewBox="0 0 11 7" fill="none"
-                  class="w-4 h-4">
-                  <path
-                    d="M9.8125 3.00548H6.0625V0.156139C6.0625 0.077426 5.97859 0.0136719 5.875 0.0136719H5.125C5.02141 0.0136719 4.9375 0.077426 4.9375 0.156139V3.00548H1.1875C1.08391 3.00548 1 3.06924 1 3.14795V3.71782C1 3.79653 1.08391 3.86029 1.1875 3.86029H4.9375V6.70963C4.9375 6.78835 5.02141 6.8521 5.125 6.8521H5.875C5.97859 6.8521 6.0625 6.78835 6.0625 6.70963V3.86029H9.8125C9.91609 3.86029 10 3.79653 10 3.71782V3.14795C10 3.06924 9.91609 3.00548 9.8125 3.00548Z"
-                    fill="black" fill-opacity="0.85" stroke="black" stroke-width="0.0234375" />
-                </svg>
-              </button>
+                <!-- Increase Quantity Button -->
+                <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="increaseQuantity"
+                  aria-label="Increase quantity">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="9" height="6" viewBox="0 0 11 7" fill="none"
+                    class="w-4 h-4">
+                    <path
+                      d="M9.8125 3.00548H6.0625V0.156139C6.0625 0.077426 5.97859 0.0136719 5.875 0.0136719H5.125C5.02141 0.0136719 4.9375 0.077426 4.9375 0.156139V3.00548H1.1875C1.08391 3.00548 1 3.06924 1 3.14795V3.71782C1 3.79653 1.08391 3.86029 1.1875 3.86029H4.9375V6.70963C4.9375 6.78835 5.02141 6.8521 5.125 6.8521H5.875C5.97859 6.8521 6.0625 6.78835 6.0625 6.70963V3.86029H9.8125C9.91609 3.86029 10 3.79653 10 3.71782V3.14795C10 3.06924 9.91609 3.00548 9.8125 3.00548Z"
+                      fill="black" fill-opacity="0.85" stroke="black" stroke-width="0.0234375" />
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
 
             <div class="w-full flex justify-start gap-4 items-center mt-[24px]">
               <button
-              class=" w-[333px] h-10 font-outfit bg-[#414042] text-white leading-[19.95px] font-bold text-[19.95px]">
-              Add to cart
-            </button>
-            <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
-              <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
-            </div>
+                class=" w-[333px] h-10 font-outfit bg-[#414042] text-white leading-[19.95px] font-bold text-[19.95px]">
+                Add to cart
+              </button>
+              <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
+                <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
+              </div>
             </div>
 
 
@@ -501,47 +494,12 @@ const handleTouchEnd = () => {
                 <img src="../assets/download.png" alt="download" class="w-[15px] h-[15px]">
               </div>
             </div>
-            
-            <!-- <div class="pt-[106.75px]">
-              <div class="flex flex-row gap-4 justify-items-center">
-                <div class="flex flex-col justify-center items-center">
-                  <img :src="Category1" alt="Low GI" class="w-[29.061px] h-[29.061px] object-cover mb-2" />
-                  <span style="line-height: normal;"
-                    class="block text-[9.83px] font-medium font-outfit text-center">LowGI</span>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                  <img :src="Category2" alt="Vegetarian" class="w-[29.061px] h-[29.061px] object-cover mb-2" />
-                  <span style="line-height: normal;"
-                    class="block text-[9.83px] font-medium font-outfit text-center">Vegetarian</span>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                  <img :src="Category3" alt="Preservative Free" class="w-[29.061px] h-[29.061px] object-cover mb-2" />
-                  <span style="line-height: normal;"
-                    class="block text-[9.83px] font-medium font-outfit text-center">Preservative Free</span>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                  <img :src="Category4" alt="No added sugar" class="w-[29.061px] h-[29.061px] object-cover mb-2" />
-                  <span style="line-height: normal;"
-                    class="block text-[9.83px] font-medium font-outfit text-center">No-Added Sugar</span>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                  <img :src="Category5" alt="Gluten Free" class="w-[29.061px] h-[29.061px] object-cover mb-2" />
-                  <span style="line-height: normal;"
-                    class="block text-[9.83px] font-medium font-outfit text-center">Gluten Free</span>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                  <img :src="Category6" alt="Non-GMO" class="w-[29.061px] h-[29.061px] object-cover mb-2" />
-                  <span style="line-height: normal;"
-                    class="block text-[9.83px] font-medium font-outfit text-center">Non-GMO</span>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
     </section>
     <!------------------------------------- Accordion Sections -------------------------------------------------------->
-    <section class="max-w-[1200px] mx-auto hidden lg:block">
+    <!-- <section class="max-w-[1200px] mx-auto hidden lg:block">
 
       <div class=" space-y-4 px-10">
         <div v-for="(section, index) in sections" :key="index" class="border-b-[1px] border-[#353535]">
@@ -561,7 +519,7 @@ const handleTouchEnd = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-20 px-4">
       <!-- Title Section -->
