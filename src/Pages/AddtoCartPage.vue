@@ -152,7 +152,7 @@ const cards = ref([
 ]);
 
 const next = () => {
-  if (currentIndex.value < Math.ceil(cards.value.length / 3) - 1) {
+  if (currentIndex.value < Math.ceil(cards.value.length) - 1) {
     currentIndex.value += 1;
   }
 };
@@ -165,9 +165,9 @@ const prev = () => {
 </script>
 
 <style scoped>
-.card {
+/* .card {
   width: 100%;
-}
+} */
 </style>
 
 
@@ -604,49 +604,54 @@ const prev = () => {
     <!------------------------------------------------------ card Section Section ------------------------------------------------------------->
 
     <section class="page-width">
-      <div class="w-full flex justify-center py-[108px]">
-        <div class="w-full max-w-full mx-auto relative px-4 ">
+      <div class="w-full flex justify-center py-[25px] lg:py-[108px]">
+        <div class="w-full max-w-full mx-auto relative px-4">
           <!-- Carousel Container -->
-          <div class="flex justify-center items-center overflow-hidden">
-            <div class="flex transition-transform duration-500 p-4 gap-[52.99px]"
-              :style="{ transform: `translateX(-${currentIndex * 100}%)` }" style="width: 300%">
+          <div class="flex justify-center items-center overflow-hidden p-2">
+            <div class="flex transition-transform duration-500 lg:p-4 gap-[3px] lg:gap-[52.99px]"
+              :style="{ transform: `translateX(-${currentIndex * 100}%)` }" style="width: 100%">
               <!-- Product Card -->
               <div v-for="(card, index) in cards" :key="index"
-                class="w-[331.01px] h-[361.75px] flex-shrink-0 relative bg-white shadow-[0px_0px_23.64372444152832px_0px_rgba(0,0,0,0.07)] rounded overflow-hidden">
-                <!-- Image -->
-                <img class="w-[71px] h-[71px] absolute rounded-full left-5 top-8" :src="card.image" alt="Avatar" />
+                class="w-full sm:w-[254px] sm:h-[auto] lg:w-[331.01px] lg:h-[auto] flex-shrink-0 bg-white shadow-[0px_0px_23.64372444152832px_0px_rgba(0,0,0,0.07)] rounded overflow-hidden">
+                <div class="flex flex-col justify-between px-[20.1px] py-[30px]">
+                  <!-- Image -->
+                  <div class="flex items-center gap-[13px]">
+                    <!-- Image -->
+                    <img class="w-[70.93px] h-[70.93px] rounded-full" :src="card.image" alt="Avatar" />
 
-                <!-- Name -->
-                <div class="absolute left-[104px] top-[45px] text-center text-black text-lg font-bold font-['Outfit']">
-                  {{ card.name }}
-                </div>
+                    <!-- Text container -->
+                    <div class="flex flex-col items-start">
+                      <!-- Name -->
+                      <div class="text-black text-[21.61px] font-bold font-outfit mb-[6px]">
+                        {{ card.name }}
+                      </div>
 
-                <!-- Title -->
-                <div
-                  class="absolute left-[108px] top-[78px] text-center text-black text-sm font-normal font-['Outfit']">
-                  {{ card.title }}
-                </div>
+                      <!-- Title -->
+                      <span style="line-height: normal;" class="text-black text-[14.186px] font-normal font-outfit">
+                        {{ card.title }}
+                      </span>
+                    </div>
+                  </div>
 
-                <!-- Heading -->
-                <div class="absolute left-[31px] top-[134px] text-center text-black text-xl font-bold font-['Outfit']">
-                  {{ card.heading }}
-                </div>
+                  <!-- Heading -->
+                  <div class="text-center text-black text-[20px] font-bold font-outfit pt-[28.37px]">
+                    {{ card.heading }}
+                  </div>
 
-                <!-- Description -->
-                <div
-                  class="absolute w-[292px] h-[148px] left-5 top-[181px] text-center text-black text-sm font-light font-['Outfit']">
-                  {{ card.description }}
+                  <!-- Description -->
+                  <div
+                    class="text-center text-black pt-[22px] text-[14px] font-light font-outfit whitespace-normal overflow-visible">
+                    {{ card.description }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-
-
           <!-- Navigation Buttons -->
-          <div class="mt-[84px] relative flex justify-between items-center ">
+          <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center">
             <!-- Previous Button -->
-            <button class="absolute left-1/3 transform top-1/2 -translate-y-1/2" @click="prev">
+            <button class="absolute left-[70px] lg:left-1/3 transform top-1/2 -translate-y-1/2" @click="prev">
               <img :src="prevbutton" alt="Previous" class="w-6 h-6" />
             </button>
 
@@ -661,16 +666,12 @@ const prev = () => {
             </div>
 
             <!-- Next Button -->
-            <button class="absolute right-1/3 transform top-1/2 -translate-y-1/2" @click="next">
+            <button class="absolute right-[70px] lg:right-1/3 transform top-1/2 -translate-y-1/2" @click="next">
               <img :src="nextbutton" alt="Next" class="w-6 h-6" />
             </button>
           </div>
-
         </div>
       </div>
     </section>
-
-
-
   </section>
 </template>
