@@ -16,7 +16,7 @@ import Category6 from "../assets/Gluten-Free.png";
 import wishImg from "../assets/wishlist.png"
 
 import BannerImage from "../assets/banner.png";
-import LeoImage from "../assets/homeworking.png";
+import Review from "../assets/review.png";
 
 import nextbutton from "../assets/next.png";
 import prevbutton from "../assets/previous.png";
@@ -106,7 +106,7 @@ const cards = ref([
     heading: "It was a very good experience",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
     badge: "180.88",
-    image: LeoImage,
+    image: Review,
   },
   {
     name: "Leo",
@@ -114,7 +114,7 @@ const cards = ref([
     heading: "It was a very good experience",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
     badge: "73.09",
-    image: LeoImage,
+    image: Review,
   },
   {
     name: "Leo",
@@ -122,7 +122,7 @@ const cards = ref([
     heading: "It was a very good experience",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
     badge: "73.09",
-    image: LeoImage,
+    image: Review,
   },
   {
     name: "Leo",
@@ -130,7 +130,7 @@ const cards = ref([
     heading: "It was a very good experience",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
     badge: "73.09",
-    image: LeoImage,
+    image: Review,
   },
   {
     name: "Leo",
@@ -138,7 +138,7 @@ const cards = ref([
     heading: "It was a very good experience",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
     badge: "73.09",
-    image: LeoImage,
+    image: Review,
   },
   {
     name: "Leo",
@@ -146,7 +146,7 @@ const cards = ref([
     heading: "It was a very good experience",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed magna eget nibh in turpis.",
     badge: "73.09",
-    image: LeoImage,
+    image: Review,
   },
 ]);
 
@@ -722,11 +722,11 @@ const handleTouchEnd = () => {
               <!-- Product Card -->
               <div v-for="(card, index) in cards" :key="index"
                 class="w-full sm:w-[254px] sm:h-[auto] lg:w-[331.01px] lg:h-[auto] flex-shrink-0 bg-white shadow-[0px_0px_23.64372444152832px_0px_rgba(0,0,0,0.07)] rounded overflow-hidden">
-                <div class="flex flex-col justify-between px-[20.1px] py-[30px]">
+                <div class="flex flex-col justify-between">
                   <!-- Image -->
-                  <div class="flex items-center gap-[13px]">
+                  <div class="flex items-center gap-[13px] flex-col">
                     <!-- Image -->
-                    <img class="w-[70.93px] h-[70.93px] rounded-full" :src="card.image" alt="Avatar" />
+                    <img class="w-full h-auto " :src="card.image" alt="Avatar" />
 
                     <!-- Text container -->
                     <div class="flex flex-col items-start">
