@@ -13,6 +13,8 @@ import Category4 from "../assets/Non-GMO.png";
 import Category5 from "../assets/No-Added-Sugar.png";
 import Category6 from "../assets/Gluten-Free.png";
 
+import wishImg from "../assets/wishlist.png"
+
 import BannerImage from "../assets/banner.png";
 import LeoImage from "../assets/homeworking.png";
 
@@ -257,12 +259,40 @@ const handleTouchEnd = () => {
           </div>
 
           <!-- Flavors -->
-          <div class="flex flex-wrap gap-2 mt-[17px] justify-start items-center">
+
+          <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
+              <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
+                Chocolate
+              </div>
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+                Vanilla
+              </div>
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+                Mango
+              </div>
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+                Kulfi
+              </div>
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+                Rose Kheer
+              </div>
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+                Strawberry
+              </div>
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+                Banana Caramel
+              </div>
+
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
+                Rasmalai
+              </div>
+            </div>
+          <!-- <div class="flex flex-wrap gap-2 mt-[17px] justify-start items-center">
             <span v-for="flavor in flavors" :key="flavor"
               class="text-[13px] font-medium font-outfit bg-white px-3 border py-1 rounded-md">
               {{ flavor }}
             </span>
-          </div>
+          </div> -->
 
           <!-- Quantity Selector -->
           <div class="flex items-center gap-4 mt-6">
@@ -297,11 +327,15 @@ const handleTouchEnd = () => {
 
 
           <!-- Add to Cart -->
-          <div class="flex justify-start mt-[19px] border-b border-[#ababab] pb-[30px]">
-            <button class="text-[16px] underline underline-offset-4 font-outfit font-bold">
+          <div class="w-full flex justify-start gap-[16px] items-center mt-[24px]">
+              <button
+              class=" w-[280px] h-10  bg-[#414042] text-white leading-[19.95px] font-medium font-outfit text-[16px]">
               Add to cart
             </button>
-          </div>
+            <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
+              <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
+            </div>
+            </div>
 
           <!-- Icons -->
           <div class="flex flex-wrap justify-center mt-[23px] gap-4">
@@ -375,10 +409,7 @@ const handleTouchEnd = () => {
             <p style="line-height: normal" class="text-black/85 text-[16px] font-light font-outfit">
               MRP (incl. of all taxes)
             </p>
-            <router-link
-              class="pt-[100.52px] underline underline-offset-2 font-outfit leading-[19.95px] font-bold text-[19.95px]">
-              Add to cart
-            </router-link>
+            
           </div>
 
           <div class="pt-[31px]">
@@ -386,30 +417,92 @@ const handleTouchEnd = () => {
               <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
                 Chocolate
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[3px]">
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Vanilla
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit">
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Mango
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit">
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Kulfi
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit">
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Rose Kheer
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit">
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Strawberry
               </div>
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit">
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Banana Caramel
               </div>
 
-              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit">
+              <div class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
                 Rasmalai
               </div>
             </div>
-            <div class="pt-[106.75px]">
+
+
+
+           
+
+
+            <div class="flex items-center gap-4 mt-[34px]">
+            <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
+            <div class="flex items-center border border-black rounded-md px-[4px]">
+              <!-- Decrease Quantity Button -->
+              <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="decreaseQuantity"
+                aria-label="Decrease quantity">
+                <svg xmlns="http://www.w3.org/2000/svg" width="7" height="2" viewBox="0 0 9 2" fill="none"
+                  class="w-4 h-4">
+                  <path
+                    d="M8.8125 0.4375H0.1875C0.0839062 0.4375 0 0.521406 0 0.625V1.375C0 1.47859 0.0839062 1.5625 0.1875 1.5625H8.8125C8.91609 1.5625 9 1.47859 9 1.375V0.625C9 0.521406 8.91609 0.4375 8.8125 0.4375Z"
+                    fill="black" fill-opacity="0.85" />
+                </svg>
+              </button>
+
+              <!-- Quantity Display -->
+              <span class="text-base font-medium px-2">{{ quantity }}</span>
+
+              <!-- Increase Quantity Button -->
+              <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="increaseQuantity"
+                aria-label="Increase quantity">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="6" viewBox="0 0 11 7" fill="none"
+                  class="w-4 h-4">
+                  <path
+                    d="M9.8125 3.00548H6.0625V0.156139C6.0625 0.077426 5.97859 0.0136719 5.875 0.0136719H5.125C5.02141 0.0136719 4.9375 0.077426 4.9375 0.156139V3.00548H1.1875C1.08391 3.00548 1 3.06924 1 3.14795V3.71782C1 3.79653 1.08391 3.86029 1.1875 3.86029H4.9375V6.70963C4.9375 6.78835 5.02141 6.8521 5.125 6.8521H5.875C5.97859 6.8521 6.0625 6.78835 6.0625 6.70963V3.86029H9.8125C9.91609 3.86029 10 3.79653 10 3.71782V3.14795C10 3.06924 9.91609 3.00548 9.8125 3.00548Z"
+                    fill="black" fill-opacity="0.85" stroke="black" stroke-width="0.0234375" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+            <div class="w-full flex justify-start gap-4 items-center mt-[24px]">
+              <button
+              class=" w-[333px] h-10 font-outfit bg-[#414042] text-white leading-[19.95px] font-bold text-[19.95px]">
+              Add to cart
+            </button>
+            <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
+              <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
+            </div>
+            </div>
+
+
+            <div class="flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
+              <div class="flex justify-between items-center gap-2">
+                <router-link class="underline underline-offset-2">
+                  Share Product
+                </router-link>
+                <img src="../assets/share.png" alt="share" class="w-[15px] h-[15px]">
+              </div>
+              <div class="flex justify-start  items-center gap-2 ">
+                <router-link class="underline underline-offset-2">
+                  Download PDF
+                </router-link>
+                <img src="../assets/download.png" alt="download" class="w-[15px] h-[15px]">
+              </div>
+            </div>
+            
+            <!-- <div class="pt-[106.75px]">
               <div class="flex flex-row gap-4 justify-items-center">
                 <div class="flex flex-col justify-center items-center">
                   <img :src="Category1" alt="Low GI" class="w-[29.061px] h-[29.061px] object-cover mb-2" />
@@ -442,7 +535,7 @@ const handleTouchEnd = () => {
                     class="block text-[9.83px] font-medium font-outfit text-center">Non-GMO</span>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
