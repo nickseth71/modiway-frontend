@@ -7,6 +7,7 @@ import WellnessTestPage from "../Pages/WellnessTestPage.vue";
 import Layout from "../layouts/MainLayout.vue";
 import ShopShift from "../Pages/ShopShift.vue";
 import AddtoCartPage from "../Pages/AddtoCartPage.vue";
+import BlogPage from "../Pages/BlogPage.vue";
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
         path:"shope-shift",
         name:"ShopeShift",
         component:ShopShift,
+      },
+      {
+        path:"blogs",
+        name:"BlogPage",
+        component:BlogPage,
       },
       {
         path:"add-cart",

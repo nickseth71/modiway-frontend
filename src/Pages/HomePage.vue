@@ -168,7 +168,7 @@
           </div>
           <div class="flex justify-center pt-[5px] pl-1">
             <button
-              to="#"
+              to="/business-opportunity"
               class="inline-flex items-start px-2.5 py-[5px] text-center bg-[#FFFFFFD9] text-[#2B2B2B] font-outfit font-normal text-[13px] ml-0 lg:ml-[50px] mt-0 lg:mt-[20px]"
             >
               Shop Now
@@ -190,6 +190,7 @@
             class="sm:w-[155.62px] sm:h-[134.98px] md:w-[503px] md:h-[436px] shadow-[inset_0px_100px_21.899999618530273px_0px_rgba(138,122,122,0.25)] sm:shadow-[inset_0px_100px_21.899999618530273px_0px_rgba(138,122,122,0.25)] md:shadow-[inset_0px_123px_20.899999618530273px_0px_rgba(141,134,134,0.25)]"
           />
           <button
+           @click="navigateToBlogs"
             class="inline-flex items-center px-2.5 justify-center mt-[13px] text-center py-[5px] bg-[#414042] text-[#FFFFFF] text-[13px] lg:text-[15px] lg:mt-[13px]"
           >
             Read Our Articles
@@ -203,7 +204,7 @@
             class="sm:w-[159.62px] sm:h-[134.98px] md:w-[503px] md:h-[436px]"
           />
           <button
-            to="#"
+          @click="navigateToBlogs"
             class="inline-block mt-[13px] px-2.5 py-[5px] bg-[#414042] text-[#FFFFFF] text-[13px] lg:text-[15px] lg:mt-[13px]"
           >
             Resources
@@ -218,27 +219,31 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
+// Import assets
 import Thinkwellness from "@/assets/Thinkwellness.png";
 import ThinkKitchen from "@/assets/ThinkKitchen.png";
 import ThinkBeauty from "@/assets/ThinkBeauti.png";
 import BusinessOpportunity from "@/assets/businessOpportunity.png";
 import ResourceIMG from "@/assets/resources.png";
 import ArticleIMG from "@/assets/Articles.png";
+
+// Import FontAwesome
 import "@fortawesome/fontawesome-free/css/all.css";
 
 export default {
-  methods: {
-    goToShopShift() {
-      const router = useRouter();
-      router.push("/shope-shift");
-    },
-  },
   setup() {
     const router = useRouter();
+
+    // Navigation functions
     const goToShopShift = () => {
       router.push("/shope-shift");
     };
 
+    const navigateToBlogs = () => {
+      router.push("/blogs");
+    };
+
+    // Media items (videos)
     const mediaItems = ref([
       {
         type: "video",
@@ -254,6 +259,7 @@ export default {
       },
     ]);
 
+    // Image items
     const imageItems = ref([
       {
         src: Thinkwellness,
@@ -261,7 +267,7 @@ export default {
         title: "Think Wellness",
         heading: "ShapeShift",
         description:
-          "Backed by science, ShapeShift has been designed to balance your calorie intake, optimize nutrition, and support your transformation, every day.  ",
+          "Backed by science, ShapeShift has been designed to balance your calorie intake, optimize nutrition, and support your transformation, every day.",
         showFullDescription: false,
       },
       {
@@ -284,8 +290,10 @@ export default {
       },
     ]);
 
+    // Business opportunity image
     const businessOpportunity = BusinessOpportunity;
 
+    // Slider functionality
     const currentIndex = ref(0);
     const isPlaying = ref(false);
 
@@ -302,13 +310,12 @@ export default {
     const togglePlayPause = () => {
       isPlaying.value = !isPlaying.value;
       const videoElement = document.querySelector("video");
-      if (isPlaying.value) {
-        videoElement.play();
-      } else {
-        videoElement.pause();
+      if (videoElement) {
+        isPlaying.value ? videoElement.play() : videoElement.pause();
       }
     };
 
+    // Toggle text visibility for image descriptions
     const toggleText = (image) => {
       image.showFullDescription = !image.showFullDescription;
     };
@@ -326,10 +333,12 @@ export default {
       ResourceIMG,
       toggleText,
       goToShopShift,
+      navigateToBlogs,
     };
   },
 };
 </script>
+
 
 <style scoped>
 /* Optional styles here */
