@@ -344,15 +344,15 @@ const activeTab = ref(0);
 
           <div class="w-full flex justify-start gap-[54px] items-center py-[28px]">
               <div class="flex justify-between items-center gap-2">
-                <router-link class="underline underline-offset-2">
+                <button class="underline underline-offset-2">
                   Share Product
-                </router-link>
+                </button>
                 <img src="../assets/share.svg" alt="share" class="w-[15px] h-[15px]">
               </div>
               <div class="flex justify-start  items-center gap-2 ">
-                <router-link class="underline underline-offset-2">
+                <button class="underline underline-offset-2">
                   Download PDF
-                </router-link>
+                </button>
                 <img src="../assets/download.svg" alt="download" class="w-[15px] h-[15px]">
               </div>
             </div>
