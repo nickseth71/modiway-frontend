@@ -149,6 +149,7 @@ No items found.
       <section class="page-width flex justify-center items-center px-[25px] mobile-p-fix">
         <!-- <div class="max-w-[992px] mx-auto"> -->
           <div
+          @click="AddtoCartPage"
             class="max-w-[972px] w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[14px] lg:gap-[19px]">
             <div v-for="item in filteredSortedAndSearchedItems" :key="item.id"
               class=" lg:border border-transparent lg:hover:border-black transition duration-300">
@@ -199,7 +200,7 @@ No items found.
         <!-- </div> -->
       </section>
 
-      <section class="py-4 md:py-6 lg:py-8">
+      <section class="hidden lg:block py-4 md:py-6 lg:py-8">
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @change-page="handlePageChange"
           class="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8" />
       </section>
