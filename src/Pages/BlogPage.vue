@@ -1,11 +1,18 @@
 <script setup>
 import Banner from "../assets/blog-banner.png";
 import CreativeFoodImage from "../assets/creative-assortment-delicious-food.png";
-import BeautifulFoodImage from "../assets/beautiful-assortment-delicious-food.png"
+import BeautifulFoodImage from "../assets/beautiful-assortment-delicious-food.png";
 import BeautifulWomenImage from "../assets/beautiful-young-woman-meditating-exercising-top-him.png";
 import CreativeFrengsuiImage from "../assets/creative-fengshui-practice-kitchen-arrangement.png";
-import PotraitBeautifulWomen from "../assets/portrait-beautiful-woman-with-clear-skin-using-moisturizer-her-face.png"
+import PotraitBeautifulWomen from "../assets/portrait-beautiful-woman-with-clear-skin-using-moisturizer-her-face.png";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const readmore = () => {
+  router.push("/blogs-inside");
+};
 
 const items = ref([
   {
@@ -73,7 +80,7 @@ const items = ref([
       >
         <!-- Left Section -->
         <div
-          class="w-full lg:w-1/2 lg:px-[28px] flex flex-col items-start lg:mt-[48px] mb-0 text-left"
+          class="w-full lg:w-1/2 lg:px-[28px] flex flex-col items-start lg:mt-[48px] text-left"
         >
           <h2
             style="line-height: normal"
@@ -89,6 +96,7 @@ const items = ref([
             volutpat. Ut wisi enim ad minim veniam, quis
           </p>
           <button
+            @click="readmore"
             class="mt-6 sm:mt-10 lg:mt-[130px] px-[10px] py-[5px] bg-[#414042] text-[#fff] font-normal font-outfit text-[13px] lg:text-[15px] lg:leading-[18px] lg:tracking-[0.75px] hover:bg-[#2c2b2d] transition"
           >
             Read More
@@ -97,10 +105,10 @@ const items = ref([
 
         <!-- Right Section -->
         <div
-          class="relative w-full lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-[17px] ml-0 lg:ml-[180px] "
+          class="relative w-full lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-[17px] ml-0 lg:ml-[180px] mb-[20px] lg:mb-0"
         >
           <!-- First Image with Text -->
-          <div class="relative w-full h-[370px] lg:w-[224px] lg:h-[229px] lg:mt-0 mt-[41px]">
+          <div class="relative w-full h-[380px] lg:w-[224px] lg:h-[229px]">
             <img
               src="../assets/creative-assortment-delicious-food.png"
               alt="Delicious dish"
@@ -121,11 +129,9 @@ const items = ref([
               </p>
             </div>
           </div>
-
-          
-
-          
-          <div class="border-b border-[#CFCFCF] py-[32px] lg:hidden"/>
+          <div
+            class="lg:border-none border-b border-[#CFCFCF] my-[32px] lg:hidden"
+          />
           <!-- Second Image (Hidden on Mobile) -->
           <div class="hidden lg:block w-full h-[398px]">
             <img
@@ -138,38 +144,39 @@ const items = ref([
       </div>
     </section>
     <section class="page-width">
-   <div class="container mx-auto px-4">
-  <!-- Responsive grid for the items -->
-  <div class="grid gap-[15px] grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-    <div
-      v-for="item in items"
-      :key="item.id"
-      class="bg-white"
-    >
-      <div class="w-full h-[187.84px] sm:h-[220px] lg:w-[273px] lg:h-[302px]">
-        <img
-          :src="item.image"
-          :alt="item.title"
-          class="w-full h-full object-cover"
-        />
+      <div class="container mx-auto px-4 lg:mt-[52px] mt-[]">
+        <!-- Responsive grid for the items -->
+        <div class="grid gap-[15px] grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div v-for="item in items" :key="item.id" class="bg-white">
+            <div
+              class="w-full h-[187.84px] sm:h-[220px] lg:w-[273px] lg:h-[302px]"
+            >
+              <img
+                :src="item.image"
+                :alt="item.title"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="pt-[23.16px] pb-[50px]">
+              <h3
+                class="text-start font-normal font-outfit text-[20px] sm:text-[22px] lg:text-[26px]"
+              >
+                {{ item.title }}
+              </h3>
+              <p
+                class="mt-[10px] text-black/85 text-start text-[16px] lg:text-[18px] font-normal font-outfit leading-[19.194px] tracking-[0.8px] lg:leading-[21px]"
+              >
+                {{ item.description }}
+              </p>
+              <button
+                class="mt-6 sm:mt-10 lg:mt-[10px] px-[10px] py-[5px] bg-[#414042] text-[#fff] font-normal font-outfit text-[13px] lg:text-[15px] leading-[15.595px] tracking-[0.65px] lg:leading-[17.995px] lg:tracking-[0.75px] hover:bg-[#2c2b2d] transition"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="pt-[23.16px] pb-[50px]">
-        <h3 class="text-start font-normal font-outfit text-[20px] sm:text-[22px] lg:text-[26px]">
-          {{ item.title }}
-        </h3>
-        <p class="mt-[10px] text-black/85 text-start  text-[16px] lg:text-[18px] font-normal font-outfit leading-[19.194px] tracking-[0.8px] lg:leading-[21px]">
-          {{ item.description }}
-        </p>
-        <button
-          class="mt-6 sm:mt-10 lg:mt-[10px] px-[10px] py-[5px] bg-[#414042] text-[#fff] font-normal font-outfit text-[13px] lg:text-[15px] leading-[15.595px] tracking-[0.65px] lg:leading-[17.995px] lg:tracking-[0.75px] hover:bg-[#2c2b2d] transition"
-        >
-          Read More
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
     </section>
   </section>
 </template>

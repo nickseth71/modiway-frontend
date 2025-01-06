@@ -342,6 +342,21 @@ const activeTab = ref(0);
             </div>
           </div>
 
+          <div class="w-full flex justify-start gap-[54px] items-center py-[28px]">
+              <div class="flex justify-between items-center gap-2">
+                <router-link class="underline underline-offset-2">
+                  Share Product
+                </router-link>
+                <img src="../assets/share.png" alt="share" class="w-[15px] h-[15px]">
+              </div>
+              <div class="flex justify-start  items-center gap-2 ">
+                <router-link class="underline underline-offset-2">
+                  Download PDF
+                </router-link>
+                <img src="../assets/download.png" alt="download" class="w-[15px] h-[15px]">
+              </div>
+            </div>
+
          
           <!-- Accordion Sections -->
           <div class="mt-6 space-y-4">
@@ -377,12 +392,14 @@ const activeTab = ref(0);
         <!-- Second Column: Product Information -->
         <div class="w-full lg:w-[45%] space-y-0 px-[15px]">
           <!-- Breadcrumbs -->
-          <ul class="hidden lg:flex flex-wrap items-center text-xs text-[#717171] space-x-[6px]">
-            <li class="cursor-pointer">Home</li>
-            <li class="cursor-pointer">Meal Replacement</li>
-            <li class="cursor-pointer">Shape Shift</li>
-            <li class="cursor-pointer">Meal Replacement for Weight Management</li>
-          </ul>
+          <div class="flex flex-row ">
+          <p>
+            <span class="text-[#717171] text-[8px] font-normal font-outfit">Home /</span>
+            <span class="w-[66px] h-4 text-[#717171] text-[8px] font-normal font-['Outfit']">Meal Replacement/</span>
+            <span class="w-[41px] h-4 text-[#717171] text-[8px] font-normal font-['Outfit']">Shape Shift/</span>
+              <span class=" text-[#717171] text-[8px] font-normal font-outfit">Meal Replacement for Weight Control/ Management</span>
+          </p>
+        </div>
 
           <!-- Product Title -->
           <h2 class="text-[20px] font-normal font-outfit text-black/85">
@@ -485,6 +502,7 @@ const activeTab = ref(0);
                 <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
               </div>
             </div>
+            
 
 
             <div class="w-[393px] flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
@@ -509,11 +527,11 @@ const activeTab = ref(0);
     <section class="page-width hidden lg:block">
       <div class="mt-[77px] flex flex-col items-center justify-center w-full max-w-[1124px] mx-auto">
         <!-- Tabs -->
-        <div class="flex justify-start gap-[78px] items-center w-full">
+        <div class="flex justify-start space-x-[78px] items-center w-full">
           <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
             class="relative cursor-pointer text-[#353535] text-[20px] hover:text-black">
             <div class="pb-[10px] border-b-2" :class="{
-              'border-black font-semibold': activeTab === index,
+              'border-black text-shadow-custom': activeTab === index,
               'border-gray-300': activeTab !== index,
             }">
               <span>{{ tab }}</span>
@@ -758,7 +776,7 @@ const activeTab = ref(0);
               :style="{ transform: `translateX(-${currentIndex * 100}%)` }" style="width: 100%">
               <!-- Product Card -->
               <div v-for="(card, index) in cards" :key="index"
-                class="w-[254px] h-[auto] lg:w-[331.01px] lg:h-[auto] flex-shrink-0 bg-white shadow-[0px_0px_10px_1px_rgba(0,0,0,0.25)] rounded overflow-hidden">
+                class="w-[254px] h-auto lg:w-[331.01px] lg:h-auto flex-shrink-0 bg-white shadow-[0px_0px_10px_1px_rgba(0,0,0,0.25)] rounded overflow-hidden">
                 <div class="flex flex-col justify-between">
                   <!-- Image -->
                   <div class="flex items-center gap-[13px] flex-col">

@@ -9,10 +9,10 @@ export default {
         roboto:['Roboto']
       },
       boxShadow: {
-        'text': '0.5px 0 0 currentColor',
+        'text': '0.5px 0 0 black',
       },
       textShadow: {
-        'custom': '0.5px 0 0 currentColor',
+        'custom': '0.5px 0 0 black',
       },
     },
   },
@@ -20,9 +20,10 @@ export default {
     function ({ addUtilities }) {
       addUtilities({
         '.text-shadow-custom': {
-          textShadow: '0.5px 0 0 currentColor',
+          textShadow: '0.5px 0 0 black',
         },
       });
     },
+    
   ],
 }

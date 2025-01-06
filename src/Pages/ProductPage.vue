@@ -54,7 +54,7 @@
           <div class="flex flex-col md:flex-row justify-between items-center w-full">
             <div class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 gray-bb">
               <!-- Filter Dropdown -->
-              <div class="relative lg:order-2 order-1 ">
+              <div class="relative lg:order-2 order-1 hover-img">
                 <div @click="toggleFilterDropdown"
                   class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-1 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500">
                   <img src="../assets/filter.png" class="lg:hidden sm:hidden" /> {{ selectedName || "Filter" }}
@@ -146,12 +146,12 @@ No items found.
 </div>
 -->
 
-      <section class="page-width flex justify-center items-center px-[14px] mobile-p-fix">
-        <div class="max-w-[992px] mx-auto">
+      <section class="page-width flex justify-center items-center px-[25px] mobile-p-fix">
+        <!-- <div class="max-w-[992px] mx-auto"> -->
           <div
-            class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[14px] lg:gap-[19px]">
+            class="max-w-[972px] w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[14px] lg:gap-[19px]">
             <div v-for="item in filteredSortedAndSearchedItems" :key="item.id"
-              class="border border-transparent hover:border-black transition duration-300">
+              class=" lg:border border-transparent lg:hover:border-black transition duration-300">
               <div
                 class="w-full lg:w-[312px] relative flex justify-center items-center cursor-pointer border border-[#DEDEDE] hover:border-transparent px-4 py-4 lg:py-0 mb-2">
                 <img :src="item.src" alt="Item Image"
@@ -159,7 +159,7 @@ No items found.
                 <img :src="item.hoverSrc" alt="Hover Item Image"
                   class="w-full h-full lg:w-[287px] lg:h-[545px] object-cover text-center absolute opacity-0 transition-opacity duration-300" />
               </div>
-              <div class="max-w-[250px] py-[10px] lg:p-[19px] ">
+              <div class="max-w-[250px] pt-[10px] pb-[25px] lg:p-[19px] ">
                 <p
                   class="flex items-center space-x-1 text-black/85 truncate font-outfit font-light text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px]">
                   <span :style="{ backgroundColor: getColorForName(item.category) }"
@@ -196,10 +196,10 @@ No items found.
           <div v-if="filteredSortedAndSearchedItems.length === 0" class="text-gray-500 text-center">
             No items found.
           </div>
-        </div>
+        <!-- </div> -->
       </section>
 
-      <section class="hidden lg:block py-4 md:py-6 lg:py-8">
+      <section class="py-4 md:py-6 lg:py-8">
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @change-page="handlePageChange"
           class="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8" />
       </section>

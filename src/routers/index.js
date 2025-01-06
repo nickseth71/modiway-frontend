@@ -8,6 +8,7 @@ import Layout from "../layouts/MainLayout.vue";
 import ShopShift from "../Pages/ShopShift.vue";
 import AddtoCartPage from "../Pages/AddtoCartPage.vue";
 import BlogPage from "../Pages/BlogPage.vue";
+import BlogInsidePage from "../Pages/BlogInsidePage.vue";
 
 const routes = [
   {
@@ -28,6 +29,11 @@ const routes = [
         path:"blogs",
         name:"BlogPage",
         component:BlogPage,
+      },
+      {
+        path:"blogs-inside",
+        name:"BlogInsidePage",
+        component:BlogInsidePage,
       },
       {
         path:"add-cart",
