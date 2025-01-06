@@ -224,10 +224,10 @@ No items found.
             <div
               v-for="item in filteredSortedAndSearchedItems"
               :key="item.id"
-              class=""
+              class="lg:hover:border"
             >
               <div
-                class="w-full lg:w-[312px] relative flex justify-center items-center cursor-pointer border px-4 py-4 lg:py-0  mb-2 rounded"
+                class="w-full lg:w-[312px] relative flex justify-center items-center cursor-pointer border px-4 py-4 lg:py-0 mb-2 hover:border-none"
               >
                 <img
                   :src="item.src"

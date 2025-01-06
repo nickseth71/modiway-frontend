@@ -6,12 +6,7 @@ import AddCart3 from "../assets/add-cart3.png";
 import AddCart4 from "../assets/add-cart4.png";
 
 ////////////////////////////// category images ///////////////////////////////////////
-import Category1 from "../assets/LowGi.png";
-import Category2 from "../assets/veg.png";
-import Category3 from "../assets/Preservative.png";
-import Category4 from "../assets/Non-GMO.png";
-import Category5 from "../assets/No-Added-Sugar.png";
-import Category6 from "../assets/Gluten-Free.png";
+
 
 import wishImg from "../assets/wishlist.png"
 
@@ -33,6 +28,9 @@ import BurnerBox from "../assets/burner-box.png"
 
 // You may like images
 const productImages = ref([
+  { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
+  { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
+  { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
   { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
 ]);
 
@@ -110,7 +108,6 @@ const cards = ref([
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
     description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
-
     image: Review,
   },
   {
@@ -118,7 +115,6 @@ const cards = ref([
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
     description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
-
     image: Review,
   },
   {
@@ -336,17 +332,19 @@ const activeTab = ref(0);
             </div>
           </div>
           <!-- Add to Cart -->
-          <div class="w-full flex justify-start gap-[16px] items-center mt-[24px] border-b border-[#ABABAB] pb-[32px] ">
+          <div class="w-full flex gap-[14px] items-center mt-[24px] border-b border-[#ABABAB] pb-[32px]">
             <button
-              class=" w-[292px] h-10  bg-[#414042] text-white leading-[19.95px] font-medium font-outfit text-[16px]">
+              class="w-[80%] h-10  bg-[#414042] text-white leading-[19.95px] font-medium font-outfit text-[16px]">
               Add to cart
             </button>
-            <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
+            <div class="w-[20%] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
               <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
             </div>
           </div>
+
+         
           <!-- Accordion Sections -->
-          <div class="mt-6 space-y-4 pr-[13px]">
+          <div class="mt-6 space-y-4">
             <div v-for="(section, index) in sections" :key="index" class="border-b-[1px] border-[#353535]">
               <button style="line-height: normal;"
                 class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] font-normal font-outfit flex justify-between items-center"
@@ -707,7 +705,7 @@ const activeTab = ref(0);
       <div class="flex justify-start lg:justify-center items-center">
         <h2 style="line-height: normal;"
           class="text-center text-black/85 font-outfit lg:text-[48px] text-[20px] font-semibold lg:font-normal">
-          Similar Products
+          You may also like
         </h2>
       </div>
 
@@ -716,23 +714,7 @@ const activeTab = ref(0);
         <!-- Grid Container -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-[14px] lg:gap-[33px]">
           <!-- Product Block -->
-          <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
-            <!-- Image Container -->
-            <div
-              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 rounded overflow-hidden">
-              <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-            </div>
-
-            <!-- Product Description -->
-            <span class="mt-4 lg:mt-[38px] text-center text-black/85 text-[16px] lg:text-[20px] font-normal">
-              {{ product.description }}
-            </span>
-
-            <!-- Product Title -->
-            <span class="text-center text-black/85 text-sm lg:text-lg font-normal">
-              {{ product.title }}
-            </span>
-          </div>
+          
           <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
             <!-- Image Container -->
             <div
@@ -750,40 +732,8 @@ const activeTab = ref(0);
               {{ product.title }}
             </span>
           </div>
-          <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
-            <!-- Image Container -->
-            <div
-              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 px-4 py-4 rounded overflow-hidden">
-              <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-            </div>
-
-            <!-- Product Description -->
-            <span class="mt-4 text-center text-black/85 text-sm lg:text-lg font-normal">
-              {{ product.description }}
-            </span>
-
-            <!-- Product Title -->
-            <span class="text-center text-black/85 text-sm lg:text-lg font-normal">
-              {{ product.title }}
-            </span>
-          </div>
-          <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
-            <!-- Image Container -->
-            <div
-              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 px-4 py-4 rounded overflow-hidden">
-              <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
-            </div>
-
-            <!-- Product Description -->
-            <span class="mt-4 text-center text-black/85 text-sm lg:text-lg font-normal">
-              {{ product.description }}
-            </span>
-
-            <!-- Product Title -->
-            <span class="text-center text-black/85 text-sm lg:text-lg font-normal">
-              {{ product.title }}
-            </span>
-          </div>
+          
+          
         </div>
       </div>
 
@@ -799,7 +749,7 @@ const activeTab = ref(0);
     <!------------------------------------------------------ card Section Section ------------------------------------------------------------->
 
     <section class="page-width">
-      <div class="w-full flex justify-center py-[25px] lg:py-[108px]">
+      <div class="w-full flex justify-center py-[25px] lg:pt-[108px]">
         <div class="w-full max-w-full mx-auto relative px-4 pb-[82px]">
           <!-- Carousel Container -->
           <div class="flex justify-center items-center overflow-hidden p-2">
