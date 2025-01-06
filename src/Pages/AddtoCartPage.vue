@@ -545,7 +545,7 @@ const activeTab = ref(0);
         <!-- Tab Content -->
         <div class="w-full mt-6">
           <div v-if="activeTab === 0" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+            <div class="flex-1 py-4  pr-[30px] ">
 
               <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
@@ -571,7 +571,7 @@ const activeTab = ref(0);
             </div>
           </div>
           <div v-if="activeTab === 1" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+            <div class="flex-1 py-4  pr-[30px] ">
 
               <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
@@ -589,7 +589,7 @@ const activeTab = ref(0);
             </div>
           </div>
           <div v-if="activeTab === 2" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+            <div class="flex-1 py-4  pr-[30px] ">
 
               <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
@@ -615,7 +615,7 @@ const activeTab = ref(0);
             </div>
           </div>
           <div v-if="activeTab === 3" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+            <div class="flex-1 py-4  pr-[30px] ">
 
               <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
@@ -633,7 +633,7 @@ const activeTab = ref(0);
             </div>
           </div>
           <div v-if="activeTab === 4" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4 pl-2 pr-[30px] ">
+            <div class="flex-1 py-4  pr-[30px] ">
 
               <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
