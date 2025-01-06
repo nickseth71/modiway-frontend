@@ -347,13 +347,13 @@ const activeTab = ref(0);
                 <router-link class="underline underline-offset-2">
                   Share Product
                 </router-link>
-                <img src="../assets/share.png" alt="share" class="w-[15px] h-[15px]">
+                <img src="../assets/share.svg" alt="share" class="w-[15px] h-[15px]">
               </div>
               <div class="flex justify-start  items-center gap-2 ">
                 <router-link class="underline underline-offset-2">
                   Download PDF
                 </router-link>
-                <img src="../assets/download.png" alt="download" class="w-[15px] h-[15px]">
+                <img src="../assets/download.svg" alt="download" class="w-[15px] h-[15px]">
               </div>
             </div>
 
@@ -362,7 +362,7 @@ const activeTab = ref(0);
           <div class="mt-6 space-y-4">
             <div v-for="(section, index) in sections" :key="index" class="border-b-[1px] border-[#353535]">
               <button style="line-height: normal;"
-                class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] font-normal font-outfit flex justify-between items-center"
+                class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] font-semibold font-outfit flex justify-between items-center"
                 @click="toggleSection(index)">
                 {{ section.title }}
                 <span :class="{
@@ -372,7 +372,7 @@ const activeTab = ref(0);
                   <i class="fas fa-chevron-down"></i>
                 </span>
               </button>
-              <div v-if="section.open" class="text-[13px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+              <div v-if="section.open" class="text-[16px] text-black/85 mt-2 pb-[20px] leading-[19.192px] tracking-[0.8px]">
                 {{ section.content }}
               </div>
             </div>
@@ -510,13 +510,13 @@ const activeTab = ref(0);
                 <router-link class="underline underline-offset-2">
                   Share Product
                 </router-link>
-                <img src="../assets/share.png" alt="share" class="w-[15px] h-[15px]">
+                <img src="../assets/share.svg" alt="share" class="w-[15px] h-[15px]">
               </div>
               <div class="flex justify-start  items-center gap-2 ">
                 <router-link class="underline underline-offset-2">
                   Download PDF
                 </router-link>
-                <img src="../assets/download.png" alt="download" class="w-[15px] h-[15px]">
+                <img src="../assets/download.svg" alt="download" class="w-[15px] h-[15px]">
               </div>
             </div>
           </div>
