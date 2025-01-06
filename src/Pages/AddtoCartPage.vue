@@ -342,7 +342,7 @@ const activeTab = ref(0);
             </div>
           </div>
 
-          <div class="w-full flex justify-start gap-[54px] items-center py-[28px]">
+          <div class="w-full flex justify-between items-center py-[28px]">
               <div class="flex justify-between items-center gap-2">
                 <button class="underline underline-offset-2">
                   Share Product
