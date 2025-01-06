@@ -411,7 +411,7 @@ const activeTab = ref(0);
           </div>
 
           <div class="pt-[40px]">
-            <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
+            <div class="flex flex-wrap justify-start items-center gap-2">
               <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
                 Chocolate
               </div>

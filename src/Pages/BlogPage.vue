@@ -125,7 +125,7 @@ const items = ref([
           
 
           
-          <div class="border-b border-[#CFCFCF] pt-[32px] lg:hidden"/>
+          <div class="border-b border-[#CFCFCF] py-[32px] lg:hidden"/>
           <!-- Second Image (Hidden on Mobile) -->
           <div class="hidden lg:block w-full h-[398px]">
             <img
@@ -157,7 +157,7 @@ const items = ref([
         <h3 class="text-start font-normal font-outfit text-[20px] sm:text-[22px] lg:text-[26px]">
           {{ item.title }}
         </h3>
-        <p class="mt-[10px] text-black/85 text-start text-[14px] sm:text-[16px] lg:text-[18px] font-normal font-outfit leading-[19.194px] tracking-[0.8px] lg:leading-[21px] lg:tracking-[1px]">
+        <p class="mt-[10px] text-black/85 text-start  text-[16px] lg:text-[18px] font-normal font-outfit leading-[19.194px] tracking-[0.8px] lg:leading-[21px]">
           {{ item.description }}
         </p>
         <button
