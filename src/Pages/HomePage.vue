@@ -121,7 +121,7 @@
 
               <div class="flex justify-start items-center pb-6">
                 <button
-                 @click="goToShopShift"
+                
                   class="inline-flex text-[13px] px-2.5 py-[6px] items-center justify-center bg-[#414042] text-[#FFFFFF] font-outfit leading-none tracking-wide"
                 >
                   Shop Now
