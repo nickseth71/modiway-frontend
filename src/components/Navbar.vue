@@ -230,15 +230,7 @@
     Wellness Test
   </router-link>
 </div>
-
-
-
-
-
-
 </div>
-
-
   </header>
 </template>
 

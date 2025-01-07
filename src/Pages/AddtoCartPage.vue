@@ -6,13 +6,9 @@ import AddCart3 from "../assets/add-cart3.png";
 import AddCart4 from "../assets/add-cart4.png";
 
 ////////////////////////////// category images ///////////////////////////////////////
-
-
 import wishImg from "../assets/wishlist.png"
-
 import BannerImage from "../assets/banner.png";
 import Review from "../assets/review.png";
-
 import nextbutton from "../assets/next.png";
 import prevbutton from "../assets/previous.png";
 
@@ -20,11 +16,6 @@ import prevbutton from "../assets/previous.png";
 // import MangoFlavour from "../assets/Mango.png";
 import ProductImage from "../assets/ProductImg.png"
 import BurnerBox from "../assets/burner-box.png"
-
-// const OftenImages = ref([
-//   { src: BurnerBox, alt: "Product img", title: "Fat Burner Premix Powder", },
-//   { src: ProductImage, alt: "Product img", title: "Plant Based Protein Powder", },
-// ]);
 
 // You may like images
 const productImages = ref([
@@ -35,6 +26,9 @@ const productImages = ref([
 ]);
 
 // Carousel items
+
+
+// Carousel items
 const cartItems = ref([
   { src: AddCart1, alt: "Cart image 1" },
   { src: AddCart2, alt: "Cart image 2" },
@@ -42,12 +36,31 @@ const cartItems = ref([
   { src: AddCart4, alt: "Cart image 4" },
 ]);
 
+// Touch event handlers
+const handleTouchStart = (event) => {
+  startX.value = event.touches[0].clientX;
+};
+
+const handleTouchMove = (event) => {
+  endX.value = event.touches[0].clientX;
+};
+
+const handleTouchEnd = () => {
+  const diff = startX.value - endX.value;
+  if (diff > 50) {
+    activeIndex.value = (activeIndex.value + 1) % cartItems.value.length;
+  } else if (diff < -50) {
+    activeIndex.value = (activeIndex.value - 1 + cartItems.value.length) % cartItems.value.length;
+  }
+};
+
 // Active carousel index
 const activeIndex = ref(0);
 
 // Touch event variables
 const startX = ref(0);
 const endX = ref(0);
+
 
 // Product details
 const flavors = ref([
@@ -60,6 +73,11 @@ const flavors = ref([
   "Banana Caramel",
   "Rasmalai",
 ]);
+const selectedFlavor = ref(null);
+
+const selectFlavor = (flavor) => {
+  selectedFlavor.value = flavor;
+};
 
 const quantity = ref(1);
 
@@ -91,8 +109,6 @@ const toggleSection = (index) => {
   sections.value[index].open = !sections.value[index].open;
 };
 
-// Additional carousel data
-const currentIndex = ref(0);
 
 const cards = ref([
   {
@@ -140,34 +156,39 @@ const cards = ref([
   },
 ]);
 
-const next = () => {
-  if (currentIndex.value < Math.ceil(cards.value.length) - 1) {
-    currentIndex.value += 1;
+const currentIndex = ref(0);
+
+// Touch event variables
+const touchStartX = ref(0);
+const touchEndX = ref(0);
+
+// Handle touch events
+const handleCardTouchStart = (event) => {
+  touchStartX.value = event.touches[0].clientX;
+};
+
+const handleTouchCardMove = (event) => {
+  touchEndX.value = event.touches[0].clientX;
+};
+
+const handleTouchCardEnd = () => {
+  const threshold = 50; // Minimum swipe distance
+  const swipeDistance = touchStartX.value - touchEndX.value;
+
+  if (swipeDistance > threshold) {
+    nextCard();
+  } else if (swipeDistance < -threshold) {
+    prevCard();
   }
 };
 
-const prev = () => {
-  if (currentIndex.value > 0) {
-    currentIndex.value -= 1;
-  }
+// Methods for navigation
+const nextCard = () => {
+  currentIndex.value = (currentIndex.value + 1) % cards.value.length;
 };
 
-// Touch Handlers
-const handleTouchStart = (event) => {
-  startX.value = event.touches[0].clientX;
-};
-
-const handleTouchMove = (event) => {
-  endX.value = event.touches[0].clientX;
-};
-
-const handleTouchEnd = () => {
-  const diff = startX.value - endX.value;
-  if (diff > 50) {
-    next();
-  } else if (diff < -50) {
-    prev();
-  }
+const prevCard = () => {
+  currentIndex.value = (currentIndex.value - 1 + cards.value.length) % cards.value.length;
 };
 
 // Tab data
@@ -194,7 +215,6 @@ const activeTab = ref(0);
       class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-6 lg:space-y-0 lg:space-x-[42px] page-width">
       <!-- Carousel for Small Devices -->
       <div class="lg:hidden">
-
         <div class="flex flex-row pl-[16px] py-[8px]">
           <p>
             <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape
@@ -204,8 +224,8 @@ const activeTab = ref(0);
               Management</span>
           </p>
         </div>
-        <div id="custom-carousel" class="relative w-full block lg:hidden" data-carousel="slide"
-          @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+        <div id="custom-carousel" class="relative w-full block lg:hidden" @touchstart="handleTouchStart"
+          @touchmove="handleTouchMove" @touchend="handleTouchEnd">
           <!-- Carousel Wrapper -->
           <div class="relative h-[464px] object-cover overflow-hidden">
             <!-- Carousel Items -->
@@ -260,7 +280,7 @@ const activeTab = ref(0);
 
           <!-- Flavors -->
 
-          <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
+          <!-- <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
             <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
               Chocolate
             </div>
@@ -293,13 +313,17 @@ const activeTab = ref(0);
               class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
               Rasmalai
             </div>
-          </div>
-          <!-- <div class="flex flex-wrap gap-2 mt-[17px] justify-start items-center">
-            <span v-for="flavor in flavors" :key="flavor"
-              class="text-[13px] font-medium font-outfit bg-white px-3 border py-1 rounded-md">
-              {{ flavor }}
-            </span>
           </div> -->
+          <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
+            <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
+              'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
+              selectedFlavor === flavor
+                ? 'bg-[#414042] text-white'
+                : 'text-black/85 hover:border-[#414042]'
+            ]">
+              {{ flavor }}
+            </div>
+          </div>
 
           <!-- Quantity Selector -->
           <div class="flex items-center gap-4 mt-6">
@@ -333,8 +357,7 @@ const activeTab = ref(0);
           </div>
           <!-- Add to Cart -->
           <div class="w-full flex gap-[14px] items-center mt-[24px] border-b border-[#ABABAB] pb-[32px]">
-            <button
-              class="w-[80%] h-10  bg-[#414042] text-white leading-[19.95px] font-medium font-outfit text-[16px]">
+            <button class="w-[80%] h-10  bg-[#414042] text-white leading-[19.95px] font-medium font-outfit text-[16px]">
               Add to cart
             </button>
             <div class="w-[20%] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
@@ -342,22 +365,22 @@ const activeTab = ref(0);
             </div>
           </div>
 
-          <div class="w-full flex justify-between items-center py-[28px]">
-              <div class="flex justify-between items-center gap-2">
-                <button class="underline underline-offset-2">
-                  Share Product
-                </button>
-                <img src="../assets/share.svg" alt="share" class="w-[15px] h-[15px]">
-              </div>
-              <div class="flex justify-start  items-center gap-2 ">
-                <button class="underline underline-offset-2">
-                  Download PDF
-                </button>
-                <img src="../assets/download.svg" alt="download" class="w-[15px] h-[15px]">
-              </div>
+          <div class="w-full flex justify-start gap-[54px] items-center py-[28px]">
+            <div class="flex justify-between items-center gap-2">
+              <button class="underline underline-offset-2">
+                Share Product
+              </button>
+              <img src="../assets/share.svg" alt="share" class="w-[15px] h-[15px]">
             </div>
+            <div class="flex justify-start  items-center gap-2 ">
+              <button class="underline underline-offset-2">
+                Download PDF
+              </button>
+              <img src="../assets/download.svg" alt="download" class="w-[15px] h-[15px]">
+            </div>
+          </div>
 
-         
+
           <!-- Accordion Sections -->
           <div class="mt-6 space-y-4">
             <div v-for="(section, index) in sections" :key="index" class="border-b-[1px] border-[#353535]">
@@ -372,7 +395,8 @@ const activeTab = ref(0);
                   <i class="fas fa-chevron-down"></i>
                 </span>
               </button>
-              <div v-if="section.open" class="text-[16px] text-black/85 mt-2 pb-[20px] leading-[19.192px] tracking-[0.8px]">
+              <div v-if="section.open"
+                class="text-[16px] text-black/85 mt-2 pb-[20px] leading-[19.192px] tracking-[0.8px]">
                 {{ section.content }}
               </div>
             </div>
@@ -393,13 +417,14 @@ const activeTab = ref(0);
         <div class="w-full lg:w-[45%] space-y-0 px-[15px]">
           <!-- Breadcrumbs -->
           <div class="flex flex-row ">
-          <p>
-            <span class="text-[#717171] text-[8px] font-normal font-outfit">Home /</span>
-            <span class="w-[66px] h-4 text-[#717171] text-[8px] font-normal font-['Outfit']">Meal Replacement/</span>
-            <span class="w-[41px] h-4 text-[#717171] text-[8px] font-normal font-['Outfit']">Shape Shift/</span>
-              <span class=" text-[#717171] text-[8px] font-normal font-outfit">Meal Replacement for Weight Control/ Management</span>
-          </p>
-        </div>
+            <p>
+              <span class="text-[#717171] text-[8px] font-normal font-outfit">Home /</span>
+              <span class="w-[66px] h-4 text-[#717171] text-[8px] font-normal font-['Outfit']">Meal Replacement/</span>
+              <span class="w-[41px] h-4 text-[#717171] text-[8px] font-normal font-['Outfit']">Shape Shift/</span>
+              <span class=" text-[#717171] text-[8px] font-normal font-outfit">Meal Replacement for Weight Control/
+                Management</span>
+            </p>
+          </div>
 
           <!-- Product Title -->
           <h2 class="text-[20px] font-normal font-outfit text-black/85">
@@ -428,38 +453,14 @@ const activeTab = ref(0);
           </div>
 
           <div class="pt-[40px]">
-            <div class="flex flex-wrap justify-start items-center gap-2">
-              <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
-                Chocolate
-              </div>
-              <div
-                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Vanilla
-              </div>
-              <div
-                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Mango
-              </div>
-              <div
-                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Kulfi
-              </div>
-              <div
-                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Rose Kheer
-              </div>
-              <div
-                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Strawberry
-              </div>
-              <div
-                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Banana Caramel
-              </div>
-
-              <div
-                class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-                Rasmalai
+            <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
+              <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
+                'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
+                selectedFlavor === flavor
+                  ? 'bg-[#414042] text-white'
+                  : 'text-black/85 hover:border-[#414042]'
+              ]">
+                {{ flavor }}
               </div>
             </div>
 
@@ -502,7 +503,7 @@ const activeTab = ref(0);
                 <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
               </div>
             </div>
-            
+
 
 
             <div class="w-[393px] flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
@@ -732,7 +733,7 @@ const activeTab = ref(0);
         <!-- Grid Container -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-[14px] lg:gap-[33px]">
           <!-- Product Block -->
-          
+
           <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
             <!-- Image Container -->
             <div
@@ -750,8 +751,8 @@ const activeTab = ref(0);
               {{ product.title }}
             </span>
           </div>
-          
-          
+
+
         </div>
       </div>
 
@@ -768,11 +769,11 @@ const activeTab = ref(0);
 
     <section class="page-width">
       <div class="w-full flex justify-center py-[25px] lg:pt-[108px]">
-        <div class="w-full max-w-full mx-auto relative px-4 pb-[82px]">
+        <div class="w-full max-w-full mx-auto relative px-4 pb-[82px]" @touchstart="handleCardTouchStart"
+          @touchmove="handleTouchCardMove" @touchend="handleTouchCardEnd">
           <!-- Carousel Container -->
           <div class="flex justify-center items-center overflow-hidden p-2">
-            <div
-              class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[52.99px] "
+            <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[52.99px]"
               :style="{ transform: `translateX(-${currentIndex * 100}%)` }" style="width: 100%">
               <!-- Product Card -->
               <div v-for="(card, index) in cards" :key="index"
@@ -786,33 +787,34 @@ const activeTab = ref(0);
                     <!-- Text container -->
                     <div class="flex flex-col items-start w-full pt-0 px-5">
                       <!-- Name -->
-                      <div  style="line-height: normal;" class="text-black text-[13px] lg:text-[16px] font-bold font-outfit mb-0">
+                      <div style="line-height: normal;"
+                        class="text-black text-[13px] lg:text-[16px] font-bold font-outfit mb-0">
                         {{ card.name }}
                       </div>
 
                       <!-- Title -->
-                      <span style="line-height: normal;" class="text-black text-[11px] lg:text-[13px] font-light font-outfit">
+                      <span style="line-height: normal;"
+                        class="text-black text-[11px] lg:text-[13px] font-light font-outfit">
                         {{ card.title }}
                       </span>
                     </div>
                   </div>
 
                   <!-- Description -->
-                  <div
-                  style="line-height: normal;"
+                  <div style="line-height: normal;"
                     class="text-black pt-[10px] text-[13px] lg:text-[16px] leading-normal font-normal font-outfit whitespace-normal overflow-visible px-5 pb-[20px]">
                     "{{ card.description }}"
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
 
           <!-- Navigation Buttons -->
-          <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center ">
+          <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center">
             <!-- Previous Button -->
-            <button class="absolute left-[70px] lg:left-1/3 transform top-1/2 -translate-y-1/2" @click="prev">
+            <button :disabled="cards.length === 0"
+              class="absolute left-[70px] lg:left-1/3 transform top-1/2 -translate-y-1/2" @click="prevCard">
               <img :src="prevbutton" alt="Previous" class="w-6 h-6" />
             </button>
 
@@ -827,7 +829,8 @@ const activeTab = ref(0);
             </div>
 
             <!-- Next Button -->
-            <button class="absolute right-[70px] lg:right-1/3 transform top-1/2 -translate-y-1/2" @click="next">
+            <button :disabled="cards.length === 0"
+              class="absolute right-[70px] lg:right-1/3 transform top-1/2 -translate-y-1/2" @click="nextCard">
               <img :src="nextbutton" alt="Next" class="w-6 h-6" />
             </button>
           </div>

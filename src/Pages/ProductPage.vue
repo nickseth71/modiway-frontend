@@ -200,7 +200,7 @@ No items found.
         <!-- </div> -->
       </section>
 
-      <section class="hidden lg:block py-4 md:py-6 lg:py-8">
+      <section class=" py-4 md:py-6 lg:py-8">
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @change-page="handlePageChange"
           class="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8" />
       </section>
