@@ -287,12 +287,12 @@
               v-show="isProductMenuOpen"
               class="absolute w-full bg-white mt-2 pb-4"
             >
-              <ul class="pl-[9px] space-y-2">
+              <ul class=" ">
                 <li>
                   <button
                     @click="toggleSubMenu('byNeed')"
                     :class="{
-                      'w-full flex justify-between items-center text-left font-normal font-outfit': true,
+                      'w-full flex justify-start items-center text-left font-normal font-outfit': true,
                       'text-black/85 font-semibold': subMenuState.byNeed,
                       'text-black/85': !subMenuState.byNeed,
                     }"
@@ -309,7 +309,7 @@
                   </button>
                   <ul
                     v-show="subMenuState.byNeed"
-                    class="flex flex-col pl-4 space-y-1"
+                    class="flex flex-col pl-4 space-y-[17px]"
                   >
                     <li>
                       <button
@@ -366,7 +366,7 @@
                       class="text-sm"
                     ></i>
                   </button>
-                  <ul v-show="subMenuState.byType" class="pl-4 space-y-1">
+                  <ul v-show="subMenuState.byType" class="pl-4 space-y-[17px]">
                     <li
                       v-for="item in byTypeItems"
                       :key="item"
@@ -450,7 +450,7 @@
           Our Story
         </router-link>
 
-        <div @mouseenter="openDropdown" @mouseleave="closeDropdown">
+        <div @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown">
           <router-link
             to="/products"
             :class="{
@@ -467,13 +467,13 @@
             v-show="isProductMenuOpen || showDropdown"
             class="absolute w-full bg-white mt-6 p-6 left-0 right-0 max-h-auto min-h-[207px] border border-[#DEDEDE]"
           >
-            <ul class="space-y-2 max-w-[630px] mx-auto">
+            <ul class="max-w-[630px] mx-auto">
               <!-- By Need Section -->
-              <li class="flex justify-start items-center gap-5">
+              <li class="flex justify-start items-center mt-0 gap-5">
                 <button
                   @click="toggleSubMenu('byNeed')"
                   :class="{
-                    ' flex space-x-5 items-center text-left font-normal font-outfit': true,
+                    ' flex space-x-5 items-center text-left font-normal font-outfit min-w-[90px] border-r border-[#CFCFCF] pr-[17px]': true,
                     'text-black/85 font-semibold': subMenuState.byNeed,
                     'text-black/85': !subMenuState.byNeed,
                   }"
@@ -483,22 +483,25 @@
                 </button>
                 <ul
                   v-show="subMenuState.byNeed"
-                  class="flex flex-col pl-4 space-y-1"
+                  class="flex flex-col pl-4 space-y-[17px]"
                 >
                   <li class="relative whitespace-nowrap">
                     <button
                       @click="toggleSubMenu('healthAndNutrition')"
                       :class="{
-                        'w-full flex items-center text-left text-base font-light font-outfit text-black/85': true,
-                        'text-black/85': subMenuState.healthAndNutrition,
+                        'min-w-[220px] flex justify-between items-center text-left text-base font-light font-outfit': true,
+                        'text-black/85': !subMenuState.healthAndNutrition,
+                        'text-black/85 font-semibold':
+                          subMenuState.healthAndNutrition,
                       }"
                     >
                       <span>Health & Nutrition</span>
                       <i class="fa fa-chevron-right text-sm ml-5"></i>
                     </button>
+
                     <ul
                       v-show="subMenuState.healthAndNutrition"
-                      class="ml-4 pl-4 absolute left-full top-0 border-l border-gray-300 flex flex-col space-y-[15px]"
+                      class="ml-4 pl-4 absolute left-full top-0 border-l border-gray-300 flex flex-col space-y-[17px]"
                     >
                       <li
                         v-for="item in healthAndNutritionItems"
@@ -518,11 +521,11 @@
               </li>
 
               <!-- By Type Section -->
-              <li class="flex justify-start items-center gap-5">
+              <li class="flex justify-start items-start mt-0 gap-5">
                 <button
                   @click="toggleSubMenu('byType')"
                   :class="{
-                    ' flex space-x-5 items-center text-left font-normal font-outfit': true,
+                    ' flex space-x-6 items-center text-left font-normal font-outfit min-w-[90px] pt-4 border-r border-[#CFCFCF] pr-[17px]': true,
                     'text-black/85 font-semibold': subMenuState.byType,
                     'text-black/85': !subMenuState.byType,
                   }"
@@ -532,14 +535,14 @@
                 </button>
                 <ul
                   v-show="subMenuState.byType"
-                  class="flex flex-col pl-4 space-y-1"
+                  class="flex flex-col pl-4 space-y-[10px]"
                 >
                   <!-- Beauty Section -->
                   <li class="relative whitespace-nowrap">
                     <button
                       @click="toggleSubMenu('beauty')"
                       :class="{
-                        'w-full flex items-center text-left text-base font-light font-outfit text-black/85': true,
+                        'min-w-[220px] flex justify-between items-center text-left pt-4 text-base font-light font-outfit text-black/85': true,
                         'text-black/85': subMenuState.beauty,
                       }"
                     >
@@ -570,7 +573,7 @@
                     <button
                       @click="toggleSubMenu('kitchen')"
                       :class="{
-                        'w-full flex items-center text-left text-base font-light font-outfit text-black/85': true,
+                        'min-w-[220px] flex justify-between items-center text-left text-base font-light font-outfit text-black/85': true,
                         'text-black/85': subMenuState.kitchen,
                       }"
                     >
@@ -632,8 +635,13 @@ const subMenuState = ref({
   kitchen: false,
 });
 
-// const beautyItems = ref(["Face Car"]);
-// const kitchenItems = ref(["Cookware"]);
+// Items for the submenus
+const healthAndNutritionItems = ref(["General Nutrition", "Sports Nutrition", "Weight Management","Accessory"]);
+// const beautyItems = ref(["Skincare", "Makeup", "Haircare"]);
+// const kitchenItems = ref(["Cookware", "Utensils", "Appliances"]);
+
+// Timer reference for closeDropdown delay
+let closeDropdownTimer = null;
 
 // Methods
 const toggleProductMenu = () => {
@@ -650,13 +658,23 @@ const selectProductCategory = (item) => {
 
 // Hover functionality
 const openDropdown = () => {
+  clearTimeout(closeDropdownTimer); // Clear any existing timeout when mouse enters
   showDropdown.value = true;
 };
 
 const closeDropdown = () => {
   showDropdown.value = false;
 };
+
+const delayedCloseDropdown = () => {
+  // Set a timeout to close the dropdown after a delay
+  closeDropdownTimer = setTimeout(() => {
+    closeDropdown();
+  }, 300); // Adjust 300ms delay as needed
+};
+
 </script>
+
 
 <!-- -------------------------------for mobile ------------------------------>
 <script>
