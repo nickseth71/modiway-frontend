@@ -97,7 +97,7 @@ const items = ref([
           </p>
           <button
             @click="readmore"
-            class="mt-6 sm:mt-10 lg:mt-[130px] px-[10px] py-[5px] bg-[#414042] text-[#fff] font-normal font-outfit text-[13px] lg:text-[15px] lg:leading-[18px] lg:tracking-[0.75px] hover:bg-[#2c2b2d] transition"
+            class="my-[41px] lg:my-0 sm:mt-10 lg:mt-[130px] px-[10px] py-[5px] bg-[#414042] text-[#fff] font-normal font-outfit text-[13px] lg:text-[15px] lg:leading-[18px] lg:tracking-[0.75px] hover:bg-[#2c2b2d] transition"
           >
             Read More
           </button>

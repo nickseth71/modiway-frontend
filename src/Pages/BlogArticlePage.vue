@@ -31,32 +31,41 @@
       </div>
 
       <section>
-        <div class="max-w-full mx-auto">
-  <div class="grid grid-cols-1 lg:grid-cols-2 px-[14px] lg:pl-[12px] lg:gap-32">
-    <!-- First Column (will come second on mobile) -->
-    <div class="order-2 lg:order-none">
-      <p v-for="(paragraph, index) in columnOneContent" :key="index" class="text-gray-700">
-        {{ paragraph }}
-      </p>
-    </div>
+        <div class="max-w-full mx-auto mt-[50px] lg:mt-0">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 px-[14px] lg:pl-[12px] lg:gap-32"
+          >
+            <!-- First Column (will come second on mobile) -->
+            <div class="order-2 lg:order-none">
+              <p
+                v-for="(paragraph, index) in columnOneContent"
+                :key="index"
+                class="text-black/85 font-normal font-outfit text-[16px] lg:text-[18px] leading-[19.192px] lg:leading-[21.591px] tracking-[0.8px] lg:tracking-[0.9px]"
+              >
+                {{ paragraph }}
+              </p>
+            </div>
 
-    <!-- Second Column (will come first on mobile) -->
-    <div class="order-1 lg:order-none">
-      <p v-for="(paragraph, index) in columnTwoContent" :key="index" class="text-gray-700">
-        {{ paragraph }}
-      </p>
-      <div class="w-full md:w-1/2 lg:w-[491px] h-auto">
-        <img
-          v-if="imageSrc"
-          :src="imageSrc"
-          :alt="imageAlt"
-          class="w-full h-auto mt-4"
-        />
-      </div>
-    </div>
-  </div>
-</div>
-
+            <!-- Second Column (will come first on mobile) -->
+            <div class="order-1 lg:order-none">
+              <p
+                v-for="(paragraph, index) in columnTwoContent"
+                :key="index"
+                class="text-black/85 font-normal font-outfit text-[16px] lg:text-[18px] leading-[19.192px] lg:leading-[21.591px] tracking-[0.8px] lg:tracking-[0.9px]"
+              >
+                {{ paragraph }}
+              </p>
+              <div class="w-full py-[40px] md:w-1/2 lg:w-[491px] h-auto">
+                <img
+                  v-if="imageSrc"
+                  :src="imageSrc"
+                  :alt="imageAlt"
+                  class="w-full h-auto mt-4"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </section>
   </section>
