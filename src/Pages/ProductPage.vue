@@ -212,17 +212,7 @@ No items found.
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import "@fortawesome/fontawesome-free/css/all.css";
-// import Banana from "../assets/Banana-Caramel.png";
-// import Chocolate from "../assets/Chocolate.png";
-// import Kulfi from "../assets/Kulfi.png";
-// import Mango from "../assets/Mango.png";
-// import Rasmalai from "../assets/Rasmalai.png";
-// import Strawberry from "../assets/Strawberry.png";
-// import Rosekheer from "../assets/RoseKheer.png";
-// import Vanilla from "../assets/Vanilla.png";
 import milkglass from "../assets/hoverimage.png";
-// import AddtoCartPage from "./AddtoCartPage.vue";
-
 import ProductImage from "../assets/ProductImg.png"
 
 export default {

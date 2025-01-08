@@ -13,7 +13,6 @@ import nextbutton from "../assets/next.png";
 import prevbutton from "../assets/previous.png";
 
 //////////////////////////////////////////////////////// product images /////////////////////////////////////////////////
-// import MangoFlavour from "../assets/Mango.png";
 import ProductImage from "../assets/ProductImg.png"
 import BurnerBox from "../assets/burner-box.png"
 
@@ -26,15 +25,30 @@ const productImages = ref([
 ]);
 
 // Carousel items
+const cartItems = ref([]);
+const isCartOpen = ref(false);
 
+const addToCart = () => {
+  const product = {
+    id: Date.now(),
+    name: "Plant-Based Protein Powder 500g",
+    image: "product-image.jpg", // Replace with actual product image
+    price: 2750,
+    quantity: quantity.value,
+    flavor: selectedFlavor.value || "Default",
+  };
 
-// Carousel items
-const cartItems = ref([
-  { src: AddCart1, alt: "Cart image 1" },
-  { src: AddCart2, alt: "Cart image 2" },
-  { src: AddCart3, alt: "Cart image 3" },
-  { src: AddCart4, alt: "Cart image 4" },
-]);
+  cartItems.value.push(product);
+  isCartOpen.value = true; // Open the cart popup
+};
+
+const removeFromCart = (id) => {
+  cartItems.value = cartItems.value.filter(item => item.id !== id); // Remove item by ID
+};
+
+const closeCart = () => {
+  isCartOpen.value = false; // Close the cart popup
+};
 
 // Touch event handlers
 const handleTouchStart = (event) => {
@@ -81,6 +95,14 @@ const selectFlavor = (flavor) => {
 
 const quantity = ref(1);
 
+const decreaseQuantity = () => {
+  if (quantity.value > 1) quantity.value--;
+};
+
+const increaseQuantity = () => {
+  quantity.value++;
+};
+
 const sections = ref([
   { title: "Product Description", content: "Nutritional Shake Mix with Protein, Fiber, Probiotics. Enzymes. Vitamins & Minerals Shape Shift offers a delicious and nutritious meal replacement shake packed with high-quality protein and a comprehensive blend of 25 essential vitamins and minerals. It includes added dietary fibres. probiotics. enzymes. and plant-based nutrients, all without refined sugar. Food for special dietary use for weight control/management.", open: false },
   { title: "Key Benefits", content: "Key benefits here.", open: false },
@@ -92,23 +114,9 @@ const sections = ref([
   { title: "Nutritional Information", content: "Nutritional info here.", open: false },
 ]);
 
-// Methods
-const updateIndex = (index) => {
-  activeIndex.value = index;
-};
-
-const decreaseQuantity = () => {
-  if (quantity.value > 1) quantity.value--;
-};
-
-const increaseQuantity = () => {
-  quantity.value++;
-};
-
 const toggleSection = (index) => {
   sections.value[index].open = !sections.value[index].open;
 };
-
 
 const cards = ref([
   {
@@ -138,7 +146,6 @@ const cards = ref([
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
     description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
-
     image: Review,
   },
   {
@@ -148,41 +155,10 @@ const cards = ref([
     description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
     image: Review,
   },
-  {
-    name: "Nancy",
-    title: "45kg, 9 inches lost in 10 months",
-    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
-    image: Review,
-  },
 ]);
 
-const currentIndex = ref(0);
-
-// Touch event variables
-const touchStartX = ref(0);
-const touchEndX = ref(0);
-
-// Handle touch events
-const handleCardTouchStart = (event) => {
-  touchStartX.value = event.touches[0].clientX;
-};
-
-const handleTouchCardMove = (event) => {
-  touchEndX.value = event.touches[0].clientX;
-};
-
-const handleTouchCardEnd = () => {
-  const threshold = 50; // Minimum swipe distance
-  const swipeDistance = touchStartX.value - touchEndX.value;
-
-  if (swipeDistance > threshold) {
-    nextCard();
-  } else if (swipeDistance < -threshold) {
-    prevCard();
-  }
-};
-
 // Methods for navigation
+const currentIndex = ref(0);
 const nextCard = () => {
   currentIndex.value = (currentIndex.value + 1) % cards.value.length;
 };
@@ -202,6 +178,7 @@ const tabs = ref([
 
 const activeTab = ref(0);
 </script>
+
 
 
 <style scoped></style>
@@ -278,42 +255,6 @@ const activeTab = ref(0);
             <p class="text-[13px] font-light font-outfit text-black/85">MRP (incl. of all taxes)</p>
           </div>
 
-          <!-- Flavors -->
-
-          <!-- <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
-            <div class="bg-[#414042] border px-2 text-center text-white text-[14.93px] font-medium font-outfit ">
-              Chocolate
-            </div>
-            <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-              Vanilla
-            </div>
-            <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-              Mango
-            </div>
-            <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-              Kulfi
-            </div>
-            <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-              Rose Kheer
-            </div>
-            <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-              Strawberry
-            </div>
-            <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-              Banana Caramel
-            </div>
-
-            <div
-              class="border px-2 text-center text-black/85 text-[14.90px] font-medium font-outfit hover:border-[#414042] cursor-pointer">
-              Rasmalai
-            </div>
-          </div> -->
           <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
               'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',

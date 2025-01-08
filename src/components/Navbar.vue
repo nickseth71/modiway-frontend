@@ -183,6 +183,8 @@
             height="24"
             viewBox="0 0 24 24"
             fill="none"
+            @click="openCart"
+            class="cursor-pointer"
           >
             <path
               fill-rule="evenodd"
@@ -221,6 +223,93 @@
               stroke-linejoin="round"
             />
           </svg>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="fixed right-0 top-0 w-1/2 h-full bg-opacity-10 bg-gray-300 z-50 hidden overflow-y-auto"
+      id="my-cart"
+    >
+      <div class="relative w-full p-5 bg-white h-full rounded-l-lg shadow-lg">
+        <div class="flex justify-between items-center mb-5">
+          <h3
+            class="text-[48px] font-normal font-outfit text-[#000] leading-[73.701px]"
+          >
+            Shopping Cart
+          </h3>
+          <button
+            @click="closeCart"
+            class="text-gray-400 hover:text-gray-500 focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M6 18L18 6M6 6l12 12"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <div v-for="item in cartItems" :key="item.id">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <div class="w-[165.217px] h-[172.811px] border-[0.143px] border-[#000000]">
+                <img
+                :src="item.image"
+                alt="Item image"
+                class="w-10 h-10 object-cover rounded-lg mr-3"
+              />
+              </div>
+              <div class="text-left">
+                <p class="text-base font-medium">{{ item.name }}</p>
+                <p class="text-sm text-gray-500">
+                  {{ item.quantity }} x {{ item.price }}
+                </p>
+              </div>
+            </div>
+            <span
+              class="text-red-500 hover:text-red-600 cursor-pointer"
+              @click="removeFromCart(item.id)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M6 18L18 6M6 6l12 12"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div class="flex justify-between pt-5">
+          <button
+            @click="close"
+            class="text-gray-500 border border-gray-300 rounded-md px-4 py-2 hover:bg-gray-100 focus:outline-none"
+          >
+            Continue Shopping
+          </button>
+          <button
+            class="bg-green-500 text-white font-semibold rounded-md px-4 py-2 hover:bg-green-700 focus:outline-none"
+          >
+            Checkout
+          </button>
         </div>
       </div>
     </div>
@@ -284,7 +373,7 @@
                   @click="toggleSubMenu('byNeed')"
                   class="w-full flex justify-between items-center text-left text-black/85 text-[15px] font-normal font-outfit"
                   :class="{
-                    'font-semibold': subMenuState.byNeed, // Add semibold font when open
+                    'font-semibold': subMenuState.byNeed,
                   }"
                 >
                   <span>By Need</span>
@@ -303,7 +392,7 @@
                       @click="toggleSubMenu('healthAndNutrition')"
                       class="w-full flex justify-between items-center text-left text-black/85 text-[15px] font-normal font-outfit"
                       :class="{
-                        'font-semibold': subMenuState.healthAndNutrition, // Add semibold font when open
+                        'font-semibold': subMenuState.healthAndNutrition,
                       }"
                     >
                       <span>Health & Nutrition</span>
@@ -342,7 +431,7 @@
                   @click="toggleSubMenu('byType')"
                   class="w-full flex justify-between items-center text-left text-black/85 text-[15px] font-normal font-outfit"
                   :class="{
-                    'font-semibold': subMenuState.byType, // Add semibold font when open
+                    'font-semibold': subMenuState.byType,
                   }"
                 >
                   <span>By Type</span>
@@ -639,7 +728,7 @@ const healthAndNutritionItems = ref([
 // Timer reference for closeDropdown delay
 let closeDropdownTimer = null;
 
-// Methods
+// Methods for dropdown and submenu functionality
 const toggleProductMenu = () => {
   isProductMenuOpen.value = !isProductMenuOpen.value;
 };
@@ -666,6 +755,36 @@ const delayedCloseDropdown = () => {
   closeDropdownTimer = setTimeout(() => {
     closeDropdown();
   }, 300);
+};
+
+// Shopping cart functionality
+const cartItems = ref([
+  {
+    id: 1,
+    name: "Shape Shift Meal Replacement Powder 500g",
+    image: "https://example.com/item1.jpg",
+    quantity: 1,
+    price: 250.0,
+  },
+  {
+    id: 2,
+    name: "Shape Shift Meat Replacement Powder 500g",
+    image: "https://example.com/item2.jpg",
+    quantity: 1,
+    price: 1252.0,
+  },
+]);
+
+const openCart = () => {
+  document.getElementById("my-cart").classList.remove("hidden");
+};
+
+const closeCart = () => {
+  document.getElementById("my-cart").classList.add("hidden");
+};
+
+const removeFromCart = (itemId) => {
+  cartItems.value = cartItems.value.filter((item) => item.id !== itemId);
 };
 </script>
 
