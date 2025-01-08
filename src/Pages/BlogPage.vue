@@ -135,7 +135,7 @@ const items = ref([
           <!-- Second Image (Hidden on Mobile) -->
           <div class="hidden lg:block w-full h-[398px]">
             <img
-              src="../assets/cup-brazilian-dessert-with-kiwi.png"
+              src="../assets/blog-article-image.png"
               alt="Refreshing drink"
               class="w-full h-full object-cover"
             />
