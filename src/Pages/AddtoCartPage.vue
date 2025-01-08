@@ -39,11 +39,11 @@ const addToCart = () => {
   };
 
   cartItems.value.push(product);
-  isCartOpen.value = true; // Open the cart popup
+  isCartOpen.value = true; 
 };
 
 const removeFromCart = (id) => {
-  cartItems.value = cartItems.value.filter(item => item.id !== id); // Remove item by ID
+  cartItems.value = cartItems.value.filter(item => item.id !== id); 
 };
 
 const closeCart = () => {
@@ -179,12 +179,7 @@ const tabs = ref([
 const activeTab = ref(0);
 </script>
 
-
-
 <style scoped></style>
-
-
-
 
 <template>
   <section class="max-w-[100%] mx-auto">

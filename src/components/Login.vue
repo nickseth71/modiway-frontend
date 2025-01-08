@@ -99,57 +99,15 @@
             required
           />
         </div>
-
-        <!-- Password Input with Show/Hide functionality -->
-        <div class="relative mt-4">
-          <label for="password" class="sr-only">Password</label>
-          <input
-            v-model="form.password"
-            id="password"
-            :type="showPassword ? 'text' : 'password'"
-            class="w-full px-4 py-2 border bg-[#F2F2F2] text-black/85 focus:outline-none placeholder:text-[12px]"
-            placeholder="Password: *"
-            required
-          />
-          <!-- Eye Icon -->
-          <button
-            type="button"
-            class="absolute inset-y-0 right-3 flex items-center text-gray-500 focus:outline-none"
-            @click="togglePasswordVisibility"
-          >
-            <svg
-              v-if="showPassword"
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13.875 18.825A10.05 10.05 0 0112 19C7.05 19 3.05 15.3 1.875 12c1.175-3.3 5.175-7 10.125-7a10.05 10.05 0 011.875.175M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-            <svg
-              v-else
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3.98 8.848a10.05 10.05 0 00-.605 3.152C4.95 15.3 8.95 19 14 19c2.81 0 5.28-1.281 7.02-3.152m-1.68-5.848a9.974 9.974 0 00-.605-3.152M9.88 4.15a10.05 10.05 0 00-3.45 1.738m-.78 9.962l1.8-1.8m5.56 0a3 3 0 10-3-3m0 0L7.12 8.12"
-              />
-            </svg>
-          </button>
-        </div>
-
+        <label for="password" class="sr-only">Password</label>
+        <input
+          v-model="form.password"
+          id="password"
+          type="password"
+          class="w-full px-4 py-2 mt-4 border bg-[#F2F2F2] text-black/85 focus:outline-none placeholder:text-[12px]"
+          placeholder="Password: *"
+          required
+        />
         <button
           style="line-height: normal"
           type="submit"

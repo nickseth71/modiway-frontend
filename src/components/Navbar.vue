@@ -155,6 +155,7 @@
             viewBox="0 0 24 24"
             fill="none"
             class="cursor-pointer stroke-[#8C8C8C]"
+            @click="goToLogin"
           >
             <circle
               cx="12"
@@ -228,13 +229,15 @@
     </div>
 
     <div
-      class="fixed right-0 top-0 w-1/2 h-full bg-opacity-10 bg-gray-300 z-50 hidden overflow-y-auto"
+      class="fixed right-0 lg:pt-10 top-0 w-full sm:w-1/2 h-auto bg-opacity-10 bg-white z-50 hidden overflow-y-auto"
       id="my-cart"
     >
-      <div class="relative w-full p-5 bg-white h-full rounded-l-lg shadow-lg">
+      <div
+        class="relative w-full px-[15px] lg:px-0 lg:pl-[116.13px] bg-white h-full rounded-l-lg shadow-lg"
+      >
         <div class="flex justify-between items-center mb-5">
           <h3
-            class="text-[48px] font-normal font-outfit text-[#000] leading-[73.701px]"
+            class="text-[24px] sm:text-[48px] font-normal font-outfit text-[#000] leading-[32px] sm:leading-[73.701px]"
           >
             Shopping Cart
           </h3>
@@ -262,14 +265,16 @@
         <div v-for="item in cartItems" :key="item.id">
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center">
-              <div class="w-[165.217px] h-[172.811px] border-[0.143px] border-[#000000]">
+              <div
+                class="w-[165.217px] h-[172.811px] border-[0.143px] border-[#000000]"
+              >
                 <img
-                :src="item.image"
-                alt="Item image"
-                class="w-10 h-10 object-cover rounded-lg mr-3"
-              />
+                  :src="item.image"
+                  alt="Item image"
+                  class="w-full h-full object-cover rounded-lg"
+                />
               </div>
-              <div class="text-left">
+              <div class="text-left ml-3">
                 <p class="text-base font-medium">{{ item.name }}</p>
                 <p class="text-sm text-gray-500">
                   {{ item.quantity }} x {{ item.price }}
@@ -513,7 +518,7 @@
             />
           </svg>
           <router-link
-            to="#"
+            to="/login"
             class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold"
           >
             Account
@@ -636,7 +641,7 @@
                       <li
                         v-for="item in beautyItems"
                         :key="item"
-                        class="text-gray-500"
+                        class="text-gray-500" 
                       >
                         <button
                           @click="selectProductCategory(item)"
@@ -671,7 +676,7 @@
                       >
                         <button
                           @click="selectProductCategory(item)"
-                          class="w-full text-left text-base font-outfit"
+                          class="w-full text-left text-base font-outfit hover:font-semibold"
                         >
                           {{ item }}
                         </button>
@@ -703,6 +708,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 // State for toggling the product menu and submenus
 const showDropdown = ref(false);
@@ -785,6 +791,10 @@ const closeCart = () => {
 
 const removeFromCart = (itemId) => {
   cartItems.value = cartItems.value.filter((item) => item.id !== itemId);
+};
+const router = useRouter();
+const goToLogin = () => {
+  router.push("/login");
 };
 </script>
 

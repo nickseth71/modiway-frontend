@@ -66,16 +66,16 @@ const router = createRouter({
 });
 
 // Global route guard
-router.beforeEach((to, from, next) => {
-  const loggedIn = localStorage.getItem("loggedIn");
+// router.beforeEach((to, from, next) => {
+//   const loggedIn = localStorage.getItem("loggedIn");
 
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (!loggedIn) {
-      alert("Please log in to access this page.");
-      return next("/login");
-    }
-  }
-  next();
-});
+//   if (to.matched.some((record) => record.meta.requiresAuth)) {
+//     if (!loggedIn) {
+//       alert("Please log in to access this page.");
+//       return next("/login");
+//     }
+//   }
+//   next();
+// });
 
 export default router;
