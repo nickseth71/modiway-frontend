@@ -1,6 +1,6 @@
 <script setup>
 import Banner from "../assets/blog-banner.png";
-import CreativeFoodImage from "../assets/creative-assortment-delicious-food.png";
+
 import BeautifulFoodImage from "../assets/beautiful-assortment-delicious-food.png";
 import BeautifulWomenImage from "../assets/beautiful-young-woman-meditating-exercising-top-him.png";
 import CreativeFrengsuiImage from "../assets/creative-fengshui-practice-kitchen-arrangement.png";
@@ -11,7 +11,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const readmore = () => {
-  router.push("/blogs-inside");
+  router.push("/blogs-article");
 };
 
 const items = ref([
