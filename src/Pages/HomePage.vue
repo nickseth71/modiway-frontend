@@ -204,7 +204,7 @@
             class="sm:w-[159.62px] sm:h-[134.98px] md:w-[503px] md:h-[436px]"
           />
           <button
-          @click="navigateToBlogs"
+          @click="navigateToResource"
             class="inline-block mt-[13px] px-2.5 py-[5px] bg-[#414042] text-[#FFFFFF] text-[13px] lg:text-[15px] lg:mt-[13px]"
           >
             Resources
@@ -241,6 +241,9 @@ export default {
 
     const navigateToBlogs = () => {
       router.push("/blogs");
+    };
+    const navigateToResource = () => {
+      router.push("/resources");
     };
 
     // Media items (videos)
@@ -315,7 +318,7 @@ export default {
       }
     };
 
-    // Toggle text visibility for image descriptions
+    
     const toggleText = (image) => {
       image.showFullDescription = !image.showFullDescription;
     };
@@ -334,6 +337,7 @@ export default {
       toggleText,
       goToShopShift,
       navigateToBlogs,
+      navigateToResource
     };
   },
 };

@@ -64,6 +64,14 @@ const items = ref([
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
 ]);
+ // Pagination State
+ const currentPage = ref(1);
+    const totalPages = ref(68);
+
+    // Pagination handler
+    const handlePageChange = (page) => {
+      currentPage.value = page;
+    };
 </script>
 
 <template>
@@ -105,7 +113,7 @@ const items = ref([
 
         <!-- Right Section -->
         <div
-          class="relative w-full lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-[17px] ml-0 lg:ml-[180px] mb-[20px] lg:mb-0"
+          class="relative w-full lg:w-1/2 px-2 grid grid-cols-1 lg:grid-cols-2 gap-[13px] ml-0 lg:ml-[183px] mb-[20px] lg:mb-0"
         >
           <!-- First Image with Text -->
           <div class="relative w-full h-[380px] lg:w-[224px] lg:h-[229px]">
@@ -144,7 +152,7 @@ const items = ref([
       </div>
     </section>
     <section class="page-width">
-      <div class="container mx-auto px-4 lg:mt-[52px] mt-[]">
+      <div class="container mx-auto px-3 lg:mt-[52px] mt-[]">
         <!-- Responsive grid for the items -->
         <div class="grid gap-[15px] grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <div v-for="item in items" :key="item.id" class="bg-white">
@@ -178,5 +186,12 @@ const items = ref([
         </div>
       </div>
     </section>
+  
+      <section class=" py-4 md:py-6 lg:py-8">
+        <Pagination :currentPage="currentPage" :totalPages="totalPages" @change-page="handlePageChange"
+          class="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8" />
+      </section>
+  
+
   </section>
 </template>
