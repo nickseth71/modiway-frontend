@@ -32,7 +32,7 @@ const addToCart = () => {
   const product = {
     id: Date.now(),
     name: "Plant-Based Protein Powder 500g",
-    image: "product-image.jpg", // Replace with actual product image
+    image: "product-image.jpg", 
     price: 2750,
     quantity: quantity.value,
     flavor: selectedFlavor.value || "Default",
@@ -47,7 +47,7 @@ const removeFromCart = (id) => {
 };
 
 const closeCart = () => {
-  isCartOpen.value = false; // Close the cart popup
+  isCartOpen.value = false; 
 };
 
 // Touch event handlers

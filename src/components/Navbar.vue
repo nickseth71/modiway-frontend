@@ -354,121 +354,154 @@
             </router-link>
           </li>
           <!-- Products Dropdown -->
-          <li>
-            <router-link
-              to="/products"
-              @click="toggleProductMenu"
-              class="flex justify-between items-center w-full text-left text-black/85 text-[15px] font-normal font-outfit hover:font-bold"
-              :class="{
-                'border-b-2 border-[#CFCFCF] pb-[8px]': isProductMenuOpen,
-              }"
-            >
-              <span>Products</span>
-              <i
-                :class="
-                  isProductMenuOpen ? 'fa fa-chevron-up' : 'fa fa-chevron-down'
-                "
-                class="text-sm"
-              ></i>
-            </router-link>
-            <ul v-show="isProductMenuOpen" class="pl-4 space-y-[12px] pt-[8px]">
-              <!-- By Need Dropdown -->
-              <li>
-                <button
-                  @click="toggleSubMenu('byNeed')"
-                  class="w-full flex justify-between items-center text-left text-black/85 text-[15px] font-normal font-outfit"
-                  :class="{
-                    'font-semibold': subMenuState.byNeed,
-                  }"
-                >
-                  <span>By Need</span>
+
+          <div @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown">
+            <li>
+              <router-link
+                to="/products"
+                :class="{
+                  'text-black/85': !isProductMenuOpen,
+                  'text-black': isProductMenuOpen,
+                }"
+                class="flex justify-between text-[15px] font-normal font-outfit tracking-[0.75px] hover:text-shadow-custom"
+                @click.prevent="toggleProductMenu"
+              >
+                Products
+                <span class="text-xs ml-1">
                   <i
                     :class="
-                      subMenuState.byNeed
+                      isProductMenuOpen
                         ? 'fa fa-chevron-up'
                         : 'fa fa-chevron-down'
                     "
                     class="text-sm"
                   ></i>
-                </button>
-                <ul v-show="subMenuState.byNeed" class="pl-4 pt-[8px]">
-                  <li>
-                    <button
-                      @click="toggleSubMenu('healthAndNutrition')"
-                      class="w-full flex justify-between items-center text-left text-black/85 text-[15px] font-normal font-outfit"
+                </span>
+              </router-link>
+
+              <div
+                v-show="isProductMenuOpen || showDropdown"
+                class="absolute w-full bg-white mt-6 p-6 left-0 right-0 max-h-auto min-h-[207px] border border-[#DEDEDE] sm:max-h-[400px] sm:min-h-[300px]"
+              >
+                <ul class="max-w-[630px] mx-auto">
+                  <!-- Loop through the main menu sections -->
+                  <li
+                    v-for="(menu, index) in menus"
+                    :key="index"
+                    class="flex justify-start items-center level-0"
+                  >
+                    <!-- Main Menu Button -->
+                    <router-link
+                      @mouseenter="toggleSubMenu(menu.key)"
+                      @mouseleave="toggleSubMenu(menu.key, false)"
+                      class="min-w-[90px] inline-flex space-x-2 pr-[17px] items-center h-[40px]"
                       :class="{
-                        'font-semibold': subMenuState.healthAndNutrition,
+                        'text-left font-normal font-outfit hover:font-semibold': true,
+                        'text-black/85 font-semibold': subMenuState[menu.key],
+                        'text-black/85': !subMenuState[menu.key],
+                        'font-bold': $route.path === menu.link,
                       }"
                     >
-                      <span>Health & Nutrition</span>
-                      <i
-                        :class="
-                          subMenuState.healthAndNutrition
-                            ? 'fa fa-chevron-up'
-                            : 'fa fa-chevron-down'
-                        "
-                        class="text-sm"
-                      ></i>
-                    </button>
+                      <span>{{ menu.label }}</span>
+                      <i class="fa fa-chevron-right text-sm"></i>
+                    </router-link>
+
+                    <!-- Submenu -->
                     <ul
-                      v-show="subMenuState.healthAndNutrition"
-                      class="pl-4 pt-[8px] space-y-[8px]"
+                      class="flex flex-col pl-4 border-l border-transparent hover:border-[#CFCFCF] sm:hidden"
                     >
                       <li
-                        v-for="item in healthAndNutritionItems"
-                        :key="item"
-                        class="text-[#8C8C8C]"
+                        v-for="(subMenu, subIndex) in menu.subMenus"
+                        :key="subIndex"
+                        class="relative whitespace-nowrap level-1"
                       >
-                        <button
-                          @click="selectProductCategory(item)"
-                          class="w-full text-left text-[15px] font-outfit"
+                        <!-- Submenu Button -->
+                        <div
+                          @click="toggleSubMenu(subMenu.key)"
+                          class="flex flex-row"
                         >
-                          {{ item }}
-                        </button>
+                          <button
+                            :class="{
+                              'min-w-[220px] flex justify-between items-center text-left text-base font-light font-outfit': true,
+                              'text-black/85': !subMenuState[subMenu.key],
+                              'text-black/85 ': subMenuState[subMenu.key],
+                              'hover:font-semibold': true,
+                            }"
+                          >
+                            <span>{{ subMenu.label }}</span>
+                            <i
+                              class="fa fa-chevron-right text-sm pl-5 pr-2"
+                            ></i>
+                          </button>
+
+                          <!-- Submenu Items -->
+                          <ul
+                            class="pl-4 absolute left-full top-0 border-l border-gray-300 flex flex-col space-y-[12px]"
+                          >
+                            <li
+                              v-for="(item, itemIndex) in subMenu.items"
+                              :key="itemIndex"
+                              class="text-black/85 level-2"
+                            >
+                              <button
+                                @click="selectProductCategory(item)"
+                                class="w-full text-left text-base font-outfit hover:font-bold"
+                              >
+                                {{ item }}
+                              </button>
+                            </li>
+                          </ul>
+                        </div>
                       </li>
                     </ul>
                   </li>
                 </ul>
-              </li>
-              <!-- By Type Dropdown -->
-              <li>
-                <button
-                  @click="toggleSubMenu('byType')"
-                  class="w-full flex justify-between items-center text-left text-black/85 text-[15px] font-normal font-outfit"
-                  :class="{
-                    'font-semibold': subMenuState.byType,
-                  }"
-                >
-                  <span>By Type</span>
-                  <i
-                    :class="
-                      subMenuState.byType
-                        ? 'fa fa-chevron-up'
-                        : 'fa fa-chevron-down'
-                    "
-                    class="text-sm"
-                  ></i>
-                </button>
+              </div>
+
+              <!-- Mobile-specific menu -->
+              <div class="sm:hidden">
                 <ul
-                  v-show="subMenuState.byType"
-                  class="pl-4 pt-[8px] space-y-[10px]"
+                  class="flex flex-col w-full bg-white mt-6 p-4 border border-[#DEDEDE]"
                 >
                   <li
-                    v-for="item in byTypeItems"
-                    :key="item"
-                    class="text-gray-500"
+                    v-for="(menu, index) in menus"
+                    :key="index"
+                    class="flex flex-col items-start py-2"
                   >
-                    <button
-                      @click="selectProductCategory(item)"
-                      class="w-full text-left"
+                    <router-link
+                      @click="toggleProductMenu"
+                      :class="{
+                        'text-left font-normal font-outfit hover:font-semibold': true,
+                        'text-black/85': !subMenuState[menu.key],
+                        'font-bold': $route.path === menu.link,
+                      }"
+                      class="flex items-center text-[15px] font-outfit py-2"
                     >
-                      {{ item }}
-                    </button>
+                      <span>{{ menu.label }}</span>
+                      <i class="fa fa-chevron-down text-sm ml-2"></i>
+                    </router-link>
+
+                    <div v-show="subMenuState[menu.key]" class="pl-4">
+                      <ul>
+                        <li
+                          v-for="(subMenu, subIndex) in menu.subMenus"
+                          :key="subIndex"
+                          class="py-1"
+                        >
+                          <button
+                            @click="selectProductCategory(subMenu.label)"
+                            class="w-full text-left text-base font-outfit"
+                          >
+                            {{ subMenu.label }}
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
                   </li>
                 </ul>
-              </li>
-            </ul>
-          </li>
+              </div>
+            </li>
+          </div>
 
           <!-- Business Opportunity Link -->
           <li>
@@ -527,181 +560,132 @@
       </div>
 
       <!-- Large Screen Navbar -->
-      <div class="hidden lg:flex max-w-full mx-auto items-center space-x-20">
-        <router-link
-          to="/ourstory"
-          class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom"
+      <nav>
+        <ul
+          class="list-none hidden lg:flex max-w-full mx-auto items-center space-x-20"
         >
-          Our Story
-        </router-link>
+          <li>
+            <router-link
+              to="/ourstory"
+              class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom"
+            >
+              Our Story
+            </router-link>
+          </li>
 
-        <div @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown">
-          <router-link
-            to="/products"
-            :class="{
-              'text-black/85': !isProductMenuOpen && !showDropdown,
-              'text-black': isProductMenuOpen || showDropdown,
-            }"
-            class="flex text-[15px] font-normal font-outfit tracking-[0.75px] hover:text-shadow-custom"
-            @click="toggleProductMenu"
-          >
-            Products
-          </router-link>
+          <div @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown">
+            <li>
+              <router-link
+                to="/products"
+                :class="{
+                  'text-black/85': !isProductMenuOpen && !showDropdown,
+                  'text-black': isProductMenuOpen || showDropdown,
+                }"
+                class="flex text-[15px] font-normal font-outfit tracking-[0.75px] hover:text-shadow-custom"
+                @click.prevent="toggleProductMenu"
+              >
+                Products
+              </router-link>
 
-          <div
-            v-show="isProductMenuOpen || showDropdown"
-            class="absolute w-full bg-white mt-6 p-6 left-0 right-0 max-h-auto min-h-[207px] border border-[#DEDEDE]"
-          >
-            <ul class="max-w-[630px] mx-auto">
-              <!-- By Need Section -->
-              <li class="flex justify-start items-center mt-0 gap-5">
-                <button
-                  @click="toggleSubMenu('byNeed')"
-                  :class="{
-                    ' flex space-x-5 items-center text-left font-normal font-outfit min-w-[90px] border-r border-[#CFCFCF] pr-[17px]': true,
-                    'text-black/85 font-semibold': subMenuState.byNeed,
-                    'text-black/85': !subMenuState.byNeed,
-                  }"
-                >
-                  <span>By Need</span>
-                  <i class="fa fa-chevron-right text-sm"></i>
-                </button>
-                <ul
-                  v-show="subMenuState.byNeed"
-                  class="flex flex-col pl-4 space-y-[17px]"
-                >
-                  <li class="relative whitespace-nowrap">
-                    <button
-                      @click="toggleSubMenu('healthAndNutrition')"
+              <div
+                v-show="isProductMenuOpen || showDropdown"
+                class="absolute w-full bg-white mt-6 p-6 left-0 right-0 max-h-auto min-h-[207px] border border-[#DEDEDE]"
+              >
+                <ul class="max-w-[630px] mx-auto">
+                  <!-- Loop through the main menu sections -->
+                  <li
+                    v-for="(menu, index) in menus"
+                    :key="index"
+                    class="flex justify-start items-center level-0"
+                  >
+                    <!-- Main Menu Button -->
+                    <router-link
+                      @mouseenter="toggleSubMenu(menu.key)"
+                      @mouseleave="toggleSubMenu(menu.key, false)"
+                      class="min-w-[90px] inline-flex space-x-2 pr-[17px] items-center h-[40px]"
                       :class="{
-                        'min-w-[220px] flex justify-between items-center text-left text-base font-light font-outfit': true,
-                        'text-black/85': !subMenuState.healthAndNutrition,
-                        'text-black/85 font-semibold':
-                          subMenuState.healthAndNutrition,
+                        'text-left font-normal font-outfit hover:font-semibold': true,
+                        'text-black/85 font-semibold': subMenuState[menu.key],
+                        'text-black/85': !subMenuState[menu.key],
+                        'font-bold': $route.path === menu.link, // Apply font-bold when the link is active
                       }"
                     >
-                      <span>Health & Nutrition</span>
-                      <i class="fa fa-chevron-right text-sm ml-5"></i>
-                    </button>
+                      <span>{{ menu.label }}</span>
+                      <i class="fa fa-chevron-right text-sm"></i>
+                    </router-link>
 
+                    <!-- Submenu -->
                     <ul
-                      v-show="subMenuState.healthAndNutrition"
-                      class="ml-4 pl-4 absolute left-full top-0 border-l border-gray-300 flex flex-col space-y-[17px]"
+                      class="flex flex-col pl-4 border-l border-transparent hover:border-[#CFCFCF]"
                     >
                       <li
-                        v-for="item in healthAndNutritionItems"
-                        :key="item"
-                        class="text-gray-500"
+                        v-for="(subMenu, subIndex) in menu.subMenus"
+                        :key="subIndex"
+                        class="relative whitespace-nowrap level-1"
                       >
-                        <button
-                          @click="selectProductCategory(item)"
-                          class="w-full text-left text-base font-outfit"
+                        <!-- Submenu Button -->
+                        <div
+                          @click="toggleSubMenu(subMenu.key)"
+                          class="flex flex-row"
                         >
-                          {{ item }}
-                        </button>
+                          <button
+                            :class="{
+                              'min-w-[220px] flex justify-between items-center text-left text-base font-light font-outfit': true,
+                              'text-black/85': !subMenuState[subMenu.key],
+                              'text-black/85 ': subMenuState[subMenu.key],
+                              'hover:font-semibold': true,
+                            }"
+                          >
+                            <span>{{ subMenu.label }}</span>
+                            <i
+                              class="fa fa-chevron-right text-sm pl-5 pr-2"
+                            ></i>
+                          </button>
+
+                          <!-- Submenu Items -->
+                          <ul
+                            class="pl-4 absolute left-full top-0 border-l border-gray-300 flex flex-col space-y-[12px]"
+                          >
+                            <li
+                              v-for="(item, itemIndex) in subMenu.items"
+                              :key="itemIndex"
+                              class="text-black/85 level-2"
+                            >
+                              <button
+                                @click="selectProductCategory(item)"
+                                class="w-full text-left text-base font-outfit hover:font-bold"
+                              >
+                                {{ item }}
+                              </button>
+                            </li>
+                          </ul>
+                        </div>
                       </li>
                     </ul>
                   </li>
                 </ul>
-              </li>
-
-              <!-- By Type Section -->
-              <li class="flex justify-start items-start mt-0 gap-5">
-                <button
-                  @click="toggleSubMenu('byType')"
-                  :class="{
-                    ' flex space-x-6 items-center text-left font-normal font-outfit min-w-[90px] pt-4 border-r border-[#CFCFCF] pr-[17px]': true,
-                    'text-black/85 font-semibold': subMenuState.byType,
-                    'text-black/85': !subMenuState.byType,
-                  }"
-                >
-                  <span>By Type</span>
-                  <i class="fa fa-chevron-right text-sm"></i>
-                </button>
-                <ul
-                  v-show="subMenuState.byType"
-                  class="flex flex-col pl-4 space-y-[10px]"
-                >
-                  <!-- Beauty Section -->
-                  <li class="relative whitespace-nowrap">
-                    <button
-                      @click="toggleSubMenu('beauty')"
-                      :class="{
-                        'min-w-[220px] flex justify-between items-center text-left pt-4 text-base font-light font-outfit text-black/85': true,
-                        'text-black/85': subMenuState.beauty,
-                      }"
-                    >
-                      <span>Beauty</span>
-                      <i class="fa fa-chevron-right text-sm ml-[30px]"></i>
-                    </button>
-                    <ul
-                      v-show="subMenuState.beauty"
-                      class="ml-4 pl-4 absolute left-full top-0 border-l border-gray-300"
-                    >
-                      <li
-                        v-for="item in beautyItems"
-                        :key="item"
-                        class="text-gray-500" 
-                      >
-                        <button
-                          @click="selectProductCategory(item)"
-                          class="w-full text-left text-base font-outfit"
-                        >
-                          {{ item }}
-                        </button>
-                      </li>
-                    </ul>
-                  </li>
-
-                  <!-- Kitchen Section -->
-                  <li class="relative whitespace-nowrap">
-                    <button
-                      @click="toggleSubMenu('kitchen')"
-                      :class="{
-                        'min-w-[220px] flex justify-between items-center text-left text-base font-light font-outfit text-black/85': true,
-                        'text-black/85': subMenuState.kitchen,
-                      }"
-                    >
-                      <span>Kitchen</span>
-                      <i class="fa fa-chevron-right text-sm ml-5"></i>
-                    </button>
-                    <ul
-                      v-show="subMenuState.kitchen"
-                      class="ml-4 pl-4 absolute left-full top-0 border-l border-gray-300"
-                    >
-                      <li
-                        v-for="item in kitchenItems"
-                        :key="item"
-                        class="text-gray-500"
-                      >
-                        <button
-                          @click="selectProductCategory(item)"
-                          class="w-full text-left text-base font-outfit hover:font-semibold"
-                        >
-                          {{ item }}
-                        </button>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+              </div>
+            </li>
           </div>
-        </div>
 
-        <router-link
-          to="/business-opportunity"
-          class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom"
-        >
-          Business Opportunity
-        </router-link>
-        <router-link
-          to="/wellness-test"
-          class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom"
-        >
-          Wellness Test
-        </router-link>
-      </div>
+          <li>
+            <router-link
+              to="/business-opportunity"
+              class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom"
+            >
+              Business Opportunity
+            </router-link>
+          </li>
+          <li class="">
+            <router-link
+              to="/wellness-test"
+              class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom"
+            >
+              Wellness Test
+            </router-link>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 </template>
@@ -710,44 +694,55 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-// State for toggling the product menu and submenus
+// Dropdown state
 const showDropdown = ref(false);
 const isProductMenuOpen = ref(false);
-const subMenuState = ref({
-  byNeed: false,
-  healthAndNutrition: false,
-  byType: false,
-  beauty: false,
-  kitchen: false,
-});
+const subMenuState = ref({});
 
-// Items for the submenus
-const healthAndNutritionItems = ref([
-  "General Nutrition",
-  "Sports Nutrition",
-  "Weight Management",
-  "Accessory",
+// Dynamic menus with submenu items
+const menus = ref([
+  {
+    key: "byNeed",
+    label: "By Need",
+    subMenus: [
+      {
+        key: "healthAndNutrition",
+        label: "Health & Nutrition",
+        items: [
+          "General Nutrition",
+          "Sports Nutrition",
+          "Weight Management",
+          "Accessory",
+        ],
+      },
+    ],
+  },
+  {
+    key: "byType",
+    label: "By Type",
+    subMenus: [
+      {
+        key: "beauty",
+        label: "Beauty",
+        items: ["Skincare", "Makeup", "Haircare"],
+      },
+      {
+        key: "kitchen",
+        label: "Kitchen",
+        items: ["Cookware", "Utensils", "Appliances"],
+      },
+    ],
+  },
 ]);
-// const beautyItems = ref(["Skincare", "Makeup", "Haircare"]);
-// const kitchenItems = ref(["Cookware", "Utensils", "Appliances"]);
 
 // Timer reference for closeDropdown delay
 let closeDropdownTimer = null;
 
-// Methods for dropdown and submenu functionality
-const toggleProductMenu = () => {
-  isProductMenuOpen.value = !isProductMenuOpen.value;
-};
-
+// Methods
 const toggleSubMenu = (menuKey) => {
   subMenuState.value[menuKey] = !subMenuState.value[menuKey];
 };
 
-const selectProductCategory = (item) => {
-  console.log("Selected category:", item);
-};
-
-// Hover functionality
 const openDropdown = () => {
   clearTimeout(closeDropdownTimer);
   showDropdown.value = true;
@@ -763,19 +758,23 @@ const delayedCloseDropdown = () => {
   }, 300);
 };
 
+const selectProductCategory = (item) => {
+  console.log("Selected category:", item);
+};
+
 // Shopping cart functionality
 const cartItems = ref([
   {
     id: 1,
     name: "Shape Shift Meal Replacement Powder 500g",
-    image: "https://example.com/item1.jpg",
+    image: "../assets/ProductImg.png",
     quantity: 1,
     price: 250.0,
   },
   {
     id: 2,
     name: "Shape Shift Meat Replacement Powder 500g",
-    image: "https://example.com/item2.jpg",
+    image: "../assets/ProductImg.png",
     quantity: 1,
     price: 1252.0,
   },
@@ -792,10 +791,12 @@ const closeCart = () => {
 const removeFromCart = (itemId) => {
   cartItems.value = cartItems.value.filter((item) => item.id !== itemId);
 };
+
 const router = useRouter();
 const goToLogin = () => {
   router.push("/login");
 };
+const isMenuOpen = ref(false);
 </script>
 
 <!-- -------------------------------for mobile ------------------------------>
@@ -803,19 +804,7 @@ const goToLogin = () => {
 export default {
   data() {
     return {
-      isProductMenuOpen: false,
-      subMenuState: {
-        byNeed: false,
-        healthAndNutrition: false,
-        byType: false,
-      },
-      healthAndNutritionItems: [
-        "General Nutrition",
-        "Sports Nutrition",
-        "Weight Management",
-        "Accessory",
-      ],
-      byTypeItems: ["Beauty", "Kitchen"],
+      isProductMenuOpen: false, // Menu starts closed
     };
   },
   methods: {
@@ -825,9 +814,27 @@ export default {
     toggleSubMenu(menu) {
       this.subMenuState[menu] = !this.subMenuState[menu];
     },
-    selectProductCategory(category) {},
+    selectProductCategory(category) {
+      // Your select product category logic
+    },
   },
 };
-
-const isMenuOpen = ref(false);
 </script>
+
+<style>
+.level-0 > ul {
+  display: none;
+}
+
+.level-0:hover > ul {
+  display: block;
+}
+
+.level-1 > div > ul {
+  display: none;
+}
+
+.level-1:hover > div > ul {
+  display: block;
+}
+</style>
