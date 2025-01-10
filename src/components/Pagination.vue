@@ -87,24 +87,34 @@ export default {
     pages() {
       const pages = [];
       const half = Math.floor(this.maxVisiblePages / 2);
-      const start = Math.max(1, this.currentPage - half);
-      const end = Math.min(this.totalPages, start + this.maxVisiblePages - 1);
+      let start = Math.max(1, this.currentPage - half);
+      let end = Math.min(this.totalPages, start + this.maxVisiblePages - 1);
+
+      // Adjust start if the range near the end doesn't fill maxVisiblePages
+      if (end - start + 1 < this.maxVisiblePages) {
+        start = Math.max(1, end - this.maxVisiblePages + 1);
+      }
+
       for (let i = start; i <= end; i++) {
         pages.push(i);
       }
       return pages;
     },
     hasGap() {
-      return this.currentPage + this.maxVisiblePages < this.totalPages;
+      // Ensure gap detection checks the last page of `pages` and `totalPages`
+      return this.pages[this.pages.length - 1] < this.totalPages - 1;
     },
     lastPages() {
       const lastPages = [];
-      const start = Math.max(this.totalPages - 1, 2); 
-      for (let i = start; i <= this.totalPages; i++) {
-        lastPages.push(i);
+      // Only compute last pages if a gap exists
+      if (this.hasGap) {
+        for (let i = Math.max(this.totalPages - 1, this.pages[this.pages.length - 1] + 1); i <= this.totalPages; i++) {
+          lastPages.push(i);
+        }
       }
       return lastPages;
     },
   },
 };
 </script>
+
