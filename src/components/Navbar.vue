@@ -88,8 +88,8 @@
       <div class="flex lg:gap-[20px] sm:gap-6 items-center">
         <!-- Search Icon -->
         <div class="flex items-center border-r-2 lg:border-none px-2 lg:px-0">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"
-            class="cursor-pointer">
+          <svg @click="toggleSearch" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+            fill="none" class="cursor-pointer">
             <path fill-rule="evenodd" clip-rule="evenodd"
               d="M19.0281 18.1545L23.8278 22.9553L22.8385 23.9446L18.0283 19.1345C16.404 20.4738 14.3252 21.1342 12.2258 20.9777C10.1263 20.8213 8.16839 19.8601 6.76057 18.2948C5.35275 16.7294 4.60382 14.6809 4.67006 12.5767C4.73631 10.4724 5.61262 8.47507 7.11612 7.0014C8.61961 5.52773 10.6341 4.69161 12.7393 4.66753C14.8444 4.64345 16.8775 5.43327 18.4144 6.87216C19.9512 8.31106 20.8729 10.2879 20.9873 12.39C21.1017 14.4922 20.3998 16.5573 19.0281 18.1545ZM19.5998 12.8333C19.5998 11.0387 18.8869 9.31753 17.6179 8.04853C16.3489 6.77954 14.6278 6.06662 12.8331 6.06662C11.0385 6.06662 9.31737 6.77954 8.04838 8.04853C6.77938 9.31753 6.06647 11.0387 6.06647 12.8333C6.06647 14.6279 6.77938 16.349 8.04838 17.618C9.31737 18.887 11.0385 19.6 12.8331 19.6C14.6278 19.6 16.3489 18.887 17.6179 17.618C18.8869 16.349 19.5998 14.6279 19.5998 12.8333Z"
               fill="#8C8C8C" />
@@ -132,16 +132,16 @@
     <!-- Container for the background blur -->
     <div v-if="openCartVisible"
       class="inset-0 fixed z-10 bg-white bg-opacity-30 backdrop-blur-sm transition-all duration-300 ease-in-out">
-      <div class="fixed top-0 right-0 bg-white max-w-1/2 h-[calc(100vh)] overflow-y-auto py-[40px] lg:py-[85px]"
+      <div class="fixed top-0 right-0 bg-white max-w-1/2 h-[calc(100vh)] overflow-y-auto py-[20px] lg:py-[85px]"
         style="scrollbar-width: none; -ms-overflow-style: none" id="my-cart">
-        <div class="relative w-full h-full">
+        <div class="relative px-[10px] lg:w-full h-full">
           <div
-            class="flex justify-between items-center mb-5 lg:ml-[84px] lg:mr-[130px] px-[20px] border-b-[3px] border-[#000000]">
+            class="flex justify-between mb-4 items-center lg:ml-[83px] lg:mr-[120px] border-b-[3px] border-[#000000]">
             <h3
-              class="text-[24px] lg:text-[26px] font-normal font-outfit text-[#000] leading-[32px] sm:leading-[73.701px]">
+              class="text-[20px] lg:text-[26px] font-normal font-outfit text-[#000] leading-[30px] lg:leading-[60.732px]">
               Shopping Cart
             </h3>
-            <button @click="closeCart" class="h-auto text-center text-[#000000] hover:text-gray-800 focus:outline-none">
+            <button @click="closeCart" class="text-center text-[#000000] hover:text-gray-800 focus:outline-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 class="text-center lg:right-0 right-[-20px]">
                 <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -149,72 +149,111 @@
               </svg>
             </button>
           </div>
+
           <div v-for="item in cartItems" :key="item.id">
-            <div class="flex items-center justify-between px-[20px] lg:ml-[5px] lg:pl-[86.13px] lg:pr-[150px] mb-3">
+            <div class="flex items-center justify-between lg:ml-[5px] lg:pl-[81.13px] lg:pr-[120px] mb-3">
               <div class="flex items-center">
-                <div class="w-[90px] h-[110px] lg:w-[156.217px] lg:h-[172.811px] border-[0.143px] border-[#000000]">
+                <div class="w-[76px] h-[83px] lg:w-[156.217px] lg:h-[172.811px] border-[0.143px] border-[#000000]">
                   <img :src="item.image" alt="Item image" class="w-full h-full object-cover rounded-lg" />
                 </div>
-                <div class="text-left pl-[20px] lg:pl-[40.05px]">
-                  <p class="text-black/85 text-[16px] lg:text-[20.6px] font-normal font-outfit break-words">
+                <div class="text-left w-[250px] lg:w-full pl-[10px] lg:pl-[40.05px]">
+                  <p
+                    class="text-black/85 lg:block hidden text-[16px] lg:text-[20.6px] font-normal font-outfit break-words">
                     {{ item.name }}
                   </p>
-                  <p class="text-black/85 text-[16px] lg:text-[20.6px] font-light font-outfit break-words">
-                    {{ item.title }}
+                  <p style="line-height: normal;"
+                    class="flex justify-center items-center text-black/85 text-[16px] lg:text-[20.6px] font-light font-outfit break-words">
+                    <span>{{ item.title }}</span>
+                    <span class="sm:block lg:hidden text-red-500 hover:text-red-600 cursor-pointer"
+                      @click="removeFromCart(item.id)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 17 19" fill="none">
+                        <path d="M6.625 8.5V14.125" stroke="#E43800" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M10.375 8.5V14.125" stroke="#E43800" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M1 4.75H16" stroke="#E43800" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                          d="M2.875 4.75H8.5H14.125V15.0625C14.125 16.6158 12.8658 17.875 11.3125 17.875H5.6875C4.1342 17.875 2.875 16.6158 2.875 15.0625V4.75Z"
+                          stroke="#E43800" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                          d="M5.6875 2.875C5.6875 1.83947 6.52697 1 7.5625 1H9.4375C10.4731 1 11.3125 1.83947 11.3125 2.875V4.75H5.6875V2.875Z"
+                          stroke="#E43800" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
                   </p>
-                  <p class="flex justify-start items-center text-[12px] lg:text-[13.794px]">
+
+                  <p style="line-height: normal;"
+                    class="text-[#727272] flex justify-start items-center text-[12px] lg:text-[13.794px]">
                     <span class="w-[10px] h-[10px] rounded-full mr-[6.23px] lg:w-[15.52px] lg:h-[15.52px] bg-[#a29f95]">
                     </span>
                     {{ item.productFlavour }}
                   </p>
 
-                  <p class="flex justify-between items-center pt-[8px]">
-                    <span class="text-[14px] lg:text-[17px] leading-[24px]">Quantity - {{ item.quantity }}</span>
+                  <div class="flex justify-between items-center py-[5px] ">
+                    <div class="flex gap-3">
+                      <p style="line-height: normal;"
+                        class="text-[13px] lg:text-[16px] text-center font-normal font-outfit">
+                        Quantity:</p>
+                      <div class="flex justify-between items-center border border-black rounded">
+                        <!-- Decrease Quantity Button -->
+                        <button class="w-6 h-6 flex justify-center items-center text-gray-800"
+                          @click="decreaseQuantity(item)" aria-label="Decrease quantity">
+                          <!-- Decrease Quantity Icon -->
+                          <svg xmlns="http://www.w3.org/2000/svg" width="7" height="2" viewBox="0 0 9 2" fill="none"
+                            class="w-4 h-4">
+                            <path
+                              d="M8.8125 0.4375H0.1875C0.0839062 0.4375 0 0.521406 0 0.625V1.375C0 1.47859 0.0839062 1.5625 0.1875 1.5625H8.8125C8.91609 1.5625 9 1.47859 9 1.375V0.625C9 0.521406 8.91609 0.4375 8.8125 0.4375Z"
+                              fill="black" fill-opacity="0.85" />
+                          </svg>
+                        </button>
 
-                    <span>Rs. <span class="">{{ item.totalPrice }}</span></span>
-                  </p>
+                        <span class="text-[16px] font-medium font-outfit px-[5px]">{{ item.quantity }}</span>
+
+                        <button class="w-6 h-6 flex justify-center items-center text-gray-800"
+                          @click="increaseQuantity(item)" aria-label="Increase quantity">
+                          <!-- Increase Quantity Icon -->
+                          <svg xmlns="http://www.w3.org/2000/svg" width="9" height="6" viewBox="0 0 11 7" fill="none"
+                            class="w-4 h-4">
+                            <path
+                              d="M9.8125 3.00548H6.0625V0.156139C6.0625 0.077426 5.97859 0.0136719 5.875 0.0136719H5.125C5.02141 0.0136719 4.9375 0.077426 4.9375 0.156139V3.00548H1.1875C1.08391 3.00548 1 3.06924 1 3.14795V3.71782C1 3.79653 1.08391 3.86029 1.1875 3.86029H4.9375V6.70963C4.9375 6.78835 5.02141 6.8521 5.125 6.8521H5.875C5.97859 6.8521 6.0625 6.78835 6.0625 6.70963V3.86029H9.8125C9.91609 3.86029 10 3.79653 10 3.71782V3.14795C10 3.06924 9.91609 3.00548 9.8125 3.00548Z"
+                              fill="black" fill-opacity="0.85" stroke="black" stroke-width="0.0234375" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <p class="inline-flex text-[13px] lg:text-[17px] items-center">
+                      <span class="font-normal font-outfit">Rs. <span class=" font-outfit font-bold">{{
+                        item.price }}</span></span>
+                    </p>
+                  </div>
+                  <button
+                    class="hidden lg:block text-[16px] underline underline-offset-2 text-[#AB0000] hover:text-red-600 cursor-pointer"
+                    @click="removeFromCart(item.id)">
+                    <span>Remove</span>
+                  </button>
                 </div>
               </div>
-              <!-- <span
-                class="text-red-500 hover:text-red-600 cursor-pointer"
-                @click="removeFromCart(item.id)"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M6 18L18 6M6 6l12 12"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span> -->
             </div>
           </div>
           <div class="pt-[52px] flex flex-col justify-center items-center">
             <div
-              class="w-[344px] lg:w-[554px] h-[45px] lg:h-[63px] pl-3.5 lg:pr-[34px]  bg-[#272727] justify-between items-center inline-flex">
-              <div class="text-white/90 text-[16px] lg:text-[26px] font-normal font-outfit">Rs. 4,600</div>
+              class="w-[344px] lg:w-[554px] h-[45px] lg:h-[63px] px-3.5 bg-[#272727] justify-between items-center inline-flex">
+              <div class="text-white/90 text-[16px] lg:text-[26px] font-normal font-outfit">
+                Rs. {{ totalPrice }}
+              </div>
               <div class="justify-start items-center gap-[9px] flex">
-                <div
-                  class="text-white/90 flex items-center gap-2 text-[16px] lg:text-[26px] font-normal font-outfit pr-[10px] ">
-                  Checkout <img src="../assets/Right.png" alt="right" class="w-[25px] h-[25px]"></div>
+                <button @click="toggleCheckout"
+                  class="text-white/90 flex items-center gap-2 text-[16px] lg:text-[26px] font-normal font-outfit ">
+                  Checkout
+                  <img src="../assets/Right.png" alt="right" class="w-[25px] h-[25px] object-cover">
+                </button>
               </div>
             </div>
-
           </div>
-          <div
-            class=" lg:px-0 lg:pl-[84px] lg:pr-[83px] flex justify-end items-end sm:items-start  pb-[60px]">
-            <router-link @click="close"
-              class="flex lg:pb-[80px] pr-[12px] lg:pr-0 flex-row items-end justify-end text-[16px] lg:text-[26px] text-black/85 font-normal font-outfit underline underline-offset-8 py-2 focus:outline-none">
+
+          <div class="  lg:mr-[65px] flex justify-end items-end sm:items-start pb-[60px]">
+            <router-link @click=""
+              class="flex lg:pb-[80px] lg:pr-0 flex-row items-end justify-end text-[16px] lg:text-[26px] text-black/85 font-normal font-outfit underline underline-offset-8 py-2 focus:outline-none">
               Continue Shopping
-              <svg xmlns="http://www.w3.org/2000/svg" class=" w-4 pt-[6px] lg:w-8 lg:h-8 text-gray-500"
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 pt-[6px] lg:w-8 lg:h-8 text-gray-500"
                 viewBox="0 0 25 24" fill="none">
                 <mask id="mask0_1_6547" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25"
                   height="23.469">
@@ -231,7 +270,6 @@
         </div>
       </div>
     </div>
-
     <!-- Navigation Links -->
     <div class="page-width">
       <!-- Mobile Navbar -->
@@ -259,7 +297,6 @@
               Our Story
             </router-link>
           </li>
-
           <!-- Products Dropdown -->
           <li>
             <div @click="toggleProductMenu"
@@ -363,7 +400,6 @@
           </router-link>
         </div>
       </div>
-
       <!-- Large Screen Navbar -->
       <nav>
         <ul class="list-none hidden lg:flex max-w-full mx-auto items-center space-x-20">
@@ -373,14 +409,13 @@
               Our Story
             </router-link>
           </li>
-
           <div @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown">
             <li>
               <router-link to="/products" :class="{
                 'text-black/85': !isProductMenuOpen && !showDropdown,
                 'text-black': isProductMenuOpen || showDropdown,
               }" class="flex text-[15px] font-normal font-outfit tracking-[0.75px] hover:text-shadow-custom"
-                @click.prevent="toggleProductMenu">
+                >
                 Products
               </router-link>
 
@@ -445,8 +480,6 @@
               </div>
             </li>
           </div>
-
-
           <li>
             <router-link to="/business-opportunity"
               class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom">
@@ -466,13 +499,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import ProductImage from "../assets/ProductImg.png";
+import { useSearchPopup } from "../compossable/useSearchPopup";
 
 // Dropdown state
 const showDropdown = ref(false);
 const subMenuState = ref({});
+
+////////////////////////////////////////// Search Popup Methods //////////////////////////////////////////////////
+const { toggleSearch } = useSearchPopup();
 
 // Dynamic menus with submenu items
 const menus = ref([
@@ -545,46 +582,44 @@ const cartItems = ref([
     name: "Shape Shift",
     title: "Meal Replacement Powder 500g",
     image: ProductImage,
-    quantity: 1,
     price: 250.0,
+    quantity: 1,
   },
   {
-    id: 1,
-    productFlavour: "Banana Caramel Flavour",
+    id: 2,
+    productFlavour: "Vanilla Flavour",
     name: "Shape Shift",
     title: "Meal Replacement Powder 500g",
     image: ProductImage,
-    quantity: 1,
     price: 250.0,
+    quantity: 1,
   },
   {
-    id: 1,
-    productFlavour: "Banana Caramel Flavour",
+    id: 3,
+    productFlavour: "Chocolate Flavour",
     name: "Shape Shift",
     title: "Meal Replacement Powder 500g",
     image: ProductImage,
-    quantity: 1,
     price: 250.0,
-  },
-  {
-    id: 1,
-    productFlavour: "Banana Caramel Flavour",
-    name: "Shape Shift",
-    title: "Meal Replacement Powder 500g",
-    image: ProductImage,
     quantity: 1,
-    price: 250.0,
-  },
-  {
-    id: 1,
-    productFlavour: "Banana Caramel Flavour",
-    name: "Shape Shift",
-    title: "Meal Replacement Powder 500g",
-    image: ProductImage,
-    quantity: 1,
-    price: 250.0,
   },
 ]);
+
+const decreaseQuantity = (item) => {
+  const cartItem = cartItems.value.find((cartItem) => cartItem.id === item.id);
+  if (cartItem && cartItem.quantity > 1) {
+    cartItem.quantity--;
+    updateCartItemPrice(cartItem.id);
+  }
+};
+
+const increaseQuantity = (item) => {
+  const cartItem = cartItems.value.find((cartItem) => cartItem.id === item.id);
+  if (cartItem) {
+    cartItem.quantity++;
+    updateCartItemPrice(cartItem.id);
+  }
+};
 
 const updateCartItemPrice = (itemId) => {
   const item = cartItems.value.find((item) => item.id === itemId);
@@ -593,8 +628,12 @@ const updateCartItemPrice = (itemId) => {
   }
 };
 
-cartItems.value.forEach((item) => {
-  item.totalPrice = item.price * item.quantity;
+// Initialize totalPrice for all items
+const totalPrice = computed(() => {
+  return cartItems.value.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 });
 
 const openCartVisible = ref(false);
@@ -615,8 +654,15 @@ const router = useRouter();
 const goToLogin = () => {
   router.push("/login");
 };
+const toggleCheckout = () => {
+  openCartVisible.value = false;
+  router.push("/checkout-form");
+};
 const isMenuOpen = ref(false);
+
+
 </script>
+
 
 <!-- -------------------------------for mobile ------------------------------>
 <script>

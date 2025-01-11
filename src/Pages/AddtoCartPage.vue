@@ -1,9 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import AddCart1 from "../assets/add-cart1.png";
-import AddCart2 from "../assets/add-cart2.png";
-import AddCart3 from "../assets/add-cart3.png";
-import AddCart4 from "../assets/add-cart4.png";
+
 
 ////////////////////////////// category images ///////////////////////////////////////
 import wishImg from "../assets/wishlist.png"

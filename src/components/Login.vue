@@ -1,16 +1,17 @@
 <template>
   <div class="absolute inset-0 flex items-center justify-center bg-gray-100">
-    <div class="w-full max-w-[450px] p-6 bg-[#FFFFFF] rounded shadow-md relative">
+    <div
+      class="w-full max-w-[450px] p-6 bg-[#FFFFFF] rounded shadow-md relative"
+    >
       <div class="flex justify-center mb-6">
-        <div
-          class="h-[24px] w-[24px] flex items-center justify-center"
-        >
+        <div class="h-[24px] w-[24px] flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
+            @click="toggleTab"
           >
             <circle
               cx="12"
@@ -35,47 +36,60 @@
         Sign in
       </h2>
       <div class="flex items-center justify-center space-x-6 mb-6">
-        <button
-          :class="tab === 'ma' ? 'text-black font-semibold border-none outline-none' : 'text-black/85'"
-          @click="tab = 'ma'"
-          class="focus:outline-none bg-white border-none"
-        >
-          MA No.
-        </button>
-        <svg
-          :class="tab === 'mobile' ? 'text-blue-500' : 'text-black/85'"
-          xmlns="http://www.w3.org/2000/svg"
-          width="94"
-          height="70"
-          viewBox="0 0 94 70"
-          class="transition-all duration-300"
-          fill="none"
-        >
-          <path
-            d="M64.3333 23H51.6667C48.3073 23 45.0854 24.317 42.71 26.6612C40.3345 29.0054 39 32.1848 39 35.5C39 38.8152 40.3345 41.9946 42.71 44.3388C45.0854 46.683 48.3073 48 51.6667 48H64.3333C67.6927 48 70.9146 46.683 73.29 44.3388C75.6655 41.9946 77 38.8152 77 35.5C77 32.1848 75.6655 29.0054 73.29 26.6612C70.9146 24.317 67.6927 23 64.3333 23Z"
-            fill="white"
-            stroke="black"
-            stroke-opacity="0.85"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M52 42C55.3137 42 58 39.0899 58 35.5C58 31.9101 55.3137 29 52 29C48.6863 29 46 31.9101 46 35.5C46 39.0899 48.6863 42 52 42Z"
-            fill="black"
-            fill-opacity="0.85"
-          />
-        </svg>
-        <button
-          :class="
-            tab === 'mobile' ? 'text-black font-semibold border-none outline-none' : 'text-black/85'
-          "
-          @click="tab = 'mobile'"
-          class="focus:outline-none bg-white border-none"
-        >
-          Mobile No.
-        </button>
-      </div>
+    <!-- MA No. Button -->
+    <button
+      :class="
+        tab === 'ma'
+          ? 'text-black font-semibold border-none outline-none'
+          : 'text-black/85 border-none outline-none'
+      "
+      @click="setTab('ma')"
+      class="focus:outline-none bg-white border-none"
+    >
+      MA No.
+    </button>
+
+    <!-- SVG -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="94"
+      height="70"
+      viewBox="0 0 94 70"
+      class="transition-all duration-300 cursor-pointer"
+      fill="none"
+      @click="toggleTab"
+    >
+      <path
+        :d="isToggled ? toggledPath : defaultPath"
+        fill="white"
+        stroke="black"
+        stroke-opacity="0.85"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle
+        :cx="tab === 'mobile' ? '66' : '50'" 
+        cy="35"
+        r="6"
+        fill="black"
+        fill-opacity="0.85"
+      />
+    </svg>
+
+    <!-- Mobile No. Button -->
+    <button
+      :class="
+        tab === 'mobile'
+          ? 'text-black font-semibold border-none outline-none'
+          : 'text-black/85 border-none outline-none'
+      "
+      @click="setTab('mobile')"
+      class="focus:outline-none bg-white border-none"
+    >
+      Mobile No.
+    </button>
+  </div>
       <form @submit.prevent="login">
         <div v-if="tab === 'ma'">
           <label for="maNumber" class="sr-only">MA No.</label>
@@ -179,6 +193,11 @@ export default {
         mobile: "",
         password: "",
       },
+      isToggled: false,
+      defaultPath:
+        "M64.3333 23H51.6667C48.3073 23 45.0854 24.317 42.71 26.6612C40.3345 29.0054 39 32.1848 39 35.5C39 38.8152 40.3345 41.9946 42.71 44.3388C45.0854 46.683 48.3073 48 51.6667 48H64.3333C67.6927 48 70.9146 46.683 73.29 44.3388C75.6655 41.9946 77 38.8152 77 35.5C77 32.1848 75.6655 29.0054 73.29 26.6612C70.9146 24.317 67.6927 23 64.3333 23Z",
+      toggledPath:
+        "M64.3333 23H51.6667C48.3073 23 45.0854 24.317 42.71 26.6612C40.3345 29.0054 39 32.1848 39 35.5C39 38.8152 40.3345 41.9946 42.71 44.3388C45.0854 46.683 48.3073 48 51.6667 48H64.3333C67.6927 48 70.9146 46.683 73.29 44.3388C75.6655 41.9946 77 38.8152 77 35.5C77 32.1848 75.6655 29.0054 73.29 26.6612C70.9146 24.317 67.6927 23 64.3333 23Z",
     };
   },
   methods: {
@@ -190,6 +209,15 @@ export default {
       } else {
         alert("Please fill in all fields");
       }
+    },
+
+    setTab(selectedTab) {
+      this.tab = selectedTab;
+      this.isToggled = selectedTab === "mobile"; 
+    },
+    toggleTab() {
+      this.tab = this.tab === "ma" ? "mobile" : "ma";
+      this.isToggled = !this.isToggled; // Toggle the SVG state when switching tabs
     },
   },
 };

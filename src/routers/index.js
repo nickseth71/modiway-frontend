@@ -11,6 +11,7 @@ import BlogPage from "../Pages/BlogPage.vue";
 import BlogArticlePage from "../Pages/BlogArticlePage.vue";
 import Login from "../components/Login.vue";
 import ResourcesPage from "../Pages/ResourcesPage.vue";
+import CheckoutFormPage from "../Pages/Checkout-formPage.vue";
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
         name: "AddCart",
         component: AddtoCartPage,
         meta: { requiresAuth: true },
+      },
+      {
+        path:"checkout-form",
+        name:"CheckOutForm",
+        component:CheckoutFormPage
       },
       { path: "ourstory", name: "OurStoryPage", component: OurStoryPage },
       {

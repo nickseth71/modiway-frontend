@@ -1,6 +1,15 @@
 <template>
-  <router-view /> 
+  <router-view />
+  <SearchPopup />
 </template>
 
-<script setup lang="ts">
+<script>
+import { provideSearchPopup } from './compossable/useSearchPopup';
+import SearchPopup from './components/SearchPopup.vue';
+
+export default {
+  setup() {
+    provideSearchPopup();
+  }
+}
 </script>
