@@ -175,7 +175,7 @@
             </li>
             <li>
               <router-link
-                to="#"
+                to="/privacy-policy"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Privacy Policy</router-link
               >
@@ -245,14 +245,14 @@
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Business Opportunity</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Find an Advisor</router-link
               >
             </li>
@@ -294,28 +294,28 @@
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Our Story</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Wellness</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Beauty</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Kitchen</router-link
               >
             </li>
@@ -357,28 +357,28 @@
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Facebook</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Instagram</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >YouTube</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >LinkedIn</router-link
               >
             </li>
@@ -419,42 +419,42 @@
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Terms & Conditions</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >FAQs</router-link
               >
             </li>
             <li>
               <router-link
-                to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                to="/privacy-policy"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Privacy Policy</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Policy & Compliance</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Cancellation & Return Policy</router-link
               >
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
                 >Contact Us</router-link
               >
             </li>

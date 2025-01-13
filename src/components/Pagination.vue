@@ -40,7 +40,7 @@
   <nav aria-label="Pagination Navigation" class="lg:hidden flex items-center justify-center">
     <button :disabled="currentPage === 1" @click="$emit('change-page', currentPage - 1)"
       class="py-2 px-2 text-sm md:text-base text-[#1E1E1E] cursor-pointer disabled:text-[#1E1E1E] focus:outline-none">
-      <i class="fas fa-arrow-left pr-[3px]"></i>Previous
+      Previous
     </button>
     <ul class="flex flex-wrap gap-2 justify-center md:gap-4">
       <li v-for="page in pages" :key="page"
@@ -61,7 +61,7 @@
     </ul>
     <button :disabled="currentPage === totalPages" @click="$emit('change-page', currentPage + 1)"
       class="py-2 px-2 text-sm md:text-base text-[#1E1E1E] cursor-pointer disabled:text-[#1E1E1E] focus:outline-none">
-      Next <i class="fas fa-arrow-right pl-[3px]"></i>
+      Next 
     </button>
   </nav>
 </template>

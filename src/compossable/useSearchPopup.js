@@ -1,10 +1,33 @@
 import { reactive, computed, provide, inject } from "vue";
+import MealReplacementImg from "../assets/ProductImg.png";
+import Fliplock from "../assets/Flip-lock.png";
 
 const state = reactive({
   isSearchOpen: false,
   query: "",
-  suggestions: ["Lorem ipsum", "Dolor sit amet", "Consectetur", "Adipiscing elit"],
-  products: ["Laptop", "Lamp", "Chair", "Table", "Desktop"],
+  products: [
+    {title:"Banana Caramel Flavour",
+      name: "Shape Shift Meal Replacement Powder 500g",
+      price: "1,252.00",
+      image: MealReplacementImg,
+    },
+    {
+      name: "SoulChef Fliplock Airtight 4 Piece Stackable Containers",
+      price: "1,252.00",
+      image: Fliplock,
+    },
+    {title:"Banana Caramel Flavour",
+      name: "Shope Shift Meal Replacement Powder 500g",
+      price: "1,252.00",
+      image: MealReplacementImg,
+    },
+    {
+      name: "SoulChef Fliplock Airtight 4 Piece Stackable Containers",
+      price: "1,252.00",
+      image: Fliplock,
+    },
+    // Add more products here
+  ],
   filteredProducts: [],
 });
 
@@ -19,9 +42,15 @@ export function useSearchPopup() {
 
   const searchProducts = () => {
     const searchTerm = state.query.toLowerCase();
-    state.filteredProducts = state.products.filter((product) =>
-      product.toLowerCase().includes(searchTerm)
-    );
+    
+    
+    if (searchTerm === "") {
+      state.filteredProducts = [];
+    } else {
+      state.filteredProducts = state.products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm)
+      );
+    }
   };
 
   return {
@@ -31,7 +60,6 @@ export function useSearchPopup() {
       get: () => state.query,
       set: (value) => (state.query = value),
     }),
-    suggestions: computed(() => state.suggestions),
     filteredProducts: computed(() => state.filteredProducts),
     searchProducts,
   };

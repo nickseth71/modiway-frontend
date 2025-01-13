@@ -12,6 +12,9 @@ import BlogArticlePage from "../Pages/BlogArticlePage.vue";
 import Login from "../components/Login.vue";
 import ResourcesPage from "../Pages/ResourcesPage.vue";
 import CheckoutFormPage from "../Pages/Checkout-formPage.vue";
+import Register from "../components/Register.vue";
+import PrivacyPolicyPage from "../Pages/PrivacyPolicyPage.vue";
+import VideoListingPage from "../Pages/VideoListingPage.vue";
 
 const routes = [
   {
@@ -27,6 +30,9 @@ const routes = [
         component: BlogArticlePage,
       },
       { path: "resources", name: "ResourcesPage", component: ResourcesPage },
+      { path: "video-listing", name: "VideoListingPage", component: VideoListingPage },
+
+
       {
         path: "add-cart",
         name: "AddCart",
@@ -57,6 +63,16 @@ const routes = [
         component: WellnessTestPage,
         meta: { requiresAuth: true },
       },
+      {
+        path:"register",
+        name:"Register",
+        component:Register
+      },
+      {
+        path:"privacy-policy",
+        name:"PrivacyPolicyPage",
+        component:PrivacyPolicyPage
+      }
     ],
   },
   {
@@ -64,8 +80,8 @@ const routes = [
     name: "Login",
     component: Login,
   },
+  
 ];
-
 const router = createRouter({
   history: createWebHistory(),
   routes,

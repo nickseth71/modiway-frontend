@@ -156,7 +156,7 @@
         <p class="mt-[20px] text-[13px] font-normal font-outfit text-[#000000]">
           Not an Advisor?
           <button
-            href="#"
+            @click="navigateToRegister"
             class="w-full mt-[10px] flex justify-center font-outfit font-normal text-black/85 text-[13px] underline underline-offset-4"
           >
             Register Now
@@ -184,7 +184,10 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
+import Register from './Register.vue';
 export default {
+  
   data() {
     return {
       tab: "ma",
@@ -217,8 +220,13 @@ export default {
     },
     toggleTab() {
       this.tab = this.tab === "ma" ? "mobile" : "ma";
-      this.isToggled = !this.isToggled; // Toggle the SVG state when switching tabs
+      this.isToggled = !this.isToggled; 
     },
+    navigateToRegister() {
+      this.$router.push('/register'); 
+    },
+
+
   },
 };
 </script>

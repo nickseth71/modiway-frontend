@@ -14,6 +14,9 @@ export default {
       textShadow: {
         'custom': '0.5px 0 0 black',
       },
+      zIndex: {
+        '100': '100',
+      }
     },
   },
   plugins: [

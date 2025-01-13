@@ -1,53 +1,69 @@
 <script setup>
 import { ref } from "vue";
+import AddCart1 from "../assets/add-cart1.png";
+import AddCart2 from "../assets/add-cart2.png";
+import AddCart3 from "../assets/add-cart3.png";
+import AddCart4 from "../assets/add-cart4.png";
 
+/////////////////////////////// Cart Items ///////////////////////////////////////
+const cartItems = ref([
+  { src: AddCart1, alt: "Cart img 1" },
+  { src: AddCart2, alt: "Cart img 2" },
+  { src: AddCart3, alt: "Cart img 3" },
+  { src: AddCart4, alt: "Cart img 4" },
+]);
 
-////////////////////////////// category images ///////////////////////////////////////
-import wishImg from "../assets/wishlist.png"
+const selectedImage = ref(null); // Stores the selected image for popup
+
+const openPopup = (item) => {
+  selectedImage.value = item; // Set the clicked image as the selected image
+};
+
+const closePopup = () => {
+  selectedImage.value = null; // Clear the selected image to close the popup
+};
+
+/////////////////////////////// Other Images and Data ///////////////////////////////////////
+import wishImg from "../assets/wishlist.png";
 import BannerImage from "../assets/banner.png";
 import Review from "../assets/review.png";
 import nextbutton from "../assets/next.png";
 import prevbutton from "../assets/previous.png";
+import ProductImage from "../assets/ProductImg.png";
+import BurnerBox from "../assets/burner-box.png";
 
-//////////////////////////////////////////////////////// product images /////////////////////////////////////////////////
-import ProductImage from "../assets/ProductImg.png"
-import BurnerBox from "../assets/burner-box.png"
-
-// You may like images
 const productImages = ref([
-  { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
-  { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
-  { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
-  { src: ProductImage, alt: "Product img", title: "Mango Flavour", description: "Shape Shift" },
+  {
+    src: ProductImage,
+    alt: "Product img",
+    title: "Mango Flavour",
+    description: "Shape Shift",
+  },
+  {
+    src: ProductImage,
+    alt: "Product img",
+    title: "Mango Flavour",
+    description: "Shape Shift",
+  },
+  {
+    src: ProductImage,
+    alt: "Product img",
+    title: "Mango Flavour",
+    description: "Shape Shift",
+  },
+  {
+    src: ProductImage,
+    alt: "Product img",
+    title: "Mango Flavour",
+    description: "Shape Shift",
+  },
 ]);
 
-// Carousel items
-const cartItems = ref([]);
-const isCartOpen = ref(false);
+/////////////////////////////// Touch Events for Carousel ///////////////////////////////////
+const activeIndex = ref(0);
+const startX = ref(0);
+const endX = ref(0);
 
-const addToCart = () => {
-  const product = {
-    id: Date.now(),
-    name: "Plant-Based Protein Powder 500g",
-    image: "product-image.jpg", 
-    price: 2750,
-    quantity: quantity.value,
-    flavor: selectedFlavor.value || "Default",
-  };
-
-  cartItems.value.push(product);
-  isCartOpen.value = true; 
-};
-
-const removeFromCart = (id) => {
-  cartItems.value = cartItems.value.filter(item => item.id !== id); 
-};
-
-const closeCart = () => {
-  isCartOpen.value = false; 
-};
-
-// Touch event handlers
 const handleTouchStart = (event) => {
   startX.value = event.touches[0].clientX;
 };
@@ -61,19 +77,12 @@ const handleTouchEnd = () => {
   if (diff > 50) {
     activeIndex.value = (activeIndex.value + 1) % cartItems.value.length;
   } else if (diff < -50) {
-    activeIndex.value = (activeIndex.value - 1 + cartItems.value.length) % cartItems.value.length;
+    activeIndex.value =
+      (activeIndex.value - 1 + cartItems.value.length) % cartItems.value.length;
   }
 };
 
-// Active carousel index
-const activeIndex = ref(0);
-
-// Touch event variables
-const startX = ref(0);
-const endX = ref(0);
-
-
-// Product details
+/////////////////////////////// Product Details ///////////////////////////////////
 const flavors = ref([
   "Chocolate",
   "Vanilla",
@@ -84,6 +93,7 @@ const flavors = ref([
   "Banana Caramel",
   "Rasmalai",
 ]);
+
 const selectedFlavor = ref(null);
 
 const selectFlavor = (flavor) => {
@@ -101,70 +111,79 @@ const increaseQuantity = () => {
 };
 
 const sections = ref([
-  { title: "Product Description", content: "Nutritional Shake Mix with Protein, Fiber, Probiotics. Enzymes. Vitamins & Minerals Shape Shift offers a delicious and nutritious meal replacement shake packed with high-quality protein and a comprehensive blend of 25 essential vitamins and minerals. It includes added dietary fibres. probiotics. enzymes. and plant-based nutrients, all without refined sugar. Food for special dietary use for weight control/management.", open: false },
+  {
+    title: "Product Description",
+    content:
+      "Nutritional Shake Mix with Protein, Fiber, Probiotics. Enzymes. Vitamins & Minerals Shape Shift offers a delicious and nutritious meal replacement shake packed with high-quality protein and a comprehensive blend of 25 essential vitamins and minerals.",
+    open: false,
+  },
   { title: "Key Benefits", content: "Key benefits here.", open: false },
-  { title: "Recommended Usage Level", content: "Usage level here.", open: false },
-  { title: "Ingredients", content: "Ingredients list here.", open: false },
-  { title: "Allergen Info", content: "Allergen info here.", open: false },
-  { title: "Attention", content: "Attention content here.", open: false },
-  { title: "Storage", content: "Storage details here.", open: false },
-  { title: "Nutritional Information", content: "Nutritional info here.", open: false },
 ]);
 
 const toggleSection = (index) => {
   sections.value[index].open = !sections.value[index].open;
 };
 
+/////////////////////////////// Cards Navigation ///////////////////////////////////
 const cards = ref([
   {
     name: "Nancy",
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
-    badge: "180.88",
+    description:
+      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
     image: Review,
   },
   {
     name: "Nancy",
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
+    description:
+      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
     image: Review,
-  },
-  {
+  },{
     name: "Nancy",
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
+    description:
+      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
     image: Review,
-  },
-  {
+  },{
     name: "Nancy",
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
+    description:
+      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
     image: Review,
-  },
-  {
+  },{
     name: "Nancy",
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
-    description: "Amazing results! Tasty shakes made weight loss simple and sustainable. Tasty shakes made weight loss simple and sustainable.Tasty shakes made weight loss simple and sustainable.",
+    description:
+      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
+    image: Review,
+  },{
+    name: "Nancy",
+    title: "45kg, 9 inches lost in 10 months",
+    heading: "It was a very good experience",
+    description:
+      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
     image: Review,
   },
 ]);
 
-// Methods for navigation
 const currentIndex = ref(0);
+
 const nextCard = () => {
   currentIndex.value = (currentIndex.value + 1) % cards.value.length;
 };
 
 const prevCard = () => {
-  currentIndex.value = (currentIndex.value - 1 + cards.value.length) % cards.value.length;
+  currentIndex.value =
+    (currentIndex.value - 1 + cards.value.length) % cards.value.length;
 };
 
-// Tab data
+/////////////////////////////// Tabs ///////////////////////////////////
 const tabs = ref([
   "Product Description",
   "Key Benefits",
@@ -176,13 +195,18 @@ const tabs = ref([
 const activeTab = ref(0);
 </script>
 
+
 <style scoped></style>
 
 <template>
   <section class="max-w-[100%] mx-auto">
     <section
       class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-6 lg:space-y-0 lg:space-x-[42px] page-width">
-      <!-- Carousel for Small Devices -->
+
+
+      <!------------------------------------------------------- Carousel for Small Devices-------------------------------- -->
+
+
       <div class="lg:hidden">
         <div class="flex flex-row pl-[16px] py-[8px]">
           <p>
@@ -337,14 +361,30 @@ const activeTab = ref(0);
         </div>
       </div>
 
+      <!------------------------------------------------------- Small Device mcode end-------------------------------- -->
+
       <!------------------------------------------------------------------------------- Large Screen --------------------------------------------------- -->
       <!-- First Column: Display Images (for Larger Screens) -->
       <div class="hidden lg:flex gap-6">
-        <div class="lg:grid gap-[14px] grid-cols-2 lg:w-[58%]">
-          <div v-for="(item, index) in cartItems" :key="index" class="flex justify-center">
-            <img :src="item.src" :alt="item.alt" class="object-cover w-full h-auto" />
+       
+          <!-- Image Grid -->
+          <div class="lg:grid gap-[14px] grid-cols-2 lg:w-[58%]">
+            <div v-for="(item, index) in cartItems" :key="index" class="flex justify-center">
+              <img :src="item.src" :alt="item.alt" class="object-cover w-full h-auto cursor-pointer"
+                @click="openPopup(item)" />
+            </div>
           </div>
-        </div>
+
+          <!-- Popup -->
+          <div v-if="selectedImage" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="relative bg-transparent px-2  rounded-lg">
+              <img :src="selectedImage.src" :alt="selectedImage.alt" class="object-contain max-w-full max-h-[100vh]" />
+              <button class="absolute w-8 h-8 top-0 right-0 text-white bg-black/50 rounded-full" @click="closePopup">
+                ✖
+              </button>
+            </div>
+          </div>
+        
 
         <!-- Second Column: Product Information -->
         <div class="w-full lg:w-[45%] space-y-0 px-[15px]">
@@ -481,7 +521,7 @@ const activeTab = ref(0);
           <div v-if="activeTab === 0" class="flex flex-col sm:flex-row">
             <div class="flex-1 py-4  pr-[30px] ">
 
-              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
                 Vitamins & Minerals Shape Shift offers a delicious and nutritious
                 meal replacement shake packed with high-quality protein and a
@@ -490,7 +530,7 @@ const activeTab = ref(0);
                 nutrients, all without refined sugar. Food for special dietary use
                 for weight control/management.
               </p>
-              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
                 Vitamins & Minerals Shape Shift offers a delicious and nutritious
                 meal replacement shake packed with high-quality protein and a
@@ -507,7 +547,7 @@ const activeTab = ref(0);
           <div v-if="activeTab === 1" class="flex flex-col sm:flex-row">
             <div class="flex-1 py-4  pr-[30px] ">
 
-              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
                 Vitamins & Minerals Shape Shift offers a delicious and nutritious
                 meal replacement shake packed with high-quality protein and a
@@ -525,7 +565,7 @@ const activeTab = ref(0);
           <div v-if="activeTab === 2" class="flex flex-col sm:flex-row">
             <div class="flex-1 py-4  pr-[30px] ">
 
-              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
                 Vitamins & Minerals Shape Shift offers a delicious and nutritious
                 meal replacement shake packed with high-quality protein and a
@@ -534,7 +574,7 @@ const activeTab = ref(0);
                 nutrients, all without refined sugar. Food for special dietary use
                 for weight control/management.
               </p>
-              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
                 Vitamins & Minerals Shape Shift offers a delicious and nutritious
                 meal replacement shake packed with high-quality protein and a
@@ -549,9 +589,9 @@ const activeTab = ref(0);
             </div>
           </div>
           <div v-if="activeTab === 3" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4  pr-[30px] ">
+            <div class="flex-1 py-4 pr-[30px] ">
 
-              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
                 Vitamins & Minerals Shape Shift offers a delicious and nutritious
                 meal replacement shake packed with high-quality protein and a
@@ -569,7 +609,7 @@ const activeTab = ref(0);
           <div v-if="activeTab === 4" class="flex flex-col sm:flex-row">
             <div class="flex-1 py-4  pr-[30px] ">
 
-              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
                 Vitamins & Minerals Shape Shift offers a delicious and nutritious
                 meal replacement shake packed with high-quality protein and a
@@ -578,7 +618,7 @@ const activeTab = ref(0);
                 nutrients, all without refined sugar. Food for special dietary use
                 for weight control/management.
               </p>
-              <p class="text-[16px] text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
                 Vitamins & Minerals Shape Shift offers a delicious and nutritious
                 meal replacement shake packed with high-quality protein and a
