@@ -24,13 +24,13 @@
             </div>
 
             <!-- Product List -->
-            <div class="mt-6 w-full">
-                <div class="flex flex-col justify-center items-center page-width">
-                    <ul
-                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1 gap-4 w-full max-h-[500px] overflow-y-auto custom-scrollbar-hide">
-                        <li v-for="(product, index) in filteredProducts" :key="index" :class="[
-                            'flex w-full py-2',
-                            (index === 0 || index % 2 === 0) ? 'bg-transparent' : 'bg-gray-100',
+            <div class="">
+                <div class="mt-10 flex flex-col justify-center items-center">
+                    <div
+                        class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1 gap-4 w-full max-h-[500px] overflow-y-auto custom-scrollbar-hide">
+                        <div v-for="(product, index) in filteredProducts" :key="index" :class="[
+                            'flex w-full py-[27px] px-52',
+                            (index === 0 || index % 2 === 0) ? 'bg-transparent' : 'bg-[#0000000D]',
                             // product.name === 'Shape Shift Meal Replacement Powder 500g' ? 'bg-transparent' : ''
                         ]">
                             <div class="lg:w-[258px] bg-white lg:h-[302px]">
@@ -44,21 +44,21 @@
                                 <button class="mt-2 px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">Add to
                                     cart</button>
                             </div>
-                        </li>
+                        </div>
 
-                    </ul>
+                    </div>
 
                 </div>
             </div>
             <!-- Default Suggestions -->
             <div v-if="showSuggestions" class="mt-6 max-w-4xl mx-auto">
-                <ul class="bg-transparent">
-                    <li class="text-black/85 text-xl font-semibold font-outfit mb-2">Suggestions</li>
-                    <li v-for="suggestion in defaultSuggestions" :key="suggestion"
-                        class="text-black/85 cursor-pointer hover:bg-gray-100 p-2 rounded">
+                <div class="bg-transparent">
+                    <div class="text-black/85 text-xl font-semibold font-outfit mb-2">Suggestions</div>
+                    <div v-for="suggestion in defaultSuggestions" :key="suggestion"
+                        class="text-black/85 cursor-pointer">
                         {{ suggestion }}
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

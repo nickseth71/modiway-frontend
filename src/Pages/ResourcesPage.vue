@@ -50,7 +50,7 @@ import Videos from "../assets/young-woman-drinking-juice-home.png"
           </div>
 
           <!-- Link Section -->
-          <router-link to="/videos" class="text-[15px] font-outfit font-normal text-[#262626] flex items-center gap-2">
+          <router-link to="/video-listing" class="text-[15px] font-outfit font-normal text-[#262626] flex items-center gap-2">
             <span class="underline underline-offset-2">Videos </span>
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
               <mask id="mask0_1_1380" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-1" y="0" width="11"

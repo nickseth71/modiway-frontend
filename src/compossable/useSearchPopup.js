@@ -26,7 +26,6 @@ const state = reactive({
       price: "1,252.00",
       image: Fliplock,
     },
-    // Add more products here
   ],
   filteredProducts: [],
 });
@@ -48,7 +47,8 @@ export function useSearchPopup() {
       state.filteredProducts = [];
     } else {
       state.filteredProducts = state.products.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm)
+        product.name.toLowerCase().includes(searchTerm) ||
+      product.title.toLowerCase().includes(searchTerm)
       );
     }
   };
