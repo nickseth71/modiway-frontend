@@ -1,5 +1,17 @@
 <script setup>
 import { ref } from "vue";
+
+/// Icons 
+
+import vegIcon from "../assets/veg.png";
+import LowGiIcon from "../assets/LowGi.png";
+import PreservativeIcon from "../assets/Preservative.png";
+import NoAddedSugarIcon from "../assets/No-Added-Sugar.png";
+import GlutenFreeIcon from "../assets/Gluten-Free.png";
+import NonGmoIcon from "../assets/Non-GMO.png"
+
+
+
 import AddCart1 from "../assets/add-cart1.png";
 import AddCart2 from "../assets/add-cart2.png";
 import AddCart3 from "../assets/add-cart3.png";
@@ -13,14 +25,14 @@ const cartItems = ref([
   { src: AddCart4, alt: "Cart img 4" },
 ]);
 
-const selectedImage = ref(null); // Stores the selected image for popup
+const selectedCartItem = ref(null);
 
 const openPopup = (item) => {
-  selectedImage.value = item; // Set the clicked image as the selected image
+  selectedCartItem.value = item;
 };
 
 const closePopup = () => {
-  selectedImage.value = null; // Clear the selected image to close the popup
+  selectedCartItem.value = null;
 };
 
 /////////////////////////////// Other Images and Data ///////////////////////////////////////
@@ -31,6 +43,7 @@ import nextbutton from "../assets/next.png";
 import prevbutton from "../assets/previous.png";
 import ProductImage from "../assets/ProductImg.png";
 import BurnerBox from "../assets/burner-box.png";
+import ProductDesImg from "../assets/product-description.png"
 
 const productImages = ref([
   {
@@ -59,17 +72,46 @@ const productImages = ref([
   },
 ]);
 
+///// Icons 
+
+const Icons = ref([
+  {
+    src: LowGiIcon,
+    title: "Low GI"
+  },
+  {
+    src: vegIcon,
+    title: "Vegetarian"
+  },
+  {
+    src: PreservativeIcon,
+    title: "Preservative-Free"
+  },
+  {
+    src: NoAddedSugarIcon,
+    title: "No-Added-Sugar"
+  },
+  {
+    src: GlutenFreeIcon,
+    title: "Gluten Free"
+  },
+  {
+    src: NonGmoIcon,
+    title: "Non GMO"
+  },
+])
+
 /////////////////////////////// Touch Events for Carousel ///////////////////////////////////
 const activeIndex = ref(0);
 const startX = ref(0);
 const endX = ref(0);
 
 const handleTouchStart = (event) => {
-  startX.value = event.touches[0].clientX;
+  startX.value = event.touches[0]?.clientX || 0;
 };
 
 const handleTouchMove = (event) => {
-  endX.value = event.touches[0].clientX;
+  endX.value = event.touches[0]?.clientX || 0;
 };
 
 const handleTouchEnd = () => {
@@ -94,6 +136,17 @@ const flavors = ref([
   "Rasmalai",
 ]);
 
+const flavorColors = {
+  Chocolate: "#D2691E",
+  Vanilla: "#F3E5AB",
+  Mango: "#FFA500",
+  Kulfi: "#C9E5D9",
+  "Rose Kheer": "#FFC0CB",
+  Strawberry: "#FF69B4",
+  "Banana Caramel": "#FFD700",
+  Rasmalai: "#FFFDD0",
+};
+
 const selectedFlavor = ref(null);
 
 const selectFlavor = (flavor) => {
@@ -113,11 +166,32 @@ const increaseQuantity = () => {
 const sections = ref([
   {
     title: "Product Description",
+    src:ProductDesImg,
     content:
       "Nutritional Shake Mix with Protein, Fiber, Probiotics. Enzymes. Vitamins & Minerals Shape Shift offers a delicious and nutritious meal replacement shake packed with high-quality protein and a comprehensive blend of 25 essential vitamins and minerals.",
     open: false,
   },
-  { title: "Key Benefits", content: "Key benefits here.", open: false },
+  { title: "Key Benefits", content: "Nutritional Shake Mix with Protein, Fiber, Probiotics. Enzymes. Vitamins & Minerals Shape Shift offers a delicious and nutritious meal replacement shake packed with high-quality protein and a comprehensive blend of 25 essential vitamins and minerals.", open: false },
+  {
+    title: "Ingredients & Nutritional info",
+    src:ProductDesImg,
+    content:
+      "Nutritional Shake Mix with Protein, Fiber, Probiotics. Enzymes. Vitamins & Minerals Shape Shift offers a delicious and nutritious meal replacement shake packed with high-quality protein and a comprehensive blend of 25 essential vitamins and minerals.",
+    open: false,
+  },
+  {
+    title: "Usage",
+    src:ProductDesImg,
+    content:
+      "Nutritional Shake Mix with Protein, Fiber, Probiotics. Enzymes. Vitamins & Minerals Shape Shift offers a delicious and nutritious meal replacement shake packed with high-quality protein and a comprehensive blend of 25 essential vitamins and minerals.",
+    open: false,
+  },{
+    title: "Attention",
+    src:ProductDesImg,
+    content:
+      "Nutritional Shake Mix with Protein, Fiber, Probiotics. Enzymes. Vitamins & Minerals Shape Shift offers a delicious and nutritious meal replacement shake packed with high-quality protein and a comprehensive blend of 25 essential vitamins and minerals.",
+    open: false,
+  },
 ]);
 
 const toggleSection = (index) => {
@@ -135,34 +209,6 @@ const cards = ref([
     image: Review,
   },
   {
-    name: "Nancy",
-    title: "45kg, 9 inches lost in 10 months",
-    heading: "It was a very good experience",
-    description:
-      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
-    image: Review,
-  },{
-    name: "Nancy",
-    title: "45kg, 9 inches lost in 10 months",
-    heading: "It was a very good experience",
-    description:
-      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
-    image: Review,
-  },{
-    name: "Nancy",
-    title: "45kg, 9 inches lost in 10 months",
-    heading: "It was a very good experience",
-    description:
-      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
-    image: Review,
-  },{
-    name: "Nancy",
-    title: "45kg, 9 inches lost in 10 months",
-    heading: "It was a very good experience",
-    description:
-      "Amazing results! Tasty shakes made weight loss simple and sustainable.",
-    image: Review,
-  },{
     name: "Nancy",
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
@@ -194,6 +240,7 @@ const tabs = ref([
 
 const activeTab = ref(0);
 </script>
+
 
 
 <style scoped></style>
@@ -274,13 +321,13 @@ const activeTab = ref(0);
           <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
               'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
-              selectedFlavor === flavor
-                ? 'bg-[#414042] text-white'
-                : 'text-black/85 hover:border-[#414042]'
-            ]">
+              selectedFlavor === flavor ? 'border-[1.2px] border-black' : ''
+            ]" :style="{ backgroundColor: flavorColors[flavor] }">
               {{ flavor }}
             </div>
           </div>
+
+
 
           <!-- Quantity Selector -->
           <div class="flex items-center gap-4 mt-6">
@@ -337,54 +384,73 @@ const activeTab = ref(0);
             </div>
           </div>
 
+          <div class="flex  items-center gap-[15px]">
+            <div v-for="(item, index) in Icons" :key="index"
+              class="flex flex-col justify-between items-center pt-[68px]">
+              <!-- Icon -->
+              <img :src="item.src" alt="Icon" class="w-[29.061px] h-[29.061px]" />
+              <!-- Title -->
+              <p class="min-w-[32px] text-center text-[9.832px] font-medium font-outfit break-words mt-2"
+                style="word-wrap: break-word;">
+                {{ item.title }}
+              </p>
+            </div>
+          </div>
+
 
           <!-- Accordion Sections -->
           <div class="mt-6 space-y-4">
-            <div v-for="(section, index) in sections" :key="index" class="border-b-[1px] border-[#353535]">
-              <button style="line-height: normal;"
-                class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] font-semibold font-outfit flex justify-between items-center"
-                @click="toggleSection(index)">
-                {{ section.title }}
-                <span :class="{
-                  'rotate-180': section.open,
-                  'rotate-0': !section.open,
-                }" class="transform transition-transform duration-200">
-                  <i class="fas fa-chevron-down"></i>
-                </span>
-              </button>
-              <div v-if="section.open"
-                class="text-[16px] text-black/85 mt-2 pb-[20px] leading-[19.192px] tracking-[0.8px]">
-                {{ section.content }}
+            <div class="mt-6 space-y-4">
+              <div v-for="(section, index) in sections" :key="index">
+                <button style="line-height: normal;"
+                  class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] font-semibold font-outfit flex justify-between items-center"
+                  @click="toggleSection(index)" :class="{
+                    'border-b-[1px] border-[#353535]': !section.open, 
+                    'border-b-[2px] border-[#000]': section.open 
+                  }">
+                  {{ section.title }}
+                  <span :class="{
+                    'rotate-180': section.open,
+                    'rotate-0': !section.open,
+                  }" class="transform transition-transform duration-200">
+                    <i class="fas fa-chevron-down"></i>
+                  </span>
+                </button>
+                <div v-if="section.open"
+                  class="text-[16px] flex flex-col text-black/85 mt-2 pb-[50px] leading-[19.192px] tracking-[0.8px]">
+                  {{ section.content }}
+
+                  <img v-if="section.src" :src="section.src" alt="description" class="w-full h-auto pt-4">
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
 
-      <!------------------------------------------------------- Small Device mcode end-------------------------------- -->
-
       <!------------------------------------------------------------------------------- Large Screen --------------------------------------------------- -->
       <!-- First Column: Display Images (for Larger Screens) -->
       <div class="hidden lg:flex gap-6">
-       
-          <!-- Image Grid -->
-          <div class="lg:grid gap-[14px] grid-cols-2 lg:w-[58%]">
-            <div v-for="(item, index) in cartItems" :key="index" class="flex justify-center">
-              <img :src="item.src" :alt="item.alt" class="object-cover w-full h-auto cursor-pointer"
-                @click="openPopup(item)" />
-            </div>
-          </div>
 
-          <!-- Popup -->
-          <div v-if="selectedImage" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div class="relative bg-transparent px-2  rounded-lg">
-              <img :src="selectedImage.src" :alt="selectedImage.alt" class="object-contain max-w-full max-h-[100vh]" />
-              <button class="absolute w-8 h-8 top-0 right-0 text-white bg-black/50 rounded-full" @click="closePopup">
-                ✖
-              </button>
-            </div>
+        <!-- Image Grid -->
+        <div class="lg:grid gap-[14px] grid-cols-2 lg:w-[58%]">
+          <div v-for="(item, index) in cartItems" :key="index" class="flex justify-center">
+            <img :src="item.src" :alt="item.alt" class="object-cover w-full h-auto cursor-pointer"
+              @click="openPopup(item)" />
           </div>
-        
+        </div>
+
+        <!-- Popup -->
+        <div v-if="selectedImage" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div class="relative bg-transparent px-2  rounded-lg">
+            <img :src="selectedImage.src" :alt="selectedImage.alt" class="object-contain max-w-full max-h-[100vh]" />
+            <button class="absolute w-8 h-8 top-0 right-0 text-white bg-black/50 rounded-full" @click="closePopup">
+              ✖
+            </button>
+          </div>
+        </div>
+
 
         <!-- Second Column: Product Information -->
         <div class="w-full lg:w-[45%] space-y-0 px-[15px]">
@@ -429,13 +495,13 @@ const activeTab = ref(0);
             <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
               <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
                 'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
-                selectedFlavor === flavor
-                  ? 'bg-[#414042] text-white'
-                  : 'text-black/85 hover:border-[#414042]'
-              ]">
+                selectedFlavor === flavor ? 'border-[1.2] border-black' : ''
+              ]" :style="{ backgroundColor: flavorColors[flavor] }">
                 {{ flavor }}
               </div>
             </div>
+
+
 
             <div class="flex items-center gap-4 mt-[34px]">
               <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
@@ -494,6 +560,21 @@ const activeTab = ref(0);
               </div>
             </div>
           </div>
+
+          <div class="flex  items-center gap-[15px]">
+            <div v-for="(item, index) in Icons" :key="index"
+              class="flex flex-col justify-between items-center pt-[68px]">
+              <!-- Icon -->
+              <img :src="item.src" alt="Icon" class="w-[29.061px] h-[29.061px]" />
+              <!-- Title -->
+              <p class="min-w-[32px] text-center text-[9.832px] font-medium font-outfit break-words mt-2"
+                style="word-wrap: break-word;">
+                {{ item.title }}
+              </p>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>
@@ -501,7 +582,7 @@ const activeTab = ref(0);
     <section class="page-width hidden lg:block">
       <div class="mt-[77px] flex flex-col items-center justify-center w-full max-w-[1124px] mx-auto">
         <!-- Tabs -->
-        <div class="flex justify-start space-x-[78px] items-center w-full">
+        <div class="flex justify-between space-x-[78px] items-center w-full">
           <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
             class="relative cursor-pointer text-[#353535] text-[20px] hover:text-black">
             <div class="pb-[10px] border-b-2" :class="{
@@ -518,8 +599,8 @@ const activeTab = ref(0);
 
         <!-- Tab Content -->
         <div class="w-full mt-6">
-          <div v-if="activeTab === 0" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4  pr-[30px] ">
+          <div v-if="activeTab === 0" class="w-full flex gap-[2rem] justify-between flex-col sm:flex-row">
+            <div class="flex-1 py-4  ">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
@@ -540,12 +621,12 @@ const activeTab = ref(0);
                 for weight control/management.
               </p>
             </div>
-            <div class="flex-1 p-4">
+            <div class="flex-1 ">
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>
           <div v-if="activeTab === 1" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4  pr-[30px] ">
+            <div class="flex-1 py-4  ">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
@@ -558,12 +639,10 @@ const activeTab = ref(0);
               </p>
 
             </div>
-            <div class="flex-1 p-4">
-              <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
-            </div>
+
           </div>
           <div v-if="activeTab === 2" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4  pr-[30px] ">
+            <div class="flex-1 py-4">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
@@ -584,12 +663,12 @@ const activeTab = ref(0);
                 for weight control/management.
               </p>
             </div>
-            <div class="flex-1 p-4">
+            <div class="flex-1">
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>
           <div v-if="activeTab === 3" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4 pr-[30px] ">
+            <div class="flex-1 py-4">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
@@ -602,12 +681,12 @@ const activeTab = ref(0);
               </p>
 
             </div>
-            <div class="flex-1 p-4">
+            <div class="flex-1">
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>
           <div v-if="activeTab === 4" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4  pr-[30px] ">
+            <div class="flex-1 py-4">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
                 Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
@@ -628,7 +707,7 @@ const activeTab = ref(0);
                 for weight control/management.
               </p>
             </div>
-            <div class="flex-1 p-4">
+            <div class="flex-1">
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>

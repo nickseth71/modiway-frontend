@@ -48,7 +48,7 @@
             </div>
 
             <!-- Right Section: Order Summary -->
-            <div class="w-full lg:w-[35%] mt-[20px] lg:mt-0 lg:pl-[86px] lg:pt-[80px] flex flex-col justify-between px-[20px]">
+            <div class="w-full lg:w-[35%] lg:mt-0 lg:pl-[86px] pt-[40px] lg:pt-[58px] flex flex-col justify-between px-[20px]">
                 <div>
                     <h3
                         class="text-[16px] lg:text-[20px] font-outfit font-semibold flex justify-between items-center border-b-[3px] border-[#000] mb-[17px]">

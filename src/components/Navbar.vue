@@ -83,7 +83,7 @@
           </defs>
         </svg>
       </div>
-      <!-- toggleSearch -->
+
       <!-- Right Side (Icons) -->
       <div class="flex lg:gap-[20px] sm:gap-6 items-center">
         <!-- Search Icon -->
@@ -149,7 +149,6 @@
               </svg>
             </button>
           </div>
-
           <div v-for="item in cartItems" :key="item.id">
             <div class="flex items-center justify-between lg:ml-[5px] lg:pl-[81.13px] lg:pr-[120px] mb-3">
               <div class="flex items-center">
@@ -162,7 +161,7 @@
                     {{ item.name }}
                   </p>
                   <p style="line-height: normal;"
-                    class="flex justify-center items-center text-black/85 text-[16px] lg:text-[20.6px] font-light font-outfit break-words">
+                    class="flex items-center text-black/85 text-[16px] lg:text-[20.6px] font-light font-outfit break-words">
                     <span>{{ item.title }}</span>
                     <span class="sm:block lg:hidden text-red-500 hover:text-red-600 cursor-pointer"
                       @click="removeFromCart(item.id)">
@@ -179,7 +178,6 @@
                       </svg>
                     </span>
                   </p>
-
                   <p style="line-height: normal;"
                     class="text-[#727272] flex justify-start items-center text-[12px] lg:text-[13.794px]">
                     <span class="w-[10px] h-[10px] rounded-full mr-[6.23px] lg:w-[15.52px] lg:h-[15.52px] bg-[#a29f95]">
@@ -204,9 +202,7 @@
                               fill="black" fill-opacity="0.85" />
                           </svg>
                         </button>
-
                         <span class="text-[16px] font-medium font-outfit px-[5px]">{{ item.quantity }}</span>
-
                         <button class="w-6 h-6 flex justify-center items-center text-gray-800"
                           @click="increaseQuantity(item)" aria-label="Increase quantity">
                           <!-- Increase Quantity Icon -->
@@ -369,7 +365,7 @@
           <li>
             <router-link to="/business-opportunity"
               class="block text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold"
-              :class="{ 'pt-[60px]': isProductMenuOpen}">
+              :class="{ 'pt-[60px]': isProductMenuOpen }">
               Business Opportunity
             </router-link>
           </li>
@@ -414,13 +410,74 @@
               <router-link to="/products" :class="{
                 'text-black/85': !isProductMenuOpen && !showDropdown,
                 'text-black': isProductMenuOpen || showDropdown,
-              }" class="flex text-[15px] font-normal font-outfit tracking-[0.75px] hover:text-shadow-custom"
-                >
+              }" class="flex text-[15px] font-normal font-outfit tracking-[0.75px] hover:text-shadow-custom">
                 Products
               </router-link>
+              
 
+              <!-- <div v-show="isProductMenuOpen || showDropdown"
+                class="absolute w-full mt-6 left-0 right-0 max-h-auto  border border-[#DEDEDE]">
+              
+                <div class="absolute inset-0 bg-white/30 backdrop-blur-md z-0"></div>
+
+                <div class="relative bg-white min-h-[300px] z-10 p-6">
+                 
+                  <div class="max-w-[630px] mx-auto">
+                    <div v-for="(menu, index) in menus" :key="index" class="flex justify-start items-center level-0">
+       
+                      <router-link @mouseenter="toggleSubMenu(menu.key)" @mouseleave="toggleSubMenu(menu.key, false)"
+                        class="min-w-[110px] inline-flex justify-between items-center h-[40px]" :class="{
+                          'text-left font-normal font-outfit hover:font-semibold': true,
+                          'text-black/85 font-semibold': subMenuState[menu.key],
+                          'text-black/85': !subMenuState[menu.key],
+                          'font-bold': $route.path === menu.link || subMenuState[menu.key]
+                        }">
+                        <span class="space-y-[17px]">{{ menu.label }}</span>
+                        <i class="fa fa-chevron-right text-sm pr-[20px]"></i>
+                      </router-link>
+
+                      <div class="flex flex-col pl-4 border-l border-[#CFCFCF]">
+                        <div v-for="(subMenu, subIndex) in menu.subMenus" :key="subIndex"
+                          class="relative whitespace-nowrap level-1">
+                         
+                          <div @mouseenter="toggleSubMenu(subMenu.key)" @mouseleave="toggleSubMenu(subMenu.key, false)"
+                            class="flex flex-row">
+                            <button :class="{
+                              'min-w-[220px] flex justify-between items-center text-left text-base font-light font-outfit': true,
+                              'text-black/85': !subMenuState[subMenu.key],
+                              'hover:font-semibold': true,
+                              'font-semibold': subMenuState[subMenu.key],
+                              'font-bold': subMenuState[subMenu.key]
+                            }">
+                              <span>{{ subMenu.label }}</span>
+                              <i class="fa fa-chevron-right text-sm pr-[20px]"></i>
+                            </button>
+
+                            
+                            <div :class="{
+                              'pl-4 absolute left-full top-0 border-l border-gray-300 flex flex-col space-y-[12px]': true,
+                              'block': subMenuState[subMenu.key],
+                              'hidden': !subMenuState[subMenu.key]
+                            }">
+                              <div v-for="(item, itemIndex) in subMenu.items" :key="itemIndex" :class="{
+                                'text-black/85': true,
+                                'level-2': true,
+                              }">
+                                <button @click="selectProductCategory(item)"
+                                  class="w-full text-left text-base font-outfit hover:font-bold">
+                                  {{ item }}
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
               <div v-show="isProductMenuOpen || showDropdown"
-                class="absolute w-full mt-6 left-0 right-0 max-h-auto min-h-screen border border-[#DEDEDE]">
+                class="absolute w-full mt-6 left-0 right-0 max-h-auto  border border-[#DEDEDE]">
                 <!-- Wrapper div for background blur effect -->
                 <div class="absolute inset-0 bg-white/30 backdrop-blur-md z-0"></div>
 
@@ -478,6 +535,7 @@
                 </div>
 
               </div>
+
             </li>
           </div>
           <li>

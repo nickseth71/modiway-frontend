@@ -31,8 +31,6 @@ const routes = [
       },
       { path: "resources", name: "ResourcesPage", component: ResourcesPage },
       { path: "video-listing", name: "VideoListingPage", component: VideoListingPage },
-
-
       {
         path: "add-cart",
         name: "AddCart",
@@ -40,9 +38,9 @@ const routes = [
         meta: { requiresAuth: true },
       },
       {
-        path:"checkout-form",
-        name:"CheckOutForm",
-        component:CheckoutFormPage
+        path: "checkout-form",
+        name: "CheckOutForm",
+        component: CheckoutFormPage,
       },
       { path: "ourstory", name: "OurStoryPage", component: OurStoryPage },
       {
@@ -64,15 +62,15 @@ const routes = [
         meta: { requiresAuth: true },
       },
       {
-        path:"register",
-        name:"Register",
-        component:Register
+        path: "register",
+        name: "Register",
+        component: Register,
       },
       {
-        path:"privacy-policy",
-        name:"PrivacyPolicyPage",
-        component:PrivacyPolicyPage
-      }
+        path: "privacy-policy",
+        name: "PrivacyPolicyPage",
+        component: PrivacyPolicyPage,
+      },
     ],
   },
   {
@@ -80,17 +78,24 @@ const routes = [
     name: "Login",
     component: Login,
   },
-  
 ];
+
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    // Reset the scroll position to the top when navigating to a new route
+    if (savedPosition) {
+      return savedPosition; // For "back" or "forward" button
+    } else {
+      return { top: 0 }; // Default scroll to top
+    }
+  },
 });
 
-// Global route guard
+// Uncomment if you need global authentication guard
 // router.beforeEach((to, from, next) => {
 //   const loggedIn = localStorage.getItem("loggedIn");
-
 //   if (to.matched.some((record) => record.meta.requiresAuth)) {
 //     if (!loggedIn) {
 //       alert("Please log in to access this page.");
