@@ -369,7 +369,7 @@
           <li>
             <router-link to="/business-opportunity"
               class="block text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold"
-              :class="{ 'pt-[60px]': isProductMenuOpen || isSubMenuOpen }">
+              :class="{ 'pt-[60px]': isProductMenuOpen}">
               Business Opportunity
             </router-link>
           </li>
