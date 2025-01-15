@@ -50,12 +50,8 @@
             <div
               v-for="(product, index) in filteredProducts"
               :key="index"
-              :class="[
-                'flex w-full py-4 lg:py-[27px] px-4 sm:px-8 lg:px-52',
-                index === 0 || index % 2 === 0
-                  ? 'bg-transparent'
-                  : 'bg-[#0000000D]',
-              ]"
+              :class="[index % 2 === 0 ? 'bg-transparent' : 'bg-[#0000000D]']"
+              class="flex w-full py-4 lg:py-[27px] px-4 sm:px-8 lg:px-52"
             >
               <div
                 class="w-[130px] h-[120px] lg:w-[273px] lg:h-[302px] bg-white"
@@ -75,31 +71,25 @@
                     class="w-[15px] h-[15px] lg:w-[27px] lg:h-[27px] rounded-full text-center bg-[#C7BFA4]"
                   ></span>
                   <span
-                    style="line-height: normal"
                     class="text-black/85 text-[14px] lg:text-[24px]"
-                    >{{ product.flavour }}</span
-                  >
+                  >{{ product.flavour }}</span>
                 </p>
                 <p class="text-black/85 font-normal font-outfit lg:text-[36px]">
                   {{ product.name }}
                 </p>
-                <p
-                  class="text-black/85 font-light font-outfit lg:text-[36px] truncate"
-                >
+                <p class="text-black/85 font-light font-outfit lg:text-[36px] truncate">
                   {{ product.title }}
                 </p>
                 <p class="text-black/85">
                   <span
                     class="text-[18px] lg:text-[30px] font-outfit font-normal"
-                    >Rs.</span
-                  >
+                  >Rs.</span>
                   <span
                     class="text-[18px] lg:text-[36px] font-outfit font-bold"
-                    >{{ product.price }}</span
-                  >
+                  >{{ product.price }}</span>
                 </p>
                 <button
-                  class="mt-2 px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  class="mt-2 px-4 py-1  text-white bg-black"
                 >
                   Add to cart
                 </button>
@@ -108,9 +98,10 @@
           </div>
         </div>
       </div>
+
       <!-- Default Suggestions -->
       <div
-        v-if="showSuggestions"
+        v-if="shouldShowSuggestions"
         class="max-w-4xl mx-auto px-[15px] lg:px-0"
       >
         <div class="bg-transparent">
@@ -130,9 +121,10 @@
   </div>
 </template>
 
+
 <script>
 import { injectSearchPopup } from "../compossable/useSearchPopup";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 export default {
   setup() {
@@ -153,12 +145,16 @@ export default {
       "Home Decor",
     ];
 
-    const showSuggestions = ref(true);
+    const showSuggestions = ref(false);
+
+    const shouldShowSuggestions = computed(() => {
+      return showSuggestions.value && !query.value.trim();
+    });
 
     const hideSuggestions = () => {
       setTimeout(() => {
         showSuggestions.value = false;
-      }, 0);
+      }, 100); // Delay to allow focus changes
     };
 
     return {
@@ -170,10 +166,12 @@ export default {
       defaultSuggestions,
       showSuggestions,
       hideSuggestions,
+      shouldShowSuggestions,
     };
   },
 };
 </script>
+
 
 <style scoped>
 .custom-scrollbar-hide::-webkit-scrollbar {

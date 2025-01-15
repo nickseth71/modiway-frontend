@@ -217,7 +217,7 @@ const closeModal = () => {
                     <div v-for="item in filteredAndSortedItems" :key="item.id" class="bg-white cursor-pointer"
                         @click="handleVideoClick(item.videoUrl)">
                         <div class="w-full h-[187.84px] sm:h-[220px]  lg:h-[302px]">
-                            <video :src="item.videoUrl" class="w-full h-full object-cover" muted autoplay loop></video>
+                            <video :src="item.videoUrl" class="w-full h-full object-cover"></video>
                         </div>
                         <div class="pt-[15px] lg:pt-[20px] pb-[50px] pr-[20px]">
                             <h3 class="text-start text-black/85 font-normal font-outfit text-[20px] lg:text-[26px]">
@@ -242,19 +242,20 @@ const closeModal = () => {
 
         <!-- Modal -->
         <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div class=" rounded-lg w-[80%] max-w-4xl h-[80%] max-h-[80%] relative">
-                <!-- Close Button -->
-                <button @click.stop="closeModal"
-                    class="absolute top-0 right-[-20px]  p-3 rounded-full text-white font-light w-8 h-8 text-center focus:outline-none z-50"
-                    aria-label="Close Modal">
-                    ✖
-                </button>
+    <div class="relative rounded-lg w-[90%] max-w-4xl h-[70%] max-h-[60%] overflow-hidden">
+        <!-- Close Button -->
+        <button @click.stop="closeModal"
+            class="absolute top-4 right-4 p-2 rounded-full text-white font-semibol transition duration-200  z-50"
+            aria-label="Close Modal">
+            ✖
+        </button>
 
-                <!-- Video Element -->
-                <video :src="selectedVideoUrl" class="w-full h-full object-contain rounded-lg" controls autoplay>
-                </video>
-            </div>
-        </div>
+        <!-- Video Element -->
+        <video :src="selectedVideoUrl" class="w-full h-full object-contain rounded-lg" controls autoplay>
+        </video>
+    </div>
+</div>
+
 
 
 

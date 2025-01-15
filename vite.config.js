@@ -10,6 +10,9 @@ export default defineConfig({
     alias:{
       '@':fileURLToPath(new URL('./src',import.meta.url))
     }
+  },
+  build: {
+    outDir: 'build', // Change this if you want a custom directory
   }
 });
 
