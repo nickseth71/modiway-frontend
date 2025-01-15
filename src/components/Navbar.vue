@@ -295,8 +295,6 @@
           </li>
           <!-- Products Dropdown -->
           <li>
-
-            <!-- Main Dropdown -->
             <div>
               <!-- Main Dropdown -->
               <div @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown" class="relative">
@@ -321,8 +319,7 @@
                       <li v-for="(menu, index) in state.menus" :key="index" class="cursor-pointer">
                         <!-- Main Menu -->
                         <div class="flex justify-between items-center py-2">
-                          <router-link @click="toggleSubMenu(menu.key)"
-                            class="flex w-full justify-between items-center">
+                          <div @click="toggleSubMenu(menu.key)" class="flex w-full justify-between items-center">
                             <span :class="{
                               'font-semibold': state.subMenuState[menu.key],
                               'font-bold': menu.label === state.activeMenu,
@@ -335,7 +332,7 @@
                               'fa fa-chevron-down text-sm': !state.subMenuState[menu.key],
                               'fa fa-chevron-up text-sm': state.subMenuState[menu.key],
                             }"></i>
-                          </router-link>
+                          </div>
                         </div>
 
                         <!-- Submenu -->
