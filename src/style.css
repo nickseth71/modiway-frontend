@@ -42,6 +42,8 @@ opacity: 1 !important;
 }
 .flavour-color {
   position: relative;
+  -webk-transition: all .2s ease-inout;
+transition: all .2s ease-in-out;
 }
 
 .flavour-color:after {
@@ -53,17 +55,14 @@ opacity: 1 !important;
   display: block;
   border: solid 1px transparent;
   position: absolute;
+  -webk-transition: all .2s ease-inout;
+transition: all .2s ease-in-out;
 }
-.flavour-color:hover {transform: scale(1.1);}
+.flavour-color:hover {transform: scale(1.05);}
 .flavour-color.active-flavour-color:after {
-  content: "";
-  left: -2px;
-  right: -2px;
-  top: -2px;
-  bottom: -2px;
-  display: block;
+ 
   border: solid 1px #000;
-  position: absolute;
+
 }
 
 .tab-container > div {width:100%}
