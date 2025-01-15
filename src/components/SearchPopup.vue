@@ -18,7 +18,7 @@
               v-model="query"
               @input="searchProducts"
               type="text"
-              class="w-full bg-transparent text-gray-800 focus:outline-none text-xl"
+              class="w-full bg-transparent text-gray-800 focus:outline-none text-xl search-input"
               placeholder="Search"
               @focus="showSuggestions = true"
               @blur="hideSuggestions"
@@ -43,7 +43,7 @@
 
       <!-- Product List -->
       <div class="">
-        <div class="mt-10 flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center">
           <div
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1 gap-4 w-full max-h-[70vh] lg:max-h-[80vh] pb-[50px] overflow-y-auto custom-scrollbar-hide"
           >
@@ -111,7 +111,7 @@
       <!-- Default Suggestions -->
       <div
         v-if="showSuggestions"
-        class="mt-6 max-w-4xl mx-auto px-[15px] lg:px-0"
+        class="max-w-4xl mx-auto px-[15px] lg:px-0"
       >
         <div class="bg-transparent">
           <div class="text-black/85 text-xl font-semibold font-outfit mb-2">

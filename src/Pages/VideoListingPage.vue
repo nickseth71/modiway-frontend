@@ -146,7 +146,7 @@ const closeModal = () => {
 <template>
     <section>
         <section class="page-width flex justify-center items-center pt-[35px] pb-[15px] lg:pt-[63px] md:py-[30px]">
-            <div class="max-w-full flex justify-center items-center w-full px-[25px]">
+            <div class="max-w-full flex justify-center items-center w-full">
                 <div class="flex flex-col md:flex-row justify-between items-center w-full">
                     <div class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 gray-bb">
                         <!-- Filter Dropdown -->
@@ -209,11 +209,11 @@ const closeModal = () => {
 
         <!-- Video Listing -->
         <section class="page-width">
-            <div class="container mx-auto px-3 lg:mt-[52px]">
+            <div class=" mx-auto lg:mt-[52px]">
                 <div class="grid gap-[15px] grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <div v-for="item in filteredAndSortedItems" :key="item.id" class="bg-white cursor-pointer"
                         @click="handleVideoClick(item.videoUrl)">
-                        <div class="w-full h-[187.84px] sm:h-[220px] lg:w-[273px] lg:h-[302px]">
+                        <div class="w-full h-[187.84px] sm:h-[220px]  lg:h-[302px]">
                             <video :src="item.videoUrl" class="w-full h-full object-cover" muted autoplay loop></video>
                         </div>
                         <div class="pt-[15px] lg:pt-[20px] pb-[50px] pr-[20px]">

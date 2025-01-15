@@ -35,8 +35,50 @@ opacity: 1 !important;
   display: block;
   position: absolute;
   left: 0;
-  right: -30px;
+  right: 0;
   bottom: 0;
   height: 2px;
   background: #000;
 }
+.flavour-color {
+  position: relative;
+}
+
+.flavour-color:after {
+  content: "";
+  left: -3px;
+  right: -3px;
+  top: -3px;
+  bottom: -3px;
+  display: block;
+  border: solid 1px transparent;
+  position: absolute;
+}
+.flavour-color:hover {transform: scale(1.1);}
+.flavour-color.active-flavour-color:after {
+  content: "";
+  left: -2px;
+  right: -2px;
+  top: -2px;
+  bottom: -2px;
+  display: block;
+  border: solid 1px #000;
+  position: absolute;
+}
+
+.tab-container > div {width:100%}
+.tab-container {gap:15px}
+
+.search-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+ text-transform: uppercase;text-align: center;
+}
+.search-input::-moz-placeholder { /* Firefox 19+ */
+  text-transform: uppercase;text-align: center;
+}
+.search-input:-ms-input-placeholder { /* IE 10+ */
+  text-transform: uppercase;text-align: center;
+}
+.search-input:-moz-placeholder { /* Firefox 18- */
+  text-transform: uppercase;text-align: center;
+}
+#video-carousel {max-height: 70vh;}

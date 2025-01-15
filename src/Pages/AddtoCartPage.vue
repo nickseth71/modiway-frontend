@@ -320,8 +320,8 @@ const activeTab = ref(0);
 
           <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-              'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
-              selectedFlavor === flavor ? 'border-[1.2px] border-black' : ''
+              ' px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer flavour-color',
+              selectedFlavor === flavor ? 'active-flavour-color' : ''
             ]" :style="{ backgroundColor: flavorColors[flavor] }">
               {{ flavor }}
             </div>
@@ -494,8 +494,8 @@ const activeTab = ref(0);
           <div class="pt-[40px]">
             <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
               <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-                'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
-                selectedFlavor === flavor ? 'border-[1.2] border-black' : ''
+                'px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer flavour-color',
+                selectedFlavor === flavor ? 'active-flavour-color' : ''
               ]" :style="{ backgroundColor: flavorColors[flavor] }">
                 {{ flavor }}
               </div>
@@ -582,23 +582,23 @@ const activeTab = ref(0);
     <section class="page-width hidden lg:block">
       <div class="mt-[77px] flex flex-col items-center justify-center w-full max-w-[1124px] mx-auto">
         <!-- Tabs -->
-        <div class="flex justify-between space-x-[78px] items-center w-full">
+        <div class="flex justify-between  items-center w-full tab-container">
           <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
-            class="relative cursor-pointer text-[#353535] text-[20px] hover:text-black">
-            <div class="pb-[10px] border-b-2" :class="{
+            class="relative cursor-pointer text-[#353535]  text-[14px] hover:text-black">
+            <div class="pb-[15px] border-b-2" :class="{
               'border-black text-shadow-custom': activeTab === index,
               'border-gray-300': activeTab !== index,
             }">
-              <span>{{ tab }}</span>
+              <span class="pl-[10px]">{{ tab }}</span>
             </div>
             <div v-if="activeTab === index"
-              class="absolute top-1/2 right-[-28px] h-[6px] w-[6px] bg-black transform -translate-y-1/2 rounded-full">
+              class="absolute top-[10px] right-[10px] h-[4px] w-[4px] bg-black transform -translate-y-1/2 rounded-full">
             </div>
           </div>
         </div>
 
         <!-- Tab Content -->
-        <div class="w-full mt-6">
+        <div class="w-full mt-14">
           <div v-if="activeTab === 0" class="w-full flex gap-[2rem] justify-between flex-col sm:flex-row">
             <div class="flex-1 py-4  ">
 
@@ -625,7 +625,7 @@ const activeTab = ref(0);
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>
-          <div v-if="activeTab === 1" class="flex flex-col sm:flex-row">
+          <div v-if="activeTab === 1" class="flex gap-[2rem] flex-col sm:flex-row">
             <div class="flex-1 py-4  ">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
@@ -641,7 +641,7 @@ const activeTab = ref(0);
             </div>
 
           </div>
-          <div v-if="activeTab === 2" class="flex flex-col sm:flex-row">
+          <div v-if="activeTab === 2" class="flex gap-[2rem] flex-col sm:flex-row">
             <div class="flex-1 py-4">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
@@ -667,7 +667,7 @@ const activeTab = ref(0);
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>
-          <div v-if="activeTab === 3" class="flex flex-col sm:flex-row">
+          <div v-if="activeTab === 3" class="flex gap-[2rem] flex-col sm:flex-row">
             <div class="flex-1 py-4">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
@@ -685,7 +685,7 @@ const activeTab = ref(0);
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>
-          <div v-if="activeTab === 4" class="flex flex-col sm:flex-row">
+          <div v-if="activeTab === 4" class="flex gap-[2rem] flex-col sm:flex-row">
             <div class="flex-1 py-4">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
