@@ -246,7 +246,7 @@
           </div>
 
           <div class="  lg:mr-[65px] flex justify-end items-end sm:items-start pb-[60px]">
-            <router-link @click=""
+            <button @click=""
               class="flex lg:pb-[80px] lg:pr-0 flex-row items-end justify-end text-[16px] lg:text-[26px] text-black/85 font-normal font-outfit underline underline-offset-8 py-2 focus:outline-none">
               Continue Shopping
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 pt-[6px] lg:w-8 lg:h-8 text-gray-500"
@@ -261,7 +261,7 @@
                     fill="black" fill-opacity="0.85" />
                 </g>
               </svg>
-            </router-link>
+            </button>
           </div>
         </div>
       </div>
@@ -435,7 +435,7 @@
                     <ul class="max-w-[630px] mx-auto">
                       <li v-for="(menu, index) in menus" :key="index" class="flex justify-start items-center"
                         @mouseenter="openSubMenu(menu.subMenus), setActiveMenu(menu.label)">
-                        <router-link
+                        <div
                           class="min-w-[110px] inline-flex justify-between items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
                           :class="{
                             'text-black/85': activeMenu === menu.label,
@@ -443,7 +443,7 @@
                           }">
                           <span>{{ menu.label }}</span>
                           <i class="fa fa-chevron-right text-sm px-[55px]"></i>
-                        </router-link>
+                        </div>
                       </li>
                     </ul>
 
@@ -451,14 +451,14 @@
                       <li v-for="(submenu, index) in subMenuState" :key="index"
                         class="flex justify-start items-center py-[5px] pl-[55px] border-l border-gray-200"
                         @mouseenter="openItemsSubMenu(submenu.items); setActiveSubMenu(submenu)">
-                        <router-link
+                        <div
                           class="max-w-[630px] inline-flex justify-between items-center text-left font-normal font-outfit hover:font-semibold"
                           :class="{
                             'text-black/85 font-semibold': activeSubMenu === submenu.label,
                           }">
                           <span>{{ submenu.label }}</span>
                           <i class="fa fa-chevron-right mt-[3px] text-sm px-[45px]"></i>
-                        </router-link>
+                        </div>
                       </li>
                     </ul>
 
@@ -466,13 +466,13 @@
                       <li v-for="(menu, index) in itemsSubmenu" :key="index"
                         class="flex justify-start border-l border-gray-200 items-start pl-[30px]">
                         <!-- Items Sub Menu -->
-                        <router-link
+                        <div
                           class="inline-flex items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
                           :class="{
                             'font-bold': menu === activeItemSubMenu,
                           }">
                           <span>{{ menu }}</span>
-                        </router-link>
+                        </div>
                       </li>
                     </ul>
                   </div>
@@ -515,15 +515,15 @@ const activeSubMenu = ref(null)
 
 const activeMenu = ref(null);
 const setActiveMenu = (label) => {
-  activeMenu.value = label; 
+  activeMenu.value = label;
 
 };
 
 const setActiveSubMenu = (submenu) => {
-  activeSubMenu.value = submenu.label; 
+  activeSubMenu.value = submenu.label;
 };
 const clearActiveMenu = () => {
-  activeMenu.value = null; 
+  activeMenu.value = null;
 };
 
 ////////////////////////////////////////// Search Popup Methods //////////////////////////////////////////////////
