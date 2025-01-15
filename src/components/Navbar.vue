@@ -321,12 +321,14 @@
                       <li v-for="(menu, index) in state.menus" :key="index" class="cursor-pointer">
                         <!-- Main Menu -->
                         <div class="flex justify-between items-center py-2">
-                          <router-link @click="toggleSubMenu(menu.key)" class="flex w-full justify-between items-center">
+                          <router-link @click="toggleSubMenu(menu.key)"
+                            class="flex w-full justify-between items-center">
                             <span :class="{
                               'font-semibold': state.subMenuState[menu.key],
                               'font-bold': menu.label === state.activeMenu,
                               'text-black/85': !state.subMenuState[menu.key],
                             }" class="font-outfit">
+
                               {{ menu.label }}
                             </span>
                             <i @click="toggleSubMenu(menu.key)" :class="{
@@ -393,8 +395,7 @@
         </ul>
 
         <!-- Footer with Account Link -->
-        <div
-          class="absolute left-0 right-0 flex justify-start p-6 border-t border-[#8C8C8C] border-opacity-45">
+        <div class="absolute left-0 right-0 flex justify-start p-6 border-t border-[#8C8C8C] border-opacity-45">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             class="cursor-pointer stroke-[#000000]">
             <circle cx="12" cy="8" r="4.75" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.5" />
@@ -427,43 +428,40 @@
                 Products
               </router-link>
               <div v-show="showDropdown"
-                class="absolute w-full max-w-full mx-auto mt-4 left-0 right-0 border border-[#DEDEDE]">
+                class="absolute w-full max-w-full mx-auto mt-2 left-0 right-0 border border-[#DEDEDE]">
                 <div class="relative max-w-full mx-auto bg-white min-h-[400px] z-10 p-6 flex justify-center">
                   <!-- Dropdown Menu -->
-                  <div class="absolute left-[28%] bg-white min-h-[300px] z-10 pt-4 pl-6 flex ">
+                  <div class="absolute left-[28%] bg-white min-h-[300px] z-10  pl-6 flex ">
                     <ul class="max-w-[630px] mx-auto">
                       <li v-for="(menu, index) in menus" :key="index" class="flex justify-start items-center"
-                        @mouseenter="openSubMenu(menu.subMenus)">
-                        <!-- Main Menu -->
+                        @mouseenter="openSubMenu(menu.subMenus), setActiveMenu(menu.label)">
                         <router-link
                           class="min-w-[110px] inline-flex justify-between items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
                           :class="{
-                            'text-black/85': !subMenuState.length,
-                            'font-semibold': subMenuState.length,
-                            'font-bold': menu.label === activeMenu,
+                            'text-black/85': activeMenu === menu.label,
+                            'font-semibold': activeMenu === menu.label,
                           }">
                           <span>{{ menu.label }}</span>
                           <i class="fa fa-chevron-right text-sm px-[55px]"></i>
                         </router-link>
                       </li>
                     </ul>
-                    <ul class=" mx-auto" v-if="subMenuState.length">
-                      <li v-for="(menu, index) in subMenuState" :key="index"
-                        class=" flex justify-start items-center pl-[55px] border-l border-gray-200"
-                        @mouseenter="openItemsSubMenu(menu.items)">
-                        <!-- Sub Menu -->
+
+                    <ul class="mx-auto" v-if="subMenuState.length">
+                      <li v-for="(submenu, index) in subMenuState" :key="index"
+                        class="flex justify-start items-center py-[5px] pl-[55px] border-l border-gray-200"
+                        @mouseenter="openItemsSubMenu(submenu.items); setActiveSubMenu(submenu)">
                         <router-link
-                          class="max-w-[630px] inline-flex justify-between items-center  text-left font-normal font-outfit hover:font-semibold"
+                          class="max-w-[630px] inline-flex justify-between items-center text-left font-normal font-outfit hover:font-semibold"
                           :class="{
-                            'text-black/85': !itemsSubmenu.length,
-                            'font-semibold': itemsSubmenu.length,
-                            'font-bold': menu.label === activeSubMenu,
+                            'text-black/85 font-semibold': activeSubMenu === submenu.label,
                           }">
-                          <span>{{ menu.label }}</span>
+                          <span>{{ submenu.label }}</span>
                           <i class="fa fa-chevron-right mt-[3px] text-sm px-[45px]"></i>
                         </router-link>
                       </li>
                     </ul>
+
                     <ul class="max-w-[630px] mx-auto" v-if="itemsSubmenu.length">
                       <li v-for="(menu, index) in itemsSubmenu" :key="index"
                         class="flex justify-start border-l border-gray-200 items-start pl-[30px]">
@@ -512,6 +510,22 @@ const showDropdown = ref(false);
 const subMenuState = ref([]);
 const itemsSubmenu = ref([]);
 
+const activeSubMenu = ref(null)
+// Active menu state for dynamic font-bold
+
+const activeMenu = ref(null);
+const setActiveMenu = (label) => {
+  activeMenu.value = label; 
+
+};
+
+const setActiveSubMenu = (submenu) => {
+  activeSubMenu.value = submenu.label; 
+};
+const clearActiveMenu = () => {
+  activeMenu.value = null; 
+};
+
 ////////////////////////////////////////// Search Popup Methods //////////////////////////////////////////////////
 const { toggleSearch } = useSearchPopup();
 
@@ -546,7 +560,7 @@ const menus = ref([
   },
 ]);
 
-// Timer reference for closeDropdown delay
+
 let closeDropdownTimer = null;
 
 // Methods
@@ -568,13 +582,14 @@ const delayedCloseDropdown = () => {
 };
 
 const openSubMenu = (submenu) => {
-  itemsSubmenu.value = [];
   subMenuState.value = submenu;
-  // subMenuState.value[menuKey] = true;
+  itemsSubmenu.value = [];
 };
+
+
+
 const openItemsSubMenu = (items) => {
   itemsSubmenu.value = items;
-  // subMenuState.value[menuKey] = true;
 };
 
 const closeSubMenu = (menuKey) => {
@@ -637,10 +652,7 @@ const updateCartItemPrice = (itemId) => {
 
 // Initialize totalPrice for all items
 const totalPrice = computed(() => {
-  return cartItems.value.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  return cartItems.value.reduce((sum, item) => sum + item.price * item.quantity, 0);
 });
 
 const openCartVisible = ref(false);
@@ -667,8 +679,8 @@ const toggleCheckout = () => {
 };
 const isMenuOpen = ref(false);
 
-
 </script>
+
 
 
 <!-- -------------------------------for mobile ------------------------------>
@@ -679,8 +691,8 @@ export default {
   data() {
     return {
       state: reactive({
-        showDropdown: false, 
-        subMenuState: {}, 
+        showDropdown: false,
+        subMenuState: {},
         itemsSubmenu: {},
         menus: [
           {
@@ -708,26 +720,26 @@ export default {
                 key: "kitchen",
                 items: ["Cookware", "Utensils", "Appliances"]
               },
-             
+
             ]
           }
         ],
-        activeMenu: null, 
-        activeSubMenu: null, 
-        activeItemSubMenu: null, 
+        activeMenu: null,
+        activeSubMenu: null,
+        activeItemSubMenu: null,
       }),
     };
   },
   methods: {
     toggleDropdown() {
-      this.state.showDropdown = !this.state.showDropdown; // Toggle the main dropdown menu
+      this.state.showDropdown = !this.state.showDropdown;
     },
     toggleSubMenu(menuKey) {
-      // Toggle the submenu visibility for the selected menu
+
       this.state.subMenuState[menuKey] = !this.state.subMenuState[menuKey];
     },
     toggleItemsSubMenu(menuKey, subMenuKey) {
-      
+
       if (!this.state.itemsSubmenu[menuKey]) {
         this.state.itemsSubmenu[menuKey] = {};
       }

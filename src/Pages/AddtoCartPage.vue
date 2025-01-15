@@ -3,12 +3,12 @@ import { ref } from "vue";
 
 /// Icons 
 
-import vegIcon from "../assets/veg.png";
-import LowGiIcon from "../assets/LowGi.png";
-import PreservativeIcon from "../assets/Preservative.png";
-import NoAddedSugarIcon from "../assets/No-Added-Sugar.png";
-import GlutenFreeIcon from "../assets/Gluten-Free.png";
-import NonGmoIcon from "../assets/Non-GMO.png"
+import vegIcon from "../assets/modiway-icon/veg-icon.svg";
+import LowGiIcon from "../assets/modiway-icon/Low-GI-icon.svg";
+import PreservativeIcon from "../assets/modiway-icon/preser-icon.svg";
+import NoAddedSugarIcon from "../assets/modiway-icon/no-suger-icon.svg";
+import GlutenFreeIcon from "../assets/modiway-icon/gluten-icon.svg";
+import NonGmoIcon from "../assets/modiway-icon/Non-GMO-icon.svg"
 
 
 
@@ -36,7 +36,7 @@ const closePopup = () => {
 };
 
 /////////////////////////////// Other Images and Data ///////////////////////////////////////
-import wishImg from "../assets/wishlist.png";
+import wishImg from "../assets/modiway-icon/heart-svgrepo-com.svg";
 import BannerImage from "../assets/banner.png";
 import Review from "../assets/review.png";
 import nextbutton from "../assets/next.png";
@@ -253,7 +253,6 @@ const activeTab = ref(0);
 
       <!------------------------------------------------------- Carousel for Small Devices-------------------------------- -->
 
-
       <div class="lg:hidden">
         <div class="flex flex-row pl-[16px] py-[8px]">
           <p>
@@ -364,7 +363,7 @@ const activeTab = ref(0);
             <button class="w-[80%] h-10  bg-[#414042] text-white leading-[19.95px] font-medium font-outfit text-[16px]">
               Add to cart
             </button>
-            <div class="w-[20%] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
+            <div class="w-[20%] h-10 border-[#414042] border-2 flex justify-center p-[7px]">
               <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
             </div>
           </div>
@@ -453,7 +452,7 @@ const activeTab = ref(0);
 
 
         <!-- Second Column: Product Information -->
-        <div class="w-full lg:w-[45%] space-y-0 px-[15px]">
+        <div class="w-full lg:w-[44%] space-y-0 px-[15px]">
           <!-- Breadcrumbs -->
           <div class="flex flex-row ">
             <p>

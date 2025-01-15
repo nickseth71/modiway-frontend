@@ -138,9 +138,12 @@ const handleVideoClick = (videoUrl) => {
 
 // Close modal
 const closeModal = () => {
+    console.log("closeModal triggered");
     isModalOpen.value = false;
     selectedVideoUrl.value = "";
 };
+
+
 </script>
 
 <template>
@@ -213,8 +216,19 @@ const closeModal = () => {
                 <div class="grid gap-[15px] grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <div v-for="item in filteredAndSortedItems" :key="item.id" class="bg-white cursor-pointer"
                         @click="handleVideoClick(item.videoUrl)">
-                        <div class="w-full h-[187.84px] sm:h-[220px] lg:w-[273px] lg:h-[302px]">
-                            <video :src="item.videoUrl" class="w-full h-full object-cover" muted autoplay loop></video>
+                        <div class="relative w-full h-[187.84px] sm:h-[220px] lg:w-[273px] lg:h-[302px]">
+                            <video :src="item.videoUrl" class="w-full h-full object-cover"></video>
+
+                            <!-- Play Button in the center -->
+                            <div class="absolute inset-0 flex justify-center items-center">
+                                <button class="bg-white rounded-full p-3 opacity-75 hover:opacity-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" class="text-black">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 3l14 9-14 9V3z"></path>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                         <div class="pt-[15px] lg:pt-[20px] pb-[50px] pr-[20px]">
                             <h3 class="text-start text-black/85 font-normal font-outfit text-[20px] lg:text-[26px]">
@@ -226,6 +240,7 @@ const closeModal = () => {
                             </p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -238,19 +253,21 @@ const closeModal = () => {
 
         <!-- Modal -->
         <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div class="bg-white rounded-lg w-[80%] max-w-4xl h-[80%] max-h-[80%] relative">
-        <button @click="closeModal" class="absolute top-2 right-2 text-black text-xl">
-            &times;
-        </button>
-        <video
-            :src="selectedVideoUrl"
-            class="w-full h-full object-contain"
-            controls
-            autoplay
-            @dblclick.prevent
-        ></video>
-    </div>
-</div>
+            <div class=" rounded-lg w-[80%] max-w-4xl h-[80%] max-h-[80%] relative">
+                <!-- Close Button -->
+                <button @click.stop="closeModal"
+                    class="absolute top-0 right-[-20px]  p-3 rounded-full text-white font-light w-8 h-8 text-center focus:outline-none z-50"
+                    aria-label="Close Modal">
+                    ✖
+                </button>
+
+                <!-- Video Element -->
+                <video :src="selectedVideoUrl" class="w-full h-full object-contain rounded-lg" controls autoplay>
+                </video>
+            </div>
+        </div>
+
+
 
 
     </section>
