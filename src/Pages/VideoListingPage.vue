@@ -149,7 +149,7 @@ const closeModal = () => {
 <template>
     <section>
         <section class="page-width flex justify-center items-center pt-[35px] pb-[15px] lg:pt-[63px] md:py-[30px]">
-            <div class="max-w-full flex justify-center items-center w-full px-[25px]">
+            <div class="max-w-full flex justify-center items-center w-full">
                 <div class="flex flex-col md:flex-row justify-between items-center w-full">
                     <div class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 gray-bb">
                         <!-- Filter Dropdown -->
@@ -212,23 +212,12 @@ const closeModal = () => {
 
         <!-- Video Listing -->
         <section class="page-width">
-            <div class="container mx-auto px-3 lg:mt-[52px]">
+            <div class=" mx-auto lg:mt-[52px]">
                 <div class="grid gap-[15px] grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <div v-for="item in filteredAndSortedItems" :key="item.id" class="bg-white cursor-pointer"
                         @click="handleVideoClick(item.videoUrl)">
-                        <div class="relative w-full h-[187.84px] sm:h-[220px] lg:w-[273px] lg:h-[302px]">
-                            <video :src="item.videoUrl" class="w-full h-full object-cover"></video>
-
-                            <!-- Play Button in the center -->
-                            <div class="absolute inset-0 flex justify-center items-center">
-                                <button class="bg-white rounded-full p-3 opacity-75 hover:opacity-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" class="text-black">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5 3l14 9-14 9V3z"></path>
-                                    </svg>
-                                </button>
-                            </div>
+                        <div class="w-full h-[187.84px] sm:h-[220px]  lg:h-[302px]">
+                            <video :src="item.videoUrl" class="w-full h-full object-cover" muted autoplay loop></video>
                         </div>
                         <div class="pt-[15px] lg:pt-[20px] pb-[50px] pr-[20px]">
                             <h3 class="text-start text-black/85 font-normal font-outfit text-[20px] lg:text-[26px]">
