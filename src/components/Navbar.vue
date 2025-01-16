@@ -346,7 +346,7 @@
                               }" class="font-outfit">
                                 {{ subMenu.label }}
                               </span>
-                              <i :class="{
+                              <i  @click="toggleItemsSubMenu(menu.key, subMenu.key)" :class="{
                                 'fa fa-chevron-down text-sm': !state.itemsSubmenu[menu.key]?.[subMenu.key],
                                 'fa fa-chevron-up text-sm': state.itemsSubmenu[menu.key]?.[subMenu.key],
                               }"></i>
