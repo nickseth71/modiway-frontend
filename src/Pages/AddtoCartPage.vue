@@ -216,7 +216,7 @@ const cards = ref([
     description: "Amazing results! Tasty shakes made weight loss simple and sustainable.",
     image: Review,
   },
-  // ... more cards
+
 ]);
 
 const activeIndex = ref(0);
@@ -291,7 +291,7 @@ const activeTab = ref(0);
                 Meal Replacement for Weight Control /
               </div>
               <div class="text-gray-800 text-[11px] font-semibold font-outfit">
-               Management
+                Management
               </div>
             </div>
           </div>
@@ -525,7 +525,7 @@ const activeTab = ref(0);
                 Meal Replacement for Weight Control /
               </div>
               <div class="text-gray-800 text-[15px] font-semibold font-outfit">
-               Management
+                Management
               </div>
             </div>
           </div>
