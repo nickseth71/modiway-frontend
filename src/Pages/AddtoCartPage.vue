@@ -418,11 +418,13 @@ const activeTab = ref(0);
 
           <div class="flex  items-center gap-[15px]">
             <div v-for="(item, index) in Icons" :key="index"
-              class="flex flex-col justify-between items-center pt-[68px]">
+              class="flex flex-col justify-between items-center pt-[28px]">
               <!-- Icon -->
-              <img :src="item.src" alt="Icon" class="w-[29.061px] h-[29.061px]" />
+              <div class="w-full  flex justify-center items-center">
+                <img :src="item.src" alt="Icon" class="w-[29.061px] h-[29.061px] mb-2" />
+              </div>
               <!-- Title -->
-              <p class="min-w-[32px] text-center text-[9.832px] font-medium font-outfit break-words mt-2"
+              <p class="min-w-[32px] h-[10px] text-center text-[9.832px] font-medium font-outfit break-words"
                 style="word-wrap: break-word;">
                 {{ item.title }}
               </p>
