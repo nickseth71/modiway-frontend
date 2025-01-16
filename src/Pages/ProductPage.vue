@@ -26,6 +26,17 @@
 
     <!-- main Section -->
     <section class="page-width">
+      <div class="flex flex-row mt-[20px] justify-center">
+            <div class="text-black/85 text-[15px] font-light font-outfit">
+              Home
+            </div>
+            <div class="text-black/85 text-[15px] font-semibold px-[5px] font-outfit">
+|
+            </div>
+            <div  class="text-black/85 text-[15px] font-semibold font-outfit">
+              ShapeShift
+            </div>
+          </div>
       <!-- Welcome Section -->
       <section class="py-0 lg:py-[32px] md:py-[16px] page-width">
         <div class="max-w-[992px] mx-auto text-center ">

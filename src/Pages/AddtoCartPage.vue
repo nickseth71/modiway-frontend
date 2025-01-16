@@ -279,13 +279,22 @@ const activeTab = ref(0);
 
       <div class="lg:hidden">
         <div class="flex flex-row pl-[16px] py-[8px]">
-          <p>
-            <span style="line-height: normal;" class="text-[#727272] text-[11px] font-normal font-outfit">Shape
-              Shift </span> <span style="line-height: normal;"
-              class="text-[#727272] text-[11px] font-normal font-outfit">|</span>
-            <span class="text-[#717171] text-[11px] font-semibold font-outfit">Meal Replacement for Weight Control/
-              Management</span>
-          </p>
+          <div class="flex flex-row ">
+            <div class="flex flex-row justify-center">
+              <div class="text-gray-800 text-[11px] font-light font-outfit">
+                ShapeShift
+              </div>
+              <div class="text-gray-800 text-[11px] font-semibold px-[5px] font-outfit">
+                |
+              </div>
+              <div class="text-gray-800 text-[11px] font-semibold font-outfit">
+                Meal Replacement for Weight Control /
+              </div>
+              <div class="text-gray-800 text-[11px] font-semibold font-outfit">
+               Management
+              </div>
+            </div>
+          </div>
         </div>
         <div id="custom-carousel" class="relative w-full block lg:hidden" @touchstart="handleTouchStart"
           @touchmove="handleTouchMove" @touchend="handleTouchEnd">
@@ -503,13 +512,20 @@ const activeTab = ref(0);
         <div class="w-full lg:w-[44%] space-y-0 px-[15px]">
           <!-- Breadcrumbs -->
           <div class="flex flex-row ">
-            <p>
-              <span class="text-[#717171] text-[8px] font-normal font-outfit">Shape Shift/</span>
-              <span class="w-[66px] h-4 text-[#717171] text-[8px] font-normal font-['Outfit']">Meal Replacement/</span>
-              <span class="w-[41px] h-4 text-[#717171] text-[8px] font-normal font-['Outfit']">Shape Shift/</span>
-              <span class=" text-[#717171] text-[8px] font-normal font-outfit">Meal Replacement for Weight Control/
-                Management</span>
-            </p>
+            <div class="flex flex-row justify-center">
+              <div class="text-gray-800 text-[15px] font-light font-outfit">
+                ShapeShift
+              </div>
+              <div class="text-gray-800 text-[15px] font-semibold px-[5px] font-outfit">
+                |
+              </div>
+              <div class="text-gray-800 text-[15px] font-semibold font-outfit">
+                Meal Replacement for Weight Control /
+              </div>
+              <div class="text-gray-800 text-[15px] font-semibold font-outfit">
+               Management
+              </div>
+            </div>
           </div>
 
           <!-- Product Title -->

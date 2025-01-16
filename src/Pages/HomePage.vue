@@ -15,7 +15,7 @@
             muted
             autoplay
             playsinline
-            class="block w-full h-full object-cover"
+            class="block w-full h-auto object-cover"
             @ended="nextSlide"
           />
         </div>
@@ -23,7 +23,7 @@
 
       <!-- Carousel Indicators -->
       <div
-        class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2"
+        class="absolute bottom-[-190px] left-1/2 transform -translate-x-1/2 flex space-x-2"
       >
         <span
           v-for="(media, index) in mediaItems"
