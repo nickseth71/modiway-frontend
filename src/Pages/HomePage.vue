@@ -6,7 +6,7 @@
         <div
           v-for="(media, index) in mediaItems"
           :key="index"
-          class="absolute inset-0 w-full h-full duration-700 ease-in-out"
+          class="absolute inset-0 w-full h-auto duration-700 ease-in-out"
           v-show="index === currentIndex"
         >
           <video
@@ -15,7 +15,7 @@
             muted
             autoplay
             playsinline
-            class="block w-full h-auto object-cover"
+            class="block w-full h-full object-cover"
             @ended="nextSlide"
           />
         </div>
@@ -23,7 +23,7 @@
 
       <!-- Carousel Indicators -->
       <div
-        class="absolute bottom-[-190px] left-1/2 transform -translate-x-1/2 flex space-x-2"
+        class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2"
       >
         <span
           v-for="(media, index) in mediaItems"
@@ -41,7 +41,7 @@
     <!-- Welcome Section -->
     <section class="flex justify-center items-center page-width">
       <div
-        class="text-center text-black/85 px-[16px] lg:py-[32px] py-[57px] max-w-[814px] font-light font-outfit tracking-[0.6px] leading-[20px] lg:leading-[38px] text-[20px] lg:text-[30px]"
+        class="text-center text-black/85 px-[16px] lg:py-[32px] py-[55px] max-w-[814px] font-light font-outfit tracking-[0.6px] leading-[20px] lg:leading-[38px] text-[20px] lg:text-[30px]"
       >
         <h1 class="pb-2 lg:pb-0">Welcome to a movement called the Modiway</h1>
         A transformative journey to spread joy, to make lives simpler, inspire
