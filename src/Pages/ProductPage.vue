@@ -27,16 +27,16 @@
     <!-- main Section -->
     <section class="page-width">
       <div class="flex flex-row mt-[20px] justify-center">
-            <div class="text-black/85 text-[15px] font-light font-outfit">
-              Home
-            </div>
-            <div class="text-black/85 text-[15px] font-semibold px-[5px] font-outfit">
-|
-            </div>
-            <div  class="text-black/85 text-[15px] font-semibold font-outfit">
-              ShapeShift
-            </div>
-          </div>
+        <div class="text-black/85 text-[15px] font-light font-outfit">
+          Home
+        </div>
+        <div class="text-black/85 text-[15px] font-semibold px-[5px] font-outfit">
+          |
+        </div>
+        <div class="text-black/85 text-[15px] font-semibold font-outfit">
+          ShapeShift
+        </div>
+      </div>
       <!-- Welcome Section -->
       <section class="py-0 lg:py-[32px] md:py-[16px] page-width">
         <div class="max-w-[992px] mx-auto text-center ">
@@ -159,55 +159,54 @@ No items found.
 
       <section class="page-width flex justify-center items-center px-[25px] mobile-p-fix">
         <!-- <div class="max-w-[992px] mx-auto"> -->
-          <div
-          @click="AddtoCartPage"
-            class="max-w-[972px] w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[14px] lg:gap-[19px]">
-            <div v-for="item in filteredSortedAndSearchedItems" :key="item.id"
-              class=" lg:border border-transparent lg:hover:border-black transition duration-300">
-              <div
-                class="w-full lg:w-[312px] relative flex justify-center items-center cursor-pointer border border-[#DEDEDE] hover:border-transparent px-4 py-4 lg:py-0 mb-2">
-                <img :src="item.src" alt="Item Image"
-                  class="w-[123px] h-[186px] lg:w-[312px] lg:h-[570px] object-cover transition-opacity duration-300" />
-                <img :src="item.hoverSrc" alt="Hover Item Image"
-                  class="w-full h-full lg:w-[287px] lg:h-[545px] object-cover text-center absolute opacity-0 transition-opacity duration-300" />
-              </div>
-              <div class="max-w-[250px] pt-[10px] pb-[25px] lg:p-[19px] ">
-                <p
-                  class="flex items-center space-x-1 text-black/85 truncate font-outfit font-light text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px]">
-                  <span :style="{ backgroundColor: getColorForName(item.category) }"
-                    class="w-[15px] h-[15px] sm:w-[10px] sm:h-[10px] lg:w-[18px] lg:h-[18px] rounded-full inline-block"></span>
-                  <span>{{ item.category }}</span>
-                </p>
-
-                <p
-                  class="text-black/85 truncate w-[155px] lg:w-full font-outfit font-light text-[13px] md:text-[13px] lg:text-[19.95px] text-start">
-                  Shape Shift
-                </p>
-
-                <p
-                  class="text-black/85  w-[155px] lg:w-full font-outfit font-light text-[13px] md:text-[13px] lg:text-[19.95px] text-start">
-                  {{ item.replacement }}
-                </p>
-                <p class="pt-[3px]">
-                  <span class="text-black/90 text-[13px] lg:text-[20px] font-normal font-outfit">Rs.</span>
-                  <span class="text-black/85 text-[13px] lg:text-[20px] font-bold font-outfit">{{ item.price }}</span>
-                </p>
-                <p class="text-[11px] lg:text-[16px] font-light font-outfit">
-                  {{ item.tax }}
-                </p>
-
-                <button @click="AddtoCartPage"
-                  class="text-[13px] cursor-pointer lg:text-[19.95px] font-bold font-outfit underline decoration-black/30 mt-3 underline-offset-2">
-                  Add to Cart
-                </button>
-              </div>
+        <div @click="AddtoCartPage"
+          class="max-w-[972px] w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[14px] lg:gap-[19px]">
+          <div v-for="item in filteredSortedAndSearchedItems" :key="item.id"
+            class=" lg:border border-transparent lg:hover:border-black transition duration-300">
+            <div
+              class="w-full lg:w-[312px] relative flex justify-center items-center cursor-pointer border border-[#DEDEDE] hover:border-transparent px-4 py-4 lg:py-0 mb-2">
+              <img :src="item.src" alt="Item Image"
+                class="w-[123px] h-[186px] lg:w-[312px] lg:h-[570px] object-cover transition-opacity duration-300" />
+              <img :src="item.hoverSrc" alt="Hover Item Image"
+                class="w-full h-full lg:w-[287px] lg:h-[545px] object-cover text-center absolute opacity-0 transition-opacity duration-300" />
             </div>
+            <div class="max-w-[250px] pt-[10px] pb-[25px] lg:p-[19px] ">
+              <p
+                class="flex items-center space-x-1 text-black/85 truncate font-outfit font-light text-[11px] sm:text-[12px] md:text-[13px] lg:text-[16px]">
+                <span :style="{ backgroundColor: getColorForName(item.category) }"
+                  class="w-[15px] h-[15px] sm:w-[10px] sm:h-[10px] lg:w-[18px] lg:h-[18px] rounded-full inline-block"></span>
+                <span>{{ item.category }}</span>
+              </p>
 
+              <p
+                class="text-black/85 truncate w-[155px] lg:w-full font-outfit font-light text-[13px] md:text-[13px] lg:text-[19.95px] text-start">
+                Shape Shift
+              </p>
+
+              <p
+                class="text-black/85  w-[155px] lg:w-full font-outfit font-light text-[13px] md:text-[13px] lg:text-[19.95px] text-start">
+                {{ item.replacement }}
+              </p>
+              <p class="pt-[3px]">
+                <span class="text-black/90 text-[13px] lg:text-[20px] font-normal font-outfit">Rs.</span>
+                <span class="text-black/85 text-[13px] lg:text-[20px] font-bold font-outfit">{{ item.price }}</span>
+              </p>
+              <p class="text-[11px] lg:text-[16px] font-light font-outfit">
+                {{ item.tax }}
+              </p>
+
+              <button @click="AddtoCartPage"
+                class="text-[13px] cursor-pointer lg:text-[19.95px] font-bold font-outfit underline decoration-black/30 mt-3 underline-offset-2">
+                Add to Cart
+              </button>
+            </div>
           </div>
 
-          <div v-if="filteredSortedAndSearchedItems.length === 0" class="text-gray-500 text-center">
-            No items found.
-          </div>
+        </div>
+
+        <div v-if="filteredSortedAndSearchedItems.length === 0" class="text-gray-500 text-center">
+          No items found.
+        </div>
         <!-- </div> -->
       </section>
 
