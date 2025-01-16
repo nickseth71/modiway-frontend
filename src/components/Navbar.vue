@@ -319,20 +319,19 @@
                       <li v-for="(menu, index) in state.menus" :key="index" class="cursor-pointer">
                         <!-- Main Menu -->
                         <div class="flex justify-between items-center py-2">
-                          <div @click="toggleSubMenu(menu.key)" class="flex w-full justify-between items-center">
-                            <span :class="{
-                              'font-semibold': state.subMenuState[menu.key],
-                              'font-bold': menu.label === state.activeMenu,
-                              'text-black/85': !state.subMenuState[menu.key],
-                            }" class="font-outfit">
-
-                              {{ menu.label }}
-                            </span>
-                            <i @click="toggleSubMenu(menu.key)" :class="{
-                              'fa fa-chevron-down text-sm': !state.subMenuState[menu.key],
-                              'fa fa-chevron-up text-sm': state.subMenuState[menu.key],
-                            }"></i>
-                          </div>
+                          <div @click="toggleSubMenu(menu.key)" class="flex w-full justify-between items-center cursor-pointer">
+      <span :class="{
+        'font-semibold': state.subMenuState[menu.key],
+        'font-bold': menu.label === state.activeMenu,
+        'text-black/85': !state.subMenuState[menu.key],
+      }" class="font-outfit">
+        {{ menu.label }}
+      </span>
+      <i :class="{
+        'fa fa-chevron-down text-sm': !state.subMenuState[menu.key],
+        'fa fa-chevron-up text-sm': state.subMenuState[menu.key],
+      }"></i>
+    </div>
                         </div>
 
                         <!-- Submenu -->
@@ -346,7 +345,7 @@
                               }" class="font-outfit">
                                 {{ subMenu.label }}
                               </span>
-                              <i  @click="toggleItemsSubMenu(menu.key, subMenu.key)" :class="{
+                              <i  :class="{
                                 'fa fa-chevron-down text-sm': !state.itemsSubmenu[menu.key]?.[subMenu.key],
                                 'fa fa-chevron-up text-sm': state.itemsSubmenu[menu.key]?.[subMenu.key],
                               }"></i>
@@ -717,7 +716,6 @@ export default {
                 key: "kitchen",
                 items: ["Cookware", "Utensils", "Appliances"]
               },
-
             ]
           }
         ],
@@ -732,11 +730,9 @@ export default {
       this.state.showDropdown = !this.state.showDropdown;
     },
     toggleSubMenu(menuKey) {
-
       this.state.subMenuState[menuKey] = !this.state.subMenuState[menuKey];
     },
     toggleItemsSubMenu(menuKey, subMenuKey) {
-
       if (!this.state.itemsSubmenu[menuKey]) {
         this.state.itemsSubmenu[menuKey] = {};
       }

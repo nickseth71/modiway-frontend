@@ -111,10 +111,11 @@
               >
                 {{ image.description }}
               </p>
+              
 
               <button
                 @click="toggleText(image)"
-                class="bottom-0 left-0 bg-transparent text-gray-600 font-outfit text-[13px] hover:underline"
+                class="block lg:hidden bottom-0 left-0 bg-transparent text-gray-600 font-outfit text-[13px] hover:underline"
               >
                 {{ image.showFullDescription ? "- Show less" : "+ Show more" }}
               </button>
@@ -270,7 +271,7 @@ export default {
         title: "Think Wellness",
         heading: "ShapeShift",
         description:
-          "Backed by science, ShapeShift has been designed to balance your calorie intake, optimize nutrition, and support your transformation, every day.",
+          "Backed by science, ShapeShift has been designed to balance your calorie intake, optimize nutrition, and support your transformation, every day. ",
         showFullDescription: false,
       },
       {

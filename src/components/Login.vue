@@ -1,8 +1,6 @@
 <template>
   <div class="absolute inset-0 flex items-center justify-center bg-gray-100">
-    <div
-      class="w-full max-w-[450px] p-6 bg-[#FFFFFF] rounded shadow-md relative"
-    >
+    <div class="w-full max-w-[450px] p-6 bg-[#FFFFFF] rounded shadow-md relative">
       <div class="flex justify-center mb-6">
         <div class="h-[24px] w-[24px] flex items-center justify-center">
           <svg
@@ -36,60 +34,49 @@
         Sign in
       </h2>
       <div class="flex items-center justify-center space-x-6 mb-6">
-    <!-- MA No. Button -->
-    <button
-      :class="
-        tab === 'ma'
-          ? 'text-black font-semibold border-none outline-none'
-          : 'text-black/85 border-none outline-none'
-      "
-      @click="setTab('ma')"
-      class="focus:outline-none bg-white border-none"
-    >
-      MA No.
-    </button>
+        <button
+          :class="tab === 'ma' ? 'text-black font-semibold' : 'text-black/85'"
+          @click="setTab('ma')"
+          class="focus:outline-none bg-white border-none"
+        >
+          MA No.
+        </button>
 
-    <!-- SVG -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="94"
-      height="70"
-      viewBox="0 0 94 70"
-      class="transition-all duration-300 cursor-pointer"
-      fill="none"
-      @click="toggleTab"
-    >
-      <path
-        :d="isToggled ? toggledPath : defaultPath"
-        fill="white"
-        stroke="black"
-        stroke-opacity="0.85"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <circle
-        :cx="tab === 'mobile' ? '66' : '50'" 
-        cy="35"
-        r="6"
-        fill="black"
-        fill-opacity="0.85"
-      />
-    </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="94"
+          height="70"
+          viewBox="0 0 94 70"
+          class="transition-all duration-300 cursor-pointer"
+          fill="none"
+          @click="toggleTab"
+        >
+          <path
+            :d="isToggled ? toggledPath : defaultPath"
+            fill="white"
+            stroke="black"
+            stroke-opacity="0.85"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle
+            :cx="tab === 'mobile' ? '66' : '50'" 
+            cy="35"
+            r="6"
+            fill="black"
+            fill-opacity="0.85"
+          />
+        </svg>
 
-    <!-- Mobile No. Button -->
-    <button
-      :class="
-        tab === 'mobile'
-          ? 'text-black font-semibold border-none outline-none'
-          : 'text-black/85 border-none outline-none'
-      "
-      @click="setTab('mobile')"
-      class="focus:outline-none bg-white border-none"
-    >
-      Mobile No.
-    </button>
-  </div>
+        <button
+          :class="tab === 'mobile' ? 'text-black font-semibold' : 'text-black/85'"
+          @click="setTab('mobile')"
+          class="focus:outline-none bg-white border-none"
+        >
+          Mobile No.
+        </button>
+      </div>
       <form @submit.prevent="login">
         <div v-if="tab === 'ma'">
           <label for="maNumber" class="sr-only">MA No.</label>
@@ -101,6 +88,15 @@
             placeholder="MA No: *"
             required
           />
+          <label for="password" class="sr-only">Password</label>
+        <input
+          v-model="form.password"
+          id="password"
+          type="password"
+          class="w-full px-4 py-2 mt-4 border bg-[#F2F2F2] text-black/85 focus:outline-none placeholder:text-[12px]"
+          placeholder="Password: *"
+          required
+        />
         </div>
         <div v-if="tab === 'mobile'">
           <label for="mobile" class="sr-only">Mobile No.</label>
@@ -112,16 +108,33 @@
             placeholder="Mobile No: *"
             required
           />
-        </div>
-        <label for="password" class="sr-only">Password</label>
-        <input
+          <input
           v-model="form.password"
           id="password"
           type="password"
           class="w-full px-4 py-2 mt-4 border bg-[#F2F2F2] text-black/85 focus:outline-none placeholder:text-[12px]"
-          placeholder="Password: *"
+          placeholder="OTP: *"
           required
         />
+          <button
+            v-if="!otpSent"
+            @click.prevent="sendOTP"
+            class="mt-4 w-full bg-black/85 text-white py-2 rounded hover:bg-gray-800"
+          >
+            Send OTP
+          </button>
+          <div v-if="otpSent" class="mt-2 text-center">
+            <p>Resend OTP in: {{ remainingTime }} seconds</p>
+            <button
+              v-if="remainingTime === 0"
+              @click.prevent="sendOTP"
+              class="mt-2 w-full bg-black/85 text-white py-2 rounded"
+            >
+              Resend OTP
+            </button>
+          </div>
+        </div>
+        
         <button
           style="line-height: normal"
           type="submit"
@@ -144,9 +157,7 @@
           </svg>
         </button>
       </form>
-      <div
-        class="flex flex-col justify-center items-center mt-[8px] text-center"
-      >
+      <div class="flex flex-col justify-center items-center mt-[8px] text-center">
         <button
           href="#"
           class="text-[13px] font-normal font-outfit text-black/85 hover:text-gray-700"
@@ -185,9 +196,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import Register from './Register.vue';
 export default {
-  
   data() {
     return {
       tab: "ma",
@@ -197,10 +206,11 @@ export default {
         password: "",
       },
       isToggled: false,
-      defaultPath:
-        "M64.3333 23H51.6667C48.3073 23 45.0854 24.317 42.71 26.6612C40.3345 29.0054 39 32.1848 39 35.5C39 38.8152 40.3345 41.9946 42.71 44.3388C45.0854 46.683 48.3073 48 51.6667 48H64.3333C67.6927 48 70.9146 46.683 73.29 44.3388C75.6655 41.9946 77 38.8152 77 35.5C77 32.1848 75.6655 29.0054 73.29 26.6612C70.9146 24.317 67.6927 23 64.3333 23Z",
-      toggledPath:
-        "M64.3333 23H51.6667C48.3073 23 45.0854 24.317 42.71 26.6612C40.3345 29.0054 39 32.1848 39 35.5C39 38.8152 40.3345 41.9946 42.71 44.3388C45.0854 46.683 48.3073 48 51.6667 48H64.3333C67.6927 48 70.9146 46.683 73.29 44.3388C75.6655 41.9946 77 38.8152 77 35.5C77 32.1848 75.6655 29.0054 73.29 26.6612C70.9146 24.317 67.6927 23 64.3333 23Z",
+      defaultPath: "M64.3333 23H51.6667C48.3073 23 45.0854 24.317 42.71 26.6612C40.3345 29.0054 39 32.1848 39 35.5C39 38.8152 40.3345 41.9946 42.71 44.3388C45.0854 46.683 48.3073 48 51.6667 48H64.3333C67.6927 48 70.9146 46.683 73.29 44.3388C75.6655 41.9946 77 38.8152 77 35.5C77 32.1848 75.6655 29.0054 73.29 26.6612C70.9146 24.317 67.6927 23 64.3333 23Z",
+      toggledPath: "M64.3333 23H51.6667C48.3073 23 45.0854 24.317 42.71 26.6612C40.3345 29.0054 39 32.1848 39 35.5C39 38.8152 40.3345 41.9946 42.71 44.3388C45.0854 46.683 48.3073 48 51.6667 48H64.3333C67.6927 48 70.9146 46.683 73.29 44.3388C75.6655 41.9946 77 38.8152 77 35.5C77 32.1848 75.6655 29.0054 73.29 26.6612C70.9146 24.317 67.6927 23 64.3333 23Z",
+      otpSent: false,
+      remainingTime: 60,
+      timer: null,
     };
   },
   methods: {
@@ -213,7 +223,24 @@ export default {
         alert("Please fill in all fields");
       }
     },
-
+    sendOTP() {
+      this.otpSent = true;
+      this.startTimer();
+      // Your logic to send the OTP goes here.
+    },
+    startTimer() {
+      this.remainingTime = 60;
+      if (this.timer) clearInterval(this.timer);
+      this.timer = setInterval(() => {
+        if (this.remainingTime > 0) {
+          this.remainingTime--;
+        } else {
+          clearInterval(this.timer);
+          this.timer = null;
+          this.otpSent = false; // Allow resending OTP
+        }
+      }, 1000);
+    },
     setTab(selectedTab) {
       this.tab = selectedTab;
       this.isToggled = selectedTab === "mobile"; 
@@ -225,8 +252,6 @@ export default {
     navigateToRegister() {
       this.$router.push('/register'); 
     },
-
-
   },
 };
 </script>

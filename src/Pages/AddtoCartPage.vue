@@ -125,14 +125,14 @@ const flavors = ref([
 ]);
 
 const flavorColors = {
-  Chocolate: "#D2691E",
-  Vanilla: "#F3E5AB",
-  Mango: "#FFA500",
-  Kulfi: "#C9E5D9",
-  "Rose Kheer": "#FFC0CB",
-  Strawberry: "#FF69B4",
-  "Banana Caramel": "#FFD700",
-  Rasmalai: "#FFFDD0",
+  Chocolate: "#763601",
+  Vanilla: "#D6D0CA",
+  Mango: "#F2B422",
+  Kulfi: "#C09F6F",
+  "Rose Kheer": "#FFCEEC",
+  Strawberry: "#DF84B0",
+  "Banana Caramel": "#C7BFA4",
+  Rasmalai: "#E0CFB0",
 };
 
 const selectedFlavor = ref(null);
