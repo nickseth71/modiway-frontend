@@ -246,7 +246,7 @@
           </div>
 
           <div class="  lg:mr-[65px] flex justify-end items-end sm:items-start pb-[60px]">
-            <router-link @click=""
+            <button @click=""
               class="flex lg:pb-[80px] lg:pr-0 flex-row items-end justify-end text-[16px] lg:text-[26px] text-black/85 font-normal font-outfit underline underline-offset-8 py-2 focus:outline-none">
               Continue Shopping
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 pt-[6px] lg:w-8 lg:h-8 text-gray-500"
@@ -261,7 +261,7 @@
                     fill="black" fill-opacity="0.85" />
                 </g>
               </svg>
-            </router-link>
+            </button>
           </div>
         </div>
       </div>

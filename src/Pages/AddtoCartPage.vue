@@ -25,15 +25,7 @@ const cartItems = ref([
   { src: AddCart4, alt: "Cart img 4" },
 ]);
 
-const selectedCartItem = ref(null);
 
-const openPopup = (item) => {
-  selectedCartItem.value = item;
-};
-
-const closePopup = () => {
-  selectedCartItem.value = null;
-};
 
 /////////////////////////////// Other Images and Data ///////////////////////////////////////
 import wishImg from "../assets/modiway-icon/heart-svgrepo-com.svg";
@@ -319,8 +311,8 @@ const activeTab = ref(0);
 
           <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-              ' px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer flavour-color',
-              selectedFlavor === flavor ? 'active-flavour-color' : ''
+              'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
+              selectedFlavor === flavor ? 'border-[1.2px] border-black' : ''
             ]" :style="{ backgroundColor: flavorColors[flavor] }">
               {{ flavor }}
             </div>
@@ -434,21 +426,60 @@ const activeTab = ref(0);
 
         <!-- Image Grid -->
         <div class="lg:grid gap-[14px] grid-cols-2 lg:w-[58%]">
-          <div v-for="(item, index) in cartItems" :key="index" class="flex justify-center">
-            <img :src="item.src" :alt="item.alt" class="object-cover w-full h-auto cursor-pointer"
-              @click="openPopup(item)" />
-          </div>
+    <!-- Image Grid -->
+    <div v-for="(item, index) in cartItems" :key="index" class="flex justify-center">
+      <img 
+        :src="item.src" 
+        :alt="item.alt" 
+        class="object-cover w-full h-auto cursor-pointer"
+        @click="openPopup(index)" 
+      />
+    </div>
+
+    <!-- Popup Modal -->
+    <div 
+      v-if="isPopupVisible" 
+      class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center z-50"
+    >
+      <div class="relative bg-white p-4 rounded-lg max-w-[90%] lg:max-w-[50%]">
+        <!-- Close Button -->
+        <button 
+          @click="closePopup" 
+          class="absolute top-2 right-2 text-gray-600 hover:text-black"
+        >
+          ✖
+        </button>
+
+        <!-- Image Display -->
+        <img 
+          :src="cartItems[currentIndex].src" 
+          :alt="cartItems[currentIndex].alt" 
+          class="object-cover w-full h-auto"
+        />
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between mt-4">
+          <button 
+            @click="previousImage" 
+            class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded"
+            :disabled="currentIndex === 0"
+          >
+            Previous
+          </button>
+          <button 
+            @click="nextImage" 
+            class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded"
+            :disabled="currentIndex === cartItems.length - 1"
+          >
+            Next
+          </button>
         </div>
+      </div>
+    </div>
+  </div>
 
         <!-- Popup -->
-        <div v-if="selectedImage" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div class="relative bg-transparent px-2  rounded-lg">
-            <img :src="selectedImage.src" :alt="selectedImage.alt" class="object-contain max-w-full max-h-[100vh]" />
-            <button class="absolute w-8 h-8 top-0 right-0 text-white bg-black/50 rounded-full" @click="closePopup">
-              ✖
-            </button>
-          </div>
-        </div>
+       
 
 
         <!-- Second Column: Product Information -->
@@ -493,8 +524,8 @@ const activeTab = ref(0);
           <div class="pt-[40px]">
             <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
               <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-                'px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer flavour-color',
-                selectedFlavor === flavor ? 'active-flavour-color' : ''
+                'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
+                selectedFlavor === flavor ? 'border-[1.2] border-black' : ''
               ]" :style="{ backgroundColor: flavorColors[flavor] }">
                 {{ flavor }}
               </div>
@@ -581,23 +612,23 @@ const activeTab = ref(0);
     <section class="page-width hidden lg:block">
       <div class="mt-[77px] flex flex-col items-center justify-center w-full max-w-[1124px] mx-auto">
         <!-- Tabs -->
-        <div class="flex justify-between  items-center w-full tab-container">
+        <div class="flex justify-between space-x-[78px] items-center w-full">
           <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
-            class="relative cursor-pointer text-[#353535]  text-[14px] hover:text-black">
-            <div class="pb-[15px] border-b-2" :class="{
+            class="relative cursor-pointer text-[#353535] text-[20px] hover:text-black">
+            <div class="pb-[10px] border-b-2" :class="{
               'border-black text-shadow-custom': activeTab === index,
               'border-gray-300': activeTab !== index,
             }">
-              <span class="pl-[10px]">{{ tab }}</span>
+              <span>{{ tab }}</span>
             </div>
             <div v-if="activeTab === index"
-              class="absolute top-[10px] right-[10px] h-[4px] w-[4px] bg-black transform -translate-y-1/2 rounded-full">
+              class="absolute top-1/2 right-[-28px] h-[6px] w-[6px] bg-black transform -translate-y-1/2 rounded-full">
             </div>
           </div>
         </div>
 
         <!-- Tab Content -->
-        <div class="w-full mt-14">
+        <div class="w-full mt-6">
           <div v-if="activeTab === 0" class="w-full flex gap-[2rem] justify-between flex-col sm:flex-row">
             <div class="flex-1 py-4  ">
 
@@ -624,7 +655,7 @@ const activeTab = ref(0);
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>
-          <div v-if="activeTab === 1" class="flex gap-[2rem] flex-col sm:flex-row">
+          <div v-if="activeTab === 1" class="flex flex-col sm:flex-row">
             <div class="flex-1 py-4  ">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
@@ -640,7 +671,7 @@ const activeTab = ref(0);
             </div>
 
           </div>
-          <div v-if="activeTab === 2" class="flex gap-[2rem] flex-col sm:flex-row">
+          <div v-if="activeTab === 2" class="flex flex-col sm:flex-row">
             <div class="flex-1 py-4">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
@@ -666,7 +697,7 @@ const activeTab = ref(0);
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>
-          <div v-if="activeTab === 3" class="flex gap-[2rem] flex-col sm:flex-row">
+          <div v-if="activeTab === 3" class="flex flex-col sm:flex-row">
             <div class="flex-1 py-4">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
@@ -684,7 +715,7 @@ const activeTab = ref(0);
               <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
             </div>
           </div>
-          <div v-if="activeTab === 4" class="flex gap-[2rem] flex-col sm:flex-row">
+          <div v-if="activeTab === 4" class="flex flex-col sm:flex-row">
             <div class="flex-1 py-4">
 
               <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
