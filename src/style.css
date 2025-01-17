@@ -12,7 +12,16 @@
     font-family: 'Outfit', sans-serif;
     color: #272727;
   }
+
+  /* When the menu is open, disable scrolling on body */
+  body:has(.menu-open) {
+    overflow: hidden;
 }
+}
+/*  */
+
+
+
 
 .page-width {
   max-width: 1200px;

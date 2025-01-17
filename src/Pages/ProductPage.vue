@@ -204,8 +204,8 @@ export default {
 
     const mediaItems = ref([
       { type: "video", src: "https://cdn.pixabay.com/video/2022/02/24/108803-681686665_large.mp4" },
-      { type: "video", src: "https://cdn.pixabay.com/video/2021/09/08/2066/2066-323539_large.mp4" },
-      { type: "video", src: "https://cdn.pixabay.com/video/2022/03/01/7188/7188-595900_large.mp4" }
+      // { type: "video", src: "https://cdn.pixabay.com/video/2021/09/08/2066/2066-323539_large.mp4" },
+      // { type: "video", src: "https://cdn.pixabay.com/video/2022/03/01/7188/7188-595900_large.mp4" }
     ]);
 
     const currentIndex = ref(0);
@@ -241,7 +241,7 @@ export default {
     const filterDropdownOpen = ref(false);
     const selectedSort = ref("");
     const sortDropdownOpen = ref(false);
-    const searchQuery = ref("");
+    const searchQuery = ref("");  
 
     const filterDropdown = ref(null);
     const sortDropdown = ref(null);
@@ -276,6 +276,7 @@ export default {
       } else {
         selectedName.value.push(name);
       }
+      filterDropdownOpen.value = false;
     };
 
     const selectSort = (sortOrder) => {

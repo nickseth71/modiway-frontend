@@ -1,7 +1,7 @@
 <template>
   <section>
     <!-- Video Carousel Section -->
-    <section id="video-carousel" class="relative w-full h-screen">
+    <section id="video-carousel" class="relative w-full h-[40vh] sm:h-auto lg:h-screen">
       <div class="relative w-full h-full">
         <div v-for="(media, index) in mediaItems" :key="index"
           class="absolute inset-0 w-full h-auto duration-700 ease-in-out" v-show="index === currentIndex">
@@ -11,7 +11,7 @@
       </div>
 
       <!-- Carousel Indicators -->
-      <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <div class="absolute bottom-3 lg:bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
         <span v-for="(media, index) in mediaItems" :key="index" @click="currentIndex = index"
           class="w-3 h-3 bg-white rounded-full cursor-pointer" :class="{
             'bg-opacity-50': currentIndex !== index,
@@ -20,10 +20,12 @@
       </div>
     </section>
 
+
+
     <!-- Welcome Section -->
     <section class="flex justify-center items-center page-width">
       <div
-        class="text-center text-black/85 px-[16px] lg:py-[32px] py-[55px] max-w-[814px] font-light font-outfit tracking-[0.6px] leading-[20px] lg:leading-[38px] text-[20px] lg:text-[30px]">
+        class="text-center text-black/85 px-[16px] lg:pt-[32px] py-[55px] max-w-[814px] font-light font-outfit tracking-[0.6px] leading-[20px] lg:leading-[38px] text-[20px] lg:text-[30px]">
         <h1 class="pb-2 lg:pb-0">Welcome to a movement called the Modiway</h1>
         A transformative journey to spread joy, to make lives simpler, inspire
         positive change for body, mind and soul, and build a better world.
@@ -32,16 +34,17 @@
 
     <!-- Individual Image Sections -->
 
-    <section v-for="(image, index) in imageItems" :key="index"
-      :class="['relative', index === 1 ? 'bg-gray-100' : 'bg-white']" class="flex justify-center items-center">
-      <div class="flex flex-col justify-center items-center lg:items-start page-width">
-        <div :class="{
-          'flex flex-col justify-center items-center lg:flex-row-reverse lg:gap-6': index % 2 === 0,
-          'flex flex-col items-center lg:flex-row lg:gap-6': index % 2 !== 0,
+    <section v-for="(image, index) in imageItems" :key="index" :class="['', index === 1 ? 'bg-gray-100' : 'bg-white']"
+      class="flex justify-center items-center">
+      <div class=" flex flex-col justify-center items-center lg:items-start page-width ">
+        <div class="top-0 lg:my-[-50px] " :class="{
+          'flex flex-col justify-center items-center lg:flex-row-reverse lg:gap-6':
+            index % 2 === 0,
+          'flex flex-col items-center lg:flex-row lg:gap-6 ': index % 2 !== 0,
         }">
           <!-- Image with Title Overlay -->
-          <div class="relative w-full lg:w-[500px] h-64 lg:h-[436px] mb-4 lg:mb-0 lg:mr-4 lg:ml-8">
-            <img :src="image.src" :alt="image.alt" class="w-full h-full object-cover shadow-none duration-300" />
+          <div class="relative w-full lg:w-[500px] h-64 lg:h-auto lg:mb-0 lg:mr-4 lg:ml-8">
+            <img :src="image.src" :alt="image.alt" class="w-full h-auto object-cover shadow-none duration-300" />
             <h3
               class="absolute inset-0 flex pl-[17px] py-6 items-start leading-6 tracking-[0.8px] justify-start text-white text-[32px] font-extralight font-outfit lg:text-5xl bg-black/15 whitespace-normal break-words line-clamp-3">
               {{ image.title }}
@@ -50,31 +53,39 @@
 
           <!-- Description -->
           <div class="flex-1 flex justify-center items-start py-8" :class="{
-            'lg:ml-[200px] lg:mr-[90px]': index % 2 === 0,
-            'lg:mr-[200px] lg:ml-[90px]': index % 2 !== 0,
+            'lg:ml-[180px] lg:mr-[90px]': index % 2 === 0,
+            'lg:mr-[180px] lg:ml-[90px]': index % 2 !== 0,
           }">
-            <div class="pl-[17px] pr-[48px] lg:py-28 space-y-[15px] lg:space-y-[16px]">
+            <div class="pl-[17px]  lg:py-28 space-y-[15px] lg:space-y-[16px]">
               <h3 class="text-black/85 text-[26px] font-normal tracking-normal font-outfit">
                 {{ image.heading }}
               </h3>
 
               <p :class="{
-                'max-h-[80px]': !image.showFullDescription && isMobile,
-                'max-h-full': image.showFullDescription,
-                'overflow-hidden': !image.showFullDescription,
+                'max-h-full': !isMobile,
+                'max-h-[80px]': isMobile && !image.showFullDescription,
+                'overflow-hidden': isMobile && !image.showFullDescription,
                 'transition-all duration-300': true,
               }"
-                class="text-[rgba(0,0,0,0.85)] font-outfit text-[16px] font-light tracking-[0.8px] leading-[119.952%] lg:text-[18px] lg:font-normal lg:tracking-[0.9px] lg:leading-normal">
-                {{ image.description }}
+                class="text-[rgba(0,0,0,0.85)] font-outfit text-[16px] font-light tracking-[0.5px] lg:leading-[21.59px] lg:text-[18px] lg:font-normal lg:tracking-[5%]">
+
+                <span v-if="!isMobile || image.showFullDescription">
+                  {{ image.descriptionPart1 }}
+                  <span class="block mt-[15px]">
+                    {{ image.descriptionPart2 }}
+                  </span>
+                </span>
+                <span v-if="isMobile && !image.showFullDescription">
+                  {{ image.descriptionPart1 }}...
+                </span>
               </p>
 
               <!-- Mobile Show More Button -->
               <button v-if="isMobile" @click="toggleText(image)"
-                class="block lg:hidden bottom-0 left-0 bg-transparent text-gray-600 font-outfit text-[13px] hover:underline">
+                class="block lg:hidden bg-transparent text-gray-600 font-outfit text-[13px] hover:underline">
                 {{ image.showFullDescription ? "- Show less" : "+ Show more" }}
               </button>
-
-              <div class="flex justify-start items-center pb-6">
+              <div class="flex justify-start items-center">
                 <button
                   class="inline-flex text-[13px] px-2.5 py-[6px] items-center justify-center bg-[#414042] text-[#FFFFFF] font-outfit leading-none tracking-wide">
                   Shop Now
@@ -85,7 +96,6 @@
         </div>
       </div>
     </section>
-
 
     <!-- Second Section -->
     <div class="bg-gray-100">
@@ -128,7 +138,7 @@
           <img :src="ArticleIMG" alt="Article Image"
             class="sm:w-[155.62px] sm:h-[134.98px] md:w-[503px] md:h-[436px] shadow-[inset_0px_100px_21.899999618530273px_0px_rgba(138,122,122,0.25)] sm:shadow-[inset_0px_100px_21.899999618530273px_0px_rgba(138,122,122,0.25)] md:shadow-[inset_0px_123px_20.899999618530273px_0px_rgba(141,134,134,0.25)]" />
           <button @click="navigateToBlogs"
-            class="inline-flex items-center px-2.5 justify-center mt-[13px] text-center py-[5px] bg-[#414042] text-[#FFFFFF] text-[13px] lg:text-[15px] lg:mt-[13px]">
+            class="inline-flex items-center px-4 justify-center mt-[13px] text-center py-[5px] bg-[#414042] text-[#FFFFFF] text-[13px] lg:text-[15px] lg:mt-[24px]">
             Read Our Articles
           </button>
         </div>
@@ -137,7 +147,7 @@
           <img :src="ResourceIMG" alt="Resource IMG"
             class="sm:w-[159.62px] sm:h-[134.98px] md:w-[503px] md:h-[436px]" />
           <button @click="navigateToResource"
-            class="inline-block mt-[13px] px-2.5 py-[5px] bg-[#414042] text-[#FFFFFF] text-[13px] lg:text-[15px] lg:mt-[13px]">
+            class="inline-block mt-[13px] px-4 py-[5px] bg-[#414042] text-[#FFFFFF] text-[13px] lg:text-[15px] lg:mt-[24px]">
             Resources
           </button>
         </div>
@@ -200,8 +210,9 @@ export default {
         alt: "Think Wellness",
         title: "Think Wellness",
         heading: "ShapeShift",
-        description:
-          "Backed by science, ShapeShift has been designed to balance your calorie intake, optimize nutrition, and support your transformation, every day. Whether it’s the nutrient-packed Meal Replacement Shake, the clean, powerful Plant-Based Protein, or the energizing Fat Burners, ShapeShift is designed to complement Indian diets, lifestyles, and tastes. ",
+        descriptionPart1:
+          "Backed by science, ShapeShift has been designed to balance your calorie intake, optimize nutrition, and support your transformation, every day.",
+        descriptionPart2: "Whether it’s the nutrient-packed Meal Replacement Shake, the clean, powerful Plant-Based Protein, or the energizing Fat Burners, ShapeShift is designed to complement Indian diets, lifestyles, and tastes.",
         showFullDescription: false,
       },
       {
@@ -209,8 +220,9 @@ export default {
         alt: "Think Kitchen",
         title: "Think Kitchen",
         heading: "SoulChef",
-        description:
-          "Soul Chef’s range of smart kitchen solutions combine design and innovation with the art of kitchen alchemy, blending form and function, beauty and utility. Every piece is thoughtfully designed with comfort and functionality at its core, ensuring everything finds its place and every moment feels seamless and enjoyable.",
+        descriptionPart1:
+          "Soul Chef’s range of smart kitchen solutions combine design and innovation with the art of kitchen alchemy, blending form and function, beauty and utility.",
+        descriptionPart2: " Every piece is thoughtfully designed with comfort and functionality at its core, ensuring everything finds its place and every moment feels seamless and enjoyable.",
         showFullDescription: false,
       },
       {
@@ -218,8 +230,11 @@ export default {
         alt: "Think Beauty",
         title: "Think Beauty",
         heading: "Forest Nectar",
-        description:
-          "Beauty is the art of balance—caring for body, mind, and soul. When all three thrive, you don’t just look good, you feel good too. At Forest Nectar, we believe in the power of nature to heal, rejuvenate, and inspire, harnessing the potent essence of Oudh, Coffee, and other carefully selected ingredients",
+        descriptionPart1:
+          "Beauty is the art of balance—caring for body, mind, and soul. When all three thrive, you don’t just look good, you feel good too."
+        ,
+        descriptionPart2: "At Forest Nectar, we believe in the power of nature to heal, rejuvenate, and inspire, harnessing the potent essence of Oudh, Coffee, and other carefully selected ingredients",
+
         showFullDescription: false,
       },
     ]);
@@ -249,21 +264,20 @@ export default {
       }
     };
 
-
     const toggleText = (image) => {
       image.showFullDescription = !image.showFullDescription;
     };
 
     const updateScreenSize = () => {
-      isMobile.value = window.innerWidth <= 768; // Consider mobile screen width <= 768px
+      isMobile.value = window.innerWidth <= 768;
     };
     onMounted(() => {
       updateScreenSize();
-      window.addEventListener('resize', updateScreenSize);
+      window.addEventListener("resize", updateScreenSize);
     });
 
     onBeforeUnmount(() => {
-      window.removeEventListener('resize', updateScreenSize);
+      window.removeEventListener("resize", updateScreenSize);
     });
 
     return {
@@ -281,12 +295,11 @@ export default {
       goToShopShift,
       navigateToBlogs,
       navigateToResource,
-      isMobile
+      isMobile,
     };
   },
 };
 </script>
-
 
 <style scoped>
 /* Optional styles here */

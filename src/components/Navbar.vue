@@ -1,7 +1,7 @@
 <template>
   <header class="flex flex-col justify-center py-[10px] lg:py-[24px] page-width">
     <!-- Header Section -->
-    <div class="flex justify-between items-center py-[14px]">
+    <div class="flex justify-between items-center pt-[14px] pb-[20px]">
       <!-- Left Side (Menu Button) -->
       <div class="flex items-start gap-4 sm:hidden">
         <!-- Menu Icon for Mobile Screens -->
@@ -14,7 +14,7 @@
       </div>
 
       <!-- Logo Section - Centered -->
-      <div class="ml-12 lg:ml-20 flex justify-center items-center flex-grow">
+      <div class="ml-12 lg:pl-[110px] flex justify-center items-center flex-grow">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-[120px] h-[23px] lg:w-[188px] lg:h-[36px]" viewBox="0 0 188 36"
           fill="none">
           <g clip-path="url(#clip0_272_363)">
@@ -85,7 +85,7 @@
       </div>
 
       <!-- Right Side (Icons) -->
-      <div class="flex lg:gap-[20px] sm:gap-6 items-center">
+      <div class="flex lg:pr-[28px] lg:gap-[20px] sm:gap-6 items-center">
         <!-- Search Icon -->
         <div class="flex items-center border-r-2 lg:border-none px-2 lg:px-0">
           <svg @click="toggleSearch" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
@@ -131,7 +131,7 @@
 
     <!-- Container for the background blur -->
     <div v-if="openCartVisible"
-      class="inset-0 fixed z-10 bg-white bg-opacity-30 backdrop-blur-sm transition-all duration-300 ease-in-out">
+      class="menu-open inset-0 fixed z-10 bg-white bg-opacity-30 backdrop-blur-sm transition-all duration-300 ease-in-out">
       <div class="fixed top-0 right-0 bg-white max-w-1/2 h-[calc(100vh)] overflow-y-auto py-[20px] lg:py-[85px]"
         style="scrollbar-width: none; -ms-overflow-style: none" id="my-cart">
         <div class="relative px-[10px] lg:w-full h-full">
@@ -270,7 +270,7 @@
     <div class="page-width">
       <!-- Mobile Navbar -->
       <div :class="[
-        isMenuOpen ? 'translate-x-0 shadow-gray-400 shadow-2xl' : '-translate-x-full',
+        isMenuOpen ? 'menu-open translate-x-0 shadow-gray-400 shadow-2xl' : '-translate-x-full',
         'fixed top-0 left-0 w-[75%] h-screen bg-white transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto',
       ]" @click.self="isMenuOpen = false">
         <button @click="isMenuOpen = false" class="absolute top-4 right-8 text-black text-2xl font-bold">
@@ -368,14 +368,12 @@
                 </div>
               </div>
             </div>
-
           </li>
-
           <!-- Business Opportunity Link -->
           <li>
             <router-link @click.native="isMenuOpen = false" to="/business-opportunity"
               class="block text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold"
-              :class="{ 'pt-[60px]': isProductMenuOpen }">
+              >
               Business Opportunity
             </router-link>
           </li>
@@ -408,7 +406,7 @@
       </div>
       <!--------------------------------------------------- Large Screen Navbar ----------------------------------------------->
       <nav>
-        <ul class="list-none hidden lg:flex max-w-full mx-auto items-center space-x-20">
+        <ul class="list-none hidden lg:flex max-w-full mx-auto items-center space-x-[80px]">
           <li>
             <router-link to="/ourstory"
               class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom">
@@ -432,12 +430,12 @@
                       <li v-for="(menu, index) in menus" :key="index" class="flex justify-start items-center"
                         @mouseenter="openSubMenu(menu.subMenus), setActiveMenu(menu.label)">
                         <div
-                          class="min-w-[110px] inline-flex justify-between items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
+                          class="cursor-pointer min-w-[110px] inline-flex justify-between items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
                           :class="{
                             'text-black/85': activeMenu === menu.label,
                             'font-semibold': activeMenu === menu.label,
                           }">
-                          <span>{{ menu.label }}</span>
+                          <span class="cursor-pointer">{{ menu.label }}</span>
                           <i class="fa fa-chevron-right text-sm px-[55px]"></i>
                         </div>
                       </li>
@@ -448,11 +446,11 @@
                         class="flex justify-start items-center py-[5px] pl-[55px] border-l border-gray-200"
                         @mouseenter="openItemsSubMenu(submenu.items); setActiveSubMenu(submenu)">
                         <div
-                          class="max-w-[630px] inline-flex justify-between items-center text-left font-normal font-outfit hover:font-semibold"
+                          class="cursor-pointer max-w-[630px] inline-flex justify-between items-center text-left font-normal font-outfit hover:font-semibold"
                           :class="{
                             'text-black/85 font-semibold': activeSubMenu === submenu.label,
                           }">
-                          <span>{{ submenu.label }}</span>
+                          <span class="cursor-pointer">{{ submenu.label }}</span>
                           <i class="fa fa-chevron-right mt-[3px] text-sm px-[45px]"></i>
                         </div>
                       </li>
@@ -463,11 +461,11 @@
                         class="flex justify-start border-l border-gray-200 items-start pl-[30px]">
                         <!-- Items Sub Menu -->
                         <div
-                          class="inline-flex items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
+                          class="cursor-pointer inline-flex items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
                           :class="{
                             'font-bold': menu === activeItemSubMenu,
                           }">
-                          <span>{{ menu }}</span>
+                          <span class="cursor-pointer">{{ menu }}</span>
                         </div>
                       </li>
                     </ul>
@@ -486,7 +484,7 @@
           <li class="">
             <router-link to="/wellness-test"
               class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom">
-              Wellness Test
+               Test Menu
             </router-link>
           </li>
         </ul>
@@ -582,8 +580,6 @@ const openSubMenu = (submenu) => {
   itemsSubmenu.value = [];
 };
 
-
-
 const openItemsSubMenu = (items) => {
   itemsSubmenu.value = items;
 };
@@ -673,7 +669,7 @@ const toggleCheckout = () => {
   openCartVisible.value = false;
   router.push("/checkout-form");
 };
-const isMenuOpen = ref(false);
+// const isMenuOpen = ref(false);
 
 </script>
 
@@ -681,12 +677,12 @@ const isMenuOpen = ref(false);
 
 <!-- -------------------------------for mobile ------------------------------>
 <script>
-import { reactive, onMounted, onUnmounted } from "vue";
+import { reactive} from "vue";
 
 export default {
   data() {
     return {
-      isMenuOpen: false,
+      isMenuOpen: false, 
       state: reactive({
         showDropdown: false,
         subMenuState: {},
@@ -726,103 +722,37 @@ export default {
       }),
     };
   },
-  methods: {
-    // Disable scrolling on the body and html
-    disableScrolling() {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-    },
 
-    // Enable scrolling on the body and html
-    enableScrolling() {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-    },
-  },
-  watch: {
-    isMenuOpen(newValue) {
-      if (newValue) {
-        this.disableScrolling();  // Disable scrolling when the menu opens
-      } else {
-        this.enableScrolling();   // Enable scrolling when the menu closes
-      }
-    },
-  },
-  methods: {
-    // disableScrolling() {
-    //   document.body.style.overflow = "hidden"; // For modern browsers
-    //   document.addEventListener("touchmove", this.preventScroll, { passive: false });
-    //   document.addEventListener("wheel", this.preventScroll, { passive: false });
-    // },
-    // enableScrolling() {
-    //   document.body.style.overflow = ""; 
-    //   document.removeEventListener("touchmove", this.preventScroll);
-    //   document.removeEventListener("wheel", this.preventScroll);
-    // },
-    // preventScroll(event) {
-    //   event.preventDefault(); 
-    // },
+  
 
-    watch: {
-      isMenuOpen(newValue) {
-        if (newValue) {
-          // Disable body scroll when menu is open
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
-        } else {
-          // Enable body scroll when menu is closed
-          document.body.style.overflow = '';
-          document.documentElement.style.overflow = '';
-        }
-      },
-    },
+  methods: {
+    
     toggleDropdown() {
       this.state.showDropdown = !this.state.showDropdown;
     },
     toggleSubMenu(menuKey) {
-      // Close all other menus
       Object.keys(this.state.subMenuState).forEach((key) => {
         if (key !== menuKey) {
           this.state.subMenuState[key] = false;
         }
       });
-
-      // Toggle the clicked menu
       this.state.subMenuState[menuKey] = !this.state.subMenuState[menuKey];
     },
     toggleItemsSubMenu(menuKey, subMenuKey) {
-
       if (!this.state.itemsSubmenu[menuKey]) {
         this.state.itemsSubmenu[menuKey] = {};
       }
-
-      // Close all other submenus within the same menu
       Object.keys(this.state.itemsSubmenu[menuKey]).forEach((key) => {
         if (key !== subMenuKey) {
           this.state.itemsSubmenu[menuKey][key] = false;
         }
       });
+      this.state.itemsSubmenu[menuKey][subMenuKey] =
+        !this.state.itemsSubmenu[menuKey][subMenuKey];
+    },
+  },
 
-      // Toggle the clicked submenu
-      this.state.itemsSubmenu[menuKey][subMenuKey] = !this.state.itemsSubmenu[menuKey][subMenuKey];
-    },
-    handleClickOutside(event) {
-      const dropdownContainer = this.$refs.dropdownContainer;
-      if (dropdownContainer && !dropdownContainer.contains(event.target)) {
-        this.state.showDropdown = false;
-      }
-    },
-  },
-  mounted() {
-    document.addEventListener("click", this.handleClickOutside);
-  },
-  beforeDestroy() {
-    this.enableScrolling();
-  },
-  unmounted() {
-    document.removeEventListener("click", this.handleClickOutside);
-    this.enableScrolling();
-  },
+  
 };
 </script>
 

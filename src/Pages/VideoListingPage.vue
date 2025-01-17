@@ -78,7 +78,7 @@ const handlePageChange = (page) => {
 };
 
 // State variables
-const selectedCategory = ref("All");
+const selectedCategories = ref([]); // Array for multiple selected categories
 const selectedSortOrder = ref("");
 const filterDropdownOpen = ref(false);
 const sortDropdownOpen = ref(false);
@@ -90,11 +90,9 @@ const categories = ["All", "Category A", "Category B"];
 const filteredAndSortedItems = computed(() => {
     let filteredItems = items.value;
 
-    // Filter by category
-    if (selectedCategory.value !== "All") {
-        filteredItems = filteredItems.filter(
-            (item) => item.category === selectedCategory.value
-        );
+    // Filter by selected categories
+    if (selectedCategories.value.length > 0 && !selectedCategories.value.includes("All")) {
+        filteredItems = filteredItems.filter((item) => selectedCategories.value.includes(item.category));
     }
 
     // Sort by title (as an example)
@@ -110,21 +108,39 @@ const filteredAndSortedItems = computed(() => {
 // Dropdown toggle functions
 const toggleFilterDropdown = () => {
     filterDropdownOpen.value = !filterDropdownOpen.value;
+    sortDropdownOpen.value = false;
 };
 
 const toggleSortDropdown = () => {
     sortDropdownOpen.value = !sortDropdownOpen.value;
-};
-// Select filter and sort options
-const selectFilter = (category) => {
-    selectedCategory.value = category;
     filterDropdownOpen.value = false;
 };
 
+// Select filter options
+const selectFilter = (category) => {
+    if (category === "All") {
+        // Reset to only "All" if "All" is selected
+        selectedCategories.value = ["All"];
+    } else {
+        // Remove "All" if another category is selected
+        selectedCategories.value = selectedCategories.value.filter((cat) => cat !== "All");
+
+        // Toggle category
+        if (selectedCategories.value.includes(category)) {
+            selectedCategories.value = selectedCategories.value.filter((cat) => cat !== category);
+        } else {
+            selectedCategories.value.push(category);
+        }
+    }
+    filterDropdownOpen.value = false;
+};
+
+// Select sort order
 const selectSortOrder = (sortOrder) => {
     selectedSortOrder.value = sortOrder;
     sortDropdownOpen.value = false;
 };
+
 
 // Modal state
 const isModalOpen = ref(false);
@@ -154,67 +170,68 @@ const closeModal = () => {
             <span class="text-black/85 text-[12px] font-outfit font-semibold">Resources</span>
         </div>
         <section class="page-width flex justify-center items-center pt-[35px] pb-[15px] lg:pt-[63px] md:py-[30px]">
-
-            <div class="max-w-full flex justify-center items-center w-full">
-                <div class="flex flex-col md:flex-row justify-between items-center w-full">
-                    <div class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 gray-bb">
-                        <!-- Filter Dropdown -->
-                        <div class="relative lg:order-2 order-1 hover-img">
-                            <div @click="toggleFilterDropdown"
-                                class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-1 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500">
-                                <img src="../assets/filter.png" class="lg:hidden sm:hidden" />
-                                {{ selectedCategory || "Filter" }}
-                                <i class="fas fa-chevron-down mobile-hide"></i>
-                            </div>
-                            <ul v-if="filterDropdownOpen"
-                                class="absolute flex flex-col bg-white z-10 mt-1 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]">
-                                <li v-for="name in categories" :key="name" @click="selectFilter(name)"
-                                    class="px-4 py-2 text-[16px] first:border-0 border-t border-black cursor-pointer hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap border-opacity-25">
-                                    <i v-if="selectedCategory === name" class="fas fa-check mr-2 text-green-500"></i>
-                                    {{ name }}
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Sort Dropdown -->
-                        <div class="relative g:order-1 order-2">
-                            <div @click="toggleSortDropdown"
-                                class="cursor-pointer px-2 py-1 lg:px-3 rounded text-[11px] md:text-[13px] font-inter font-normal text-center focus:ring-blue-500 focus:border-blue-500">
-                                {{
-                                    selectedSortOrder === "asc"
-                                        ? "Low to High"
-                                        : selectedSortOrder === "desc"
-                                            ? "High to Low"
-                                            : "Sort"
-                                }}
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <ul v-if="sortDropdownOpen"
-                                class="absolute flex flex-col justify-start bg-white z-20 mt-1 mx-auto sort-mob-pos shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]">
-                                <li @click="selectSortOrder('')"
-                                    class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-0 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
-                                    <i v-if="selectedSortOrder === ''"
-                                        class="fas fa-check mr-2 text-black absolute left-3"></i>
-                                    Best Seller
-                                </li>
-                                <li @click="selectSortOrder('asc')"
-                                    class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
-                                    <i v-if="selectedSortOrder === 'asc'"
-                                        class="fas fa-check text-black absolute left-3"></i>
-                                    Low to High
-                                </li>
-                                <li @click="selectSortOrder('desc')"
-                                    class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
-                                    <i v-if="selectedSortOrder === 'desc'"
-                                        class="fas fa-check mr-2 text-black absolute left-3"></i>
-                                    High to Low
-                                </li>
-                            </ul>
-                        </div>
+    <div class="max-w-full flex justify-center items-center w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center w-full">
+            <div class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 gray-bb">
+                <!-- Filter Dropdown -->
+                <div class="relative lg:order-2 order-1 hover-img">
+                    <div @click="toggleFilterDropdown"
+                        class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-1 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500">
+                        <img src="../assets/filter.png" class="lg:hidden sm:hidden" />
+                        {{ selectedCategories.length > 0 ? selectedCategories.join(", ") : "Filter" }}
+                        <i class="fas fa-chevron-down mobile-hide"></i>
                     </div>
+                    <ul v-if="filterDropdownOpen"
+                        class="absolute flex flex-col bg-white z-10 mt-1 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]">
+                        <li v-for="name in categories" :key="name" @click="selectFilter(name)"
+                            class="px-4 py-2 text-[16px] first:border-0 border-t border-black cursor-pointer hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap border-opacity-25">
+                            
+                            {{ name }}
+                            <i v-if="selectedCategories.includes(name)" class="fas fa-times ml-2 text-red-500"></i>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Sort Dropdown -->
+                <div class="relative g:order-1 order-2">
+                    <div @click="toggleSortDropdown"
+                        class="cursor-pointer px-2 py-1 lg:px-3 rounded text-[11px] md:text-[13px] font-inter font-normal text-center focus:ring-blue-500 focus:border-blue-500">
+                        {{
+                            selectedSortOrder === "asc"
+                                ? "Low to High"
+                                : selectedSortOrder === "desc"
+                                    ? "High to Low"
+                                    : "Sort"
+                        }}
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <ul v-if="sortDropdownOpen"
+                        class="absolute flex flex-col justify-start bg-white z-20 mt-1 mx-auto sort-mob-pos shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]">
+                        <li @click="selectSortOrder('')"
+                            class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-0 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
+                            <i v-if="selectedSortOrder === ''"
+                                class="fas fa-check mr-2 text-black absolute left-3"></i>
+                            Best Seller
+                        </li>
+                        <li @click="selectSortOrder('asc')"
+                            class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
+                            <i v-if="selectedSortOrder === 'asc'"
+                                class="fas fa-check text-black absolute left-3"></i>
+                            Low to High
+                        </li>
+                        <li @click="selectSortOrder('desc')"
+                            class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
+                            <i v-if="selectedSortOrder === 'desc'"
+                                class="fas fa-check mr-2 text-black absolute left-3"></i>
+                            High to Low
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
 
         <!-- Video Listing -->
         <section class="page-width">

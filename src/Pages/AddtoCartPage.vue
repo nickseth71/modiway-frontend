@@ -812,15 +812,6 @@ const activeTab = ref(0);
                       for weight control/management.
                     </p>
 
-<<<<<<< HEAD
-            </div>
-            <div class="flex-1">
-              <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
-            </div>
-          </div>
-          <div v-if="activeTab === 4" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4">
-=======
                   </div>
                   <div class="flex-1">
                     <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
@@ -828,7 +819,6 @@ const activeTab = ref(0);
                 </div>
                 <div v-if="activeTab === 4" class="flex gap-[2rem] flex-col sm:flex-row">
                   <div class="flex-1 py-4">
->>>>>>> 8e36c1ef69c520cfb5c1697a2b3c669badaa3f5c
 
                     <p
                       class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
