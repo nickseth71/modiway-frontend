@@ -273,10 +273,7 @@ const activeTab = ref(0);
   <section class="max-w-[100%] mx-auto">
     <section
       class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-6 lg:space-y-0 lg:space-x-[42px] page-width">
-
-
       <!------------------------------------------------------- Carousel for Small Devices-------------------------------- -->
-
       <div class="lg:hidden">
         <div class="flex flex-row pl-[16px] py-[8px]">
           <div class="flex flex-row ">
@@ -465,245 +462,184 @@ const activeTab = ref(0);
 
       <!------------------------------------------------------------------------------- Large Screen --------------------------------------------------- -->
 
-      <div class="hidden lg:flex gap-6">
-
+      <div class="hidden lg:flex gap-6"> 
         <!-- Image Grid -->
-
-        <!-- Image Grid -->
-        <div class="lg:grid gap-[14px] grid-cols-2 lg:w-[58%]">
-<<<<<<< HEAD
-    <!-- Image Grid -->
-    <div v-for="(item, index) in cartItems" :key="index" class="flex justify-center">
-      <img 
-        :src="item.src" 
-        :alt="item.alt" 
-        class="object-cover w-full h-auto cursor-pointer"
-        @click="openPopup(index)" 
-      />
-    </div>
-
-    <!-- Popup Modal -->
-    <div 
-      v-if="isPopupVisible" 
-      class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center z-50"
-    >
-      <div class="relative bg-white p-4 rounded-lg max-w-[90%] lg:max-w-[50%]">
-        <!-- Close Button -->
-        <button 
-          @click="closePopup" 
-          class="absolute top-2 right-2 text-gray-600 hover:text-black"
-        >
-          ✖
-        </button>
-
-        <!-- Image Display -->
-        <img 
-          :src="cartItems[currentIndex].src" 
-          :alt="cartItems[currentIndex].alt" 
-          class="object-cover w-full h-auto"
-        />
-
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between mt-4">
-          <button 
-            @click="previousImage" 
-            class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded"
-            :disabled="currentIndex === 0"
-          >
-            Previous
-          </button>
-          <button 
-            @click="nextImage" 
-            class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded"
-            :disabled="currentIndex === cartItems.length - 1"
-          >
-            Next
-          </button>
-=======
+        <div class="lg:grid gap-[14px] grid-cols-2 lg:w-full h-full">
           <div v-for="(item, index) in cartItems" :key="index" class="flex justify-center">
             <img :src="item.src" :alt="item.alt" class="object-cover w-full h-auto cursor-pointer"
               @click="openModal(index)" />
           </div>
->>>>>>> 8e36c1ef69c520cfb5c1697a2b3c669badaa3f5c
         </div>
       </div>
-    </div>
-  </div>
 
-<<<<<<< HEAD
-        <!-- Popup -->
-       
-=======
-        <!-- Image Popup Modal -->
+      <!-- Image Popup Modal -->
 
-        <div>
-          <div @click="closeModal" v-if="isModalOpen"
-            class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-80 z-50">
-            <!-- Image Container -->
-            <button @click.stop="prevImage"
-              class="absolute left-24 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full text-black z-50"
-              aria-label="Previous Image">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
-                <path
-                  d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-              </svg>
-            </button>
-            <div @click.stop class="relative max-w-4xl w-[80%] h-auto max-h-[80vh] overflow-hidden bg-white">
-              <!-- Image Display Container -->
-              <div class="relative">
-                <img :src="cartItems[currentIndex]?.src" :alt="cartItems[currentIndex]?.alt"
-                  class="w-full h-auto object-contain" />
-              </div>
+      <div>
+        <div @click="closeModal" v-if="isModalOpen"
+          class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-80 z-50">
+          <!-- Image Container -->
+          <button @click.stop="prevImage"
+            class="absolute left-24 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full text-black z-50"
+            aria-label="Previous Image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
+              <path
+                d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+          </button>
+          <div @click.stop class="relative max-w-4xl w-[80%] h-auto max-h-[80vh] overflow-hidden bg-white">
+            <!-- Image Display Container -->
+            <div class="relative">
+              <img :src="cartItems[currentIndex]?.src" :alt="cartItems[currentIndex]?.alt"
+                class="w-full h-auto object-contain" />
             </div>
-            <button @click.stop="nextImage"
-              class="absolute right-24 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full text-black z-50"
-              aria-label="Next Image">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
-                <path
-                  d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
-              </svg>
-            </button>
+          </div>
+          <button @click.stop="nextImage"
+            class="absolute right-24 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full text-black z-50"
+            aria-label="Next Image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
+              <path
+                d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- Second Column: Product Information -->
+      <div class="w-full lg:w-[44%] space-y-0 px-[15px]">
+        <!-- Breadcrumbs -->
+        <div class="flex flex-row ">
+          <div class="flex flex-row justify-center">
+            <div class="text-gray-800 text-[15px] font-light font-outfit">
+              ShapeShift
+            </div>
+            <div class="text-gray-800 text-[15px] font-semibold px-[5px] font-outfit">
+              |
+            </div>
+            <div class="text-gray-800 text-[15px] font-semibold font-outfit">
+              Meal Replacement for Weight Control/
+            </div>
+            <div class="text-gray-800 text-[15px] font-semibold font-outfit">
+              Management
+            </div>
           </div>
         </div>
->>>>>>> 8e36c1ef69c520cfb5c1697a2b3c669badaa3f5c
 
+        <!-- Product Title -->
+        <h2 class="text-[20px] font-normal font-outfit text-black/85">
+          Plant-Based Protein Powder 500g
+        </h2>
 
-        <!-- Second Column: Product Information -->
-        <div class="w-full lg:w-[44%] space-y-0 px-[15px]">
-          <!-- Breadcrumbs -->
-          <div class="flex flex-row ">
-            <div class="flex flex-row justify-center">
-              <div class="text-gray-800 text-[15px] font-light font-outfit">
-                ShapeShift
-              </div>
-              <div class="text-gray-800 text-[15px] font-semibold px-[5px] font-outfit">
-                |
-              </div>
-              <div class="text-gray-800 text-[15px] font-semibold font-outfit">
-                Meal Replacement for Weight Control /
-              </div>
-              <div class="text-gray-800 text-[15px] font-semibold font-outfit">
-                Management
-              </div>
-            </div>
-          </div>
+        <p class="text-[14px] font-normal font-opacity tracking-[0.28px] leading-[21px] text-black/85">
+          Meal Replacement for Weight Management
+        </p>
 
-          <!-- Product Title -->
-          <h2 class="text-[20px] font-normal font-outfit text-black/85">
-            Plant-Based Protein Powder 500g
-          </h2>
-
-          <p class="text-[14px] font-normal font-opacity tracking-[0.28px] leading-[21px] text-black/85">
-            Meal Replacement for Weight Management
+        <div class="flex flex-col pt-[3px]">
+          <p class="text-black/85 text-[14px] font-light font-outfit">
+            Item: MW0001
+          </p>
+          <p class="text-black/85 text-[14px] font-light font-outfit">
+            Net Quantity: 500g
+          </p>
+          <p style="line-height: normal" class="pt-[36px]">
+            <span class="text-black/85 text-[20px] leading-normal font-normal font-outfit">Rs. </span><span
+              class="text-black/85 text-[20px] font-bold font-outfit">2,750.00</span>
+          </p>
+          <p style="line-height: normal" class="text-black/85 text-[16px] font-light font-outfit">
+            MRP (incl. of all taxes)
           </p>
 
-          <div class="flex flex-col pt-[3px]">
-            <p class="text-black/85 text-[14px] font-light font-outfit">
-              Item: MW0001
-            </p>
-            <p class="text-black/85 text-[14px] font-light font-outfit">
-              Net Quantity: 500g
-            </p>
-            <p style="line-height: normal" class="pt-[36px]">
-              <span class="text-black/85 text-[20px] leading-normal font-normal font-outfit">Rs. </span><span
-                class="text-black/85 text-[20px] font-bold font-outfit">2,750.00</span>
-            </p>
-            <p style="line-height: normal" class="text-black/85 text-[16px] font-light font-outfit">
-              MRP (incl. of all taxes)
-            </p>
-
-          </div>
-
-          <div class="pt-[40px]">
-            <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
-              <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-                'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
-                selectedFlavor === flavor ? 'border-[1.2] border-black' : ''
-              ]" :style="{ backgroundColor: flavorColors[flavor] }">
-                {{ flavor }}
-              </div>
-            </div>
-
-
-
-            <div class="flex items-center gap-4 mt-[34px]">
-              <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
-              <div class="flex items-center border border-black rounded-md px-[4px]">
-                <!-- Decrease Quantity Button -->
-                <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="decreaseQuantity"
-                  aria-label="Decrease quantity">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="7" height="2" viewBox="0 0 9 2" fill="none"
-                    class="w-4 h-4">
-                    <path
-                      d="M8.8125 0.4375H0.1875C0.0839062 0.4375 0 0.521406 0 0.625V1.375C0 1.47859 0.0839062 1.5625 0.1875 1.5625H8.8125C8.91609 1.5625 9 1.47859 9 1.375V0.625C9 0.521406 8.91609 0.4375 8.8125 0.4375Z"
-                      fill="black" fill-opacity="0.85" />
-                  </svg>
-                </button>
-
-                <!-- Quantity Display -->
-                <span class="text-base font-medium px-2">{{ quantity }}</span>
-
-                <!-- Increase Quantity Button -->
-                <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="increaseQuantity"
-                  aria-label="Increase quantity">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="9" height="6" viewBox="0 0 11 7" fill="none"
-                    class="w-4 h-4">
-                    <path
-                      d="M9.8125 3.00548H6.0625V0.156139C6.0625 0.077426 5.97859 0.0136719 5.875 0.0136719H5.125C5.02141 0.0136719 4.9375 0.077426 4.9375 0.156139V3.00548H1.1875C1.08391 3.00548 1 3.06924 1 3.14795V3.71782C1 3.79653 1.08391 3.86029 1.1875 3.86029H4.9375V6.70963C4.9375 6.78835 5.02141 6.8521 5.125 6.8521H5.875C5.97859 6.8521 6.0625 6.78835 6.0625 6.70963V3.86029H9.8125C9.91609 3.86029 10 3.79653 10 3.71782V3.14795C10 3.06924 9.91609 3.00548 9.8125 3.00548Z"
-                      fill="black" fill-opacity="0.85" stroke="black" stroke-width="0.0234375" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <div class="w-full flex justify-start gap-[13px] items-center mt-[24px]">
-              <button
-                class=" w-[333px] h-10 font-outfit bg-[#414042] px-[20px] text-white leading-[19.95px] font-bold text-[19.95px]">
-                Add to cart
-              </button>
-              <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
-                <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
-              </div>
-            </div>
-
-
-
-            <div class="w-[393px] flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
-              <div class="flex justify-between items-center gap-2">
-                <button class="underline underline-offset-2">
-                  Share Product
-                </button>
-                <img src="../assets/share.svg" alt="share" class="w-[15px] h-[15px]">
-              </div>
-              <div class="flex justify-start  items-center gap-2 ">
-                <button class="underline underline-offset-2">
-                  Download PDF
-                </button>
-                <img src="../assets/download.svg" alt="download" class="w-[15px] h-[15px]">
-              </div>
-            </div>
-          </div>
-
-          <div class="flex  items-center gap-[15px]">
-            <div v-for="(item, index) in Icons" :key="index"
-              class="flex flex-col justify-between items-center pt-[68px]">
-              <!-- Icon -->
-              <img :src="item.src" alt="Icon" class="w-[29.061px] h-[29.061px]" />
-              <!-- Title -->
-              <p class="min-w-[32px] text-center text-[9.832px] font-medium font-outfit break-words mt-2"
-                style="word-wrap: break-word;">
-                {{ item.title }}
-              </p>
-            </div>
-          </div>
-
-
         </div>
+
+        <div class="pt-[20px]">
+          <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
+            <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
+              'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
+              selectedFlavor === flavor ? 'border-[1.2] border-black' : ''
+            ]" :style="{ backgroundColor: flavorColors[flavor] }">
+              {{ flavor }}
+            </div>
+          </div>
+
+
+
+          <div class="flex items-center gap-4 mt-[25px]">
+            <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
+            <div class="flex items-center border border-black rounded-md px-[4px]">
+              <!-- Decrease Quantity Button -->
+              <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="decreaseQuantity"
+                aria-label="Decrease quantity">
+                <svg xmlns="http://www.w3.org/2000/svg" width="7" height="2" viewBox="0 0 9 2" fill="none"
+                  class="w-4 h-4">
+                  <path
+                    d="M8.8125 0.4375H0.1875C0.0839062 0.4375 0 0.521406 0 0.625V1.375C0 1.47859 0.0839062 1.5625 0.1875 1.5625H8.8125C8.91609 1.5625 9 1.47859 9 1.375V0.625C9 0.521406 8.91609 0.4375 8.8125 0.4375Z"
+                    fill="black" fill-opacity="0.85" />
+                </svg>
+              </button>
+
+              <!-- Quantity Display -->
+              <span class="text-base font-medium px-2">{{ quantity }}</span>
+
+              <!-- Increase Quantity Button -->
+              <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="increaseQuantity"
+                aria-label="Increase quantity">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="6" viewBox="0 0 11 7" fill="none"
+                  class="w-4 h-4">
+                  <path
+                    d="M9.8125 3.00548H6.0625V0.156139C6.0625 0.077426 5.97859 0.0136719 5.875 0.0136719H5.125C5.02141 0.0136719 4.9375 0.077426 4.9375 0.156139V3.00548H1.1875C1.08391 3.00548 1 3.06924 1 3.14795V3.71782C1 3.79653 1.08391 3.86029 1.1875 3.86029H4.9375V6.70963C4.9375 6.78835 5.02141 6.8521 5.125 6.8521H5.875C5.97859 6.8521 6.0625 6.78835 6.0625 6.70963V3.86029H9.8125C9.91609 3.86029 10 3.79653 10 3.71782V3.14795C10 3.06924 9.91609 3.00548 9.8125 3.00548Z"
+                    fill="black" fill-opacity="0.85" stroke="black" stroke-width="0.0234375" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="w-full flex justify-start gap-[13px] items-center mt-[24px]">
+            <button
+              class=" w-[333px] h-10 font-outfit bg-[#414042] px-[20px] text-white leading-[19.95px] font-bold text-[19.95px]">
+              Add to cart
+            </button>
+            <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
+              <img :src="wishImg" alt="wishlist" class="w-[26px] h-[26px] object-cover">
+            </div>
+          </div>
+
+
+
+          <div class="w-[393px] flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
+            <div class="flex justify-between items-center gap-2">
+              <button class="underline underline-offset-2">
+                Share Product
+              </button>
+              <img src="../assets/share.svg" alt="share" class="w-[15px] h-[15px]">
+            </div>
+            <div class="flex justify-start  items-center gap-2 ">
+              <button class="underline underline-offset-2">
+                Download PDF
+              </button>
+              <img src="../assets/download.svg" alt="download" class="w-[15px] h-[15px]">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex  items-center gap-[15px]">
+          <div v-for="(item, index) in Icons" :key="index" class="flex flex-col justify-between items-center pt-[60px]">
+            <!-- Icon -->
+            <img :src="item.src" alt="Icon" class="w-[29.061px] h-[29.061px]" />
+            <!-- Title -->
+            <p class="min-w-[32px] text-center text-[9.832px] font-medium font-outfit break-words mt-2"
+              style="word-wrap: break-word;">
+              {{ item.title }}
+            </p>
+          </div>
+        </div>
+
+
       </div>
+      
     </section>
     <!------------------------------------------------ Product Description Section ---------------------------------------------------------->
     <section class="page-width hidden lg:block">
-      <div class="mt-[77px] flex flex-col items-center justify-center w-full max-w-[1124px] mx-auto">
+      <div class="mt-[72px] flex flex-col items-center justify-center w-full max-w-[1124px] mx-auto">
         <!-- Tabs -->
         <div class="flex justify-between items-center w-full tab-container">
           <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
@@ -715,7 +651,7 @@ const activeTab = ref(0);
               <span>{{ tab }}</span>
             </div>
             <div v-if="activeTab === index"
-              class="absolute top-1/2 right-[-28px] h-[6px] w-[6px] bg-black transform -translate-y-1/2 rounded-full">
+              class="absolute top-[12px] right-[20px] h-[6px] w-[6px] bg-black transform -translate-y-1/2 rounded-full">
             </div>
           </div>
         </div>

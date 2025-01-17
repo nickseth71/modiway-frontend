@@ -69,7 +69,7 @@
                 <div @click="toggleFilterDropdown"
                   class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-1 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500">
                   <img src="../assets/filter.png" class="lg:hidden sm:hidden" />
-                  {{ selectedName.length > 0 ? selectedName.join(', ') : "Filter" }}
+                  <span>{{ selectedName.length > 0 ? selectedName.join(', ') : "Filter" }}</span>
                   <i class="fas fa-chevron-down mobile-hide"></i>
                 </div>
                 <ul v-if="filterDropdownOpen"
@@ -118,8 +118,6 @@
           </div>
         </div>
       </section>
-
-
 
       <section class="page-width flex justify-center items-center px-[25px] mobile-p-fix">
         <!-- <div class="max-w-[992px] mx-auto"> -->

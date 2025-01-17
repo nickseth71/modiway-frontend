@@ -43,7 +43,7 @@
           'flex flex-col items-center lg:flex-row lg:gap-6 ': index % 2 !== 0,
         }">
           <!-- Image with Title Overlay -->
-          <div class="relative w-full lg:w-[500px] h-64 lg:h-auto lg:mb-0 lg:mr-4 lg:ml-8">
+          <div class="relative w-full lg:w-[500px] h-auto lg:h-auto lg:mb-0 lg:mr-4 lg:ml-8">
             <img :src="image.src" :alt="image.alt" class="w-full h-auto object-cover shadow-none duration-300" />
             <h3
               class="absolute inset-0 flex pl-[17px] py-6 items-start leading-6 tracking-[0.8px] justify-start text-white text-[32px] font-extralight font-outfit lg:text-5xl bg-black/15 whitespace-normal break-words line-clamp-3">
@@ -63,7 +63,7 @@
 
               <p :class="{
                 'max-h-full': !isMobile,
-                'max-h-[80px]': isMobile && !image.showFullDescription,
+                'max-h-[100px]': isMobile && !image.showFullDescription,
                 'overflow-hidden': isMobile && !image.showFullDescription,
                 'transition-all duration-300': true,
               }"
@@ -71,7 +71,7 @@
 
                 <span v-if="!isMobile || image.showFullDescription">
                   {{ image.descriptionPart1 }}
-                  <span class="block mt-[15px]">
+                  <span class="block pt-[15px] pb-4">
                     {{ image.descriptionPart2 }}
                   </span>
                 </span>
