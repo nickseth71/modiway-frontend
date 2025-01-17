@@ -21,9 +21,6 @@ const cartItems = ref([
   { src: AddCart4, alt: "Cart img 4" },
 ]);
 
-<<<<<<< HEAD
-
-=======
 // Modal State and Methods
 const isModalOpen = ref(false);
 const currentIndex = ref(0);
@@ -45,7 +42,6 @@ const prevImage = () => {
   currentIndex.value =
     (currentIndex.value - 1 + cartItems.value.length) % cartItems.value.length;
 };
->>>>>>> 8e36c1ef69c520cfb5c1697a2b3c669badaa3f5c
 
 /////////////////////////////// Other Images and Data ///////////////////////////////////////
 import wishImg from "../assets/modiway-icon/heart-svgrepo-com.svg";
@@ -709,17 +705,10 @@ const activeTab = ref(0);
     <section class="page-width hidden lg:block">
       <div class="mt-[77px] flex flex-col items-center justify-center w-full max-w-[1124px] mx-auto">
         <!-- Tabs -->
-<<<<<<< HEAD
-        <div class="flex justify-between space-x-[78px] items-center w-full">
-          <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
-            class="relative cursor-pointer text-[#353535] text-[20px] hover:text-black">
-            <div class="pb-[10px] border-b-2" :class="{
-=======
         <div class="flex justify-between items-center w-full tab-container">
           <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
             class="relative cursor-pointer text-[#353535] text-[14px] hover:text-black">
             <div class="pb-[15px] border-b-2" :class="{
->>>>>>> 8e36c1ef69c520cfb5c1697a2b3c669badaa3f5c
               'border-black text-shadow-custom': activeTab === index,
               'border-gray-300': activeTab !== index,
             }">
@@ -731,38 +720,6 @@ const activeTab = ref(0);
           </div>
         </div>
 
-<<<<<<< HEAD
-        <!-- Tab Content -->
-        <div class="w-full mt-6">
-          <div v-if="activeTab === 0" class="w-full flex gap-[2rem] justify-between flex-col sm:flex-row">
-            <div class="flex-1 py-4  ">
-
-              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                meal replacement shake packed with high-quality protein and a
-                comprehensive blend of 25 essential vitamins and minerals. It
-                includes added dietary fibers, probiotics, enzymes, and plant-based
-                nutrients, all without refined sugar. Food for special dietary use
-                for weight control/management.
-              </p>
-              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                meal replacement shake packed with high-quality protein and a
-                comprehensive blend of 25 essential vitamins and minerals. It
-                includes added dietary fibers, probiotics, enzymes, and plant-based
-                nutrients, all without refined sugar. Food for special dietary use
-                for weight control/management.
-              </p>
-            </div>
-            <div class="flex-1 ">
-              <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
-            </div>
-          </div>
-          <div v-if="activeTab === 1" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4  ">
-=======
         <!-- Add tab content with transition -->
         <div class="tab-content-container mt-4">
           <transition name="tab-transition" mode="out-in">
@@ -798,7 +755,6 @@ const activeTab = ref(0);
                 </div>
                 <div v-if="activeTab === 1" class="flex gap-[2rem] flex-col sm:flex-row">
                   <div class="flex-1 py-4  ">
->>>>>>> 8e36c1ef69c520cfb5c1697a2b3c669badaa3f5c
 
                     <p
                       class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
@@ -813,37 +769,6 @@ const activeTab = ref(0);
 
                   </div>
 
-<<<<<<< HEAD
-          </div>
-          <div v-if="activeTab === 2" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4">
-
-              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                meal replacement shake packed with high-quality protein and a
-                comprehensive blend of 25 essential vitamins and minerals. It
-                includes added dietary fibers, probiotics, enzymes, and plant-based
-                nutrients, all without refined sugar. Food for special dietary use
-                for weight control/management.
-              </p>
-              <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                meal replacement shake packed with high-quality protein and a
-                comprehensive blend of 25 essential vitamins and minerals. It
-                includes added dietary fibers, probiotics, enzymes, and plant-based
-                nutrients, all without refined sugar. Food for special dietary use
-                for weight control/management.
-              </p>
-            </div>
-            <div class="flex-1">
-              <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
-            </div>
-          </div>
-          <div v-if="activeTab === 3" class="flex flex-col sm:flex-row">
-            <div class="flex-1 py-4">
-=======
                 </div>
                 <div v-if="activeTab === 2" class="flex gap-[2rem] flex-col sm:flex-row">
                   <div class="flex-1 py-4">
@@ -875,7 +800,6 @@ const activeTab = ref(0);
                 </div>
                 <div v-if="activeTab === 3" class="flex gap-[2rem] flex-col sm:flex-row">
                   <div class="flex-1 py-4">
->>>>>>> 8e36c1ef69c520cfb5c1697a2b3c669badaa3f5c
 
                     <p
                       class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
