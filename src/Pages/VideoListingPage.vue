@@ -147,8 +147,14 @@ const closeModal = () => {
 </script>
 
 <template>
-    <section>
+    <section class="page-width px-[15px]">
+        <div class="flex flex-row mt-3 ">
+            <span class="text-black/85 text-[12px] font-outfit font-normal">Home</span>
+            <span class="text-black/85 text-[10px] px-[5px] font-outfit font-normal">|</span>
+            <span class="text-black/85 text-[12px] font-outfit font-semibold">Resources</span>
+        </div>
         <section class="page-width flex justify-center items-center pt-[35px] pb-[15px] lg:pt-[63px] md:py-[30px]">
+
             <div class="max-w-full flex justify-center items-center w-full">
                 <div class="flex flex-col md:flex-row justify-between items-center w-full">
                     <div class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 gray-bb">
@@ -241,20 +247,28 @@ const closeModal = () => {
         </section>
 
         <!-- Modal -->
-        <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div class="relative rounded-lg w-[90%] max-w-4xl h-[70%] max-h-[60%] overflow-hidden">
-        <!-- Close Button -->
-        <button @click.stop="closeModal"
-            class="absolute top-4 right-4 p-2 rounded-full text-white font-semibol transition duration-200  z-50"
-            aria-label="Close Modal">
-            ✖
-        </button>
+        <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
+            <div
+                class="relative rounded-sm w-[90%] max-w-4xl h-auto max-h-[80vh] overflow-hidden sm:w-[95%] sm:h-[60vh] lg:w-[70%] lg:h-[70%]">
+                <!-- Close Button -->
+                <button @click.stop="closeModal"
+                    class="absolute top-2 right-2 flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition duration-200 z-50"
+                    aria-label="Close Modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 384 512"
+                        aria-hidden="true">
+                        <path
+                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                    </svg>
+                </button>
 
-        <!-- Video Element -->
-        <video :src="selectedVideoUrl" class="w-full h-full object-contain rounded-lg" controls autoplay>
-        </video>
-    </div>
-</div>
+                <!-- Video Element -->
+                <video :src="selectedVideoUrl" class="w-full h-full object-cover" controls autoplay
+                    controlsList="nodownload noplaybackrate nofullscreen" @contextmenu.prevent>
+                </video>
+            </div>
+
+        </div>
+
 
 
 

@@ -1,6 +1,11 @@
 <template>
     <div class="page-width px-[15px] lg:px-8">
         <div class="max-w-full mx-auto bg-white">
+            <div class="flex flex-row mb-[50px] ">
+                <span class="text-black/85 text-[12px] font-outfit font-normal">Home</span>
+                <span class="text-black/85 text-[12px] px-[5px] font-outfit font-normal">|</span>
+                <span class="text-black/85 text-[12px] font-outfit font-semibold">Privacy Policy</span>
+            </div>
             <h1
                 class="text-[30px] lg:text-[48px] font-normal font-outfit mb-[15px] lg:mb-[24px] text-[#000000] leading-[42px]">
                 Privacy Policy
@@ -84,11 +89,13 @@
             </section>
 
             <section class="mb-6">
-                <p class="text-black/85 text-[16px] font-normal font-outfit leading-[19.192px] tracking-[0.8px] mb-2 lg:mb-0">
+                <p
+                    class="text-black/85 text-[16px] font-normal font-outfit leading-[19.192px] tracking-[0.8px] mb-2 lg:mb-0">
                     How We Use the Personal Data We Collect We only process your personal
                     data to the extent it is necessary:
                 </p>
-                <ul class="list-disc list-inside text-black/85 text-[16px] font-normal font-outfit leading-[19.192px] tracking-[0.8px]">
+                <ul
+                    class="list-disc list-inside text-black/85 text-[16px] font-normal font-outfit leading-[19.192px] tracking-[0.8px]">
                     <li>
                         For the performance of an agreement with us or in order to take
                         steps at your request prior to entering into an agreement with us;
@@ -122,7 +129,8 @@
 
             <section class="mb-6">
                 <p class="mb-4 lg:mb-8">How We Share Personal Data</p>
-                <ul class="list-disc list-inside text-black/85 text-[16px] font-normal font-outfit leading-[19.192px] tracking-[0.8px]">
+                <ul
+                    class="list-disc list-inside text-black/85 text-[16px] font-normal font-outfit leading-[19.192px] tracking-[0.8px]">
                     <li>
                         Providers of infrastructure- or platform- or software-as-a-service solutions, software
                         development services, information system maintenance services, record management services or
@@ -140,7 +148,7 @@
             </section>
 
             <section class="mb-6">
-                
+
                 <p class="text-black/85 text-[16px] font-normal font-outfit leading-[19.192px] tracking-[0.8px]">
                     We implement industry-standard security measures to protect your
                     personal data from unauthorized access, disclosure, alteration, and

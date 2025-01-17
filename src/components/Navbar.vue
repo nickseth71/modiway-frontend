@@ -270,17 +270,16 @@
     <div class="page-width">
       <!-- Mobile Navbar -->
       <div :class="[
-        isMenuOpen ? 'translate-x-0 shadow-gray-400 shadow-2xl' : '-translate-x-full ',
-        'fixed top-0 left-0 w-[75%] h-screen bg-white  transition-transform duration-300 ease-in-out lg:hidden ',
-      ]">
-
+        isMenuOpen ? 'translate-x-0 shadow-gray-400 shadow-2xl' : '-translate-x-full',
+        'fixed top-0 left-0 w-[75%] h-screen bg-white transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto',
+      ]" @click.self="isMenuOpen = false">
         <button @click="isMenuOpen = false" class="absolute top-4 right-8 text-black text-2xl font-bold">
           ✕
         </button>
         <ul class="space-y-4 p-6">
           <!-- Home Link -->
           <li>
-            <router-link to="/"
+            <router-link @click.native="isMenuOpen = false" to="/"
               class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold">
               Home
             </router-link>
@@ -288,18 +287,17 @@
 
           <!-- Our Story Link -->
           <li>
-            <router-link to="/ourstory"
+            <router-link @click.native="isMenuOpen = false" to="/ourstory"
               class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold">
               Our Story
             </router-link>
           </li>
           <!-- Products Dropdown -->
           <li>
-
-            <!-- Main Dropdown -->
             <div>
               <!-- Main Dropdown -->
-              <div @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown" class="relative">
+              <div ref="dropdownContainer" @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown"
+                class="relative">
                 <router-link to="/products" :class="{
                   'text-black/85': !state.showDropdown,
                   'text-black border-b-[1.8px] border-[#DEDEDE]': state.showDropdown,
@@ -314,30 +312,28 @@
                 </router-link>
 
                 <!-- Dropdown Menu -->
-                <div v-show="state.showDropdown" class=" w-full max-w-full left-0 right-0">
+                <div v-show="state.showDropdown" class="w-full max-w-full left-0 right-0">
                   <div class="relative max-w-full bg-white h-auto z-10">
                     <!-- Main Menu Items -->
                     <ul class="pl-2">
                       <li v-for="(menu, index) in state.menus" :key="index" class="cursor-pointer">
                         <!-- Main Menu -->
                         <div class="flex justify-between items-center py-2">
-                          <router-link @click="toggleSubMenu(menu.key)"
-                            class="flex w-full justify-between items-center">
+                          <div @click="toggleSubMenu(menu.key)"
+                            class="flex w-full justify-between items-center cursor-pointer">
                             <span :class="{
                               'font-semibold': state.subMenuState[menu.key],
                               'font-bold': menu.label === state.activeMenu,
                               'text-black/85': !state.subMenuState[menu.key],
                             }" class="font-outfit">
-
                               {{ menu.label }}
                             </span>
-                            <i @click="toggleSubMenu(menu.key)" :class="{
+                            <i :class="{
                               'fa fa-chevron-down text-sm': !state.subMenuState[menu.key],
                               'fa fa-chevron-up text-sm': state.subMenuState[menu.key],
                             }"></i>
-                          </router-link>
+                          </div>
                         </div>
-
                         <!-- Submenu -->
                         <ul class="pl-2" v-show="state.subMenuState[menu.key]">
                           <li v-for="(subMenu, subIndex) in menu.subMenus" :key="subIndex" class="cursor-pointer"
@@ -354,7 +350,6 @@
                                 'fa fa-chevron-up text-sm': state.itemsSubmenu[menu.key]?.[subMenu.key],
                               }"></i>
                             </div>
-
                             <!-- Items Submenu -->
                             <ul class="pl-2" v-show="state.itemsSubmenu[menu.key]?.[subMenu.key]">
                               <li v-for="(item, itemIndex) in subMenu.items" :key="itemIndex" class="cursor-pointer">
@@ -378,7 +373,7 @@
 
           <!-- Business Opportunity Link -->
           <li>
-            <router-link to="/business-opportunity"
+            <router-link @click.native="isMenuOpen = false" to="/business-opportunity"
               class="block text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold"
               :class="{ 'pt-[60px]': isProductMenuOpen }">
               Business Opportunity
@@ -387,7 +382,7 @@
 
           <!-- Wellness Test Link -->
           <li>
-            <router-link to="/wellness-test"
+            <router-link @click.native="isMenuOpen = false" to="/wellness-test"
               class="block text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold">
               Wellness Test
             </router-link>
@@ -395,7 +390,8 @@
         </ul>
 
         <!-- Footer with Account Link -->
-        <div class="absolute left-0 right-0 flex justify-start p-6 border-t border-[#8C8C8C] border-opacity-45">
+        <div
+          class="absolute bottom-5 left-0 right-0 flex justify-start p-6 border-t border-[#8C8C8C] border-opacity-45">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             class="cursor-pointer stroke-[#000000]">
             <circle cx="12" cy="8" r="4.75" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.5" />
@@ -435,7 +431,7 @@
                     <ul class="max-w-[630px] mx-auto">
                       <li v-for="(menu, index) in menus" :key="index" class="flex justify-start items-center"
                         @mouseenter="openSubMenu(menu.subMenus), setActiveMenu(menu.label)">
-                        <router-link
+                        <div
                           class="min-w-[110px] inline-flex justify-between items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
                           :class="{
                             'text-black/85': activeMenu === menu.label,
@@ -443,7 +439,7 @@
                           }">
                           <span>{{ menu.label }}</span>
                           <i class="fa fa-chevron-right text-sm px-[55px]"></i>
-                        </router-link>
+                        </div>
                       </li>
                     </ul>
 
@@ -451,14 +447,14 @@
                       <li v-for="(submenu, index) in subMenuState" :key="index"
                         class="flex justify-start items-center py-[5px] pl-[55px] border-l border-gray-200"
                         @mouseenter="openItemsSubMenu(submenu.items); setActiveSubMenu(submenu)">
-                        <router-link
+                        <div
                           class="max-w-[630px] inline-flex justify-between items-center text-left font-normal font-outfit hover:font-semibold"
                           :class="{
                             'text-black/85 font-semibold': activeSubMenu === submenu.label,
                           }">
                           <span>{{ submenu.label }}</span>
                           <i class="fa fa-chevron-right mt-[3px] text-sm px-[45px]"></i>
-                        </router-link>
+                        </div>
                       </li>
                     </ul>
 
@@ -466,13 +462,13 @@
                       <li v-for="(menu, index) in itemsSubmenu" :key="index"
                         class="flex justify-start border-l border-gray-200 items-start pl-[30px]">
                         <!-- Items Sub Menu -->
-                        <router-link
+                        <div
                           class="inline-flex items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
                           :class="{
                             'font-bold': menu === activeItemSubMenu,
                           }">
                           <span>{{ menu }}</span>
-                        </router-link>
+                        </div>
                       </li>
                     </ul>
                   </div>
@@ -515,15 +511,15 @@ const activeSubMenu = ref(null)
 
 const activeMenu = ref(null);
 const setActiveMenu = (label) => {
-  activeMenu.value = label; 
+  activeMenu.value = label;
 
 };
 
 const setActiveSubMenu = (submenu) => {
-  activeSubMenu.value = submenu.label; 
+  activeSubMenu.value = submenu.label;
 };
 const clearActiveMenu = () => {
-  activeMenu.value = null; 
+  activeMenu.value = null;
 };
 
 ////////////////////////////////////////// Search Popup Methods //////////////////////////////////////////////////
@@ -685,11 +681,12 @@ const isMenuOpen = ref(false);
 
 <!-- -------------------------------for mobile ------------------------------>
 <script>
-import { reactive } from "vue";
+import { reactive, onMounted, onUnmounted } from "vue";
 
 export default {
   data() {
     return {
+      isMenuOpen: false,
       state: reactive({
         showDropdown: false,
         subMenuState: {},
@@ -702,14 +699,14 @@ export default {
               {
                 label: "Health & Nutrition",
                 key: "healthNutrition",
-                items: ["General Nutrition", "Sports Nutrition", "Weight Management", "Accessory"]
+                items: ["General Nutrition", "Sports Nutrition", "Weight Management", "Accessory"],
               },
               {
                 label: "Beauty",
                 key: "beauty",
-                items: ["Skincare", "Makeup", "Haircare"]
-              }
-            ]
+                items: ["Skincare", "Makeup", "Haircare"],
+              },
+            ],
           },
           {
             label: "By Type",
@@ -718,11 +715,10 @@ export default {
               {
                 label: "Kitchen",
                 key: "kitchen",
-                items: ["Cookware", "Utensils", "Appliances"]
+                items: ["Cookware", "Utensils", "Appliances"],
               },
-
-            ]
-          }
+            ],
+          },
         ],
         activeMenu: null,
         activeSubMenu: null,
@@ -731,11 +727,67 @@ export default {
     };
   },
   methods: {
+    // Disable scrolling on the body and html
+    disableScrolling() {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    },
+
+    // Enable scrolling on the body and html
+    enableScrolling() {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    },
+  },
+  watch: {
+    isMenuOpen(newValue) {
+      if (newValue) {
+        this.disableScrolling();  // Disable scrolling when the menu opens
+      } else {
+        this.enableScrolling();   // Enable scrolling when the menu closes
+      }
+    },
+  },
+  methods: {
+    // disableScrolling() {
+    //   document.body.style.overflow = "hidden"; // For modern browsers
+    //   document.addEventListener("touchmove", this.preventScroll, { passive: false });
+    //   document.addEventListener("wheel", this.preventScroll, { passive: false });
+    // },
+    // enableScrolling() {
+    //   document.body.style.overflow = ""; 
+    //   document.removeEventListener("touchmove", this.preventScroll);
+    //   document.removeEventListener("wheel", this.preventScroll);
+    // },
+    // preventScroll(event) {
+    //   event.preventDefault(); 
+    // },
+
+    watch: {
+      isMenuOpen(newValue) {
+        if (newValue) {
+          // Disable body scroll when menu is open
+          document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
+        } else {
+          // Enable body scroll when menu is closed
+          document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
+        }
+      },
+    },
     toggleDropdown() {
       this.state.showDropdown = !this.state.showDropdown;
     },
     toggleSubMenu(menuKey) {
+      // Close all other menus
+      Object.keys(this.state.subMenuState).forEach((key) => {
+        if (key !== menuKey) {
+          this.state.subMenuState[key] = false;
+        }
+      });
 
+      // Toggle the clicked menu
       this.state.subMenuState[menuKey] = !this.state.subMenuState[menuKey];
     },
     toggleItemsSubMenu(menuKey, subMenuKey) {
@@ -743,8 +795,33 @@ export default {
       if (!this.state.itemsSubmenu[menuKey]) {
         this.state.itemsSubmenu[menuKey] = {};
       }
+
+      // Close all other submenus within the same menu
+      Object.keys(this.state.itemsSubmenu[menuKey]).forEach((key) => {
+        if (key !== subMenuKey) {
+          this.state.itemsSubmenu[menuKey][key] = false;
+        }
+      });
+
+      // Toggle the clicked submenu
       this.state.itemsSubmenu[menuKey][subMenuKey] = !this.state.itemsSubmenu[menuKey][subMenuKey];
     },
+    handleClickOutside(event) {
+      const dropdownContainer = this.$refs.dropdownContainer;
+      if (dropdownContainer && !dropdownContainer.contains(event.target)) {
+        this.state.showDropdown = false;
+      }
+    },
+  },
+  mounted() {
+    document.addEventListener("click", this.handleClickOutside);
+  },
+  beforeDestroy() {
+    this.enableScrolling();
+  },
+  unmounted() {
+    document.removeEventListener("click", this.handleClickOutside);
+    this.enableScrolling();
   },
 };
 </script>
