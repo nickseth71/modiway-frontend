@@ -1,47 +1,45 @@
 <template>
   <footer class="py-4">
-   
     <div
-  class="max-w-full px-[15px] lg:px-2 flex flex-wrap justify-center items-center lg:flex-row text-center bg-gray-100 py-[20px] lg:py-12 gap-[25px] lg:gap-12"
->
-  <div class="responsive-item">
-    <h4
-      class="text-black/85 text-base lg:text-[20px] font-outfit font-semibold leading-tight pb-[4.91px] lg:pb-[15px]"
+      class="max-w-full px-[15px] lg:px-2 flex flex-wrap justify-center items-center lg:flex-row text-center bg-gray-100 py-[20px] lg:py-12 gap-[25px] lg:gap-12"
     >
-      Free Delivery
-    </h4>
-    <p
-      class="text-[13px] lg:text-lg text-center font-light font-outfit text-black/85 leading-[15.605px] tracking-[0.65px] lg:leading-[21.607px] lg:tracking-[0.9px]"
-    >
-      On orders of Rs. 2999 or more
-    </p>
-  </div>
-  <div class="responsive-item">
-    <h4
-      class="text-black/85 text-base lg:text-[20px] font-outfit font-semibold leading-tight pb-[4.91px] lg:pb-[15px]"
-    >
-      Shop with Confidence
-    </h4>
-    <p
-      class="text-[13px] lg:text-lg text-center font-light font-outfit text-black/85 leading-[15.605px] tracking-[0.65px] lg:leading-[21.607px] lg:tracking-[0.9px]"
-    >
-      With our 2-year guarantee
-    </p>
-  </div>
-  <div class="responsive-item last-item">
-    <h4
-      class="text-black/85 text-base lg:text-[20px] font-outfit font-semibold leading-tight pb-[4.91px] lg:pb-[15px]"
-    >
-      Love-it Guarantee
-    </h4>
-    <p
-      class="text-[13px] lg:text-[18px] text-center font-light font-outfit text-black/85 leading-[15.605px] tracking-[0.65px] lg:leading-[21.607px] lg:tracking-[0.9px]"
-    >
-      With our 2-year guarantee
-    </p>
-  </div>
-</div>
-
+      <div class="responsive-item">
+        <h4
+          class="text-black/85 text-base lg:text-[20px] font-outfit font-semibold leading-tight pb-[4.91px] lg:pb-[15px]"
+        >
+          Free Delivery
+        </h4>
+        <p
+          class="text-[13px] lg:text-lg text-center font-light font-outfit text-black/85 leading-[15.605px] tracking-[0.65px] lg:leading-[21.607px] lg:tracking-[0.9px]"
+        >
+          On orders of Rs. 2999 or more
+        </p>
+      </div>
+      <div class="responsive-item">
+        <h4
+          class="text-black/85 text-base lg:text-[20px] font-outfit font-semibold leading-tight pb-[4.91px] lg:pb-[15px]"
+        >
+          Shop with Confidence
+        </h4>
+        <p
+          class="text-[13px] lg:text-lg text-center font-light font-outfit text-black/85 leading-[15.605px] tracking-[0.65px] lg:leading-[21.607px] lg:tracking-[0.9px]"
+        >
+          With our 2-year guarantee
+        </p>
+      </div>
+      <div class="responsive-item last-item">
+        <h4
+          class="text-black/85 text-base lg:text-[20px] font-outfit font-semibold leading-tight pb-[4.91px] lg:pb-[15px]"
+        >
+          Love-it Guarantee
+        </h4>
+        <p
+          class="text-[13px] lg:text-[18px] text-center font-light font-outfit text-black/85 leading-[15.605px] tracking-[0.65px] lg:leading-[21.607px] lg:tracking-[0.9px]"
+        >
+          With our 2-year guarantee
+        </p>
+      </div>
+    </div>
 
     <!-- Navigation Links Section -->
     <section class="page-width hidden lg:block">
@@ -58,17 +56,19 @@
           <ul class="space-y-2 text-black/85 font-outfit font-light">
             <li>
               <router-link
-                to="#"
+                to="/business-opportunity"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Business Opportunity</router-link
               >
+                Business Opportunity
+              </router-link>
             </li>
             <li>
               <router-link
-                to="#"
+                to="/find-an-advisor"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Find an Advisor</router-link
               >
+                Find an Advisor
+              </router-link>
             </li>
           </ul>
         </div>
@@ -85,29 +85,33 @@
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Our Story</router-link
               >
+                Our Story
+              </router-link>
             </li>
             <li>
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Wellness</router-link
               >
+                Wellness
+              </router-link>
             </li>
             <li>
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Beauty</router-link
               >
+                Beauty
+              </router-link>
             </li>
             <li>
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Kitchen</router-link
               >
+                Kitchen
+              </router-link>
             </li>
           </ul>
         </div>
@@ -124,29 +128,33 @@
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Facebook</router-link
               >
+                Facebook
+              </router-link>
             </li>
             <li>
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Instagram</router-link
               >
+                Instagram
+              </router-link>
             </li>
             <li>
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >YouTube</router-link
               >
+                YouTube
+              </router-link>
             </li>
             <li>
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >LinkedIn</router-link
               >
+                LinkedIn
+              </router-link>
             </li>
           </ul>
         </div>
@@ -163,43 +171,49 @@
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Terms & Conditions</router-link
               >
+                Terms & Conditions
+              </router-link>
             </li>
             <li>
               <router-link
-                to="#"
+                to="/faq"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >FAQs</router-link
               >
+                FAQs
+              </router-link>
             </li>
             <li>
               <router-link
                 to="/privacy-policy"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Privacy Policy</router-link
               >
+                Privacy Policy
+              </router-link>
             </li>
             <li>
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Policy & Compliance</router-link
               >
+                Policy & Compliance
+              </router-link>
             </li>
             <li>
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Cancellation & Return Policy</router-link
               >
+                Cancellation & Return Policy
+              </router-link>
             </li>
             <li>
               <router-link
                 to="#"
                 class="text-black/85 text-[12px] lg:text-[16px] font-outfit font-light leading-[30px]"
-                >Contact Us</router-link
               >
+                Contact Us
+              </router-link>
             </li>
           </ul>
         </div>
@@ -245,16 +259,18 @@
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Business Opportunity</router-link
               >
+               
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Find an Advisor</router-link
               >
+             
             </li>
           </ul>
         </div>
@@ -294,30 +310,34 @@
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Our Story</router-link
               >
+             
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Wellness</router-link
               >
+             
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Beauty</router-link
               >
+             
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Kitchen</router-link
               >
+               
             </li>
           </ul>
         </div>
@@ -357,30 +377,33 @@
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Facebook</router-link
               >
+            
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
-                >Instagram</router-link
-              >
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
+                >Instagram</router-link>
+              
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >YouTube</router-link
               >
+            
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >LinkedIn</router-link
               >
+           
             </li>
           </ul>
         </div>
@@ -419,44 +442,50 @@
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Terms & Conditions</router-link
               >
+            
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >FAQs</router-link
               >
+           
             </li>
             <li>
               <router-link
-                to="/privacy-policy"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                to="#"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Privacy Policy</router-link
               >
+             
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Policy & Compliance</router-link
               >
+            
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Cancellation & Return Policy</router-link
               >
+               
             </li>
             <li>
               <router-link
                 to="#"
-                class="text-black/85 text-[16px] font-outfit font-light leading-[30px]"
+                class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Contact Us</router-link
               >
+      
             </li>
           </ul>
         </div>
@@ -470,8 +499,9 @@
       >
         <span
           class="text-center text-black text-xs lg:text-xl font-normal font-['Outfit'] leading-tight"
-          >© 2024 All rights reserved. Modiway Ltd.</span
         >
+          © 2024 All rights reserved. Modiway Ltd.
+        </span>
       </div>
     </div>
   </footer>
@@ -512,7 +542,7 @@ export default {
 <style>
 @media (max-width: 480px) {
   .max-w-full {
-    flex-direction: column; 
+    flex-direction: column;
   }
 
   .responsive-item {
@@ -521,9 +551,9 @@ export default {
   }
 
   .responsive-item:nth-child(3) {
-    flex: 0 0 100%; 
+    flex: 0 0 100%;
     display: block;
-    justify-content: center; 
+    justify-content: center;
     margin-top: 10px;
   }
 }
@@ -531,7 +561,7 @@ export default {
 /* For medium mobile devices */
 @media (max-width: 600px) {
   .max-w-full {
-    flex-direction: column; 
+    flex-direction: column;
   }
 
   .responsive-item {
@@ -540,9 +570,9 @@ export default {
   }
 
   .responsive-item:nth-child(3) {
-    flex: 0 0 100%; 
+    flex: 0 0 100%;
     display: block;
-    justify-content: center; 
+    justify-content: center;
     margin-top: 10px;
   }
 }
@@ -550,7 +580,7 @@ export default {
 /* For large mobile devices */
 @media (max-width: 768px) {
   .max-w-full {
-    flex-direction: row; 
+    flex-direction: row;
   }
 
   .responsive-item {
@@ -559,9 +589,9 @@ export default {
   }
 
   .responsive-item:nth-child(3) {
-    flex: 0 0 100%; 
+    flex: 0 0 100%;
     display: block;
-    justify-content: center; 
+    justify-content: center;
     margin-top: 10px;
   }
 }
