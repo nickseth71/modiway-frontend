@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
+
 /// Icons
 import vegIcon from "../assets/modiway-icon/veg-icon.svg";
 import LowGiIcon from "../assets/modiway-icon/Low-GI-icon.svg";
@@ -8,6 +9,8 @@ import NoAddedSugarIcon from "../assets/modiway-icon/no-suger-icon.svg";
 import GlutenFreeIcon from "../assets/modiway-icon/gluten-icon.svg";
 import NonGmoIcon from "../assets/modiway-icon/Non-GMO-icon.svg";
 
+
+import PlusSvg from "../assets/Plussvg.svg"
 import AddCart1 from "../assets/add-cart1.png";
 import AddCart2 from "../assets/add-cart2.png";
 import AddCart3 from "../assets/add-cart3.png";
@@ -16,14 +19,18 @@ import AddCart4 from "../assets/add-cart4.png";
 /////////////////////////////// Cart Items ///////////////////////////////////////
 const cartItems = ref([
   { src: AddCart1, alt: "Cart img 1" },
+  { src: AddCart1, alt: "Cart img 1" },
+
   { src: AddCart2, alt: "Cart img 2" },
   { src: AddCart3, alt: "Cart img 3" },
   { src: AddCart4, alt: "Cart img 4" },
 ]);
 
-// Modal State and Methods
 const isModalOpen = ref(false);
 const currentIndex = ref(0);
+
+const visibleItems = computed(() => cartItems.value.slice(0, 4));
+// const remainingItems = computed(() => cartItems.value.length - 4);
 
 const openModal = (index) => {
   currentIndex.value = index;
@@ -43,113 +50,11 @@ const prevImage = () => {
     (currentIndex.value - 1 + cartItems.value.length) % cartItems.value.length;
 };
 
-/////////////////////////////// Other Images and Data ///////////////////////////////////////
-import wishImg from "../assets/modiway-icon/heart-svgrepo-com.svg";
-import BannerImage from "../assets/banner.png";
-import Review from "../assets/review.png";
-import nextbutton from "../assets/next.png";
-import prevbutton from "../assets/previous.png";
-import ProductImage from "../assets/ProductImg.png";
-import BurnerBox from "../assets/burner-box.png";
-import ProductDesImg from "../assets/product-description.png";
-
-const productImages = ref([
-  {
-    src: ProductImage,
-    alt: "Product img",
-    title: "Mango Flavour",
-    description: "Shape Shift",
-  },
-  {
-    src: ProductImage,
-    alt: "Product img",
-    title: "Mango Flavour",
-    description: "Shape Shift",
-  },
-  {
-    src: ProductImage,
-    alt: "Product img",
-    title: "Mango Flavour",
-    description: "Shape Shift",
-  },
-  {
-    src: ProductImage,
-    alt: "Product img",
-    title: "Mango Flavour",
-    description: "Shape Shift",
-  },
-]);
-
-///// Icons 
-
-const Icons = ref([
-  {
-    src: LowGiIcon,
-    title: "Low GI"
-  },
-  {
-    src: vegIcon,
-    title: "Vegetarian"
-  },
-  {
-    src: PreservativeIcon,
-    title: "Preservative-Free"
-  },
-  {
-    src: NoAddedSugarIcon,
-    title: "No-Added-Sugar"
-  },
-  {
-    src: GlutenFreeIcon,
-    title: "Gluten Free"
-  },
-  {
-    src: NonGmoIcon,
-    title: "Non GMO"
-  },
-])
-
-/////////////////////////////// Touch Events for Carousel ///////////////////////////////////
-
-
-/////////////////////////////// Product Details ///////////////////////////////////
-const flavors = ref([
-  "Chocolate",
-  "Vanilla",
-  "Mango",
-  "Kulfi",
-  "Rose Kheer",
-  "Strawberry",
-  "Banana Caramel",
-  "Rasmalai",
-]);
-
-const flavorColors = {
-  Chocolate: "#763601",
-  Vanilla: "#D6D0CA",
-  Mango: "#F2B422",
-  Kulfi: "#C09F6F",
-  "Rose Kheer": "#FFCEEC",
-  Strawberry: "#DF84B0",
-  "Banana Caramel": "#C7BFA4",
-  Rasmalai: "#E0CFB0",
+const viewAll = () => {
+  // Handle viewing all images (e.g., open gallery modal)
+  console.log("View all images");
 };
 
-const selectedFlavor = ref(null);
-
-const selectFlavor = (flavor) => {
-  selectedFlavor.value = flavor;
-};
-
-const quantity = ref(1);
-
-const decreaseQuantity = () => {
-  if (quantity.value > 1) quantity.value--;
-};
-
-const increaseQuantity = () => {
-  quantity.value++;
-};
 
 const sections = ref([
   {
@@ -182,8 +87,108 @@ const sections = ref([
   },
 ]);
 
+
 const toggleSection = (index) => {
   sections.value[index].open = !sections.value[index].open;
+};
+
+/////////////////////////////// Other Images and Data ///////////////////////////////////////
+import wishImg from "../assets/modiway-icon/heart-svgrepo-com.svg";
+import BannerImage from "../assets/banner.png";
+import Review from "../assets/review.png";
+import nextbutton from "../assets/next.png";
+import prevbutton from "../assets/previous.png";
+import ProductImage from "../assets/ProductImg.png";
+import BurnerBox from "../assets/burner-box.png";
+import ProductDesImg from "../assets/product-description.png";
+
+const productImages = ref([
+  { src: ProductImage, alt: 'Product img', title: 'Mango Flavour', description: 'Shape Shift' },
+  { src: ProductImage, alt: 'Product img', title: 'Mango Flavour', description: 'Shape Shift' },
+  { src: ProductImage, alt: 'Product img', title: 'Mango Flavour', description: 'Shape Shift' },
+  { src: ProductImage, alt: 'Product img', title: 'Mango Flavour', description: 'Shape Shift' },
+  { src: ProductImage, alt: 'Product img', title: 'Mango Flavour', description: 'Shape Shift' },
+  { src: ProductImage, alt: 'Product img', title: 'Mango Flavour', description: 'Shape Shift' },
+]);
+
+const activeIndex = ref(0);
+const isMobile = ref(false);
+const containerWidth = ref(0);
+
+const moveCarousel = (direction) => {
+  // Calculate new activeIndex with boundary checking
+  activeIndex.value += direction;
+
+  // Ensure activeIndex stays within bounds
+  if (activeIndex.value < 0) activeIndex.value = 0;
+  if (activeIndex.value >= productImages.value.length) activeIndex.value = productImages.value.length - 1;
+};
+
+const handleResize = () => {
+  isMobile.value = window.innerWidth <= 768;
+  updateContainerWidth();
+};
+
+const updateContainerWidth = () => {
+  if (containerWidth.value) {
+    containerWidth.value = window.innerWidth / (isMobile.value ? 2 : 4);
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+  handleResize();
+});
+
+watch(productImages, () => {
+  handleResize();
+});
+
+const carouselStyle = computed(() => ({
+  transform: `translateX(-${activeIndex.value * containerWidth.value}px)`,
+}));
+
+
+
+///// Icons 
+
+const Icons = ref([
+  { src: LowGiIcon, title: "Low GI" },
+  { src: vegIcon, title: "Vegetarian" },
+  { src: PreservativeIcon, title: "Preservative-Free" },
+  { src: NoAddedSugarIcon, title: "No-Added-Sugar" },
+  { src: GlutenFreeIcon, title: "Gluten Free" },
+  { src: NonGmoIcon, title: "Non GMO" },
+]);
+
+/////////////////////////////// Product Details ///////////////////////////////////
+const flavors = ref(["Chocolate", "Vanilla", "Mango", "Kulfi", "Rose Kheer", "Strawberry", "Banana Caramel", "Rasmalai"]);
+
+const flavorColors = {
+  Chocolate: "#763601",
+  Vanilla: "#D6D0CA",
+  Mango: "#F2B422",
+  Kulfi: "#C09F6F",
+  "Rose Kheer": "#FFCEEC",
+  Strawberry: "#DF84B0",
+  "Banana Caramel": "#C7BFA4",
+  Rasmalai: "#E0CFB0",
+};
+
+const selectedFlavor = ref(null);
+
+const selectFlavor = (flavor) => {
+  selectedFlavor.value = flavor;
+};
+
+const quantity = ref(1);
+
+const decreaseQuantity = () => {
+  if (quantity.value > 1) quantity.value--;
+};
+
+const increaseQuantity = () => {
+  quantity.value++;
 };
 
 /////////////////////////////// Cards Navigation ///////////////////////////////////
@@ -201,15 +206,25 @@ const cards = ref([
     heading: "It was a very good experience",
     description: "Amazing results! Tasty shakes made weight loss simple and sustainable.",
     image: Review,
-  },
-  {
+  }, {
     name: "Nancy",
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
     description: "Amazing results! Tasty shakes made weight loss simple and sustainable.",
     image: Review,
-  },
-  {
+  }, {
+    name: "Nancy",
+    title: "45kg, 9 inches lost in 10 months",
+    heading: "It was a very good experience",
+    description: "Amazing results! Tasty shakes made weight loss simple and sustainable.",
+    image: Review,
+  }, {
+    name: "Nancy",
+    title: "45kg, 9 inches lost in 10 months",
+    heading: "It was a very good experience",
+    description: "Amazing results! Tasty shakes made weight loss simple and sustainable.",
+    image: Review,
+  }, {
     name: "Nancy",
     title: "45kg, 9 inches lost in 10 months",
     heading: "It was a very good experience",
@@ -219,7 +234,7 @@ const cards = ref([
 
 ]);
 
-const activeIndex = ref(0);
+// const activeIndex = ref(0);
 const startX = ref(0);
 const endX = ref(0);
 
@@ -243,29 +258,11 @@ const handleTouchEnd = () => {
   }
 };
 
-const nextCard = () => {
-  activeIndex.value = (activeIndex.value + 1) % cards.value.length;
-};
-
-const prevCard = () => {
-  activeIndex.value = (activeIndex.value - 1 + cards.value.length) % cards.value.length;
-};
-
-
 /////////////////////////////// Tabs ///////////////////////////////////
-const tabs = ref([
-  "Product Description",
-  "Key Benefits",
-  "Ingredients & Nutritional info",
-  "Usage",
-  "Attention",
-]);
+const tabs = ref(["Product Description", "Key Benefits", "Ingredients & Nutritional info", "Usage", "Attention"]);
 
 const activeTab = ref(0);
 </script>
-
-
-
 
 <style scoped></style>
 
@@ -296,12 +293,12 @@ const activeTab = ref(0);
         <div id="custom-carousel" class="relative w-full block lg:hidden" @touchstart="handleTouchStart"
           @touchmove="handleTouchMove" @touchend="handleTouchEnd">
           <!-- Carousel Wrapper -->
-          <div class="relative h-[464px] object-cover overflow-hidden">
+          <div class="relative h-[364px] object-cover overflow-hidden">
             <!-- Carousel Items -->
             <div v-for="(item, index) in cartItems" :key="index" :class="{ hidden: index !== activeIndex }"
               class="duration-700 ease-in-out" :data-carousel-item="index === 0 ? 'active' : null">
               <img :src="item.src" :alt="item.alt"
-                class="absolute w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                class="absolute w-full h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
             </div>
           </div>
 
@@ -434,21 +431,21 @@ const activeTab = ref(0);
             <div class="mt-6 space-y-4">
               <div v-for="(section, index) in sections" :key="index">
                 <button style="line-height: normal;"
-                  class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] font-semibold font-outfit flex justify-between items-center"
+                  class="w-full text-left text-[#353535] pt-[30px] pb-[8px] text-[16px] font-semibold font-outfit flex justify-between items-center "
                   @click="toggleSection(index)" :class="{
                     'border-b-[1px] border-[#353535]': !section.open,
-                    'border-b-[2px] border-[#000]': section.open
+                    'border-b-[2px] border-[#000] ': section.open
                   }">
                   {{ section.title }}
                   <span :class="{
                     'rotate-180': section.open,
                     'rotate-0': !section.open,
-                  }" class="transform transition-transform duration-200">
+                  }" class="animate-smooth-in-top">
                     <i class="fas fa-chevron-down"></i>
                   </span>
                 </button>
                 <div v-if="section.open"
-                  class="text-[16px] flex flex-col text-black/85 mt-2 pb-[50px] leading-[19.192px] tracking-[0.8px]">
+                  class="text-[16px] flex flex-col text-black/85 mt-2 pb-[15px] leading-[19.192px] tracking-[0.8px] animate-smooth-in-top">
                   {{ section.content }}
 
                   <img v-if="section.src" :src="section.src" alt="description" class="w-full h-auto pt-4">
@@ -462,15 +459,23 @@ const activeTab = ref(0);
 
       <!------------------------------------------------------------------------------- Large Screen --------------------------------------------------- -->
 
-      <div class="hidden lg:flex gap-6"> 
+      <div class="hidden lg:flex gap-6">
         <!-- Image Grid -->
         <div class="lg:grid gap-[14px] grid-cols-2 lg:w-full h-full">
-          <div v-for="(item, index) in cartItems" :key="index" class="flex justify-center">
+          <div v-for="(item, index) in visibleItems" :key="index" class="relative flex justify-center">
             <img :src="item.src" :alt="item.alt" class="object-cover w-full h-auto cursor-pointer"
               @click="openModal(index)" />
+            <!-- Show overlay if it's the last visible item and there are more items -->
+            <div v-if="index === visibleItems.length - 1 && cartItems.length > 4"
+              class="absolute inset-0 bg-black/50 flex justify-center items-center cursor-pointer" @click="viewAll">
+
+              <img @click="openModal(index)" :src="PlusSvg" alt="plus">
+              <!-- <span class="text-white text-lg font-semibold">+{{ remainingItems }}</span> -->
+            </div>
           </div>
         </div>
       </div>
+
 
       <!-- Image Popup Modal -->
 
@@ -479,14 +484,14 @@ const activeTab = ref(0);
           class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-80 z-50">
           <!-- Image Container -->
           <button @click.stop="prevImage"
-            class="absolute left-24 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full text-black z-50"
+            class="absolute left-24 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center text-black z-50"
             aria-label="Previous Image">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
               <path
                 d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
             </svg>
           </button>
-          <div @click.stop class="relative max-w-4xl w-[80%] h-auto max-h-[80vh] overflow-hidden bg-white">
+          <div @click.stop class="relative max-w-[70vh] w-[100%] h-auto max-h-[70vh] overflow-hidden bg-white">
             <!-- Image Display Container -->
             <div class="relative">
               <img :src="cartItems[currentIndex]?.src" :alt="cartItems[currentIndex]?.alt"
@@ -506,7 +511,7 @@ const activeTab = ref(0);
 
 
       <!-- Second Column: Product Information -->
-      <div class="w-full lg:w-[44%] space-y-0 px-[15px]">
+      <div class="hidden lg:block w-full lg:w-[44%] space-y-0 px-[15px]">
         <!-- Breadcrumbs -->
         <div class="flex flex-row ">
           <div class="flex flex-row justify-center">
@@ -554,8 +559,8 @@ const activeTab = ref(0);
         <div class="pt-[20px]">
           <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-              'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
-              selectedFlavor === flavor ? 'border-[1.2] border-black' : ''
+              'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer hover:scale-[1.03] ease-in-out',
+              selectedFlavor === flavor ? 'border-[1.2] border-black ' : ''
             ]" :style="{ backgroundColor: flavorColors[flavor] }">
               {{ flavor }}
             </div>
@@ -595,7 +600,7 @@ const activeTab = ref(0);
 
           <div class="w-full flex justify-start gap-[13px] items-center mt-[24px]">
             <button
-              class=" w-[333px] h-10 font-outfit bg-[#414042] px-[20px] text-white leading-[19.95px] font-bold text-[19.95px]">
+              class=" w-[333px] h-10 font-outfit bg-[#414042] px-[20px] text-white leading-[19.95px] font-bold text-[19.95px] hover:scale-[1.03] ease-in-out hover:bg-black">
               Add to cart
             </button>
             <div class="w-[47px] h-10 border-[#414042] border-2 flex justify-center p-[5px]">
@@ -635,7 +640,7 @@ const activeTab = ref(0);
 
 
       </div>
-      
+
     </section>
     <!------------------------------------------------ Product Description Section ---------------------------------------------------------->
     <section class="page-width hidden lg:block">
@@ -657,133 +662,125 @@ const activeTab = ref(0);
         </div>
 
         <!-- Add tab content with transition -->
-        <div class="tab-content-container mt-4">
-          <transition name="tab-transition" mode="out-in">
-            <div :key="activeTab" class="tab-content">
-              <div class="w-full mt-14">
-                <div v-if="activeTab === 0" class="w-full flex gap-[2rem] justify-between flex-col sm:flex-row">
-                  <div class="flex-1 py-4  ">
+        <div class="tab-content-container ">
+          <!-- <transition name="tab-transition" mode="out-in"> -->
+          <div :key="activeTab" class="tab-content animate-smooth-in-right">
+            <div class="w-full mt-8">
+              <div v-if="activeTab === 0" class="w-full flex gap-[2rem] justify-between flex-col sm:flex-row">
+                <div class="flex-1 ">
 
-                    <p
-                      class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                      Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                      Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                      meal replacement shake packed with high-quality protein and a
-                      comprehensive blend of 25 essential vitamins and minerals. It
-                      includes added dietary fibers, probiotics, enzymes, and plant-based
-                      nutrients, all without refined sugar. Food for special dietary use
-                      for weight control/management.
-                    </p>
-                    <p
-                      class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                      Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                      Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                      meal replacement shake packed with high-quality protein and a
-                      comprehensive blend of 25 essential vitamins and minerals. It
-                      includes added dietary fibers, probiotics, enzymes, and plant-based
-                      nutrients, all without refined sugar. Food for special dietary use
-                      for weight control/management.
-                    </p>
-                  </div>
-                  <div class="flex-1 ">
-                    <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
-                  </div>
+                  <p class="text-[16px] font-normal font-outfit text-black/85  leading-[19.192px] tracking-[0.8px]">
+                    Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                    Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                    meal replacement shake packed with high-quality protein and a
+                    comprehensive blend of 25 essential vitamins and minerals. It
+                    includes added dietary fibers, probiotics, enzymes, and plant-based
+                    nutrients, all without refined sugar. Food for special dietary use
+                    for weight control/management.
+                  </p>
+                  <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                    Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                    Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                    meal replacement shake packed with high-quality protein and a
+                    comprehensive blend of 25 essential vitamins and minerals. It
+                    includes added dietary fibers, probiotics, enzymes, and plant-based
+                    nutrients, all without refined sugar. Food for special dietary use
+                    for weight control/management.
+                  </p>
                 </div>
-                <div v-if="activeTab === 1" class="flex gap-[2rem] flex-col sm:flex-row">
-                  <div class="flex-1 py-4  ">
+                <div class="flex-1 ">
+                  <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
+                </div>
+              </div>
+              <div v-if="activeTab === 1" class="flex gap-[2rem] flex-col sm:flex-row">
+                <div class="flex-1  ">
 
-                    <p
-                      class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                      Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                      Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                      meal replacement shake packed with high-quality protein and a
-                      comprehensive blend of 25 essential vitamins and minerals. It
-                      includes added dietary fibers, probiotics, enzymes, and plant-based
-                      nutrients, all without refined sugar. Food for special dietary use
-                      for weight control/management.
-                    </p>
-
-                  </div>
+                  <p class="text-[16px] font-normal font-outfit text-black/85 leading-[19.192px] tracking-[0.8px]">
+                    Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                    Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                    meal replacement shake packed with high-quality protein and a
+                    comprehensive blend of 25 essential vitamins and minerals. It
+                    includes added dietary fibers, probiotics, enzymes, and plant-based
+                    nutrients, all without refined sugar. Food for special dietary use
+                    for weight control/management.
+                  </p>
 
                 </div>
-                <div v-if="activeTab === 2" class="flex gap-[2rem] flex-col sm:flex-row">
-                  <div class="flex-1 py-4">
 
-                    <p
-                      class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                      Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                      Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                      meal replacement shake packed with high-quality protein and a
-                      comprehensive blend of 25 essential vitamins and minerals. It
-                      includes added dietary fibers, probiotics, enzymes, and plant-based
-                      nutrients, all without refined sugar. Food for special dietary use
-                      for weight control/management.
-                    </p>
-                    <p
-                      class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                      Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                      Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                      meal replacement shake packed with high-quality protein and a
-                      comprehensive blend of 25 essential vitamins and minerals. It
-                      includes added dietary fibers, probiotics, enzymes, and plant-based
-                      nutrients, all without refined sugar. Food for special dietary use
-                      for weight control/management.
-                    </p>
-                  </div>
-                  <div class="flex-1">
-                    <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
-                  </div>
+              </div>
+              <div v-if="activeTab === 2" class="flex gap-[2rem] flex-col sm:flex-row">
+                <div class="flex-1">
+
+                  <p class="text-[16px] font-normal font-outfit text-black/85 leading-[19.192px] tracking-[0.8px]">
+                    Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                    Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                    meal replacement shake packed with high-quality protein and a
+                    comprehensive blend of 25 essential vitamins and minerals. It
+                    includes added dietary fibers, probiotics, enzymes, and plant-based
+                    nutrients, all without refined sugar. Food for special dietary use
+                    for weight control/management.
+                  </p>
+                  <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                    Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                    Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                    meal replacement shake packed with high-quality protein and a
+                    comprehensive blend of 25 essential vitamins and minerals. It
+                    includes added dietary fibers, probiotics, enzymes, and plant-based
+                    nutrients, all without refined sugar. Food for special dietary use
+                    for weight control/management.
+                  </p>
                 </div>
-                <div v-if="activeTab === 3" class="flex gap-[2rem] flex-col sm:flex-row">
-                  <div class="flex-1 py-4">
-
-                    <p
-                      class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                      Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                      Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                      meal replacement shake packed with high-quality protein and a
-                      comprehensive blend of 25 essential vitamins and minerals. It
-                      includes added dietary fibers, probiotics, enzymes, and plant-based
-                      nutrients, all without refined sugar. Food for special dietary use
-                      for weight control/management.
-                    </p>
-
-                  </div>
-                  <div class="flex-1">
-                    <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
-                  </div>
+                <div class="flex-1">
+                  <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
                 </div>
-                <div v-if="activeTab === 4" class="flex gap-[2rem] flex-col sm:flex-row">
-                  <div class="flex-1 py-4">
+              </div>
+              <div v-if="activeTab === 3" class="flex gap-[2rem] flex-col sm:flex-row">
+                <div class="flex-1">
 
-                    <p
-                      class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                      Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                      Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                      meal replacement shake packed with high-quality protein and a
-                      comprehensive blend of 25 essential vitamins and minerals. It
-                      includes added dietary fibers, probiotics, enzymes, and plant-based
-                      nutrients, all without refined sugar. Food for special dietary use
-                      for weight control/management.
-                    </p>
-                    <p
-                      class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
-                      Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
-                      Vitamins & Minerals Shape Shift offers a delicious and nutritious
-                      meal replacement shake packed with high-quality protein and a
-                      comprehensive blend of 25 essential vitamins and minerals. It
-                      includes added dietary fibers, probiotics, enzymes, and plant-based
-                      nutrients, all without refined sugar. Food for special dietary use
-                      for weight control/management.
-                    </p>
-                  </div>
-                  <div class="flex-1">
-                    <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
-                  </div>
+                  <p class="text-[16px] font-normal font-outfit text-black/85 leading-[19.192px] tracking-[0.8px]">
+                    Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                    Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                    meal replacement shake packed with high-quality protein and a
+                    comprehensive blend of 25 essential vitamins and minerals. It
+                    includes added dietary fibers, probiotics, enzymes, and plant-based
+                    nutrients, all without refined sugar. Food for special dietary use
+                    for weight control/management.
+                  </p>
+
+                </div>
+                <div class="flex-1">
+                  <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
+                </div>
+              </div>
+              <div v-if="activeTab === 4" class="flex gap-[2rem] flex-col sm:flex-row">
+                <div class="flex-1">
+
+                  <p class="text-[16px] font-normal font-outfit text-black/85 leading-[19.192px] tracking-[0.8px]">
+                    Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                    Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                    meal replacement shake packed with high-quality protein and a
+                    comprehensive blend of 25 essential vitamins and minerals. It
+                    includes added dietary fibers, probiotics, enzymes, and plant-based
+                    nutrients, all without refined sugar. Food for special dietary use
+                    for weight control/management.
+                  </p>
+                  <p class="text-[16px] font-normal font-outfit text-black/85 mt-2 leading-[19.192px] tracking-[0.8px]">
+                    Nutritional Shake Mix with Protein, Fiber, Probiotics, Enzymes,
+                    Vitamins & Minerals Shape Shift offers a delicious and nutritious
+                    meal replacement shake packed with high-quality protein and a
+                    comprehensive blend of 25 essential vitamins and minerals. It
+                    includes added dietary fibers, probiotics, enzymes, and plant-based
+                    nutrients, all without refined sugar. Food for special dietary use
+                    for weight control/management.
+                  </p>
+                </div>
+                <div class="flex-1">
+                  <img src="../assets/product-description.png" alt="Product" class="rounded-md shadow" />
                 </div>
               </div>
             </div>
-          </transition>
+          </div>
+          <!-- </transition> -->
         </div>
 
         <!-- Tab Content -->
@@ -843,10 +840,7 @@ const activeTab = ref(0);
 
     </section>
 
-
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ You may also like section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-
     <section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-20 px-4">
       <!-- Title Section -->
       <div class="flex justify-start lg:justify-center items-center">
@@ -858,33 +852,81 @@ const activeTab = ref(0);
 
       <!-- Products Section -->
       <div class="mt-12">
-        <!-- Grid Container -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-[14px] lg:gap-[33px]">
-          <!-- Product Block -->
+        <!-- Carousel Container -->
+        <div class="relative w-full" @touchstart="handleTouchStart" @touchmove="handleTouchMove"
+          @touchend="handleTouchEnd">
 
-          <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center">
-            <!-- Image Container -->
-            <div
-              class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 px-4 py-4 rounded overflow-hidden">
-              <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
+          <!-- Carousel Wrapper -->
+          <div class="flex justify-center items-center overflow-hidden p-2">
+            <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[30.99px]"
+              :style="{ transform: `translateX(-${activeIndex * 100}%)` }" style="width: 100%">
+
+              <!-- Product Block Carousel -->
+              <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center shrink-0"
+                :style="{
+                  minWidth: isMobile ? '50%' : 'auto',
+                }">
+
+                <!-- Image Container -->
+                <div
+                  class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 px-4 py-4 rounded overflow-hidden">
+                  <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
+                </div>
+
+                <!-- Product Description -->
+                <span class="mt-4 text-center text-black/85 text-sm lg:text-lg font-normal">
+                  {{ product.description }}
+                </span>
+
+                <!-- Product Title -->
+                <span class="text-center text-black/85 text-sm lg:text-lg font-normal">
+                  {{ product.title }}
+                </span>
+              </div>
             </div>
-
-            <!-- Product Description -->
-            <span class="mt-4 text-center text-black/85 text-sm lg:text-lg font-normal">
-              {{ product.description }}
-            </span>
-
-            <!-- Product Title -->
-            <span class="text-center text-black/85 text-sm lg:text-lg font-normal">
-              {{ product.title }}
-            </span>
           </div>
 
+          <!-- Left Arrow Button -->
+          <button v-if="productImages.length > 1" :disabled="activeIndex === 0" @click="moveCarousel(-1)"
+            class="absolute left-0 lg:left-0 transform top-1/2 -translate-y-1/2 bg-white border p-2 rounded-full shadow-md"
+            :class="{ 'opacity-50 cursor-not-allowed': activeIndex === 0 }">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
+              <path
+                d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+            </svg> -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
+              <path
+                d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+          </button>
+
+          <!-- Right Arrow Button -->
+          <button v-if="productImages.length > 1" :disabled="activeIndex === productImages.length - 1"
+            @click="moveCarousel(1)"
+            class="absolute right-0 lg:right-0 transform top-1/2 -translate-y-1/2 bg-white border p-2 rounded-full shadow-md"
+            :class="{ 'opacity-50 cursor-not-allowed': activeIndex === productImages.length - 1 }">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
+              <path
+                d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+            </svg>
+          </button>
+
+          <!-- Carousel Navigation Dots -->
+          <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-2">
+            <button v-for="(dot, index) in Math.ceil(productImages.length / 2)" :key="index"
+              class="w-3 h-3 rounded-full" :aria-current="index === activeIndex ? 'true' : 'false'"
+              :aria-label="'Slide ' + (index + 1)" @click="activeIndex = index" :class="{
+                'bg-[#515151]': index === activeIndex,
+                'bg-[#c4c4c4]': index !== activeIndex,
+              }">
+              </button>
+          </div>
 
         </div>
       </div>
-
     </section>
+
+
 
     <!------------------------------------------------------ Banner Section ------------------------------------------------------------->
     <section class="mt-[60px] lg:mt-[32px]">
@@ -902,7 +944,7 @@ const activeTab = ref(0);
 
           <!-- Carousel Container -->
           <div class="flex justify-center items-center overflow-hidden p-2">
-            <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[52.99px]"
+            <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[30.99px]"
               :style="{ transform: `translateX(-${activeIndex * 100}%)` }" style="width: 100%">
               <!-- Product Card -->
               <div v-for="(card, index) in cards" :key="index"

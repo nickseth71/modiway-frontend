@@ -1,15 +1,14 @@
 <template>
   <section>
     <!-- Video Carousel Section -->
-    <section id="video-carousel" class="relative w-full h-[40vh] sm:h-auto lg:h-screen">
+    <section id="video-carousel" class="relative w-full sm:h-auto lg:h-screen" style="max-height: fit-content;">
       <div class="relative w-full h-full">
-        <div v-for="(media, index) in mediaItems" :key="index"
-          class="absolute inset-0 w-full h-auto duration-700 ease-in-out" v-show="index === currentIndex">
+        <div style="display: contents;" v-for="(media, index) in mediaItems" :key="index"
+          class=" w-full h-auto duration-700 ease-in-out" v-show="index === currentIndex">
           <video v-if="media.type === 'video'" :src="media.src" muted autoplay playsinline
             class="block w-full h-full object-cover" @ended="nextSlide" />
         </div>
       </div>
-
       <!-- Carousel Indicators -->
       <div class="absolute bottom-3 lg:bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
         <span v-for="(media, index) in mediaItems" :key="index" @click="currentIndex = index"
@@ -25,7 +24,7 @@
     <!-- Welcome Section -->
     <section class="flex justify-center items-center page-width">
       <div
-        class="text-center text-black/85 px-[16px] lg:pt-[32px] py-[55px] max-w-[814px] font-light font-outfit tracking-[0.6px] leading-[20px] lg:leading-[38px] text-[20px] lg:text-[30px]">
+        class="text-center text-[#292929] px-[16px] lg:pt-[32px] py-[55px] max-w-[814px] font-light font-outfit tracking-[0.6px] leading-[20px] lg:leading-[38px] text-[20px] lg:text-[30px]">
         <h1 class="pb-2 lg:pb-0">Welcome to a movement called the Modiway</h1>
         A transformative journey to spread joy, to make lives simpler, inspire
         positive change for body, mind and soul, and build a better world.
@@ -43,7 +42,7 @@
           'flex flex-col items-center lg:flex-row lg:gap-6 ': index % 2 !== 0,
         }">
           <!-- Image with Title Overlay -->
-          <div class="relative w-full lg:w-[500px] h-auto lg:h-auto lg:mb-0 lg:mr-4 lg:ml-8">
+          <div class="relative w-full lg:w-[500px] h-auto lg:h-auto lg:mb-0 lg:mr-[30px] ">
             <img :src="image.src" :alt="image.alt" class="w-full h-auto object-cover shadow-none duration-300" />
             <h3
               class="absolute inset-0 flex pl-[17px] py-6 items-start leading-6 tracking-[0.8px] justify-start text-white text-[32px] font-extralight font-outfit lg:text-5xl bg-black/15 whitespace-normal break-words line-clamp-3">
@@ -53,8 +52,8 @@
 
           <!-- Description -->
           <div class="flex-1 flex justify-center items-start py-8" :class="{
-            'lg:ml-[180px] lg:mr-[90px]': index % 2 === 0,
-            'lg:mr-[180px] lg:ml-[90px]': index % 2 !== 0,
+            'lg:ml-[120px] lg:mr-[70px]': index % 2 === 0,
+            'lg:mr-[120px] lg:ml-[100px]': index % 2 !== 0,
           }">
             <div class="pl-[17px]  lg:py-28 space-y-[15px] lg:space-y-[16px]">
               <h3 class="text-black/85 text-[26px] font-normal tracking-normal font-outfit">
@@ -62,32 +61,34 @@
               </h3>
 
               <p :class="{
-                'max-h-full': !isMobile,
-                'max-h-[100px]': isMobile && !image.showFullDescription,
-                'overflow-hidden': isMobile && !image.showFullDescription,
-                'transition-all duration-300': true,
-              }"
-                class="text-[rgba(0,0,0,0.85)] font-outfit text-[16px] font-light tracking-[0.5px] lg:leading-[21.59px] lg:text-[18px] lg:font-normal lg:tracking-[5%]">
-
-                <span v-if="!isMobile || image.showFullDescription">
+                 'max-h-full': !isMobile,
+                 'max-h-[100px]': isMobile && !image.showFullDescription,
+                 'overflow-hidden': isMobile && !image.showFullDescription,
+                'transition-all duration-500 ease-out': true, 
+              }" class="text-[rgba(0,0,0,0.85)] font-outfit text-[16px] font-extralight tracking-[0.5px] lg:leading-[21.59px] lg:text-[18px] lg:font-normal lg:tracking-[5%]">
+                <span v-if="!isMobile || image.showFullDescription" class="font-light font-outfit">
                   {{ image.descriptionPart1 }}
-                  <span class="block pt-[15px] pb-4">
+                  <span :class="{
+                    'block  opacity-100': image.showFullDescription, 
+                    '': !image.showFullDescription,
+                  }" class="block pt-[15px] pb-4 font-light font-outfit">
                     {{ image.descriptionPart2 }}
                   </span>
                 </span>
-                <span v-if="isMobile && !image.showFullDescription">
+                <span class="font-light font-outfit ease-in-out" v-if="isMobile && !image.showFullDescription">
                   {{ image.descriptionPart1 }}...
                 </span>
               </p>
+
 
               <!-- Mobile Show More Button -->
               <button v-if="isMobile" @click="toggleText(image)"
                 class="block lg:hidden bg-transparent text-gray-600 font-outfit text-[13px] hover:underline">
                 {{ image.showFullDescription ? "- Show less" : "+ Show more" }}
               </button>
-              <div class="flex justify-start items-center">
+              <div class="flex justify-start items-center pb-[20px]">
                 <button
-                  class="inline-flex text-[13px] px-2.5 py-[6px] items-center justify-center bg-[#414042] text-[#FFFFFF] font-outfit leading-none tracking-wide">
+                  class="inline-flex text-[13px] lg:text-[16px] px-[20px] py-[5px] items-center justify-center bg-[#414042] text-[#FFFFFF] font-outfit leading-none tracking-wide hover:scale-[1.03] ease-in-out hover:bg-black">
                   Shop Now
                 </button>
               </div>

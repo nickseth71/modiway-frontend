@@ -77,7 +77,7 @@ const handlePageChange = (page) => {
 <template>
   <section>
     <section class="max-w-full">
-      <div class=" lg:hidden flex flex-row mb-2 ml-2 ">
+      <div class=" lg:hidden flex justify-start items-start flex-row mb-2 ml-2 ">
         <span class="text-black/85 text-[12px] font-outfit font-normal">Home</span>
         <span class="text-black/85 text-[10px] px-[5px] font-outfit font-normal">|</span>
         <span class="text-black/85 text-[12px] font-outfit font-semibold">Blogs</span>
@@ -88,10 +88,10 @@ const handlePageChange = (page) => {
     </section>
 
     <section class="page-width">
-      <div class=" hidden lg:flex flex-row mt-3 ">
-        <span class="text-black/85 text-[12px] font-outfit font-normal">Home</span>
-        <span class="text-black/85 text-[10px] px-[5px] font-outfit font-normal">|</span>
-        <span class="text-black/85 text-[12px] font-outfit font-semibold">Blogs</span>
+      <div class=" hidden lg:flex justify-center flex-row mt-3 ">
+        <span class="text-black/85 text-[15px] font-outfit font-normal">Home</span>
+        <span class="text-black/85 text-[15px] px-[5px] font-outfit font-normal">|</span>
+        <span class="text-black/85 text-[15px] font-outfit font-semibold">Blogs</span>
       </div>
       <div class="mt-[20px] lg:mt-[44px] flex flex-col md:flex-row items-center px-[15px]">
         <!-- Left Section -->

@@ -7,8 +7,20 @@ import Videos from "../assets/young-woman-drinking-juice-home.png"
 <template>
   <section>
     <!-- Responsive Banner Section -->
-    <div class="w-full h-[400px] lg:h-[655px]">
-      <img :src="Banner" alt="Resource Banner" class="w-full h-full object-cover" />
+    <div class="lg:hidden flex justify-start items-start flex-row pl-[10px] ">
+      <span class="text-black/85 text-[15px] font-outfit font-normal">Home</span>
+      <span class="text-black/85 text-[15px] px-[5px] font-outfit font-normal">|</span>
+      <span class="text-black/85 text-[15px] font-outfit font-semibold">Resources</span>
+    </div>
+
+    <div class="w-full h-auto lg:h-auto">
+      <img :src="Banner" alt="Resource Banner" class="w-full h-auto object-cover" />
+    </div>
+
+    <div class="hidden lg:flex justify-center items-center flex-row mt-3 ">
+      <span class="text-black/85 text-[15px] font-outfit font-normal">Home</span>
+      <span class="text-black/85 text-[15px] px-[5px] font-outfit font-normal">|</span>
+      <span class="text-black/85 text-[15px] font-outfit font-semibold">Resources</span>
     </div>
 
     <!-- Responsive Content Section -->
@@ -50,7 +62,8 @@ import Videos from "../assets/young-woman-drinking-juice-home.png"
           </div>
 
           <!-- Link Section -->
-          <router-link to="/video-listing" class="text-[15px] font-outfit font-normal text-[#262626] flex items-center gap-2">
+          <router-link to="/video-listing"
+            class="text-[15px] font-outfit font-normal text-[#262626] flex items-center gap-2">
             <span class="underline underline-offset-2">Videos </span>
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
               <mask id="mask0_1_1380" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-1" y="0" width="11"

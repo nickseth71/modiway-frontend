@@ -13,8 +13,29 @@
         </button>
       </div>
 
+      <div class="flex lg:pr-[28px] lg:gap-[20px] sm:gap-6 items-center">
+        <!-- Search Icon -->
+        
+
+        <div class="lg:flex hidden items-center lg:pl-5 border-l-2 border-[#8C8C8C] border-opacity-45">
+          
+
+
+        </div>
+        <!-- Profile Icon with borders -->
+        <div
+          class="lg:flex hidden items-center lg:px-5 border-l-2 border-r-2 border-[#8C8C8C] border-opacity-45 sm:px-3 px-2">
+          
+        </div>
+
+        <!-- Cart Icon -->
+        <div class="flex items-center px-2 lg:px-0">
+          
+        </div>
+      </div>
+
       <!-- Logo Section - Centered -->
-      <div class="ml-12 lg:pl-[110px] flex justify-center items-center flex-grow">
+      <div class="ml-12 lg:pl-[80px] flex justify-center items-center flex-grow">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-[120px] h-[23px] lg:w-[188px] lg:h-[36px]" viewBox="0 0 188 36"
           fill="none">
           <g clip-path="url(#clip0_272_363)">
@@ -85,7 +106,7 @@
       </div>
 
       <!-- Right Side (Icons) -->
-      <div class="flex lg:pr-[28px] lg:gap-[20px] sm:gap-6 items-center">
+      <div class="flex lg:pr-[38px] lg:gap-[20px] sm:gap-6 items-center">
         <!-- Search Icon -->
         <div class="flex items-center border-r-2 lg:border-none px-2 lg:px-0">
           <svg @click="toggleSearch" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
@@ -96,6 +117,20 @@
           </svg>
         </div>
 
+        <div class="lg:flex hidden items-center lg:pl-5 border-l-2 border-[#8C8C8C] border-opacity-45">
+          <svg class="cursor-pointer stroke-[#8C8C8C]" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"
+            stroke="#8C8C8C">
+            <g id="SVGRepo_bgCarrier"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
+                stroke="#8c8c8c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+          </svg>
+
+
+        </div>
         <!-- Profile Icon with borders -->
         <div
           class="lg:flex hidden items-center lg:px-5 border-l-2 border-r-2 border-[#8C8C8C] border-opacity-45 sm:px-3 px-2">
@@ -296,6 +331,7 @@
           <li>
             <div>
               <!-- Main Dropdown -->
+
               <div ref="dropdownContainer" @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown"
                 class="relative">
                 <router-link to="/products" :class="{
@@ -311,69 +347,69 @@
                   }"></i>
                 </router-link>
 
-                <!-- Dropdown Menu -->
-                <div v-show="state.showDropdown" class="w-full max-w-full left-0 right-0">
-                  <div class="relative max-w-full bg-white h-auto z-10">
-                    <!-- Main Menu Items -->
-                    <ul class="pl-2">
-                      <li v-for="(menu, index) in state.menus" :key="index" class="cursor-pointer">
-                        <!-- Main Menu -->
-                        <div class="flex justify-between items-center py-2">
-                          <div @click="toggleSubMenu(menu.key)"
-                            class="flex w-full justify-between items-center cursor-pointer">
-                            <span :class="{
-                              'font-semibold': state.subMenuState[menu.key],
-                              'font-bold': menu.label === state.activeMenu,
-                              'text-black/85': !state.subMenuState[menu.key],
-                            }" class="font-outfit">
-                              {{ menu.label }}
-                            </span>
-                            <i :class="{
-                              'fa fa-chevron-down text-sm': !state.subMenuState[menu.key],
-                              'fa fa-chevron-up text-sm': state.subMenuState[menu.key],
-                            }"></i>
-                          </div>
-                        </div>
-                        <!-- Submenu -->
-                        <ul class="pl-2" v-show="state.subMenuState[menu.key]">
-                          <li v-for="(subMenu, subIndex) in menu.subMenus" :key="subIndex" class="cursor-pointer"
-                            @click="toggleItemsSubMenu(menu.key, subMenu.key)">
-                            <div class="flex justify-between items-center py-2">
+              
+                <transition name="dropdown" @enter="onDropdownEnter" @leave="onDropdownLeave">
+                  <div v-show="state.showDropdown"
+                    class="w-full max-w-full left-0 right-0 transition-all duration-500 ease-in-out overflow-hidden">
+                    <div class="relative max-w-full bg-white h-auto z-10">
+                      <ul class="pl-2">
+                        <li v-for="(menu, index) in state.menus" :key="index" class="cursor-pointer">
+                        
+                          <div class="flex justify-between items-center py-2">
+                            <div @click="toggleSubMenu(menu.key)"
+                              class="flex w-full justify-between items-center cursor-pointer">
                               <span :class="{
-                                'font-semibold': state.itemsSubmenu[menu.key]?.[subMenu.key],
-                                'font-bold': subMenu.label === state.activeSubMenu,
+                                'font-semibold': state.subMenuState[menu.key],
+                                'font-bold': menu.label === state.activeMenu,
+                                'text-black/85': !state.subMenuState[menu.key],
                               }" class="font-outfit">
-                                {{ subMenu.label }}
+                                {{ menu.label }}
                               </span>
                               <i :class="{
-                                'fa fa-chevron-down text-sm': !state.itemsSubmenu[menu.key]?.[subMenu.key],
-                                'fa fa-chevron-up text-sm': state.itemsSubmenu[menu.key]?.[subMenu.key],
+                                'fa fa-chevron-down text-sm': !state.subMenuState[menu.key],
+                                'fa fa-chevron-up text-sm': state.subMenuState[menu.key],
                               }"></i>
                             </div>
-                            <!-- Items Submenu -->
-                            <ul class="pl-2" v-show="state.itemsSubmenu[menu.key]?.[subMenu.key]">
-                              <li v-for="(item, itemIndex) in subMenu.items" :key="itemIndex" class="cursor-pointer">
+                          </div>
+                        
+                          <ul class="pl-2" v-show="state.subMenuState[menu.key]">
+                            <li v-for="(subMenu, subIndex) in menu.subMenus" :key="subIndex" class="cursor-pointer"
+                              @click="toggleItemsSubMenu(menu.key, subMenu.key)">
+                              <div class="flex justify-between items-center py-2">
                                 <span :class="{
-                                  'font-bold': item === state.activeItemSubMenu,
-                                }" class="block py-2 font-outfit hover:font-semibold hover:bg-gray-100">
-                                  {{ item }}
+                                  'font-semibold': state.itemsSubmenu[menu.key]?.[subMenu.key],
+                                  'font-bold': subMenu.label === state.activeSubMenu,
+                                }" class="font-outfit">
+                                  {{ subMenu.label }}
                                 </span>
-                              </li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
+                                <i :class="{
+                                  'fa fa-chevron-down text-sm': !state.itemsSubmenu[menu.key]?.[subMenu.key],
+                                  'fa fa-chevron-up text-sm': state.itemsSubmenu[menu.key]?.[subMenu.key],
+                                }"></i>
+                              </div>
+                          
+                              <ul class="pl-2" v-show="state.itemsSubmenu[menu.key]?.[subMenu.key]">
+                                <li v-for="(item, itemIndex) in subMenu.items" :key="itemIndex" class="cursor-pointer">
+                                  <span :class="{
+                                    'font-bold': item === state.activeItemSubMenu,
+                                  }" class="block py-2 font-outfit hover:font-semibold hover:bg-gray-100">
+                                    {{ item }}
+                                  </span>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                </transition>
               </div>
             </div>
           </li>
-          <!-- Business Opportunity Link -->
           <li>
             <router-link @click.native="isMenuOpen = false" to="/business-opportunity"
-              class="block text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold"
-              >
+              class="block text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] hover:font-bold">
               Business Opportunity
             </router-link>
           </li>
@@ -405,6 +441,7 @@
         </div>
       </div>
       <!--------------------------------------------------- Large Screen Navbar ----------------------------------------------->
+   
       <nav>
         <ul class="list-none hidden lg:flex max-w-full mx-auto items-center space-x-[80px]">
           <li>
@@ -421,60 +458,64 @@
               }" class="flex text-[15px] font-normal font-outfit tracking-[0.75px] hover:text-shadow-custom">
                 Products
               </router-link>
-              <div v-show="showDropdown"
-                class="absolute w-full max-w-full mx-auto mt-2 left-0 right-0 border border-[#DEDEDE]">
-                <div class="relative max-w-full mx-auto bg-white min-h-[400px] z-10 p-6 flex justify-center">
-                  <!-- Dropdown Menu -->
-                  <div class="absolute left-[28%] bg-white min-h-[300px] z-10  pl-6 flex ">
-                    <ul class="max-w-[630px] mx-auto">
-                      <li v-for="(menu, index) in menus" :key="index" class="flex justify-start items-center"
-                        @mouseenter="openSubMenu(menu.subMenus), setActiveMenu(menu.label)">
-                        <div
-                          class="cursor-pointer min-w-[110px] inline-flex justify-between items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
-                          :class="{
-                            'text-black/85': activeMenu === menu.label,
-                            'font-semibold': activeMenu === menu.label,
-                          }">
-                          <span class="cursor-pointer">{{ menu.label }}</span>
-                          <i class="fa fa-chevron-right text-sm px-[55px]"></i>
-                        </div>
-                      </li>
-                    </ul>
+              <transition name="scroll">
+                <div v-show="showDropdown"
+                  class="absolute w-full max-w-full mx-auto mt-2 left-0 right-0 border border-[#DEDEDE]">
+                  <div class="relative max-w-full mx-auto bg-white min-h-[400px] z-10 p-6 flex justify-center">
+                    <!-- Dropdown Menu -->
+                    <div class="absolute left-[28%] bg-white min-h-[300px] z-10 pl-6 flex">
+                      <ul class="max-w-[630px] mx-auto">
+                        <li v-for="(menu, index) in menus" :key="index" class="flex justify-start items-center"
+                          @mouseenter="openSubMenu(menu.subMenus), setActiveMenu(menu.label)">
+                          <div
+                            class="cursor-pointer min-w-[110px] inline-flex justify-between items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
+                            :class="{
+                              'text-black/85': activeMenu === menu.label,
+                              'font-semibold': activeMenu === menu.label,
+                            }">
+                            <span class="cursor-pointer">{{ menu.label }}</span>
+                            <i class="fa fa-chevron-right text-sm px-[55px]"></i>
+                          </div>
+                        </li>
+                      </ul>
 
-                    <ul class="mx-auto" v-if="subMenuState.length">
-                      <li v-for="(submenu, index) in subMenuState" :key="index"
-                        class="flex justify-start items-center py-[5px] pl-[55px] border-l border-gray-200"
-                        @mouseenter="openItemsSubMenu(submenu.items); setActiveSubMenu(submenu)">
-                        <div
-                          class="cursor-pointer max-w-[630px] inline-flex justify-between items-center text-left font-normal font-outfit hover:font-semibold"
-                          :class="{
-                            'text-black/85 font-semibold': activeSubMenu === submenu.label,
-                          }">
-                          <span class="cursor-pointer">{{ submenu.label }}</span>
-                          <i class="fa fa-chevron-right mt-[3px] text-sm px-[45px]"></i>
-                        </div>
-                      </li>
-                    </ul>
+                      
 
-                    <ul class="max-w-[630px] mx-auto" v-if="itemsSubmenu.length">
-                      <li v-for="(menu, index) in itemsSubmenu" :key="index"
-                        class="flex justify-start border-l border-gray-200 items-start pl-[30px]">
-                        <!-- Items Sub Menu -->
-                        <div
-                          class="cursor-pointer inline-flex items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
-                          :class="{
-                            'font-bold': menu === activeItemSubMenu,
-                          }">
-                          <span class="cursor-pointer">{{ menu }}</span>
-                        </div>
-                      </li>
-                    </ul>
+                      <ul class="mx-auto" v-if="subMenuState.length">
+                        <li v-for="(submenu, index) in subMenuState" :key="index"
+                          class="flex justify-start items-center py-[5px] pl-[55px] border-l border-gray-200"
+                          @mouseenter="openItemsSubMenu(submenu.items); setActiveSubMenu(submenu)">
+                          <div
+                            class="cursor-pointer max-w-[630px] inline-flex justify-between items-center text-left font-normal font-outfit hover:font-semibold"
+                            :class="{
+                              'text-black/85 font-semibold': activeSubMenu === submenu.label,
+                            }">
+                            <span class="cursor-pointer">{{ submenu.label }}</span>
+                            <i class="fa fa-chevron-right mt-[3px] text-sm px-[45px]"></i>
+                          </div>
+                        </li>
+                      </ul>
+
+                      <ul class="max-w-[630px] mx-auto" v-if="itemsSubmenu.length">
+                        <li v-for="(menu, index) in itemsSubmenu" :key="index"
+                          class="flex justify-start border-l border-gray-200 items-start pl-[30px]">
+                          <!-- Items Sub Menu -->
+                          <div
+                            class="cursor-pointer inline-flex items-center h-[40px] text-left font-normal font-outfit hover:font-semibold"
+                            :class="{
+                              'font-bold': menu === activeItemSubMenu,
+                            }">
+                            <span class="cursor-pointer">{{ menu }}</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-
                 </div>
-              </div>
+              </transition>
             </li>
           </div>
+
           <li>
             <router-link to="/business-opportunity"
               class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom">
@@ -484,7 +525,7 @@
           <li class="">
             <router-link to="/wellness-test"
               class="text-black/85 text-[15px] font-normal font-outfit tracking-[0.75px] leading-normal hover:text-shadow-custom">
-               Test Menu
+              Test Menu
             </router-link>
           </li>
         </ul>
@@ -498,16 +539,16 @@ import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import ProductImage from "../assets/ProductImg.png";
 import { useSearchPopup } from "../compossable/useSearchPopup";
+import axios from "axios"
 
 // Dropdown state
 const showDropdown = ref(false);
+// const menus = ref([]); // All menus fetched from the API
 const subMenuState = ref([]);
-const itemsSubmenu = ref([]);
-
-const activeSubMenu = ref(null)
-// Active menu state for dynamic font-bold
-
-const activeMenu = ref(null);
+const itemsSubmenu = ref([]); 
+const activeMenu = ref(null); 
+const activeSubMenu = ref(null); 
+const activeItemSubMenu = ref(null); 
 const setActiveMenu = (label) => {
   activeMenu.value = label;
 
@@ -553,6 +594,32 @@ const menus = ref([
     ],
   },
 ]);
+
+
+// try {
+//     const response = await axios.get("https://uat-api.modicare.com/api/prelogin/homepage/product/submenu", {
+//       headers: { "x-pre-token": "mw" },
+//     });
+//     console.log("API Response:", await response.data);
+
+//     const res = await response.data;
+//     if (res && res?.resVal && res?.resVal?.get_product_filter_data) {
+//   const getFilter = res.resVal.get_product_filter_data.map((menu) => ({
+//     key: `menu-${menu.id}`, // Unique key based on ID
+//     label: menu.title, // Menu label
+//     subMenus: menu.subMenus.map((subMenu) => ({
+//       key: `submenu-${subMenu.id}`, // Unique key based on submenu ID
+//       label: subMenu.title, // Submenu label
+//       items: subMenu.subItems.map((subItem) => subItem.title), // Array of subitem titles
+//     })),
+//   }));
+
+// menus.value = getFilter
+// }
+//   } catch (err) {
+//     console.error("Error fetching submenu data:", err);
+//   }
+
 
 
 let closeDropdownTimer = null;
@@ -677,12 +744,12 @@ const toggleCheckout = () => {
 
 <!-- -------------------------------for mobile ------------------------------>
 <script>
-import { reactive} from "vue";
+import { reactive } from "vue";
 
 export default {
   data() {
     return {
-      isMenuOpen: false, 
+      isMenuOpen: false,
       state: reactive({
         showDropdown: false,
         subMenuState: {},
@@ -723,10 +790,10 @@ export default {
     };
   },
 
-  
+
 
   methods: {
-    
+
     toggleDropdown() {
       this.state.showDropdown = !this.state.showDropdown;
     },
@@ -752,9 +819,44 @@ export default {
     },
   },
 
-  
+
 };
 </script>
+
+<style>
+/* Dropdown Scroll Animation */
+.scroll-enter-active,
+.scroll-leave-active {
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.scroll-enter-from {
+  max-height: 0;
+  opacity: 0;
+}
+
+.scroll-enter-to {
+  max-height: 200px;
+  /* Adjust to the content height */
+  opacity: 1;
+}
+
+.scroll-leave-from {
+  max-height: 200px;
+  /* Same as enter-to */
+  opacity: 1;
+}
+
+.scroll-leave-to {
+  max-height: 0;
+  opacity: 0;
+}
+</style>
+
+
+
+
+
 
 <style>
 .level-0>ul {

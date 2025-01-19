@@ -2,19 +2,21 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../Pages/HomePage.vue";
 import OurStoryPage from "../Pages/OurStoryPage.vue";
 import ProductsPage from "../Pages/ProductPage.vue";
-import BusinessOpportunityPage from "../Pages/BusinessOpportunityPage.vue";
+import BusinessOpportunityPage from "../Pages/BusinessOpportunity.vue";
 import WellnessTestPage from "../Pages/WellnessTestPage.vue";
 import Layout from "../layouts/MainLayout.vue";
 import ShopShift from "../Pages/ShopShift.vue";
 import AddtoCartPage from "../Pages/AddtoCartPage.vue";
-import BlogPage from "../Pages/BlogPage.vue";
-import BlogArticlePage from "../Pages/BlogArticlePage.vue";
-import Login from "../components/Login.vue";
-import ResourcesPage from "../Pages/ResourcesPage.vue";
-import CheckoutFormPage from "../Pages/Checkout-formPage.vue";
-import Register from "../components/Register.vue";
-import PrivacyPolicyPage from "../Pages/PrivacyPolicyPage.vue";
-import VideoListingPage from "../Pages/VideoListingPage.vue";
+import BlogPage from "../Pages/BlogPage.vue"
+import CheckoutFormPage from "../Pages/Checkout-formPage.vue"
+import Register from "../components/Register.vue"
+import PrivacyPolicyPage from  "../Pages/PrivacyPolicyPage.vue"
+import Faq from "../Pages/Faq.vue";
+import Advisor from "../Pages/Advisor.vue";
+import Login from "../components/Login.vue"
+import BlogArticlePage from "../Pages/BlogArticlePage.vue"
+import Resources from "../Pages/ResourcesPage.vue"
+import VideoListing from "../Pages/VideoListingPage.vue"
 
 const routes = [
   {
@@ -24,18 +26,18 @@ const routes = [
       { path: "", name: "Home", component: Home },
       { path: "shope-shift", name: "ShopeShift", component: ShopShift },
       { path: "blogs", name: "BlogPage", component: BlogPage },
+      {path:"blogs-article", name:"BlogArticlePage",component:BlogArticlePage},
+      {path:"resources",name:"Resources",component:Resources},
+      {path:"video-listing",name:"VideoListingPage",component:VideoListing},
       {
-        path: "blogs-article",
-        name: "BlogArticlePage",
-        component: BlogArticlePage,
+        path:"shope-shift",
+        name:"ShopeShift",
+        component:ShopShift,
       },
-      { path: "resources", name: "ResourcesPage", component: ResourcesPage },
-      { path: "video-listing", name: "VideoListingPage", component: VideoListingPage },
       {
-        path: "add-cart",
-        name: "AddCart",
-        component: AddtoCartPage,
-        meta: { requiresAuth: true },
+        path:"add-cart",
+        name:"AddCart",
+        component:AddtoCartPage,
       },
       {
         path: "checkout-form",
@@ -53,7 +55,6 @@ const routes = [
         path: "business-opportunity",
         name: "BusinessOpportunityPage",
         component: BusinessOpportunityPage,
-        meta: { requiresAuth: true },
       },
       {
         path: "wellness-test",
@@ -70,6 +71,16 @@ const routes = [
         path: "privacy-policy",
         name: "PrivacyPolicyPage",
         component: PrivacyPolicyPage,
+      },
+      {
+        path: "faq",
+        name: "Faq",
+        component: Faq,
+      },
+      {
+        path: "find-an-advisor",
+        name: "Advisor",
+        component: Advisor,
       },
     ],
   },
