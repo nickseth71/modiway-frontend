@@ -158,84 +158,97 @@ const closeModal = () => {
     isModalOpen.value = false;
     selectedVideoUrl.value = "";
 };
+const clearFilters = () => {
+    selectedCategories.value = [];
+    selectedSortOrder.value = [];
+
+    filterDropdownOpen.value = false;
+    sortDropdownOpen.value = false;
+};
 
 
 </script>
 
 <template>
     <section class="page-width px-[15px]">
-        <div class="flex flex-row mt-3 ">
-            <span class="text-black/85 text-[12px] font-outfit font-normal">Home</span>
-            <span class="text-black/85 text-[10px] px-[5px] font-outfit font-normal">|</span>
-            <span class="text-black/85 text-[12px] font-outfit font-semibold">Resources</span>
+        <div class="flex lg:justify-center justify-start lg:items-center items-start  flex-row mt-3 ">
+            <span class="text-black/85 text-[15px] font-outfit font-normal">Resources</span>
+            <span class="text-black/85 text-[15px] px-[5px] font-outfit font-normal">|</span>
+            <span class="text-black/85 text-[15px] font-outfit font-semibold">Video Listing</span>
         </div>
         <section class="page-width flex justify-center items-center pt-[35px] pb-[15px] lg:pt-[63px] md:py-[30px]">
-    <div class="max-w-full flex justify-center items-center w-full">
-        <div class="flex flex-col md:flex-row justify-between items-center w-full">
-            <div class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 gray-bb">
-                <!-- Filter Dropdown -->
-                <div class="relative lg:order-2 order-1 hover-img">
-                    <div @click="toggleFilterDropdown"
-                        class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-1 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500">
-                        <img src="../assets/filter.png" class="lg:hidden sm:hidden" />
-                        {{ selectedCategories.length > 0 ? selectedCategories.join(", ") : "Filter" }}
-                        <i class="fas fa-chevron-down mobile-hide"></i>
-                    </div>
-                    <ul v-if="filterDropdownOpen"
-                        class="absolute flex flex-col bg-white z-10 mt-1 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]">
-                        <li v-for="name in categories" :key="name" @click="selectFilter(name)"
-                            class="px-4 py-2 text-[16px] first:border-0 border-t border-black cursor-pointer hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap border-opacity-25">
-                            
-                            {{ name }}
-                            <i v-if="selectedCategories.includes(name)" class="fas fa-times ml-2 text-red-500"></i>
-                        </li>
-                    </ul>
-                </div>
+            <div class="max-w-full flex justify-between items-center w-full ">
+                <div class="flex flex-row justify-between items-center w-full gray-bb">
+                    <div class="w-full flex flex-row justify-between lg:justify-start items-start ">
+                        <!-- Filter Dropdown -->
+                        <div class="relative hover-img">
+                            <div @click="toggleFilterDropdown"
+                                class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-1 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500">
+                                <img src="../assets/filter.png" class="lg:hidden sm:hidden" />
+                                {{ selectedCategories.length > 0 ? selectedCategories.join(", ") : "Filter" }}
+                                <i class="fas fa-chevron-down mobile-hide"></i>
+                            </div>
+                            <ul v-if="filterDropdownOpen"
+                                class="absolute flex flex-col bg-white z-10 mt-1 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]">
+                                <li v-for="name in categories" :key="name" @click="selectFilter(name)"
+                                    class="px-4 py-2 text-[16px] first:border-0 border-t border-black cursor-pointer hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap border-opacity-25">
+                                    <i v-if="selectedCategories.includes(name)"
+                                        class="fas fa-check mr-2 text-green-500"></i>
+                                    {{ name }}
+                                    <!-- <i v-if="selectedCategories.includes(name)"
+                                        class="fas fa-times ml-2 text-red-500"></i> -->
+                                </li>
+                            </ul>
+                        </div>
 
-                <!-- Sort Dropdown -->
-                <div class="relative g:order-1 order-2">
-                    <div @click="toggleSortDropdown"
-                        class="cursor-pointer px-2 py-1 lg:px-3 rounded text-[11px] md:text-[13px] font-inter font-normal text-center focus:ring-blue-500 focus:border-blue-500">
-                        {{
-                            selectedSortOrder === "asc"
-                                ? "Low to High"
-                                : selectedSortOrder === "desc"
-                                    ? "High to Low"
-                                    : "Sort"
-                        }}
-                        <i class="fas fa-chevron-down"></i>
+                        <!-- Sort Dropdown -->
+                        <div class="relative g:order-1 order-2">
+                            <div @click="toggleSortDropdown"
+                                class="cursor-pointer px-2 py-1 lg:px-3 rounded text-[11px] md:text-[13px] font-inter font-normal text-center focus:ring-blue-500 focus:border-blue-500">
+                                {{
+                                    selectedSortOrder === "asc"
+                                        ? "Low to High"
+                                        : selectedSortOrder === "desc"
+                                            ? "High to Low"
+                                            : "Sort"
+                                }}
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <ul v-if="sortDropdownOpen"
+                                class="absolute flex flex-col justify-start bg-white z-20 mt-1 mx-auto sort-mob-pos shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]">
+                                <li @click="selectSortOrder('')"
+                                    class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-0 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
+                                    <i v-if="selectedSortOrder === ''"
+                                        class="fas fa-check mr-2 text-black absolute left-3"></i>
+                                    Best Seller
+                                </li>
+                                <li @click="selectSortOrder('asc')"
+                                    class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
+                                    <i v-if="selectedSortOrder === 'asc'"
+                                        class="fas fa-check text-black absolute left-3"></i>
+                                    Low to High
+                                </li>
+                                <li @click="selectSortOrder('desc')"
+                                    class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
+                                    <i v-if="selectedSortOrder === 'desc'"
+                                        class="fas fa-check mr-2 text-black absolute left-3"></i>
+                                    High to Low
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul v-if="sortDropdownOpen"
-                        class="absolute flex flex-col justify-start bg-white z-20 mt-1 mx-auto sort-mob-pos shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]">
-                        <li @click="selectSortOrder('')"
-                            class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-0 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
-                            <i v-if="selectedSortOrder === ''"
-                                class="fas fa-check mr-2 text-black absolute left-3"></i>
-                            Best Seller
-                        </li>
-                        <li @click="selectSortOrder('asc')"
-                            class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
-                            <i v-if="selectedSortOrder === 'asc'"
-                                class="fas fa-check text-black absolute left-3"></i>
-                            Low to High
-                        </li>
-                        <li @click="selectSortOrder('desc')"
-                            class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
-                            <i v-if="selectedSortOrder === 'desc'"
-                                class="fas fa-check mr-2 text-black absolute left-3"></i>
-                            High to Low
-                        </li>
-                    </ul>
+                    <button v-if="selectedCategories.length > 0" @click="clearFilters"
+                        class="w-[100px] cursor-pointer text-red-600 text-[11px] md:text-[13px] font-inter font-normal underline  hover:text-red-700 hidden lg:block ">
+                        Clear Filters
+                    </button>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
 
         <!-- Video Listing -->
         <section class="page-width">
-            <div class=" mx-auto lg:mt-[52px]">
+            <div class=" mx-auto lg:mt-[20px]">
                 <div class="grid gap-[15px] grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <div v-for="item in filteredAndSortedItems" :key="item.id" class="bg-white cursor-pointer"
                         @click="handleVideoClick(item.videoUrl)">

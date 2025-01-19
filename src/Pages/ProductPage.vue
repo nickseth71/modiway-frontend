@@ -1,32 +1,32 @@
 <template>
   <section>
     <!-- Video Carousel Section -->
-    <section id="video-carousel" class="relative w-full h-[557px] md:h-[600px] lg:h-[639px] overflow-hidden">
-      <div class="relative w-full h-full overflow-hidden">
-        <!-- Video Items -->
-        <div v-for="(media, index) in mediaItems" :key="index"
-          class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out" :class="{
-            'opacity-100': index === currentIndex,
-            'opacity-0': index !== currentIndex,
-          }">
-          <video v-if="media.type === 'video'" :src="media.src" muted autoplay playsinline loop
-            class="block w-full h-full object-cover" />
-        </div>
+    <section id="video-carousel" class="relative w-full sm:h-auto lg:h-screen" >
 
-        <!-- Carousel Indicators -->
-        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          <button v-for="(media, index) in mediaItems" :key="index"
-            class="w-3 h-3 rounded-full transition-colors duration-300" :class="{
-              'bg-white': index === currentIndex,
-              'bg-gray-500': index !== currentIndex,
-            }" @click="goToSlide(index)"></button>
-        </div>
+      <!-- Video Items -->
+      <div style="display: contents;" v-for="(media, index) in mediaItems" :key="index"
+        class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out" :class="{
+          'opacity-100': index === currentIndex,
+          'opacity-0': index !== currentIndex,
+        }">
+        <video v-if="media.type === 'video'" :src="media.src" muted autoplay playsinline loop
+          class="block w-full h-full object-cover" />
       </div>
+
+      <!-- Carousel Indicators -->
+      <div class="absolute bottom-3 lg:bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <button v-for="(media, index) in mediaItems" :key="index"
+          class="w-3 h-3 rounded-full transition-colors duration-300" :class="{
+            'bg-white': index === currentIndex,
+            'bg-gray-500': index !== currentIndex,
+          }" @click="goToSlide(index)"></button>
+      </div>
+
     </section>
 
     <!-- main Section -->
     <section class="page-width">
-      <div class="flex flex-row mt-[20px] justify-center">
+      <div class="flex flex-row mt-[20px] justify-start px-[15px] lg:justify-center">
         <div class="text-black/85 text-[15px] font-light font-outfit">
           Home
         </div>
@@ -61,31 +61,46 @@
 
       <!-- Sort and Filter Section -->
       <section class="page-width flex justify-center items-center pt-[35px] pb-[15px] lg:pt-[63px] md:py-[30px]">
-        <div class="max-w-[1024px] flex justify-center items-center w-full px-[25px]">
-          <div class="flex flex-col md:flex-row justify-between items-center w-full">
-            <div class="flex flex-row justify-between md:justify-between lg:justify-start w-full gap-4 gray-bb">
+        <div class="max-w-[1024px] flex justify-between items-center w-full px-[25px]">
+          <div class="flex flex-row justify-between items-center w-full gray-bb">
+            <!-- Filter and Sort Section -->
+            <div class="w-full flex flex-row justify-between lg:justify-start items-start ">
               <!-- Filter Dropdown -->
-              <div ref="filterDropdown" class="relative lg:order-2 order-1 hover-img">
-                <div @click="toggleFilterDropdown"
-                  class="cursor-pointer px-2 py-1 lg:px-3 flex items-center gap-1 rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500">
-                  <img src="../assets/filter.png" class="lg:hidden sm:hidden" />
-                  <span>{{ selectedName.length > 0 ? selectedName.join(', ') : "Filter" }}</span>
-                  <i class="fas fa-chevron-down mobile-hide"></i>
+              <div ref="filterDropdown" class="relative  hover-img">
+                <div class="flex items-start gap-2">
+                  <div @click="toggleFilterDropdown"
+                    class="cursor-pointer lg:px-3 flex items-start lg:items-center rounded text-[11px] md:text-[13px] font-inter font-normal focus:ring-blue-500 focus:border-blue-500">
+                    <img src="../assets/filter.png" class="lg:hidden sm:hidden pr-[4px]" />
+                    <span class="max-w-[180px] lg:max-w-full">{{ selectedName.length > 0 ? selectedName.join(', ') :
+                      "Filter"
+                      }}</span>
+                    <i class="fas fa-chevron-down pl-[3px] mobile-hide"></i>
+
+                  </div>
+                  <div class="flex justify-center items-center">
+                    <!-- Only show the button if there are selected items -->
+                    <button v-if="selectedName.length > 0" @click="clearFilters"
+                      class="cursor-pointer text-black/85 text-[15px] md:text-[16px] font-inter font-normal hover:ease-in-out flex lg:hidden">
+                      <i class="fas fa-times text-[16px] text-red-500 "></i>
+                    </button>
+                  </div>
                 </div>
+
                 <ul v-if="filterDropdownOpen"
                   class="absolute flex flex-col bg-white z-10 mt-1 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[10px]">
                   <li v-for="name in categories" :key="name" @click="selectFilter(name)"
                     class="px-4 py-2 text-[16px] first:border-0 border-t border-black cursor-pointer hover:bg-gray-100 flex justify-between items-center font-roboto whitespace-nowrap border-opacity-25">
                     {{ name }}
-                    <i v-if="selectedName.includes(name)" class="fas fa-times ml-2 text-red-500"></i>
+                    <!-- <i v-if="selectedName.includes(name)" class="fas fa-times ml-2 text-red-500"></i> -->
                   </li>
                 </ul>
+
               </div>
 
               <!-- Sort Dropdown -->
-              <div ref="sortDropdown" class="relative g:order-1 order-2">
+              <div ref="sortDropdown" class="relative">
                 <div @click="toggleSortDropdown"
-                  class="cursor-pointer px-2 py-1 lg:px-3 rounded text-[11px] md:text-[13px] font-inter font-normal text-center focus:ring-blue-500 focus:border-blue-500">
+                  class="cursor-pointer px-2 lg:px-3 rounded text-[11px] md:text-[13px] font-inter font-normal text-center focus:ring-blue-500 focus:border-blue-500">
                   {{
                     selectedSort === "asc"
                       ? "Low to High"
@@ -103,24 +118,34 @@
                     Best Seller
                   </li>
                   <li @click="selectSort('asc')"
-                    class="px-4 py-2 ps-8 cursor-pointer text-[16px]  border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
+                    class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
                     <i v-if="selectedSort === 'asc'" class="fas fa-check text-black absolute left-3"></i>
                     Low to High
                   </li>
                   <li @click="selectSort('desc')"
-                    class="px-4 py-2 ps-8 cursor-pointer text-[16px]  border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
+                    class="px-4 py-2 ps-8 cursor-pointer text-[16px] border-t border-black border-opacity-25 hover:bg-gray-100 flex items-center font-roboto whitespace-nowrap">
                     <i v-if="selectedSort === 'desc'" class="fas fa-check mr-2 text-black absolute left-3"></i>
                     High to Low
                   </li>
                 </ul>
               </div>
             </div>
+
+            <!-- Clear Filters Button -->
+            <button v-if="selectedName.length > 0" @click="clearFilters"
+              class="w-[100px] cursor-pointer text-red-600 text-[11px] md:text-[13px] font-inter font-normal underline  hover:text-red-700 hidden lg:block ">
+              Clear Filters
+            </button>
           </div>
         </div>
       </section>
 
+
+
+
+
       <section class="page-width flex justify-center items-center px-[25px] mobile-p-fix">
-        <!-- <div class="max-w-[992px] mx-auto"> -->
+        <div class="max-w-[992px] mx-auto">
         <div @click="AddtoCartPage"
           class="max-w-[972px] w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-[14px] lg:gap-[19px]">
           <div v-for="item in filteredSortedAndSearchedItems" :key="item.id"
@@ -163,13 +188,12 @@
               </button>
             </div>
           </div>
-
         </div>
-
         <div v-if="filteredSortedAndSearchedItems.length === 0" class="text-gray-500 text-center">
-          No items found.
+          No items found. Please try reducing some filters.
         </div>
-        <!-- </div> -->
+        
+        </div>
       </section>
 
       <section class=" py-4 md:py-6 lg:py-8">
@@ -239,7 +263,7 @@ export default {
     const filterDropdownOpen = ref(false);
     const selectedSort = ref("");
     const sortDropdownOpen = ref(false);
-    const searchQuery = ref("");  
+    const searchQuery = ref("");
 
     const filterDropdown = ref(null);
     const sortDropdown = ref(null);
@@ -284,7 +308,10 @@ export default {
 
     const clearFilters = () => {
       selectedName.value = [];
+      selectedSort.value = "";
+      searchQuery.value = "";
       filterDropdownOpen.value = false;
+      sortDropdownOpen.value = false;
     };
 
     const getColorForName = (name) => {
@@ -302,6 +329,8 @@ export default {
         sortDropdownOpen.value = false;
       }
     };
+
+
 
     // Add event listener when mounted
     onMounted(() => {
