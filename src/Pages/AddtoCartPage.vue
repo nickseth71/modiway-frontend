@@ -20,11 +20,36 @@ import AddCart4 from "../assets/add-cart4.png";
 const cartItems = ref([
   { src: AddCart1, alt: "Cart img 1" },
   { src: AddCart1, alt: "Cart img 1" },
-
   { src: AddCart2, alt: "Cart img 2" },
   { src: AddCart3, alt: "Cart img 3" },
   { src: AddCart4, alt: "Cart img 4" },
 ]);
+
+const activeCartIndex = ref(0);
+
+
+const TouchStartX = ref(0);
+const TouchendX = ref(0);
+
+// Handle touch start
+const handleCartTouchStart = (event) => {
+  TouchStartX.value = event.touches[0]?.clientX || 0;
+};
+
+// Handle touch move
+const handleCartTouchMove = (event) => {
+  TouchendX.value = event.touches[0]?.clientX || 0;
+};
+
+// Handle touch end to detect swipe
+const handleCartTouchEnd = () => {
+  const diff = TouchStartX.value - TouchendX.value;
+  if (diff > 50) {
+    activeCartIndex.value = (activeCartIndex.value + 1) % cartItems.value.length;
+  } else if (diff < -50) {
+    activeCartIndex.value = (activeCartIndex.value - 1 + cartItems.value.length) % cartItems.value.length;
+  }
+};
 
 const isModalOpen = ref(false);
 const currentIndex = ref(0);
@@ -111,17 +136,40 @@ const productImages = ref([
   { src: ProductImage, alt: 'Product img', title: 'Mango Flavour', description: 'Shape Shift' },
 ]);
 
-const activeIndex = ref(0);
+const activeCardIndex = ref(0);
 const isMobile = ref(false);
 const containerWidth = ref(0);
 
-const moveCarousel = (direction) => {
-  // Calculate new activeIndex with boundary checking
-  activeIndex.value += direction;
+const startHandX = ref(0);
+const endHandX = ref(0);
 
-  // Ensure activeIndex stays within bounds
-  if (activeIndex.value < 0) activeIndex.value = 0;
-  if (activeIndex.value >= productImages.value.length) activeIndex.value = productImages.value.length - 1;
+// Handle touch start
+const handleProductTouchStart = (event) => {
+  startHandX.value = event.touches[0]?.clientX || 0;
+};
+
+// Handle touch move
+const handleHandTouchMove = (event) => {
+  endHandX.value = event.touches[0]?.clientX || 0;
+};
+
+// Handle touch end to detect swipe
+const handleHandTouchEnd = () => {
+  const diff = startHandX.value - endHandX.value;
+  if (diff > 50) {
+    activeCardIndex.value = (activeCardIndex.value + 1) % cards.value.length;
+  } else if (diff < -50) {
+    activeCardIndex.value = (activeCardIndex.value - 1 + cards.value.length) % cards.value.length;
+  }
+};
+
+const moveCarousel = (direction) => {
+  // Calculate new activeCardIndex with boundary checking
+  activeCardIndex.value += direction;
+
+  // Ensure activeCardIndex stays within bounds
+  if (activeCardIndex.value < 0) activeCardIndex.value = 0;
+  if (activeCardIndex.value >= productImages.value.length) activeCardIndex.value = productImages.value.length - 1;
 };
 
 const handleResize = () => {
@@ -234,17 +282,21 @@ const cards = ref([
 
 ]);
 
+
+
+const activeIndex = ref(0);
+
 // const activeIndex = ref(0);
 const startX = ref(0);
 const endX = ref(0);
 
 // Handle touch start
-const handleTouchStart = (event) => {
+const handleCardTouchStart = (event) => {
   startX.value = event.touches[0]?.clientX || 0;
 };
 
 // Handle touch move
-const handleTouchMove = (event) => {
+const handleCardTouchMove = (event) => {
   endX.value = event.touches[0]?.clientX || 0;
 };
 
@@ -257,6 +309,12 @@ const handleTouchEnd = () => {
     activeIndex.value = (activeIndex.value - 1 + cards.value.length) % cards.value.length;
   }
 };
+
+
+
+const moveCards =(cardDirection)=>{
+  activeIndex.value += cardDirection;
+}
 
 /////////////////////////////// Tabs ///////////////////////////////////
 const tabs = ref(["Product Description", "Key Benefits", "Ingredients & Nutritional info", "Usage", "Attention"]);
@@ -290,12 +348,12 @@ const activeTab = ref(0);
             </div>
           </div>
         </div>
-        <div id="custom-carousel" class="relative w-full block lg:hidden" @touchstart="handleTouchStart"
-          @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+        <div id="custom-carousel" class="relative w-full block lg:hidden" @touchstart="handleCartTouchStart"
+          @touchmove="handleCartTouchMove" @touchend="handleCartTouchEnd">
           <!-- Carousel Wrapper -->
           <div class="relative h-[364px] object-cover overflow-hidden">
             <!-- Carousel Items -->
-            <div v-for="(item, index) in cartItems" :key="index" :class="{ hidden: index !== activeIndex }"
+            <div v-for="(item, index) in cartItems" :key="index" :class="{ hidden: index !== activeCartIndex}"
               class="duration-700 ease-in-out" :data-carousel-item="index === 0 ? 'active' : null">
               <img :src="item.src" :alt="item.alt"
                 class="absolute w-full h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
@@ -306,10 +364,10 @@ const activeTab = ref(0);
           <div class="absolute z-30 flex -translate-x-1/2 bottom-6 left-1/2 space-x-3 rtl:space-x-reverse"
             style="transform: translateX(-50%)">
             <button v-for="(item, index) in cartItems" :key="index" type="button" class="w-3 h-3 rounded-full"
-              :aria-current="index === activeIndex ? 'true' : 'false'" :aria-label="'Slide ' + (index + 1)"
+              :aria-current="index === activeCartIndex ? 'true' : 'false'" :aria-label="'Slide ' + (index + 1)"
               @click="updateIndex(index)" :class="{
-                'bg-[#606060]': index === activeIndex,
-                'bg-[#FFFFFF]': index !== activeIndex,
+                'bg-[#606060]': index === activeCartIndex,
+                'bg-[#FFFFFF]': index !== activeCartIndex,
               }"></button>
           </div>
         </div>
@@ -608,8 +666,6 @@ const activeTab = ref(0);
             </div>
           </div>
 
-
-
           <div class="w-[393px] flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
             <div class="flex justify-between items-center gap-2">
               <button class="underline underline-offset-2">
@@ -783,11 +839,8 @@ const activeTab = ref(0);
           <!-- </transition> -->
         </div>
 
-        <!-- Tab Content -->
-
       </div>
     </section>
-
 
     <section class="max-w-[1124px] mx-auto mt-[50px] lg:mt-20 px-4">
       <!-- Title Section -->
@@ -853,13 +906,13 @@ const activeTab = ref(0);
       <!-- Products Section -->
       <div class="mt-12">
         <!-- Carousel Container -->
-        <div class="relative w-full" @touchstart="handleTouchStart" @touchmove="handleTouchMove"
-          @touchend="handleTouchEnd">
+        <div class="relative w-full" @touchstart="handleProductTouchStart" @touchmove="handleHandTouchMove"
+          @touchend="handleHandTouchEnd">
 
           <!-- Carousel Wrapper -->
           <div class="flex justify-center items-center overflow-hidden p-2">
             <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[30.99px]"
-              :style="{ transform: `translateX(-${activeIndex * 100}%)` }" style="width: 100%">
+              :style="{ transform: `translateX(-${activeCardIndex * 100}%)` }" style="width: 100%">
 
               <!-- Product Block Carousel -->
               <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center shrink-0"
@@ -887,13 +940,9 @@ const activeTab = ref(0);
           </div>
 
           <!-- Left Arrow Button -->
-          <button v-if="productImages.length > 1" :disabled="activeIndex === 0" @click="moveCarousel(-1)"
+          <button v-if="productImages.length > 1" :disabled="activeCardIndex === 0" @click="moveCarousel(productImages.length -1)"
             class="absolute left-0 lg:left-0 transform top-1/2 -translate-y-1/2 bg-white border p-2 rounded-full shadow-md"
-            :class="{ 'opacity-50 cursor-not-allowed': activeIndex === 0 }">
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
-              <path
-                d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
-            </svg> -->
+            :class="{ 'opacity-50 cursor-not-allowed': activeCardIndex === 0 }">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
               <path
                 d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
@@ -901,25 +950,26 @@ const activeTab = ref(0);
           </button>
 
           <!-- Right Arrow Button -->
-          <button v-if="productImages.length > 1" :disabled="activeIndex === productImages.length - 1"
+          <button v-if="productImages.length > 1 && productImages" :disabled="activeIndex === productImages.length -1"
             @click="moveCarousel(1)"
-            class="absolute right-0 lg:right-0 transform top-1/2 -translate-y-1/2 bg-white border p-2 rounded-full shadow-md"
-            :class="{ 'opacity-50 cursor-not-allowed': activeIndex === productImages.length - 1 }">
+            class="absolute right-0 lg:right-[-10] transform top-1/2 -translate-y-1/2 bg-white border p-2 rounded-full shadow-md"
+            :class="{ 'opacity-50 cursor-not-allowed': activeCardIndex === productImages.length - 1 }">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-10 h-10">
               <path
                 d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
             </svg>
           </button>
 
+
           <!-- Carousel Navigation Dots -->
-          <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-2">
+          <div class="hidden absolute left-1/2 transform -translate-x-1/2  items-center space-x-2">
             <button v-for="(dot, index) in Math.ceil(productImages.length / 2)" :key="index"
-              class="w-3 h-3 rounded-full" :aria-current="index === activeIndex ? 'true' : 'false'"
-              :aria-label="'Slide ' + (index + 1)" @click="activeIndex = index" :class="{
-                'bg-[#515151]': index === activeIndex,
-                'bg-[#c4c4c4]': index !== activeIndex,
+              class="w-3 h-3 rounded-full" :aria-current="index === activeCardIndex ? 'true' : 'false'"
+              :aria-label="'Slide ' + (index + 1)" @click="activeCardIndex = index" :class="{
+                'bg-[#515151]': index === activeCardIndex,
+                'bg-[#c4c4c4]': index !== activeCardIndex,
               }">
-              </button>
+            </button>
           </div>
 
         </div>
@@ -940,7 +990,7 @@ const activeTab = ref(0);
     <section class="page-width">
       <div class="w-full flex justify-center py-[25px] lg:pt-[108px]">
         <div class="w-full max-w-full mx-auto relative px-4 pb-[82px]" @touchstart="handleTouchStart"
-          @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+          @touchmove="handleCardTouchMove" @touchend="handleTouchEnd">
 
           <!-- Carousel Container -->
           <div class="flex justify-center items-center overflow-hidden p-2">
@@ -973,8 +1023,8 @@ const activeTab = ref(0);
 
           <!-- Navigation Buttons -->
           <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center">
-            <button :disabled="cards.length === 0"
-              class="absolute left-[70px] lg:left-1/3 transform top-1/2 -translate-y-1/2" @click="prevCard">
+            <button :disabled="cards.length=== 0"
+              class="absolute left-[70px] lg:left-1/3 transform top-1/2 -translate-y-1/2" @click="moveCards(-1)">
               <img :src="prevbutton" alt="Previous" class="w-6 h-6" />
             </button>
 
@@ -988,7 +1038,7 @@ const activeTab = ref(0);
             </div>
 
             <button :disabled="cards.length === 0"
-              class="absolute right-[70px] lg:right-1/3 transform top-1/2 -translate-y-1/2" @click="nextCard">
+              class="absolute right-[70px] lg:right-1/3 transform top-1/2 -translate-y-1/2" @click="moveCards(1)">
               <img :src="nextbutton" alt="Next" class="w-6 h-6" />
             </button>
           </div>
