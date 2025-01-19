@@ -332,79 +332,71 @@
             <div>
               <!-- Main Dropdown -->
 
-              <div ref="dropdownContainer" @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown"
-                class="relative">
-                <router-link to="/products" :class="{
-                  'text-black/85': !state.showDropdown,
-                  'text-black border-b-[1.8px] border-[#DEDEDE]': state.showDropdown,
-                }"
-                  class="flex justify-between text-[15px] font-normal font-outfit tracking-[0.75px] hover:text-shadow-custom"
-                  @click="toggleDropdown">
-                  Products
-                  <i :class="{
-                    'fa fa-chevron-down text-sm': !state.showDropdown,
-                    'fa fa-chevron-up text-sm': state.showDropdown,
-                  }"></i>
-                </router-link>
+              <div ref="dropdownContainer" @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown" class="relative">
+    <router-link to="/products" :class="{
+      'text-black/85': !state.showDropdown,
+      'text-black border-b-[1.8px] border-[#DEDEDE]': state.showDropdown,
+    }"
+      class="flex justify-between text-[15px] font-normal font-outfit tracking-[0.75px] hover:text-shadow-custom"
+      @click="toggleDropdown">
+      Products
+      <i :class="{
+        'fa fa-chevron-down text-sm': !state.showDropdown,
+        'fa fa-chevron-up text-sm': state.showDropdown,
+      }"></i>
+    </router-link>
 
-
-                <!-- <transition name="dropdown" @enter="onDropdownEnter" @leave="onDropdownLeave"> -->
-                <div v-show="state.showDropdown"
-                  class="w-full max-w-full left-0 right-0 transition-all duration-500 ease-in-out overflow-hidden">
-                  <div class="relative max-w-full bg-white h-auto z-10">
-                    <ul class="pl-2">
-                      <li v-for="(menu, index) in state.menus" :key="index" class="cursor-pointer">
-
-                        <div class="flex justify-between items-center py-2">
-                          <div @click="toggleSubMenu(menu.key)"
-                            class="flex w-full justify-between items-center cursor-pointer">
-                            <span :class="{
-                              'font-semibold': state.subMenuState[menu.key],
-                              'font-bold': menu.label === state.activeMenu,
-                              'text-black/85': !state.subMenuState[menu.key],
-                            }" class="font-outfit">
-                              {{ menu.label }}
-                            </span>
-                            <i :class="{
-                              'fa fa-chevron-down text-sm': !state.subMenuState[menu.key],
-                              'fa fa-chevron-up text-sm': state.subMenuState[menu.key],
-                            }"></i>
-                          </div>
-                        </div>
-
-                        <ul class="pl-2" v-show="state.subMenuState[menu.key]">
-                          <li v-for="(subMenu, subIndex) in menu.subMenus" :key="subIndex" class="cursor-pointer"
-                            @click="toggleItemsSubMenu(menu.key, subMenu.key)">
-                            <div class="flex justify-between items-center py-2">
-                              <span :class="{
-                                'font-semibold': state.itemsSubmenu[menu.key]?.[subMenu.key],
-                                'font-bold': subMenu.label === state.activeSubMenu,
-                              }" class="font-outfit">
-                                {{ subMenu.label }}
-                              </span>
-                              <i :class="{
-                                'fa fa-chevron-down text-sm': !state.itemsSubmenu[menu.key]?.[subMenu.key],
-                                'fa fa-chevron-up text-sm': state.itemsSubmenu[menu.key]?.[subMenu.key],
-                              }"></i>
-                            </div>
-
-                            <ul class="pl-2" v-show="state.itemsSubmenu[menu.key]?.[subMenu.key]">
-                              <li v-for="(item, itemIndex) in subMenu.items" :key="itemIndex" class="cursor-pointer">
-                                <span :class="{
-                                  'font-bold': item === state.activeItemSubMenu,
-                                }" class="block py-2 font-outfit hover:font-semibold hover:bg-gray-100">
-                                  {{ item }}
-                                </span>
-                              </li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- </transition> -->
+    <div v-show="state.showDropdown" class="w-full max-w-full left-0 right-0 transition-all duration-500 ease-in-out overflow-hidden">
+      <div class="relative max-w-full bg-white h-auto z-10">
+        <ul class="pl-2">
+          <li v-for="(menu, index) in state.menus" :key="index" class="cursor-pointer">
+            <div class="flex justify-between items-center py-2">
+              <div @click="toggleSubMenu(menu.key)" class="flex w-full justify-between items-center cursor-pointer">
+                <span :class="{
+                  'font-semibold': state.subMenuState[menu.key],
+                  'font-bold': menu.label === state.activeMenu,
+                  'text-black/85': !state.subMenuState[menu.key],
+                }" class="font-outfit">
+                  {{ menu.label }}
+                </span>
+                <i :class="{
+                  'fa fa-chevron-down text-sm': !state.subMenuState[menu.key],
+                  'fa fa-chevron-up text-sm': state.subMenuState[menu.key],
+                }"></i>
               </div>
+            </div>
+
+            <ul class="pl-2" v-show="state.subMenuState[menu.key]">
+              <li v-for="(subMenu, subIndex) in menu.subMenus" :key="subIndex" class="cursor-pointer" @click="toggleItemsSubMenu(menu.key, subMenu.key)">
+                <div class="flex justify-between items-center py-2">
+                  <span :class="{
+                    'font-semibold': state.itemsSubmenu[menu.key]?.[subMenu.key],
+                    'font-bold': subMenu.label === state.activeSubMenu,
+                  }" class="font-outfit">
+                    {{ subMenu.label }}
+                  </span>
+                  <i :class="{
+                    'fa fa-chevron-down text-sm': !state.itemsSubmenu[menu.key]?.[subMenu.key],
+                    'fa fa-chevron-up text-sm': state.itemsSubmenu[menu.key]?.[subMenu.key],
+                  }"></i>
+                </div>
+
+                <ul class="pl-2" v-show="state.itemsSubmenu[menu.key]?.[subMenu.key]">
+                  <li v-for="(item, itemIndex) in subMenu.items" :key="itemIndex" class="cursor-pointer">
+                    <span :class="{
+                      'font-bold': item === state.activeItemSubMenu,
+                    }" class="block py-2 font-outfit hover:font-semibold hover:bg-gray-100">
+                      {{ item }}
+                    </span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
             </div>
           </li>
           <li>
@@ -612,7 +604,7 @@ const getMenuData = async () => {
           items: subMenu.subItems.map((subItem) => subItem.title),
         })),
       }));
-console.log("main array===>",getFilter)
+      console.log("main array===>", getFilter)
       menus.value = getFilter;
     }
   } catch (err) {
@@ -641,7 +633,7 @@ const delayedCloseDropdown = () => {
 };
 
 const openSubMenu = (submenu) => {
-  console.log("=====submenu",submenu)
+  console.log("=====submenu", submenu)
   subMenuState.value = submenu;
   itemsSubmenu.value = [];
 };
@@ -746,7 +738,8 @@ const toggleCheckout = () => {
 
 <!-- -------------------------------for mobile ------------------------------>
 <script>
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
+import axios from "axios";
 
 export default {
   data() {
@@ -756,35 +749,7 @@ export default {
         showDropdown: false,
         subMenuState: {},
         itemsSubmenu: {},
-        menus: [
-          {
-            label: "By Need",
-            key: "byNeed",
-            subMenus: [
-              {
-                label: "Health & Nutrition",
-                key: "healthNutrition",
-                items: ["General Nutrition", "Sports Nutrition", "Weight Management", "Accessory"],
-              },
-              {
-                label: "Beauty",
-                key: "beauty",
-                items: ["Skincare", "Makeup", "Haircare"],
-              },
-            ],
-          },
-          {
-            label: "By Type",
-            key: "byType",
-            subMenus: [
-              {
-                label: "Kitchen",
-                key: "kitchen",
-                items: ["Cookware", "Utensils", "Appliances"],
-              },
-            ],
-          },
-        ],
+        menus: [], // Start with an empty array for dynamic menu data
         activeMenu: null,
         activeSubMenu: null,
         activeItemSubMenu: null,
@@ -792,13 +757,41 @@ export default {
     };
   },
 
-
-
   methods: {
+    // Fetch menu data
+    async getMenuData() {
+      try {
+        const response = await axios.get(
+          'https://uat-api.modicare.com/api/prelogin/homepage/product/submenu',
+          {
+            headers: { 'x-pre-token': 'mw' },
+          }
+        );
+        const res = await response.data;
+        if (res?.resVal?.get_product_filter_data) {
+          const getFilter = res.resVal.get_product_filter_data.map((menu) => ({
+            key: `menu-${menu.id}`,
+            label: menu.title,
+            subMenus: menu.subMenus.map((subMenu) => ({
+              key: `submenu-${subMenu.id}`,
+              label: subMenu.title,
+              items: subMenu.subItems.map((subItem) => subItem.title),
+            })),
+          }));
+          console.log("main array===>", getFilter);
+          this.state.menus = getFilter;
+        }
+      } catch (err) {
+        console.error('Error fetching submenu data:', err);
+      }
+    },
 
+    // Toggle dropdown
     toggleDropdown() {
       this.state.showDropdown = !this.state.showDropdown;
     },
+
+    // Toggle submenus
     toggleSubMenu(menuKey) {
       Object.keys(this.state.subMenuState).forEach((key) => {
         if (key !== menuKey) {
@@ -807,6 +800,8 @@ export default {
       });
       this.state.subMenuState[menuKey] = !this.state.subMenuState[menuKey];
     },
+
+    // Toggle items submenu
     toggleItemsSubMenu(menuKey, subMenuKey) {
       if (!this.state.itemsSubmenu[menuKey]) {
         this.state.itemsSubmenu[menuKey] = {};
@@ -821,7 +816,10 @@ export default {
     },
   },
 
-
+  // Fetch data when component is mounted
+  onMounted() {
+    this.getMenuData();
+  },
 };
 </script>
 
