@@ -10,7 +10,7 @@
 @layer base {
   body {
     font-family: 'Outfit', sans-serif;
-    color: #272727;
+    color: #292929;
   }
 
   /* When the menu is open, disable scrolling on body */
