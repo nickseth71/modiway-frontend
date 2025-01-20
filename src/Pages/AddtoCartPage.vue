@@ -301,7 +301,7 @@ const handleTouchEnd = () => {
 const moveCards = (cardDirection) => {
   const totalPages = Math.ceil(cards.value.length / visibleCards.value);
   activeIndex.value =
-    (activeIndex.value + cardDirection * visibleCards.value + cards.value.length) %
+    (activeIndex.value + cardDirection * visibleCards.value + cards.value.length -1) %
     (totalPages * visibleCards.value);
 };
 
@@ -897,7 +897,7 @@ const activeTab = ref(0);
           @touchend="handleHandTouchEnd">
           <!-- Carousel Wrapper -->
           <div class="flex justify-center items-center overflow-hidden px-4">
-            <div class="flex w-full transition-transform duration-500 gap-[14px] lg:gap-[40px]"
+            <div class="flex w-full transition-transform duration-500 lg:p-4 gap-[14px] lg:gap-[30px] lg:pl-0 lg:pr-0 pl-[100px] pr-[470px]"
               :style="{ transform: `translateX(-${(activeCardIndex * 100) / visibleCards}%)` }">
               <!-- Product Block Carousel -->
               <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center shrink-0">
@@ -956,12 +956,12 @@ const activeTab = ref(0);
           @touchmove="handleCardTouchMove" @touchend="handleTouchEnd">
           <!-- Carousel Container -->
           <div class="flex justify-center items-center overflow-hidden p-2">
-            <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[30.99px]"
+            <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[30.99px] lg:pr-0"
               :style="{ transform: `translateX(-${activeIndex * (100 / visibleCards)}%)` }" style="width: 100%">
               <!-- Product Card -->
               <div v-for="(card, index) in cards" :key="index"
-                class="w-3/5 lg:w-1/4 flex-shrink-0 bg-white shadow-[0px_0px_10px_1px_rgba(0,0,0,0.25)] rounded overflow-hidden">
-                <div class="flex flex-col justify-between">
+                class="w-3/4 lg:w-1/4 flex-shrink-0 bg-white shadow-[0px_0px_10px_1px_rgba(0,0,0,0.25)] rounded overflow-hidden">
+                <div class="flex flex-col justify-between ">
                   <!-- Image -->
                   <div class="flex items-center gap-[13px] flex-col">
                     <img class="w-full h-auto object-cover" :src="card.image" alt="Avatar" />

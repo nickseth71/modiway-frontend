@@ -304,7 +304,7 @@
     <!-- Navigation Links -->
     <div class="page-width">
       <!-- Mobile Navbar -->
-      <div :class="[
+      <div  @click.native="isMenuOpen = false" :class="[
         isMenuOpen ? 'menu-open translate-x-0 shadow-gray-400 shadow-2xl' : '-translate-x-full',
         'fixed top-0 left-0 w-[75%] h-screen bg-white transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto',
       ]" @click.self="isMenuOpen = false">
@@ -425,7 +425,7 @@
 
         <!-- Footer with Account Link -->
         <div
-          class="absolute bottom-5 left-0 right-0 flex justify-start p-6 border-t border-[#8C8C8C] border-opacity-45">
+          class="absolute bottom-[320px] left-0 right-0 flex justify-start p-6 border-t border-[#8C8C8C] border-opacity-45">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             class="cursor-pointer stroke-[#000000]">
             <circle cx="12" cy="8" r="4.75" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.5" />
@@ -653,11 +653,8 @@ const openItemsSubMenu = (items) => {
 const closeSubMenu = (menuKey) => {
   subMenuState.value[menuKey] = false;
 };
-
-// Fetch menus when component mounts
 getMenuData();
 
-// Shopping cart functionality
 const cartItems = ref([
   {
     id: 1,
