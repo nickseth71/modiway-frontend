@@ -258,7 +258,7 @@
           >
             <li>
               <router-link
-                to="#"
+                to="/business-opportunity"
                 class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Business Opportunity</router-link
               >
@@ -266,7 +266,7 @@
             </li>
             <li>
               <router-link
-                to="#"
+                to="/find-an-advisor"
                 class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Find an Advisor</router-link
               >
@@ -449,7 +449,7 @@
             </li>
             <li>
               <router-link
-                to="#"
+                to="/faq"
                 class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >FAQs</router-link
               >
@@ -457,7 +457,7 @@
             </li>
             <li>
               <router-link
-                to="#"
+                to="/privacy-policy"
                 class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Privacy Policy</router-link
               >
@@ -465,7 +465,7 @@
             </li>
             <li>
               <router-link
-                to="#"
+                to="/privacy-policy"
                 class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Policy & Compliance</router-link
               >
