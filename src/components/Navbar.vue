@@ -1,7 +1,7 @@
 <template>
   <header class="flex flex-col justify-center py-[10px] lg:py-[24px] page-width">
     <!-- Header Section -->
-    <div class="flex justify-between items-center pt-[14px] pb-[20px]">
+    <div class="w-full flex justify-between items-center pt-[14px] pb-[20px]">
       <!-- Left Side (Menu Button) -->
       <div class="flex items-start gap-4 sm:hidden">
         <!-- Menu Icon for Mobile Screens -->
@@ -13,29 +13,21 @@
         </button>
       </div>
 
-      <div class="flex lg:pr-[28px] lg:gap-[20px] sm:gap-6 items-center">
+      <div class="flex lg:pl-[68px] lg:gap-[20px] sm:gap-6 items-center">
         <!-- Search Icon -->
-
-
         <div class="lg:flex hidden items-center lg:pl-5 border-l-2 border-[#8C8C8C] border-opacity-45">
-
-
-
         </div>
         <!-- Profile Icon with borders -->
         <div
           class="lg:flex hidden items-center lg:px-5 border-l-2 border-r-2 border-[#8C8C8C] border-opacity-45 sm:px-3 px-2">
-
         </div>
-
         <!-- Cart Icon -->
         <div class="flex items-center px-2 lg:px-0">
-
         </div>
       </div>
 
       <!-- Logo Section - Centered -->
-      <div class="ml-12 lg:pl-[80px] flex justify-center items-center flex-grow">
+      <div class="pl-[34px] lg:pl-[83.5px] flex justify-center items-center flex-grow">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-[120px] h-[23px] lg:w-[188px] lg:h-[36px]" viewBox="0 0 188 36"
           fill="none">
           <g clip-path="url(#clip0_272_363)">
@@ -106,7 +98,7 @@
       </div>
 
       <!-- Right Side (Icons) -->
-      <div class="flex lg:pr-[38px] lg:gap-[20px] sm:gap-6 items-center">
+      <div class="flex lg:pr-[30px] lg:gap-[20px] sm:gap-6 items-center">
         <!-- Search Icon -->
         <div class="flex items-center border-r-2 lg:border-none px-2 lg:px-0">
           <svg @click="toggleSearch" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
@@ -304,8 +296,8 @@
     <!-- Navigation Links -->
     <div class="page-width">
       <!-- Mobile Navbar -->
-      <div  @click.native="isMenuOpen = false" :class="[
-        isMenuOpen ? 'menu-open translate-x-0 shadow-gray-400 shadow-2xl' : '-translate-x-full',
+      <div :class="[
+        isMenuOpen ? 'menu-open translate-x-0 bg-white shadow-gray-400 shadow-2xl' : '-translate-x-full',
         'fixed top-0 left-0 w-[75%] h-screen bg-white transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto',
       ]" @click.self="isMenuOpen = false">
         <button @click="isMenuOpen = false" class="absolute top-4 right-8 text-black text-2xl font-bold">
@@ -329,7 +321,7 @@
           </li>
           <!-- Products Dropdown -->
           <li>
-            <div>
+            <div class="bg-white">
               <!-- Main Dropdown -->
 
               <div ref="dropdownContainer" @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown"
@@ -425,7 +417,7 @@
 
         <!-- Footer with Account Link -->
         <div
-          class="absolute bottom-[320px] left-0 right-0 flex justify-start p-6 border-t border-[#8C8C8C] border-opacity-45">
+          class="absolute bottom-10 left-0 right-0 flex justify-start p-6 border-t border-[#8C8C8C] border-opacity-45">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             class="cursor-pointer stroke-[#000000]">
             <circle cx="12" cy="8" r="4.75" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.5" />
@@ -450,7 +442,7 @@
               Our Story
             </router-link>
           </li>
-          <div @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown">
+          <div @mouseenter="openDropdown" @mouseleave="delayedCloseDropdown ">
             <li>
               <router-link to="/products" :class="{
                 'text-black/85': !showDropdown,
@@ -460,10 +452,10 @@
               </router-link>
               <transition name="scroll">
                 <div v-show="showDropdown"
-                  class="absolute w-full max-w-full mx-auto mt-2 left-0 right-0 border border-[#DEDEDE]">
-                  <div class="relative max-w-full mx-auto bg-white min-h-[400px] z-10 p-6 flex justify-center">
+                  class="absolute w-full max-w-full mx-auto min-h-[320px] bg-white mt-2 left-0 right-0 border border-[#DEDEDE]">
+                  <div class="relative w-full  z-10 pt-6 flex justify-center">
                     <!-- Dropdown Menu -->
-                    <div class="absolute left-[28%] bg-white min-h-[300px] z-10 pl-6 flex">
+                    <div class="absolute left-[28%] min-h-full z-10 pl-6 flex">
                       <ul class="max-w-[630px] mx-auto">
                         <li v-for="(menu) in menus" :key="menu.key" class="flex justify-start items-center"
                           @mouseenter="openSubMenu(menu.subMenus), setActiveMenu(menu.label)">
@@ -735,7 +727,7 @@ const toggleCheckout = () => {
   openCartVisible.value = false;
   router.push("/checkout-form");
 };
-// const isMenuOpen = ref(false);
+const isMenuOpen = ref(false);
 
 </script>
 
@@ -857,7 +849,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      isMenuOpen: false,
+      // isMenuOpen: false,
       state: reactive({
         showDropdown: false,
         subMenuState: {},

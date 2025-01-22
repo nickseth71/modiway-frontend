@@ -25,7 +25,7 @@
       <span class="font-bold">Business Opportunity</span>
     </p>
     <!-- Top Section -->
-    <section class="container mx-auto px-4 py-6 text-center">
+    <section class="page-width px-4 py-6 text-center">
       <p class="text-16 lg:text-[22px] font-light leading-relaxed">
         We’re creating a new way & redefining success by creating opportunities
         for everyone to shine.
@@ -43,7 +43,7 @@
     </section>
 
     <!-- More Reasons Section -->
-    <section class="pt-8 bg-white">
+    <section class="pt-8 bg-white page-width">
       <div class="container mx-auto px-4">
         <h2
           class="text-3xl text-[36] lg:text-[48px] font-normal text-center mb-8 lg:mb-16"
@@ -73,7 +73,7 @@
 
     <!-- Features Section -->
     <section class="py-16 bg-[#F9F9F9] mt-20">
-      <div class="container mx-auto px-4">
+      <div class="page-width px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div
             v-for="feature in features"
@@ -101,7 +101,7 @@
     </section>
 
     <div class="py-12 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto">
+      <div class="page-width mx-auto">
         <h2
           class="text-3xl text-[36] lg:text-[48px] font-normal text-center mb-8 lg:mb-16"
         >

@@ -36,7 +36,7 @@
     <section v-for="(image, index) in imageItems" :key="index" :class="['', index === 1 ? 'bg-gray-100' : 'bg-white']"
       class="flex justify-center items-center">
       <div class=" flex flex-col justify-center items-center lg:items-start page-width ">
-        <div class="top-0 lg:my-[-50px] " :class="{
+        <div class="top-0 lg:my-[-48px]" :class="{
           'flex flex-col justify-center items-center lg:flex-row-reverse lg:gap-6':
             index % 2 === 0,
           'flex flex-col items-center lg:flex-row lg:gap-6 ': index % 2 !== 0,
@@ -51,7 +51,7 @@
           </div>
 
           <!-- Description -->
-          <div class="flex-1 flex justify-center items-start py-8" :class="{
+          <div class="flex-1 flex justify-center items-start py-[32px]" :class="{
             'lg:ml-[120px] lg:mr-[70px]': index % 2 === 0,
             'lg:mr-[120px] lg:ml-[100px]': index % 2 !== 0,
           }">
@@ -112,7 +112,7 @@
     </div>
 
     <!-- Business Opportunity Section -->
-    <section>
+    <section class="lg:pb-[10px]">
       <div class="relative flex items-center justify-center lg:h-full sm:h-32 inset-0 bg-black/20">
         <img :src="businessOpportunity" alt="Business Opportunity"
           class="w-full h-[243px] lg:w-full lg:h-full object-cover" />

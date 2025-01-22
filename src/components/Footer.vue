@@ -465,7 +465,7 @@
             </li>
             <li>
               <router-link
-                to="/privacy-policy"
+                to="/#"
                 class="text-black/85 text-[12px] sm:text-[14px] lg:text-[16px] font-outfit font-light leading-[30px]"
                 >Policy & Compliance</router-link
               >

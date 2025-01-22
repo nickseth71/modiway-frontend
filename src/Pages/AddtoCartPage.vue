@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watch,onUnmounted } from "vue";
+import { ref, computed, onMounted, watch, onUnmounted } from "vue";
 
 /// Icons
 import vegIcon from "../assets/modiway-icon/veg-icon.svg";
@@ -136,10 +136,10 @@ const productImages = ref([
 ]);
 
 const activeCardIndex = ref(0);
-const visibleProductCards = ref(4); 
+const visibleProductCards = ref(4);
 
 const handleResize = () => {
-  visibleProductCards.value = window.innerWidth <= 768 ? 2 : 4; 
+  visibleProductCards.value = window.innerWidth <= 768 ? 2 : 4;
 };
 
 const moveCarousel = (direction) => {
@@ -301,7 +301,7 @@ const handleTouchEnd = () => {
 const moveCards = (cardDirection) => {
   const totalPages = Math.ceil(cards.value.length / visibleCards.value);
   activeIndex.value =
-    (activeIndex.value + cardDirection * visibleCards.value + cards.value.length -1) %
+    (activeIndex.value + cardDirection * visibleCards.value + cards.value.length) %
     (totalPages * visibleCards.value);
 };
 
@@ -322,16 +322,16 @@ const activeTab = ref(0);
         <div class="flex flex-row pl-[16px] py-[8px]">
           <div class="flex flex-row ">
             <div class="flex flex-row justify-center">
-              <div class="text-gray-800 text-[11px] font-light font-outfit">
+              <div class="text-gray-800 text-[8px] font-light font-outfit">
                 ShapeShift
               </div>
-              <div class="text-gray-800 text-[11px] font-semibold px-[5px] font-outfit">
+              <div class="text-gray-800 text-[8px] font-semibold px-[5px] font-outfit">
                 |
               </div>
-              <div class="text-gray-800 text-[11px] font-semibold font-outfit">
+              <div class="text-gray-800 text-[8px] font-semibold font-outfit">
                 Meal Replacement for Weight Control /
               </div>
-              <div class="text-gray-800 text-[11px] font-semibold font-outfit">
+              <div class="text-gray-800 text-[8px] font-semibold font-outfit">
                 Management
               </div>
             </div>
@@ -522,10 +522,7 @@ const activeTab = ref(0);
           </div>
         </div>
       </div>
-
-
       <!-- Image Popup Modal -->
-
       <div>
         <div @click="closeModal" v-if="isModalOpen"
           class="fixed inset-0 flex items-center justify-center bg-white bg-opacity-80 z-50">
@@ -562,16 +559,16 @@ const activeTab = ref(0);
         <!-- Breadcrumbs -->
         <div class="flex flex-row ">
           <div class="flex flex-row justify-center">
-            <div class="text-gray-800 text-[15px] font-light font-outfit">
+            <div class="text-gray-800 text-[12px] font-light font-outfit">
               ShapeShift
             </div>
-            <div class="text-gray-800 text-[15px] font-semibold px-[5px] font-outfit">
+            <div class="text-gray-800 text-[12px] font-normal px-[5px] font-outfit">
               |
             </div>
-            <div class="text-gray-800 text-[15px] font-semibold font-outfit">
+            <div class="text-gray-800 text-[12px] font-normal font-outfit">
               Meal Replacement for Weight Control/
             </div>
-            <div class="text-gray-800 text-[15px] font-semibold font-outfit">
+            <div class="text-gray-800 text-[12px] font-normal font-outfit">
               Management
             </div>
           </div>
@@ -897,13 +894,13 @@ const activeTab = ref(0);
           @touchend="handleHandTouchEnd">
           <!-- Carousel Wrapper -->
           <div class="flex justify-center items-center overflow-hidden px-4">
-            <div class="flex w-full transition-transform duration-500 lg:p-4 gap-[14px] lg:gap-[30px] lg:pl-0 lg:pr-0 pl-[100px] pr-[470px]"
+            <div
+              class="flex w-full transition-transform duration-500 lg:p-4 gap-[14px] lg:gap-[30px] lg:pl-0 lg:pr-0 pl-[100px] pr-[470px]"
               :style="{ transform: `translateX(-${(activeCardIndex * 100) / visibleCards}%)` }">
               <!-- Product Block Carousel -->
               <div v-for="(product, index) in productImages" :key="index" class="flex flex-col items-center shrink-0">
                 <!-- Image Container -->
-                <div
-                  class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 py-4 rounded">
+                <div class="w-[175px] h-[175px] lg:w-[218px] lg:h-[307px] bg-white border border-gray-300 py-4 rounded">
                   <img :src="product.src" :alt="product.alt" class="w-full h-full object-cover" />
                 </div>
 
@@ -956,7 +953,7 @@ const activeTab = ref(0);
           @touchmove="handleCardTouchMove" @touchend="handleTouchEnd">
           <!-- Carousel Container -->
           <div class="flex justify-center items-center overflow-hidden p-2">
-            <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[30.99px] lg:pr-0"
+            <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[45px] lg:pr-0"
               :style="{ transform: `translateX(-${activeIndex * (100 / visibleCards)}%)` }" style="width: 100%">
               <!-- Product Card -->
               <div v-for="(card, index) in cards" :key="index"
@@ -985,7 +982,7 @@ const activeTab = ref(0);
           <!-- Navigation Buttons -->
           <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center">
             <button :disabled="cards.length === 0"
-              class="absolute left-[70px] lg:left-1/3 transform top-1/2 -translate-y-1/2" @click="moveCards(-1)">
+              class="absolute left-[70px] lg:left-[42%] transform top-1/2 -translate-y-1/2" @click="moveCards(-1)">
               <img :src="prevbutton" alt="Previous" class="w-6 h-6" />
             </button>
 
@@ -996,15 +993,15 @@ const activeTab = ref(0);
                 :aria-label="'Slide ' + (index + 1)" @click="activeIndex = index * visibleCards" :class="{
                   'bg-[#515151]': index === Math.floor(activeIndex / visibleCards),
                   'bg-[#c4c4c4]': index !== Math.floor(activeIndex / visibleCards),
-                }">
-              </button>
+                }"></button>
             </div>
 
             <button :disabled="cards.length === 0"
-              class="absolute right-[70px] lg:right-1/3 transform top-1/2 -translate-y-1/2" @click="moveCards(+1)">
+              class="absolute right-[0px] lg:right-[42%] transform top-1/2 -translate-y-1/2" @click="moveCards(+1)">
               <img :src="nextbutton" alt="Next" class="w-6 h-6" />
             </button>
           </div>
+
         </div>
       </div>
     </section>

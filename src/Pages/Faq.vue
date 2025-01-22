@@ -9,13 +9,13 @@
   </section>
   <section class="page-width px-4 mb-4 lg:px-0">
     <div class="flex flex-row mt-[20px] justify-start">
-      <div class="text-black/85 text-[15px] font-light font-outfit">
+      <div class="text-[#727272] text-[8px] lg:text-[12px] font-light font-outfit">
         Home
       </div>
-      <div class="text-black/85 text-[15px] font-semibold px-[5px] font-outfit">
+      <div class="text-[#727272] text-[8px] lg:text-[12px] font-semibold px-[5px] font-outfit">
         |
       </div>
-      <div class="text-black/85 text-[15px] font-semibold font-outfit">
+      <div class="text-[#727272] text-[8px] lg:text-[12px] font-semibold font-outfit">
         FAQ
       </div>
     </div>

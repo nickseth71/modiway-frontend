@@ -5,7 +5,7 @@ import Footer from "../components/Footer.vue";
 
 <template>
     <div>
-        <div class="sticky top-0 z-50 bg-white "><Navbar/></div>
+        <div class="relative top-0 z-50 bg-white "><Navbar/></div>
         <div>
             <router-view/>  
         </div>

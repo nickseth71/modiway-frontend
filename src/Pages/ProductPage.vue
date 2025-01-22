@@ -26,15 +26,15 @@
 
     <!-- main Section -->
     <section class="page-width">
-      <div class="flex flex-row mt-[20px] justify-start px-[15px] lg:justify-center">
-        <div class="text-black/85 text-[15px] font-light font-outfit">
+      <div class="flex flex-row mt-[20px] justify-start px-[12px] lg:justify-center">
+        <div class="text-[#727272] text-[12px] font-light font-outfit">
           Home
         </div>
-        <div class="text-black/85 text-[15px] font-semibold px-[5px] font-outfit">
+        <div class="text-[#727272] text-[12px] font-semibold px-[5px] font-outfit">
           |
         </div>
-        <div class="text-black/85 text-[15px] font-semibold font-outfit">
-          ShapeShift
+        <div class="text-[#727272] text-[12px] font-semibold font-outfit">
+        Products
         </div>
       </div>
       <!-- Welcome Section -->
@@ -130,7 +130,6 @@
                 </ul>
               </div>
             </div>
-
             <!-- Clear Filters Button -->
             <button v-if="selectedName.length > 0" @click="clearFilters"
               class="w-[100px] cursor-pointer text-red-600 text-[11px] md:text-[13px] font-inter font-normal underline  hover:text-red-700 hidden lg:block ">
@@ -139,11 +138,6 @@
           </div>
         </div>
       </section>
-
-
-
-
-
       <section class="page-width flex justify-center items-center px-[25px] mobile-p-fix">
         <div class="max-w-[992px] mx-auto">
         <div @click="AddtoCartPage"
@@ -151,11 +145,11 @@
           <div v-for="item in filteredSortedAndSearchedItems" :key="item.id"
             class=" lg:border border-transparent lg:hover:border-black transition duration-300">
             <div
-              class="w-full lg:w-[312px] relative flex justify-center items-center cursor-pointer border border-[#DEDEDE] hover:border-transparent px-4 py-4 lg:py-0 mb-2">
+              class="w-full lg:w-[312px] lg:h-[545px] relative flex justify-center items-center cursor-pointer border border-[#DEDEDE] hover:border-transparent px-4 py-4 lg:py-0 mb-2">
               <img :src="item.src" alt="Item Image"
-                class="w-[123px] h-[186px] lg:w-[312px] lg:h-[570px] object-cover transition-opacity duration-300" />
+                class="w-full h-full object-cover transition-opacity duration-300" />
               <img :src="item.hoverSrc" alt="Hover Item Image"
-                class="w-full h-full lg:w-[287px] lg:h-[545px] object-cover text-center absolute opacity-0 transition-opacity duration-300" />
+                class="w-full h-full lg:w-[287px] lg:h-full object-cover text-center absolute opacity-0 transition-opacity duration-300" />
             </div>
             <div class="max-w-[250px] pt-[10px] pb-[25px] lg:p-[19px] ">
               <p

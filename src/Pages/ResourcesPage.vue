@@ -8,9 +8,9 @@ import Videos from "../assets/young-woman-drinking-juice-home.png"
   <section>
     <!-- Responsive Banner Section -->
     <div class="lg:hidden flex justify-start items-start flex-row pl-[10px] ">
-      <span class="text-black/85 text-[15px] font-outfit font-normal">Home</span>
-      <span class="text-black/85 text-[15px] px-[5px] font-outfit font-normal">|</span>
-      <span class="text-black/85 text-[15px] font-outfit font-semibold">Resources</span>
+      <span class="text-[#727272] text-[8px] font-outfit font-normal">Home</span>
+      <span class="text-[#727272] text-[8px] px-[5px] font-outfit font-normal">|</span>
+      <span class="text-[#727272] text-[8px] font-outfit font-semibold">Resources</span>
     </div>
 
     <div class="w-full h-auto lg:h-auto">
@@ -18,9 +18,9 @@ import Videos from "../assets/young-woman-drinking-juice-home.png"
     </div>
 
     <div class="hidden lg:flex justify-center items-center flex-row mt-3 ">
-      <span class="text-black/85 text-[15px] font-outfit font-normal">Home</span>
-      <span class="text-black/85 text-[15px] px-[5px] font-outfit font-normal">|</span>
-      <span class="text-black/85 text-[15px] font-outfit font-semibold">Resources</span>
+      <span class="text-[#727272] text-[12px] font-outfit font-normal">Home</span>
+      <span class="text-[#727272] text-[12px] px-[5px] font-outfit font-normal">|</span>
+      <span class="text-[#727272] text-[12px] font-outfit font-semibold">Resources</span>
     </div>
 
     <!-- Responsive Content Section -->

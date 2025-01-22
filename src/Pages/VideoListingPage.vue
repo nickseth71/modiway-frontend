@@ -172,9 +172,9 @@ const clearFilters = () => {
 <template>
     <section class="page-width px-[15px]">
         <div class="flex lg:justify-center justify-start lg:items-center items-start  flex-row mt-3 ">
-            <span class="text-black/85 text-[15px] font-outfit font-normal">Resources</span>
-            <span class="text-black/85 text-[15px] px-[5px] font-outfit font-normal">|</span>
-            <span class="text-black/85 text-[15px] font-outfit font-semibold">Video Listing</span>
+            <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-normal">Resources</span>
+            <span class="text-[#727272] text-[8px] lg:text-[12px] px-[5px] font-outfit font-normal">|</span>
+            <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-semibold">Video Listing</span>
         </div>
         <section class="page-width flex justify-center items-center pt-[35px] pb-[15px] lg:pt-[63px] md:py-[30px]">
             <div class="max-w-full flex justify-between items-center w-full ">

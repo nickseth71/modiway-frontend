@@ -9,9 +9,9 @@
             class="w-full flex pt-[17px] lg:pt-[1px] flex-col md:w-1/2 text-start md:text-left px-[15px] lg:pr-[32px]">
 
             <div class="flex flex-row ">
-              <span class="text-black/85 text-[12px] font-outfit font-normal">Blogs</span>
-              <span class="text-black/85 text-[12px] px-[5px] font-outfit font-normal">|</span>
-              <span class="text-black/85 text-[12px] font-outfit font-semibold">Lorem Ipsum</span>
+              <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-normal">Blogs</span>
+              <span class="text-[#727272] text-[8px] lg:text-[12px] px-[5px] font-outfit font-normal">|</span>
+              <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-semibold">Lorem Ipsum</span>
             </div>
             <h1 style="line-height: normal"
               class="text-[26px] text-black/85 lg:text-[48px] font-light font-outfit pt-[60px]">
