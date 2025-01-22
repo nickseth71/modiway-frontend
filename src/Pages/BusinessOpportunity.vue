@@ -289,7 +289,7 @@
 
     <!-- Confetti Section -->
     <section
-      class="min-h-[400px]  lg:py-20 py-5 flex h-full items-center relative overflow-hidden"
+      class="min-h-[400px] lg:py-20 py-5 flex h-full items-center relative overflow-hidden"
     >
       <div class="absolute inset-0">
         <img
