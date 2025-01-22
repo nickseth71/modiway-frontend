@@ -610,8 +610,6 @@ const activeTab = ref(0);
             </div>
           </div>
 
-
-
           <div class="flex items-center gap-4 mt-[25px]">
             <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
             <div class="flex items-center border border-black rounded-md px-[4px]">
@@ -692,7 +690,7 @@ const activeTab = ref(0);
           <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
             class="relative cursor-pointer text-[#353535] text-[14px] hover:text-black">
             <div class="pb-[15px] border-b-2" :class="{
-              'border-black text-shadow-custom': activeTab === index,
+              'border-black text-black font-outfit font-semibold ': activeTab === index,
               'border-gray-300': activeTab !== index,
             }">
               <span>{{ tab }}</span>
