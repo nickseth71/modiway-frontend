@@ -139,7 +139,7 @@ const activeCardIndex = ref(0);
 const visibleProductCards = ref(4);
 
 const handleResize = () => {
-  visibleProductCards.value = window.innerWidth <= 768 ? 2 : 4;
+  visibleProductCards.value = window.innerWidth <= 768;
 };
 
 const moveCarousel = (direction) => {
@@ -272,11 +272,11 @@ const cards = ref([
 const activeIndex = ref(0);
 const startX = ref(0);
 const endX = ref(0);
-const visibleCards = ref(window.innerWidth < 768 ? 1.5 : 3);
+const visibleCards = ref(window.innerWidth < 768 ? 2 : 4);
 
 // Update visibleCards on window resize
 window.addEventListener('resize', () => {
-  visibleCards.value = window.innerWidth < 768 ? 1.5 : 3;
+  visibleCards.value = window.innerWidth < 768;
 });
 
 // Handle swipe
@@ -953,7 +953,7 @@ const activeTab = ref(0);
           @touchmove="handleCardTouchMove" @touchend="handleTouchEnd">
           <!-- Carousel Container -->
           <div class="flex justify-center items-center overflow-hidden p-2">
-            <div class="flex transition-transform duration-500 lg:p-4 gap-[33px] lg:gap-[45px] lg:pr-0"
+            <div class="flex transition-transform duration-500 lg:p-4 gap-[23px] lg:gap-[45px] pr-[40px] lg:pr-0"
               :style="{ transform: `translateX(-${activeIndex * (100 / visibleCards)}%)` }" style="width: 100%">
               <!-- Product Card -->
               <div v-for="(card, index) in cards" :key="index"
@@ -997,7 +997,7 @@ const activeTab = ref(0);
             </div>
 
             <button :disabled="cards.length === 0"
-              class="absolute right-[0px] lg:right-[42%] transform top-1/2 -translate-y-1/2" @click="moveCards(+1)">
+              class="absolute right-[70px] lg:right-[42%] transform top-1/2 -translate-y-1/2" @click="moveCards(+1)">
               <img :src="nextbutton" alt="Next" class="w-6 h-6" />
             </button>
           </div>
