@@ -77,10 +77,11 @@ const handlePageChange = (page) => {
 <template>
   <section>
     <section class="max-w-full">
+      <!--------------------------------------------- #22 jan------------------------------------------- -->
       <div class=" lg:hidden flex justify-start items-start flex-row mb-2 ml-2 ">
-        <span class="text-[#727272] text-[8px] font-outfit font-normal">Home</span>
-        <span class="text-[#727272] text-[8px]  px-[5px] font-outfit font-normal">|</span>
-        <span class="text-[#727272] text-[8px]  font-outfit font-semibold">Blogs</span>
+        <span class="text-[#727272] text-[8px] font-outfit font-medium">Home</span>
+        <span class="text-[#727272] text-[8px]  px-[5px] font-outfit font-light">|</span>
+        <span class="text-[#727272] text-[8px]  font-outfit font-light">Blogs</span>
       </div>
       <div class="flex justify-center h-auto">
         <img :src="Banner" alt="banner" class="w-full h-full object-cover" />
@@ -88,10 +89,11 @@ const handlePageChange = (page) => {
     </section>
 
     <section class="page-width">
+      <!--------------------------------------------- #22 jan------------------------------------------- -->
       <div class=" hidden lg:flex justify-center flex-row mt-3 ">
-        <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-normal">Home</span>
-        <span class="text-[#727272] text-[8px] lg:text-[12px] px-[5px] font-outfit font-normal">|</span>
-        <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-semibold">Blogs</span>
+        <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-medium hover:underline cursor-pointer">Home</span>
+        <span class="text-[#727272] text-[8px] lg:text-[12px] px-[5px] font-outfit font-light">|</span>
+        <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-light">Blogs</span>
       </div>
       <div class="mt-[20px] lg:mt-[44px] flex flex-col md:flex-row items-center px-[15px]">
         <!-- Left Section -->

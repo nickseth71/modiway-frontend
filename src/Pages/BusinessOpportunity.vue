@@ -1,9 +1,10 @@
 <template>
+  <!--------------------------------------------- #22 jan------------------------------------------- -->
   <p
-    class="text-left mt-0 px-2 mb-2 lg:hidden text-[#727272] text-[11px] font-normal"
+    class="text-left mt-0 px-2 mb-2 lg:hidden text-[#727272] text-[11px] font-medium hover:underline cursor-pointer"
   >
     Home |
-    <span class="font-bold">Business Opportunity</span>
+    <span class="font-light">Business Opportunity</span>
   </p>
   <section :class="['relative ', 'bg-white']">
     <div class="mx-auto">
@@ -19,10 +20,10 @@
   </section>
   <div class="">
     <p
-      class="text-center hidden lg:block mt-2 text-[#727272] text-[13px] font-normal"
+      class="text-center hidden lg:block mt-2 text-[#727272] text-[13px] font-medium"
     >
       Home |
-      <span class="font-bold">Business Opportunity</span>
+      <span class="font-light">Business Opportunity</span>
     </p>
     <!-- Top Section -->
     <section class="page-width px-4 py-6 text-center">

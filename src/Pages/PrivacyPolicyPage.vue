@@ -2,9 +2,10 @@
     <div class="page-width px-[15px] lg:px-8">
         <div class="max-w-full mx-auto bg-white">
             <div class="flex flex-row mb-[50px] ">
-                <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-normal">Home</span>
+                <!--------------------------------------------- #22 jan------------------------------------------- -->
+                <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-medium hover:underline">Home</span>
                 <span class="text-[#727272] text-[8px] lg:text-[12px] px-[5px] font-outfit font-normal">|</span>
-                <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-semibold">Privacy Policy</span>
+                <span class="text-[#727272] text-[8px] lg:text-[12px] font-outfit font-light">Privacy Policy</span>
             </div>
             <h1
                 class="text-[30px] lg:text-[48px] font-normal font-outfit mb-[15px] lg:mb-[24px] text-[#000000] leading-[42px]">

@@ -20,9 +20,6 @@
 }
 /*  */
 
-
-
-
 .page-width {
   max-width: 1200px;
   margin: auto;
@@ -74,7 +71,7 @@ transition: all .2s ease-in-out;
 
 }
 
-.tab-container > div {width:100%}
+.tab-container > div {width:80%}
 .tab-container {gap:15px}
 
 .search-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */

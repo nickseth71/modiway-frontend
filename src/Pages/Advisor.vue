@@ -2,14 +2,15 @@
   <div class="page-width">
 
     <div class="flex flex-row ">
+      <!--------------------------------------------- #22 jan------------------------------------------- -->
       <div class="flex flex-row justify-start lg:justify-center ">
-        <div class="text-gray-800 text-[12px] font-light font-outfit pl-2 lg:pl-[30px]">
+        <div class="text-gray-800 text-[12px] font-medium font-outfit pl-2 lg:pl-[30px] hover:underline cursor-pointer">
           Home
         </div>
-        <div class="text-gray-800 text-[12px] font-normal px-[5px] font-outfit">
+        <div class="text-gray-800 text-[12px] font-light px-[5px] font-outfit">
           |
         </div>
-        <div class="text-gray-800 text-[12px] font-semibold font-outfit">
+        <div class="text-gray-800 text-[12px] font-light font-outfit">
           Find an Advisor
         </div>
 

@@ -316,22 +316,23 @@ const activeTab = ref(0);
 <template>
   <section class="max-w-[100%] mx-auto">
     <section
-      class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-6 lg:space-y-0 lg:space-x-[16px] page-width">
+      class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-6 lg:space-y-0 lg:gap-[16px] page-width">
       <!------------------------------------------------------- Carousel for Small Devices-------------------------------- -->
       <div class="lg:hidden">
+        <!--------------------------------------------- #22 jan------------------------------------------- -->
         <div class="flex flex-row pl-[16px] py-[8px]">
           <div class="flex flex-row ">
             <div class="flex flex-row justify-center">
-              <div class="text-gray-800 text-[8px] font-light font-outfit">
+              <div class="text-gray-800 text-[8px] font-medium font-outfit">
                 ShapeShift
               </div>
-              <div class="text-gray-800 text-[8px] font-semibold px-[5px] font-outfit">
+              <div class="text-gray-800 text-[8px] font-light px-[5px] font-outfit">
                 |
               </div>
-              <div class="text-gray-800 text-[8px] font-semibold font-outfit">
+              <div class="text-gray-800 text-[8px] font-light font-outfit">
                 Meal Replacement for Weight Control /
               </div>
-              <div class="text-gray-800 text-[8px] font-semibold font-outfit">
+              <div class="text-gray-800 text-[8px] font-light font-outfit">
                 Management
               </div>
             </div>
@@ -393,10 +394,12 @@ const activeTab = ref(0);
 
           <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-              'px-2 text-center text-[13.90px] font-medium font-outfit cursor-pointer',
-              selectedFlavor === flavor ? 'border-[1.2px] border-black text-white' : ''
+              ' text-center text-[13.90px] font-medium font-outfit cursor-pointer',
+              selectedFlavor === flavor ? 'border-[1.8px] border-black' : ''
             ]" :style="{ backgroundColor: flavorColors[flavor] }">
-              {{ flavor }}
+              <div class="border-white border-[1.6px] px-2">
+                {{ flavor }}
+              </div>
             </div>
           </div>
 
@@ -505,11 +508,11 @@ const activeTab = ref(0);
       </div>
 
       <!------------------------------------------------------------------------------- Large Screen --------------------------------------------------- -->
-
-      <div class="hidden lg:flex gap-6">
+<!--------------------------------------------- #22 jan------------------------------------------- -->
+      <div class="hidden lg:flex gap-6 w-[60%]">
         <!-- Image Grid -->
-        <div class="lg:grid gap-[14px] grid-cols-2 lg:w-full h-full">
-          <div v-for="(item, index) in visibleItems" :key="index" class="relative flex justify-center">
+        <div class="lg:grid gap-[14px] grid-cols-2 h-full">
+          <div v-for="(item, index) in visibleItems" :key="index" class="relative w-full flex justify-center">
             <img :src="item.src" :alt="item.alt" class="object-cover w-full h-auto cursor-pointer"
               @click="openModal(index)" />
             <!-- Show overlay if it's the last visible item and there are more items -->
@@ -552,23 +555,23 @@ const activeTab = ref(0);
           </button>
         </div>
       </div>
-
+<!--------------------------------------------- #22 jan------------------------------------------- -->
 
       <!-- Second Column: Product Information -->
-      <div class="hidden lg:block w-full lg:w-[44%] space-y-0 px-[15px]">
+      <div class="hidden lg:block w-full lg:w-[40%] space-y-0 ">
         <!-- Breadcrumbs -->
         <div class="flex flex-row ">
           <div class="flex flex-row justify-center">
-            <div class="text-gray-800 text-[12px] font-light font-outfit">
+            <div class="text-gray-800 text-[12px] font-medium font-outfit hover:underline cursor-pointer">
               ShapeShift
             </div>
-            <div class="text-gray-800 text-[12px] font-normal px-[5px] font-outfit">
+            <div class="text-gray-800 text-[12px] font-light px-[5px] font-outfit">
               |
             </div>
-            <div class="text-gray-800 text-[12px] font-normal font-outfit">
+            <div class="text-gray-800 text-[12px] font-light font-outfit">
               Meal Replacement for Weight Control/
             </div>
-            <div class="text-gray-800 text-[12px] font-normal font-outfit">
+            <div class="text-gray-800 text-[12px] font-light font-outfit">
               Management
             </div>
           </div>
@@ -599,15 +602,17 @@ const activeTab = ref(0);
           </p>
 
         </div>
-
+<!--------------------------------------------- #22 jan------------------------------------------- -->
         <div class="pt-[20px]">
-          <div class="flex flex-wrap justify-start items-center gap-[7px] pt-[31px]">
+          <div class="flex flex-wrap justify-start items-center gap-[9px] pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-              'border px-2 text-center text-[14.90px] font-medium  font-outfit cursor-pointer hover:scale-[1.03] ease-in-out',
-              selectedFlavor === flavor ? 'border-[2px] border-black text-white' : ''
+              'text-center text-[14.90px] font-medium  font-outfit cursor-pointer hover:scale-[1.03] ease-in-out',
+              selectedFlavor === flavor ? 'border-[1.8px] border-black text-white' : ''
             ]" :style="{ backgroundColor: flavorColors[flavor] }">
              <span>
-              {{ flavor }}
+              <div class="border-[1.7px] border-white px-2 ">
+                {{ flavor }}
+              </div>
              </span>
             </div>
           </div>
@@ -652,7 +657,7 @@ const activeTab = ref(0);
             </div>
           </div>
 
-          <div class="w-[393px] flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
+          <div class="w-[395px] flex justify-start gap-[54px] items-center border-b border-[#969696] py-[28px]">
             <div class="flex justify-between items-center gap-2">
               <button class="underline underline-offset-2">
                 Share Product
@@ -667,8 +672,8 @@ const activeTab = ref(0);
             </div>
           </div>
         </div>
-
-        <div class="flex  items-center gap-[15px]">
+<!--------------------------------------------- #22 jan------------------------------------------- -->
+        <div class="flex  items-center gap-[13px]">
           <div v-for="(item, index) in Icons" :key="index" class="flex flex-col justify-between items-center pt-[60px]">
             <!-- Icon -->
             <img :src="item.src" alt="Icon" class="w-[29.061px] h-[29.061px]" />
@@ -685,26 +690,27 @@ const activeTab = ref(0);
 
     </section>
     <!------------------------------------------------ Product Description Section ---------------------------------------------------------->
-    <section class="page-width hidden lg:block">
-      <div class="mt-[72px] flex flex-col items-center justify-center w-full max-w-[1124px] mx-auto">
+    <!--------------------------------------------- #22 jan------------------------------------------- -->
+    <section class="max-w-full mt-[60px] mx-auto hidden lg:block">
+      <div class="mt-[72px] flex flex-col items-center justify-center w-full page-width">
         <!-- Tabs -->
         <div class="flex justify-between items-center w-full tab-container">
           <div v-for="(tab, index) in tabs" :key="index" @click="activeTab = index"
             class="relative cursor-pointer text-[#353535] text-[14px] hover:text-black">
-            <div class="pb-[15px] border-b-2" :class="{
+            <div class="pb-[15px] border-b-2 w-[200px] " :class="{
               'border-black text-black font-outfit font-semibold ': activeTab === index,
               'border-gray-300': activeTab !== index,
             }">
               <span>{{ tab }}</span>
             </div>
             <div v-if="activeTab === index"
-              class="absolute top-[12px] right-[20px] h-[6px] w-[6px] bg-black transform -translate-y-1/2 rounded-full">
+              class="absolute top-[12px] right-[35px] h-[6px] w-[6px] bg-black transform -translate-y-1/2 rounded-full">
             </div>
           </div>
         </div>
 
         <!-- Add tab content with transition -->
-        <div class="tab-content-container ">
+        <div class="tab-content-container page-width ">
           <!-- <transition name="tab-transition" mode="out-in"> -->
           <div :key="activeTab" class="tab-content animate-smooth-in-right">
             <div class="w-full mt-8">
@@ -880,6 +886,7 @@ const activeTab = ref(0);
     </section>
 
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ You may also like section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+    <!--------------------------------------------- #22 jan------------------------------------------- -->
     <section class="page-width">
       <!-- Title Section -->
       <div class="flex justify-start lg:justify-center items-center mt-[50px] lg:mt-20 px-4">
@@ -946,7 +953,7 @@ const activeTab = ref(0);
       </div>
     </section>
     <!------------------------------------------------------ card Section Section ------------------------------------------------------------->
-
+<!--------------------------------------------- #22 jan------------------------------------------- -->
     <section class="page-width">
       <div class="w-full flex justify-center py-[25px] lg:pt-[108px]">
         <div class="w-full max-w-full mx-auto relative px-4 pb-[82px]" @touchstart="handleCardTouchStart"
@@ -980,7 +987,8 @@ const activeTab = ref(0);
             </div>
           </div>
           <!-- Navigation Buttons -->
-          <div class="mt-[22px] sm:[22px] lg:mt-[84px] relative flex justify-between items-center">
+           <!--------------------------------------------- #22 jan------------------------------------------- -->
+          <div class="mt-[22px] sm:[22px] lg:mt-[24px] relative flex justify-between items-center">
             <button :disabled="cards.length === 0"
               class="absolute left-[70px] lg:left-[42%] transform top-1/2 -translate-y-1/2" @click="moveCards(-1)">
               <img :src="prevbutton" alt="Previous" class="w-6 h-6" />

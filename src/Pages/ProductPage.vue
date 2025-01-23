@@ -26,14 +26,15 @@
 
     <!-- main Section -->
     <section class="page-width">
-      <div class="flex flex-row mt-[20px] justify-start px-[12px] lg:justify-center">
-        <div class="text-[#727272] text-[12px] font-light font-outfit">
+      <!--------------------------------------------- #22 jan------------------------------------------- -->
+      <div class="flex flex-row mt-[20px] justify-start px-[12px] lg:justify-center hover:underline">
+        <div class="text-[#727272] text-[12px] font-medium font-outfit">
           Home
         </div>
-        <div class="text-[#727272] text-[12px] font-semibold px-[5px] font-outfit">
+        <div class="text-[#727272] text-[12px] font-light px-[5px] font-outfit">
           |
         </div>
-        <div class="text-[#727272] text-[12px] font-semibold font-outfit">
+        <div class="text-[#727272] text-[12px] font-light font-outfit">
         Products
         </div>
       </div>

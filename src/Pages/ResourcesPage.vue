@@ -7,20 +7,22 @@ import Videos from "../assets/young-woman-drinking-juice-home.png"
 <template>
   <section>
     <!-- Responsive Banner Section -->
+     <!--------------------------------------------- #22 jan------------------------------------------- -->
     <div class="lg:hidden flex justify-start items-start flex-row pl-[10px] ">
-      <span class="text-[#727272] text-[8px] font-outfit font-normal">Home</span>
-      <span class="text-[#727272] text-[8px] px-[5px] font-outfit font-normal">|</span>
-      <span class="text-[#727272] text-[8px] font-outfit font-semibold">Resources</span>
+      <span class="text-[#727272] text-[8px] font-outfit font-medium">Home</span>
+      <span class="text-[#727272] text-[8px] px-[5px] font-outfit font-light">|</span>
+      <span class="text-[#727272] text-[8px] font-outfit font-light">Resources</span>
     </div>
 
     <div class="w-full h-auto lg:h-auto">
       <img :src="Banner" alt="Resource Banner" class="w-full h-auto object-cover" />
     </div>
+    <!--------------------------------------------- #22 jan------------------------------------------- -->
 
     <div class="hidden lg:flex justify-center items-center flex-row mt-3 ">
-      <span class="text-[#727272] text-[12px] font-outfit font-normal">Home</span>
-      <span class="text-[#727272] text-[12px] px-[5px] font-outfit font-normal">|</span>
-      <span class="text-[#727272] text-[12px] font-outfit font-semibold">Resources</span>
+      <span class="text-[#727272] text-[12px] font-outfit font-medium">Home</span>
+      <span class="text-[#727272] text-[12px] px-[5px] font-outfit font-light">|</span>
+      <span class="text-[#727272] text-[12px] font-outfit font-light">Resources</span>
     </div>
 
     <!-- Responsive Content Section -->
