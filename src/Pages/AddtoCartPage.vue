@@ -393,8 +393,8 @@ const activeTab = ref(0);
 
           <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-              'px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
-              selectedFlavor === flavor ? 'border-[1.8px] border-black text-white' : ''
+              'px-2 text-center text-[13.90px] font-medium font-outfit cursor-pointer',
+              selectedFlavor === flavor ? 'border-[1.2px] border-black text-white' : ''
             ]" :style="{ backgroundColor: flavorColors[flavor] }">
               {{ flavor }}
             </div>
