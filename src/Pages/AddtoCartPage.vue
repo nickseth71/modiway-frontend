@@ -136,10 +136,10 @@ const productImages = ref([
 ]);
 
 const activeCardIndex = ref(0);
-const visibleProductCards = ref(4);
+const visibleProductCards = ref(0);
 
 const handleResize = () => {
-  visibleProductCards.value = window.innerWidth <= 768;
+  visibleProductCards.value = window.innerWidth <= 768 ? 2 :4;
 };
 
 const moveCarousel = (direction) => {
@@ -917,7 +917,7 @@ const activeTab = ref(0);
             </div>
           </div>
           <!-- Left Arrow Button -->
-          <button v-if="productImages.length > visibleCards" :disabled="activeCardIndex === 0" @click="moveCarousel(-1)"
+          <button v-if="productImages.length" :disabled="activeCardIndex === 0" @click="moveCarousel(-1)"
             class="absolute left-2 top-[37%] transform -translate-y-1/2 bg-white border p-2 rounded-full shadow-md"
             :class="{ 'opacity-50 cursor-not-allowed': activeCardIndex === 0 }">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-6 h-6">
