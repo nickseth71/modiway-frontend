@@ -55,7 +55,7 @@
             'lg:ml-[120px] lg:mr-[70px]': index % 2 === 0,
             'lg:mr-[120px] lg:ml-[100px]': index % 2 !== 0,
           }">
-            <div class="pl-[17px]  lg:py-28 space-y-[15px] lg:space-y-[16px]">
+            <div class="pl-[15px] lg:py-28 space-y-[15px] lg:space-y-[16px]">
               <h3 class="text-black/85 text-[26px] font-normal tracking-normal font-outfit">
                 {{ image.heading }}
               </h3>
@@ -102,7 +102,7 @@
     <div class="bg-gray-100">
       <section class="flex justify-center items-center page-width">
         <div
-          class="pl-[17px] pr-[11px] lg:px-[20px] lg:py-[58px] py-[58px] text-center text-[rgba(0,0,0,0.85)] max-w-[878px] font-light lg:font-extralight font-outfit tracking-[0.6px] leading-[20px] lg:leading-[38px] text-[20px] lg:text-[30px]">
+          class="px-[15px] lg:px-[20px] lg:py-[58px] py-[58px] text-center text-[rgba(0,0,0,0.85)] max-w-[878px] font-light lg:font-extralight font-outfit tracking-[0.6px] leading-[20px] lg:leading-[38px] text-[20px] lg:text-[30px]">
           Modiway is a future-forward direct-selling company. It offers the
           world’s best-designed, science- backed solutions and business
           opportunities to enhance your potential and make your dreams come

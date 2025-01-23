@@ -211,7 +211,7 @@ const flavorColors = {
   Rasmalai: "#E0CFB0",
 };
 
-const selectedFlavor = ref(null);
+const selectedFlavor = ref(flavors.value[0]);
 
 const selectFlavor = (flavor) => {
   selectedFlavor.value = flavor;
@@ -316,7 +316,7 @@ const activeTab = ref(0);
 <template>
   <section class="max-w-[100%] mx-auto">
     <section
-      class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-6 lg:space-y-0 lg:space-x-[42px] page-width">
+      class="flex flex-col lg:flex-row justify-between items-start py-0 lg:py-8 space-y-6 lg:space-y-0 lg:space-x-[16px] page-width">
       <!------------------------------------------------------- Carousel for Small Devices-------------------------------- -->
       <div class="lg:hidden">
         <div class="flex flex-row pl-[16px] py-[8px]">
@@ -393,8 +393,8 @@ const activeTab = ref(0);
 
           <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-              'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
-              selectedFlavor === flavor ? 'border-[1.2px] border-black' : ''
+              'px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer',
+              selectedFlavor === flavor ? 'border-[1.8px] border-black text-white' : ''
             ]" :style="{ backgroundColor: flavorColors[flavor] }">
               {{ flavor }}
             </div>
@@ -601,17 +601,19 @@ const activeTab = ref(0);
         </div>
 
         <div class="pt-[20px]">
-          <div class="flex flex-wrap justify-start items-center gap-2 pt-[31px]">
+          <div class="flex flex-wrap justify-start items-center gap-[7px] pt-[31px]">
             <div v-for="flavor in flavors" :key="flavor" @click="selectFlavor(flavor)" :class="[
-              'border px-2 text-center text-[14.90px] font-medium font-outfit cursor-pointer hover:scale-[1.03] ease-in-out',
-              selectedFlavor === flavor ? 'border-[1.2] border-black ' : ''
+              'border px-2 text-center text-[14.90px] font-medium  font-outfit cursor-pointer hover:scale-[1.03] ease-in-out',
+              selectedFlavor === flavor ? 'border-[2px] border-black text-white' : ''
             ]" :style="{ backgroundColor: flavorColors[flavor] }">
+             <span>
               {{ flavor }}
+             </span>
             </div>
           </div>
 
           <div class="flex items-center gap-4 mt-[25px]">
-            <p style="line-height: normal;" class="text-[13px] font-normal font-outfit">Quantity:</p>
+            <p style="line-height: normal;" class="text-[16px] font-normal font-outfit">Quantity:</p>
             <div class="flex items-center border border-black rounded-md px-[4px]">
               <!-- Decrease Quantity Button -->
               <button class="w-6 h-6 flex justify-center items-center text-gray-800" @click="decreaseQuantity"
